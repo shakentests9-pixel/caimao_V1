@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/*
+  CaiMao design tokens.
+  Orange, cream and cocoa carry the system; gold is the highlight. Screens stay bright:
+  ivory page, white cards, cocoa type. Every page pulls colours, radii and shadows
+  from here, so the brand can be tuned in one place.
+*/
+@theme {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Nunito Sans Variable", "Manrope Variable", ui-sans-serif, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Brand palette */
+  --color-brand: #a84a1a;        /* primary: buttons, active states, mascot tiles */
+  --color-brand-deep: #8d3d15;   /* primary hover / pressed */
+  --color-brand-soft: #fff1e4;   /* mascot insight surface */
+  --color-brand-line: #f4d2b9;   /* mascot insight border */
+  --color-cocoa: #3a2117;        /* text, premium dark surfaces */
+  --color-cocoa-2: #5c3b2c;      /* secondary text */
+  --color-muted: #765b4d;        /* labels and supporting copy (AA on white, ivory, cream) */
+  --color-faint: #a8907f;        /* decorative marks and disabled states only */
+  --color-ivory: #fff8f2;        /* page background */
+  --color-white: #ffffff;
+  --color-cream: #f6eadf;        /* soft inner surfaces */
+  --color-sand: #e9d8c8;         /* tracks, strong dividers */
+  --color-line: #f1e6de;         /* hairline dividers */
+  --color-gold: #f5b14c;         /* highlight: best option, current step, focus */
+  --color-gold-soft: #fdebcb;
+  --color-gold-ink: #8a5300;     /* text on gold-soft */
+  --color-peach: #f2c7a6;
+  --color-peach-soft: #fbe6d6;
+  --color-peach-ink: #9a4318;
+
+  /* Status: brand fill + text-safe ink + soft surface */
+  --color-success: #3faf6c;
+  --color-success-ink: #23794a;
+  --color-success-soft: #e1f4e8;
+  --color-warning: #f2a93b;
+  --color-warning-ink: #8a5300;
+  --color-warning-soft: #fdefd8;
+  --color-error: #d85c4a;
+  --color-error-ink: #b23a2a;
+  --color-error-soft: #fbe5e1;
+
+  /* Shape and depth */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 28px;
+
+  --shadow-card: 0 14px 32px rgba(58, 33, 23, 0.07);
+  --shadow-lift: 0 18px 38px rgba(58, 33, 23, 0.11);
+  --shadow-float: 0 20px 48px rgba(58, 33, 23, 0.16);
+  --shadow-glow: 0 9px 20px rgba(168, 74, 26, 0.28);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+  --animate-glow: glow 1.8s ease-in-out infinite;
+  --animate-rise: rise 300ms var(--ease-out-soft) both;
+  --animate-draw: draw 520ms var(--ease-out-soft) 140ms both;
+  --animate-pop: pop 380ms var(--ease-out-soft) both;
+  --animate-nudge: nudge 2.4s ease-in-out infinite;
+  --animate-arrive: arrive 1.1s cubic-bezier(0.22, 0.75, 0.25, 1) both;
+  --animate-breathe: breathe 5s ease-in-out 1.1s infinite;
+
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 1; }
+  }
+  @keyframes glow {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(245, 177, 76, 0.25); }
+    50% { box-shadow: 0 0 0 7px rgba(245, 177, 76, 0.35); }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes draw {
+    from { stroke-dashoffset: 48; }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    70% { transform: scale(1.04); opacity: 1; }
+    100% { transform: scale(1); }
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(3px); }
+  }
+  @keyframes arrive {
+    from { opacity: 0; transform: translateY(18px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.012); }
+  }
+}
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body {
+    background: var(--color-ivory);
+    color: var(--color-cocoa);
+    font-family: var(--font-sans);
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.03em; }
+  :focus-visible { outline: 3px solid var(--color-gold); outline-offset: 3px; border-radius: 10px; }
+  ::selection { background: var(--color-peach); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  /* Primary action: solid brand orange, white text. */
+  .cm-cta { background: var(--color-brand); color: #fff; box-shadow: var(--shadow-glow); }
+  .cm-cta:hover { background: var(--color-brand-deep); }
+  /* Warm accent fill for progress bars, indicators and small decorative marks. */
+  .cm-accent { background-image: linear-gradient(120deg, #f5b14c 0%, #e0823a 55%, #a84a1a 100%); }
+  /* Premium dark surface: hero balance, credit card, verified transfer. */
+  .cm-premium { background-image: linear-gradient(130deg, #3a2117 0%, #61311d 58%, #a84a1a 100%); color: #fff; }
+  /* The gold ring that sits on premium surfaces, echoing the coin route in the logo. */
+  .cm-ring::after {
+    content: ""; position: absolute; width: 260px; height: 260px; right: -96px; top: -88px;
+    border: 1px solid rgba(245, 177, 76, 0.45); border-radius: 9999px; pointer-events: none;
+  }
+  .cm-ring::before {
+    content: ""; position: absolute; width: 180px; height: 180px; right: -40px; top: -30px;
+    border: 1px dashed rgba(245, 177, 76, 0.28); border-radius: 9999px; pointer-events: none;
+  }
+  /* Mascot insight surface (peach wash, soft peach border). */
+  .cm-insight { background: var(--color-brand-soft); border: 1px solid var(--color-brand-line); }
+  /* Recommended route / best option: gold outline. */
+  .cm-best { border: 2px solid var(--color-gold); background: #fffdf9; }
+  .cm-brand-text { color: var(--color-brand); }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+  .cm-lift { transition: transform 200ms var(--ease-out-soft), box-shadow 200ms var(--ease-out-soft); }
+  .cm-lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+  .cm-press { transition: transform 150ms var(--ease-out-soft), background-color 200ms, box-shadow 200ms; }
+  .cm-press:active { transform: scale(0.97); }
+  /* Dotted coordinate grid for premium surfaces. */
+  .cm-dots {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1.2px);
+    background-size: 18px 18px;
+  }
+  .cm-scroll-x { scrollbar-width: none; }
+  .cm-scroll-x::-webkit-scrollbar { display: none; }
+}
