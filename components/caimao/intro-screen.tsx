@@ -21,11 +21,16 @@ export function IntroScreen({ mode }: { mode: "memory" | "supabase" }) {
     if (mode === "supabase") return router.push("/login?signup=1");
     setBusy(true);
     setError(null);
-    const res = await fetch("/api/auth/demo", { method: "POST" });
-    setBusy(false);
-    if (!res.ok) return setError(t("demoError"));
-    router.push("/");
-    router.refresh();
+    try {
+      // A cold start on a serverless host can be slow, but never leave the button spinning forever.
+      const res = await fetch("/api/auth/demo", { method: "POST", signal: AbortSignal.timeout(20_000) });
+      if (!res.ok) throw new Error(String(res.status));
+      // Full navigation so the new session cookie is sent with the very next request.
+      window.location.assign("/");
+    } catch {
+      setBusy(false);
+      setError(t("demoError"));
+    }
   }
 
   return (

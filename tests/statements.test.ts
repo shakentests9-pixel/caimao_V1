@@ -56,7 +56,7 @@ describe("statement parsing", () => {
       [bytes("%PDF-1.7\n1 0 obj << /Encrypt 2 0 R >>"), "locked.pdf", "PDF_ENCRYPTED"],
       [bytes("%PDF-1.7\n1 0 obj << /OpenAction << /S /JavaScript /JS (app.alert(1)) >> >>"), "script.pdf", "PDF_ACTIVE_CONTENT"],
       [bytes("hello,world\nno,dates here"), "notes.csv", "NO_TRANSACTIONS"],
-      [new Uint8Array(5 * 1024 * 1024 + 1), "big.csv", "TOO_LARGE"],
+      [new Uint8Array(4 * 1024 * 1024 + 1), "big.csv", "TOO_LARGE"],
     ];
     for (const [b, name, reason] of attempts) {
       const err = await uploadStatement(repo, { bytes: b, fileName: name, consent: true }).catch((e) => e);

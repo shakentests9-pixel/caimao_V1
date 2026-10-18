@@ -1215,7 +1215,7 @@
     "uploadTitle": "明細をアップロード",
     "uploadHint": "銀行のアプリやウェブサイトからエクスポートした CSV、またはテキスト形式の PDF。",
     "choose": "ファイルを選択するか、ここにドロップ",
-    "formats": "CSV または PDF、最大 5 MB",
+    "formats": "CSV または PDF、最大 4 MB",
     "fileReady": "アップロード準備完了 · {kb} KB",
     "privacy": {
       "notStored": "CaiMao のサーバーで読み取った後に破棄されます。ファイル自体が保存されることはありません。",
@@ -1336,7 +1336,7 @@
   },
   "Errors": {
     "EMPTY": "ファイルが空です。",
-    "TOO_LARGE": "ファイルが 5 MB を超えています。",
+    "TOO_LARGE": "ファイルが 4 MB を超えています。",
     "UNSUPPORTED_TYPE": "対応しているのは CSV と PDF の明細のみです。",
     "EXTENSION_MISMATCH": "ファイルの内容がファイル名と一致しません。",
     "NOT_TEXT": "CSV のテキストファイルではないようです。",

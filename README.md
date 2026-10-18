@@ -60,7 +60,7 @@ Beyond tuition, CaiMao is a **study-abroad financial setup assistant** for Singa
 | **Budget** | `/budget` | "Your October" hero, CaiMao's spending insights, category cards, upcoming bills, transactions. |
 | **Bills & obligations** | `/obligations` | Tuition hero, **Upcoming / Paid / All** tabs, month grouping and urgency labels. |
 | **Banking & Credit** | `/banking` | Card visual, next payment and minimum, payment history, *Build your UK financial profile* checklist and the local bank setup checklist per country. |
-| **Analyse a statement** | `/budget/statement` | Upload (consent box, 5 MB, PDF/CSV), *Reading your statement…*, a review of every extracted row with editable categories and include toggles, **Confirm**, then the summary (income, expenses, net, recurring, potential savings), CaiMao insights, category breakdown, top merchants, recurring payments, unusual expenses, income pattern and a projection to the next big payment. Delete at any time. |
+| **Analyse a statement** | `/budget/statement` | Upload (consent box, 4 MB, PDF/CSV), *Reading your statement…*, a review of every extracted row with editable categories and include toggles, **Confirm**, then the summary (income, expenses, net, recurring, potential savings), CaiMao insights, category breakdown, top merchants, recurring payments, unusual expenses, income pattern and a projection to the next big payment. Delete at any time. |
 | **Banking abroad** | `/banking/abroad` | Per country: *About you* (nationality, residency, visa, age, student status), the 8 account-opening steps, bank comparison cards with **Check my eligibility**, and *Building credit history*, every fact with its source and last-verified date. |
 | **My Financial Setup** | `/setup` | The 8-step plan for a study country (documents → bank account → receiving money from home → compare tuition routes → pay tuition → recurring payments → local credit → restrictions), with progress. |
 | **Cross-border rules check** | `/transfers#rules` | Source, destination, purpose, amount and personal details → **COMPLIANT / ACTION REQUIRED / BLOCKED / NEEDS VERIFICATION** with requirements, documents, limits, regulator, official source and last verified. |
@@ -207,7 +207,7 @@ That's enough to run in **local demo mode**. Supabase and an Anthropic key are o
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | For Supabase mode | Public anon key; all reads go through RLS. |
 | `SUPABASE_SERVICE_ROLE_KEY` | For Supabase mode | **Server only.** Used for writes and for calling `commit_sandbox_execution`. |
 | `UNIFLOW_DATA_MODE` | No | Force `memory` or `supabase`. Defaults to `supabase` when all three Supabase values are set. | (The `UNIFLOW_` prefix is kept from the original MVP so existing deployments keep working.)
-| `DEMO_SESSION_SECRET` | Recommended | HMAC key for the demo-mode session cookie. Without it a random per-process secret is used. |
+| `DEMO_SESSION_SECRET` | Recommended | HMAC key for the demo-mode session cookie. Without it a fixed fallback key is used so sign-in works across serverless processes (demo mode already lets anyone sign in as the demo user, so this grants nothing extra); set your own in production. |
 | `DEMO_USER_PASSWORD` | For seeding | Password for the seeded Supabase demo user. |
 | `ANTHROPIC_API_KEY` | No | **Server only.** Enables the Claude tool-calling agent. Without it, the built-in planner runs the same tools. |
 | `ANTHROPIC_MODEL` | No | Defaults to `claude-sonnet-5-5`. |
@@ -380,7 +380,7 @@ Routes are compared at a common send amount and **ranked by `recipient_gets`**; 
 - **Approval and audit**: Level 3 per transaction; audit log append-only at the database level.
 - **Replay protection**: compare-and-set status transitions; a request can be approved once and executed once; quotes expire after 15 minutes.
 - **Headers**: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, strict referrer policy.
-- **Statements**: 5 MB limit (checked before reading the body), file type by magic bytes as well as extension (PDF or CSV only; archives, executables, encrypted or script-bearing PDFs rejected), parsed in memory on the server and never written to storage or given a URL, card and account numbers masked before anything is saved, previews expire after an hour, confirmed data deletable by the user. The optional AI category suggestion sees only masked merchant names of ambiguous card-style debits (never amounts, dates, balances or person-to-person transfers).
+- **Statements**: 4 MB limit (checked before reading the body), file type by magic bytes as well as extension (PDF or CSV only; archives, executables, encrypted or script-bearing PDFs rejected), parsed in memory on the server and never written to storage or given a URL, card and account numbers masked before anything is saved, previews expire after an hour, confirmed data deletable by the user. The optional AI category suggestion sees only masked merchant names of ambiguous card-style debits (never amounts, dates, balances or person-to-person transfers).
 
 The full threat model, known risks and mitigations are in the [security self-assessment](docs/security-self-assessment.md).
 
@@ -418,7 +418,7 @@ Audit events for the run: `TRANSFER_RULE_CHECK → QUOTE_RETRIEVAL → COST_CALC
 npm test
 ```
 
-124 tests across eight files. The new features are covered by `tests/statements.test.ts`, `tests/global-setup.test.ts`, `tests/agent-i18n.test.ts` and `tests/privacy.test.ts` (statement parsing and confirmation, NEEDS_VERIFICATION, sources and last-verified dates, eligibility clarification, statement RLS, approval still required, the tuition flow unchanged, translations complete, the assistant understanding every chip in all three languages, and what the AI model may see).
+126 tests across nine files. The new features are covered by `tests/statements.test.ts`, `tests/global-setup.test.ts`, `tests/agent-i18n.test.ts` and `tests/privacy.test.ts` (statement parsing and confirmation, NEEDS_VERIFICATION, sources and last-verified dates, eligibility clarification, statement RLS, approval still required, the tuition flow unchanged, translations complete, the assistant understanding every chip in all three languages, and what the AI model may see).
 
 | # | Scenario | Expected | Test |
 | --- | --- | --- | --- |

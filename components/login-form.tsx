@@ -19,10 +19,16 @@ export function LoginForm({ mode, next }: { mode: "memory" | "supabase"; next: s
     setBusy(true);
     setError(null);
     setInfo(null);
-    const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body ?? {}) });
-    const data = await res.json().catch(() => ({}));
-    setBusy(false);
-    return { ok: res.ok, data };
+    try {
+      const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body ?? {}), signal: AbortSignal.timeout(20_000) });
+      const data = await res.json().catch(() => ({}));
+      return { ok: res.ok, data };
+    } catch {
+      // Network failure or timeout: never leave the button spinning.
+      return { ok: false, data: {} as { error?: string } };
+    } finally {
+      setBusy(false);
+    }
   }
 
   if (mode === "memory") {
@@ -41,10 +47,9 @@ export function LoginForm({ mode, next }: { mode: "memory" | "supabase"; next: s
           disabled={busy}
           onClick={async () => {
             const r = await post("/api/auth/demo");
-            if (r.ok) {
-              router.push(safeNext);
-              router.refresh();
-            } else setError(r.data.error ?? t("signInFailed"));
+            // Full navigation so the new session cookie is used straight away.
+            if (r.ok) window.location.assign(safeNext);
+            else setError(r.data.error ?? t("signInFailed"));
           }}
         >
           {busy ? <Loader2 className="animate-spin" /> : null} {t("continueAs", { name: "Alex Tan" })}

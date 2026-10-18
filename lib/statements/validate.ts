@@ -6,7 +6,9 @@ import type { StatementFileType } from "../types";
  *  - type decided from the file's own bytes (magic number / text check), never from the name or MIME type alone
  *  - rejects binaries, archives, executables and encrypted or script-bearing PDFs
  */
-export const MAX_STATEMENT_BYTES = 5 * 1024 * 1024; // 5 MB
+// 4 MB: stays under the 4.5 MB request-body limit of serverless hosts such as Vercel,
+// so an oversized file always gets CaiMao's own clear error.
+export const MAX_STATEMENT_BYTES = 4 * 1024 * 1024;
 export const MAX_PDF_PAGES = 40;
 export const MAX_ROWS = 5000;
 
@@ -51,7 +53,7 @@ export function sanitiseFileName(name: string): string {
 
 export function detectFileType(bytes: Uint8Array, fileName: string): StatementFileType {
   if (bytes.length === 0) throw new StatementError("EMPTY", "The file is empty.");
-  if (bytes.length > MAX_STATEMENT_BYTES) throw new StatementError("TOO_LARGE", "The file is larger than 5 MB.");
+  if (bytes.length > MAX_STATEMENT_BYTES) throw new StatementError("TOO_LARGE", "The file is larger than 4 MB.");
   const ext = fileName.toLowerCase().split(".").pop() ?? "";
 
   if (startsWith(bytes, [0x25, 0x50, 0x44, 0x46, 0x2d])) {

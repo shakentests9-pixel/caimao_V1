@@ -57,7 +57,7 @@
     "uploadTitle": "Upload a statement",
     "uploadHint": "A CSV export or a text-based PDF from your bank's app or website.",
     "choose": "Choose a file or drop it here",
-    "formats": "CSV or PDF, up to 5 MB",
+    "formats": "CSV or PDF, up to 4 MB",
     "fileReady": "Ready to upload · {kb} KB",
     "privacy": {
       "notStored": "Read on CaiMao's server and discarded. The file itself is never stored.",
@@ -178,7 +178,7 @@
   },
   "Errors": {
     "EMPTY": "The file is empty.",
-    "TOO_LARGE": "The file is larger than 5 MB.",
+    "TOO_LARGE": "The file is larger than 4 MB.",
     "UNSUPPORTED_TYPE": "Only CSV and PDF statements are supported.",
     "EXTENSION_MISMATCH": "The file's contents don't match its name.",
     "NOT_TEXT": "This doesn't look like a CSV text file.",

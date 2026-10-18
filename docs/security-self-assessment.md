@@ -58,7 +58,7 @@ Level 3 can never be a standing permission: `assertPermission` refuses any agent
 | Explicit consent | A consent checkbox is required. The API refuses an upload without `consent=true` (`CONSENT_REQUIRED`) and logs the refusal |
 | No banking credentials | CaiMao never asks for or accepts a bank login. The upload screen says so |
 | File type validation | Checks magic bytes as well as the extension. Only PDF and CSV are accepted. Archives (including XLSX/DOCX), executables, gzip and other binaries are rejected. PDFs that are encrypted or contain `/JavaScript`, `/JS`, `/Launch`, `/EmbeddedFile` or `/RichMedia` are refused |
-| Size limit | 5 MB, checked from `Content-Length` before the body is read and again on the bytes. The database has a check constraint too |
+| Size limit | 4 MB (under the 4.5 MB request-body limit of serverless hosts), checked from `Content-Length` before the body is read and again on the bytes. The database has a check constraint too |
 | Server-side parsing | Parsed in memory inside the route handler. `unpdf` runs as a server-external package. No client-side parsing |
 | No stored file, no public URL | The file is never written to disk or storage. `statement_uploads` has no file column. Only metadata and a SHA-256 hash are kept |
 | Identifier masking | IBANs, card and account numbers become `••••1234` and email addresses are removed before anything is saved. Only a masked account hint is stored, and the database checks its format |

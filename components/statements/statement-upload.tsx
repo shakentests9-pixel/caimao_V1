@@ -9,7 +9,7 @@ import type { StatementTransaction, StatementUpload } from "@/lib/types";
 
 export type UploadResult = { upload: StatementUpload; transactions: StatementTransaction[] };
 
-const MAX = 5 * 1024 * 1024;
+const MAX = 4 * 1024 * 1024;
 
 /**
  * Upload card. Explicit consent is required before anything is sent; the file goes to

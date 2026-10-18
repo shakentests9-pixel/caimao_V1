@@ -91,7 +91,7 @@ Migration `0002_global_financial_setup.sql` adds:
 | check `country_rules_verified_has_source` | A verified rule must have an https official source and a last-verified date | Database-enforced |
 | `banks`, `bank_account_requirements`, `credit_system_rules` | Researched bank and credit reference data | Readable by signed-in users |
 | `user_financial_setup` | Journey progress and chosen bank | Owner reads; service writes |
-| `statement_uploads` | Upload metadata (type, size ≤ 5 MB, sha256, masked account hint, period, status, expiry). **No file column.** | Owner reads; service writes |
+| `statement_uploads` | Upload metadata (type, size, sha256, masked account hint, period, status, expiry). **No file column.** | Owner reads; service writes |
 | `statement_transactions`, `statement_analyses` | Extracted rows and the confirmed analysis | Owner reads; service writes |
 | `purge_expired_statement_previews()` | Removes unconfirmed previews after they expire | Service |
 
@@ -169,7 +169,7 @@ Only facts stated on the bank's own page are used. `null` means not confirmed an
 `lib/statements/`:
 
 1. **Validate** (`validate.ts`):
-   - size ≤ 5 MB, checked from `Content-Length` before reading the body and again on the bytes;
+   - size ≤ 4 MB (under Vercel's 4.5 MB request limit), checked from `Content-Length` before reading the body and again on the bytes;
    - file type from magic bytes as well as the extension. ZIP/XLSX/DOCX, executables, gzip and other binaries are rejected;
    - PDFs must be unencrypted and carry no `/JavaScript`, `/JS`, `/Launch`, `/EmbeddedFile` or `/RichMedia`;
    - a SHA-256 of the file is computed.
@@ -300,7 +300,7 @@ Domestic-only items (for example UK fraud reimbursement) and account-opening ide
 
 ## 8. Testing
 
-`npm test` runs 124 tests in eight files:
+`npm test` runs 126 tests in nine files:
 
 | File | Covers |
 | --- | --- |
@@ -312,5 +312,6 @@ Domestic-only items (for example UK fraud reimbursement) and account-opening ide
 | `privacy.test.ts` | What the AI model may see |
 | `budget.test.ts` | Budgeting |
 | `agent-fallback.test.ts` | Model fallback |
+| `demo-session.test.ts` | Demo sign-in verifies across separate server processes (serverless hosts) |
 
 `npm run lint` type-checks the project, and `npm run build` is the production build Vercel runs.

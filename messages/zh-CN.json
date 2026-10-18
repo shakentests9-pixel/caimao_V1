@@ -1215,7 +1215,7 @@
     "uploadTitle": "上传对账单",
     "uploadHint": "从银行 App 或网站导出的 CSV 文件，或文本格式的 PDF。",
     "choose": "选择文件或拖放到此处",
-    "formats": "CSV 或 PDF，最大 5 MB",
+    "formats": "CSV 或 PDF，最大 4 MB",
     "fileReady": "可以上传 · {kb} KB",
     "privacy": {
       "notStored": "在 CaiMao 服务器上读取后即丢弃，文件本身绝不会被存储。",
@@ -1336,7 +1336,7 @@
   },
   "Errors": {
     "EMPTY": "文件为空。",
-    "TOO_LARGE": "文件超过 5 MB。",
+    "TOO_LARGE": "文件超过 4 MB。",
     "UNSUPPORTED_TYPE": "仅支持 CSV 和 PDF 格式的对账单。",
     "EXTENSION_MISMATCH": "文件内容与文件名不符。",
     "NOT_TEXT": "这似乎不是 CSV 文本文件。",
