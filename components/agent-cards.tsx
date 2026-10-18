@@ -17,6 +17,7 @@ import { ChecklistCard } from "./caimao/checklist-card";
 import { CATEGORY } from "./caimao/category";
 import { Button } from "./ui/button";
 import { cn, dueText, formatDate } from "@/lib/utils";
+import { RegulatoryResultCard } from "./regulatory/regulatory-result";
 
 type Card<K extends AgentCard["kind"]> = Extract<AgentCard, { kind: K }>;
 
@@ -122,6 +123,8 @@ export function AgentCardView({
 }) {
   const t = useTranslations("AgentCards");
   const tc = useTranslations("Countries");
+  const tg = useTranslations("AgentCardsGlobal");
+  const ts = useTranslations("Setup");
   switch (card.kind) {
     case "obligations": {
       const o = card.obligations.find((x) => x.id === card.focus_id);
@@ -272,6 +275,63 @@ export function AgentCardView({
     }
     case "credit":
       return <CreditCardVisual card={card.card} className="max-w-[340px]" />;
+    case "regulatory":
+      return <RegulatoryResultCard result={card.result} compact />;
+    case "banks":
+      return <BanksAgentCard card={card} />;
+    case "credit_info":
+      return (
+        <section className="rounded-[22px] bg-white p-5 shadow-card">
+          <h3 className="font-display text-[17px] font-extrabold text-cocoa">{tg("creditTitle", { country: tc(card.info.country) })}</h3>
+          <p className="mt-1 text-[14px] text-cocoa-2">{card.info.bureaus.length ? tg("bureaus", { bureaus: card.info.bureaus.join(", ") }) : tg("noBureaus")}</p>
+          <ul className="mt-2 space-y-1 text-[13.5px] text-cocoa-2">
+            {card.info.responsible_behaviours.slice(0, 3).map((x) => (
+              <li key={x} className="flex gap-2"><span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden />{x}</li>
+            ))}
+          </ul>
+          <Link href={`/banking/abroad?country=${card.info.country}#credit`} className="mt-3 inline-flex min-h-10 items-center text-[14px] font-bold text-brand hover:underline">{tg("creditMore")}</Link>
+        </section>
+      );
+    case "setup_plan":
+      return (
+        <section className="cm-insight rounded-[22px] p-5">
+          <div className="flex items-center justify-between gap-3">
+            <h3 className="font-display text-[17px] font-extrabold text-cocoa">{tg("planTitle", { country: tc(card.country) })}</h3>
+            <span className="num font-display text-[18px] font-extrabold text-brand">{card.completed}/{card.steps.length}</span>
+          </div>
+          <ol className="mt-3 grid gap-1.5 sm:grid-cols-2">
+            {card.steps.map((s) => (
+              <li key={s.key} className="flex items-center gap-2 text-[13.5px] text-cocoa-2">
+                <span className={cn("flex size-5 shrink-0 items-center justify-center rounded-full", s.done ? "bg-success-soft text-success-ink" : "bg-white text-muted")}>{s.done ? "✓" : ""}</span>
+                {ts(`steps.${s.key}.title`)}
+              </li>
+            ))}
+          </ol>
+          <Link href={`/setup?country=${card.country}`} className="cm-press cm-cta mt-4 inline-flex h-11 items-center rounded-[14px] px-4 text-[14px] font-extrabold">{tg("openPlan")}</Link>
+        </section>
+      );
+    case "statement":
+      return (
+        <section className="rounded-[22px] bg-white p-5 shadow-card">
+          <h3 className="font-display text-[17px] font-extrabold text-cocoa">{tg("statementTitle")}</h3>
+          <dl className="mt-3 grid grid-cols-3 gap-2 text-center">
+            {[
+              [tg("income"), card.analysis.totals.income],
+              [tg("expenses"), card.analysis.totals.expenses],
+              [tg("opportunity"), card.analysis.opportunity.monthly],
+            ].map(([k, v]) => (
+              <div key={String(k)} className="rounded-[14px] bg-cream px-2 py-2.5">
+                <dt className="text-[11.5px] font-bold text-muted">{k}</dt>
+                <dd><Money amount={Number(v)} currency={card.analysis.currency} className="text-[14px] font-extrabold text-cocoa" /></dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-2 text-[12px] text-muted">{tg("opportunityNote")}</p>
+          <Link href="/budget/statement" className="mt-2 inline-flex min-h-10 items-center text-[14px] font-bold text-brand hover:underline">{tg("openStatement")}</Link>
+        </section>
+      );
+    case "language":
+      return <p className="rounded-[16px] bg-success-soft px-4 py-3 text-[14px] font-bold text-success-ink">{tg("languageChanged")}</p>;
     case "checklist":
       return (
         <ChecklistCard
@@ -286,4 +346,41 @@ export function AgentCardView({
         />
       );
   }
+}
+
+const VERDICT_STATUS = { likely_eligible: "LIKELY_ELIGIBLE", check_with_bank: "CHECK_WITH_BANK", not_available: "NOT_AVAILABLE", need_info: "NEED_INFO" } as const;
+
+/** Bank options with eligibility verdicts, or the details CaiMao needs first. */
+function BanksAgentCard({ card }: { card: Card<"banks"> }) {
+  const tg = useTranslations("AgentCardsGlobal");
+  const tc = useTranslations("Countries");
+  const tf = useTranslations("ProfileFields");
+  const { eligibility } = card;
+  return (
+    <section className="rounded-[22px] bg-white p-5 shadow-card">
+      <h3 className="font-display text-[17px] font-extrabold text-cocoa">{tg("banksTitle", { country: tc(card.country) })}</h3>
+      {eligibility.missing.length ? (
+        <p className="mt-2 rounded-[14px] bg-[#EFE3D9] px-3.5 py-2.5 text-[13.5px] font-semibold text-cocoa">{tg("needDetails", { fields: eligibility.missing.map((m) => tf(m)).join(", ") })}</p>
+      ) : null}
+      <ul className="mt-3 divide-y divide-line">
+        {eligibility.banks.map((b) => (
+          <li key={b.bank.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5">
+            <span className="min-w-0">
+              <span className="block text-[14.5px] font-bold text-cocoa">{b.bank.bank_name}</span>
+              <span className="block truncate text-[12.5px] text-muted">{b.bank.account_type}</span>
+            </span>
+            <StatusBadge size="sm" status={VERDICT_STATUS[b.verdict]} />
+          </li>
+        ))}
+      </ul>
+      {card.requirements?.typical_documents.length ? (
+        <details className="mt-2 text-[13.5px]">
+          <summary className="min-h-10 cursor-pointer py-2 font-bold text-brand">{tg("documents")}</summary>
+          <ul className="ml-4 list-disc space-y-0.5 text-cocoa-2">{card.requirements.typical_documents.map((d) => <li key={d}>{d}</li>)}</ul>
+        </details>
+      ) : null}
+      <p className="mt-2 text-[12px] text-muted">{tg("bankDecides")}</p>
+      <Link href={`/banking/abroad?country=${card.country}`} className="mt-1 inline-flex min-h-10 items-center text-[14px] font-bold text-brand hover:underline">{tg("openBanking")}</Link>
+    </section>
+  );
 }

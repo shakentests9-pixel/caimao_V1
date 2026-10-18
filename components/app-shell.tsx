@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { ArrowLeftRight, CalendarDays, Cat, CreditCard, Home, PieChart, Settings, ShieldCheck, User, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, CalendarDays, Cat, Compass, CreditCard, Home, PieChart, Settings, ShieldCheck, User, type LucideIcon } from "lucide-react";
 import { Avatar, MascotTile, Wordmark } from "./brand";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +23,7 @@ const RAIL: NavItem[] = [
   { href: "/budget", label: "labels.budget", name: "names.budget", icon: PieChart },
   { href: "/obligations", label: "labels.bills", name: "names.bills", icon: CalendarDays },
   { href: "/banking", label: "labels.credit", name: "names.banking", icon: CreditCard },
+  { href: "/setup", label: "labels.setup", name: "names.setup", icon: Compass },
 ];
 const RAIL_SECONDARY: NavItem[] = [
   { href: "/settings", label: "labels.settings", name: "names.settings", icon: Settings },
@@ -36,7 +37,7 @@ const BOTTOM: NavItem[] = [
   { href: "/profile", label: "labels.profile", name: "names.profile", icon: User },
 ];
 
-const PROFILE_SECTIONS = ["/profile", "/settings", "/evidence", "/banking", "/obligations"];
+const PROFILE_SECTIONS = ["/profile", "/settings", "/evidence", "/banking", "/obligations", "/setup"];
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);

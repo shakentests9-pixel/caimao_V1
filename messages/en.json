@@ -38,7 +38,9 @@
       "ai": "CaiMao permissions",
       "security": "Security",
       "documents": "Documents",
-      "demo": "Demo settings"
+      "demo": "Demo settings",
+      "language": "Language",
+      "profile": "Your details"
     },
     "personalisation": {
       "title": "Personalisation",
@@ -80,6 +82,10 @@
     "documents": {
       "title": "Documents",
       "description": "CaiMao checks these against each transfer rule. Remove one to see a transfer flagged as action required."
+    },
+    "profile": {
+      "title": "Your cross-border details",
+      "description": "Eligibility and transfer rules depend on these. Leave anything blank and CaiMao will ask before assuming."
     }
   },
   "SettingsForms": {
@@ -120,7 +126,11 @@
       "banking": "Banking & Credit",
       "bankingSub": "Card, credit profile and bank setup",
       "advanced": "Advanced",
-      "advancedSub": "Demo scenarios and system info"
+      "advancedSub": "Demo scenarios and system info",
+      "setup": "My financial setup",
+      "setupSub": "Your step-by-step plan for studying abroad",
+      "statement": "Statement analysis",
+      "statementSub": "Upload a statement to see your spending"
     },
     "helpTitle": "How CaiMao can help",
     "helpDescription": "Payments always require your approval.",
@@ -183,7 +193,12 @@
       "suggested": "Suggested"
     },
     "disclaimer": "These habits are commonly recommended, but no one can promise a particular credit score or approval. General information, not financial advice.",
-    "openAccount": "Open a local bank account"
+    "openAccount": "Open a local bank account",
+    "abroadCard": {
+      "title": "Banking abroad",
+      "body": "Eligible accounts, documents and credit history for Singapore, the UK, the US, Japan and China.",
+      "cta": "Open Banking abroad"
+    }
   },
   "BankSetup": {
     "title": "Get banking-ready in {country}",
@@ -345,7 +360,13 @@
     "DEMO_DATA": "Demo data",
     "ESTIMATE": "Estimate",
     "SANDBOX": "Sandbox",
-    "UNAVAILABLE": "Unavailable"
+    "UNAVAILABLE": "Unavailable",
+    "NEEDS_VERIFICATION": "Needs verification",
+    "VERIFIED": "Verified",
+    "LIKELY_ELIGIBLE": "Likely eligible",
+    "CHECK_WITH_BANK": "Check with the bank",
+    "NOT_AVAILABLE": "Not available",
+    "NEED_INFO": "Need details"
   },
   "ComplianceBadge": {
     "compliant": "Ready to send",
@@ -552,7 +573,10 @@
       "sendMoneyOverseas": "Send money overseas",
       "reviewSpending": "Review my spending",
       "buildCredit": "Help me build credit",
-      "openBankAccount": "Open a local bank account"
+      "openBankAccount": "Open a local bank account",
+      "setupFinances": "I'm a Chinese student moving to Singapore. How do I set up my finances?",
+      "statementAnalysis": "Review my statement analysis",
+      "switchLanguage": "Reply in Japanese"
     },
     "starters": {
       "payTuition": {
@@ -570,6 +594,14 @@
       "reviewSpending": {
         "title": "Review my spending",
         "sub": "How this month compares to usual"
+      },
+      "setupFinances": {
+        "title": "Set up abroad",
+        "sub": "Bank account, documents and rules for your study country"
+      },
+      "statementAnalysis": {
+        "title": "Understand my statement",
+        "sub": "Patterns, subscriptions and an estimated savings opportunity"
       }
     },
     "tools": {
@@ -636,6 +668,54 @@
       "createAuditLog": {
         "running": "Saving the receipt",
         "done": "Saved to Activity & Security"
+      },
+      "getUserFinancialProfile": {
+        "running": "Reading your financial profile…",
+        "done": "Read your financial profile"
+      },
+      "getCountryBankingRequirements": {
+        "running": "Retrieving account requirements…",
+        "done": "Account requirements retrieved"
+      },
+      "getAvailableBanks": {
+        "running": "Looking up bank options…",
+        "done": "Bank options found"
+      },
+      "getBankEligibility": {
+        "running": "Checking bank eligibility…",
+        "done": "Bank eligibility checked"
+      },
+      "getFundFlowRules": {
+        "running": "Checking cross-border rules…",
+        "done": "Cross-border rules checked"
+      },
+      "getCreditSystemInfo": {
+        "running": "Looking up the local credit system…",
+        "done": "Credit system explained"
+      },
+      "getAccountSetupSteps": {
+        "running": "Building your setup plan…",
+        "done": "Setup plan created"
+      },
+      "getRequiredDocuments": {
+        "running": "Collecting the documents you'll need…",
+        "done": "Documents listed"
+      },
+      "analyseSpending": {
+        "running": "Reviewing your statement analysis…",
+        "done": "Statement analysis reviewed"
+      },
+      "generateSavingsInsights": {
+        "running": "Finding savings opportunities…",
+        "done": "Savings opportunities found"
+      },
+      "getLanguagePreference": {
+        "running": "Checking your language…",
+        "done": "Language checked"
+      },
+      "updateLanguagePreference": {
+        "running": "Switching language…",
+        "done": "Language switched"
       }
     },
     "errors": {
@@ -887,7 +967,8 @@
     },
     "freeAfter": "About <b>{amount}</b> is free after these.",
     "transactions": "Transactions",
-    "showAll": "Show all {count}"
+    "showAll": "Show all {count}",
+    "analyseStatement": "Analyse a statement"
   },
   "SpendingDonut": {
     "spent": "Spent"
@@ -903,7 +984,8 @@
       "settings": "Settings",
       "activity": "Activity",
       "transfers": "Transfers",
-      "profile": "Profile"
+      "profile": "Profile",
+      "setup": "Setup"
     },
     "names": {
       "home": "Home",
@@ -914,7 +996,8 @@
       "banking": "Banking and credit",
       "settings": "Settings",
       "activity": "Activity and security",
-      "profile": "Profile"
+      "profile": "Profile",
+      "setup": "My financial setup"
     },
     "dueCount": "{count} due",
     "mainNavigation": "Main navigation",
@@ -947,7 +1030,8 @@
     "actions": {
       "sendMoney": "Send money",
       "payTuition": "Pay tuition",
-      "exchange": "Exchange"
+      "exchange": "Exchange",
+      "analyseSpending": "Analyse my spending"
     },
     "yourAccounts": "Your accounts",
     "comingUp": "Coming up",
@@ -970,6 +1054,11 @@
       "Fees": "Fees",
       "Other": "Other",
       "Transfers": "Transfers"
+    },
+    "setupCard": {
+      "title": "Your {country} financial setup",
+      "progress": "{done} of {total} steps done",
+      "cta": "Continue"
     }
   },
   "HeroBalanceCard": {
@@ -1069,5 +1158,568 @@
   },
   "Dialog": {
     "close": "Close"
+  },
+  "Language": {
+    "label": "Language",
+    "title": "Language",
+    "description": "CaiMao's screens and replies use this language. Bank names, transaction IDs and official regulator names stay as they are.",
+    "reviewNote": "Chinese and Japanese text is new. Tell us if anything reads oddly."
+  },
+  "ProfileForm": {
+    "nationality": "Nationality",
+    "currentCountry": "Current country (home)",
+    "studyCountry": "Study country",
+    "age": "Age",
+    "studentStatus": "Student status",
+    "visaType": "Visa or residence status",
+    "residency": "Residency",
+    "taxResidency": "Tax residency",
+    "notSet": "Not set",
+    "save": "Save details",
+    "saved": "Saved",
+    "error": "Couldn't save. Please try again.",
+    "privacy": "Used to match transfer rules and bank requirements. The assistant only receives the fields a question needs, and nothing is shared with banks.",
+    "studentStatuses": {
+      "full_time": "Full-time student",
+      "part_time": "Part-time student",
+      "admitted": "Admitted, starting soon",
+      "not_student": "Not a student"
+    },
+    "visaTypes": {
+      "student": "Student visa or pass",
+      "work": "Work visa",
+      "dependant": "Dependant visa",
+      "permanent_resident": "Permanent resident",
+      "citizen": "Citizen",
+      "visitor": "Visitor",
+      "none": "No visa yet"
+    },
+    "residencies": {
+      "resident": "Resident in the study country",
+      "non_resident": "Not yet resident"
+    }
+  },
+  "StatementPage": {
+    "metaTitle": "Analyse a statement",
+    "eyebrow": "Budget",
+    "title": "Analyse a statement",
+    "description": "Upload a bank statement and CaiMao will show where your money goes: categories, recurring payments, unusual costs and how the months ahead look.",
+    "uploadTitle": "Upload a statement",
+    "uploadHint": "A CSV export or a text-based PDF from your bank's app or website.",
+    "choose": "Choose a file or drop it here",
+    "formats": "CSV or PDF, up to 5 MB",
+    "fileReady": "Ready to upload · {kb} KB",
+    "privacy": {
+      "notStored": "Read on CaiMao's server and discarded. The file itself is never stored.",
+      "masked": "Card and account numbers are masked before anything is saved.",
+      "delete": "Only the transactions you confirm are kept, and you can delete them at any time."
+    },
+    "consent": "I agree to let CaiMao read this statement to analyse my spending. I can delete the results at any time.",
+    "consentFirst": "Tick the box above to continue.",
+    "analyse": "Analyse statement",
+    "useSample": "Try the sample statement",
+    "noCredentials": "CaiMao never asks for your online-banking login or password.",
+    "reading": "Reading your statement…",
+    "readingHint": "Finding the transactions, masking account numbers and sorting each one into a category.",
+    "fileMeta": "{type} · {count, plural, one {# transaction} other {# transactions}} · {from} – {to}",
+    "account": "Account {hint}",
+    "statusPreview": "Waiting for your check",
+    "statusConfirmed": "Analysed",
+    "newUpload": "Upload another",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this statement's transactions and analysis? This can't be undone.",
+    "deleteNamed": "Delete {name}",
+    "open": "Open",
+    "previewTitle": "Check the transactions",
+    "previewHint": "Nothing is analysed until you confirm. Fix any category that looks wrong, and untick rows you'd rather leave out.",
+    "warnings": {
+      "skipped_rows": "{value} rows couldn't be read and were skipped.",
+      "assumed_currency": "No currency was shown, so CaiMao assumed {value}.",
+      "pdf_sign_check": "PDF statements are harder to read. Check that money in and money out look right."
+    },
+    "confirm": "Confirm {count, plural, one {# transaction} other {# transactions}} and analyse",
+    "confirmNote": "Confirming saves these transactions and the analysis to your account. Your balances and existing transactions are never changed.",
+    "askCaiMao": "Talk it through with CaiMao",
+    "askPrompt": "Review my statement analysis",
+    "reviewTitle": "Transaction review",
+    "show": "Show",
+    "reviewAfterHint": "Change a category and the analysis updates.",
+    "historyTitle": "Earlier statements",
+    "insightsNote": "Estimates from your statement. Not financial advice.",
+    "categoriesTitle": "Where your money went",
+    "essentialSplit": "Essentials {essential} · Everything else {discretionary}",
+    "merchantsTitle": "Top merchants",
+    "merchantCount": "{count, plural, one {# payment} other {# payments}}",
+    "recurringTitle": "Recurring payments",
+    "noRecurring": "No regular payments found in this period.",
+    "cadence": {
+      "monthly": "Monthly",
+      "weekly": "Weekly"
+    },
+    "seenTimes": "seen {count, plural, one {# time} other {# times}}",
+    "subscription": "subscription",
+    "unusualTitle": "Unusual expenses",
+    "noUnusual": "Nothing out of the ordinary.",
+    "unusualWhy": "Much larger than your usual {category} payment of about {typical}.",
+    "incomeTitle": "Income pattern",
+    "regular": "Regular",
+    "oneOff": "Occasional",
+    "monthlyFlow": "Money in and out by month",
+    "pressure": {
+      "title": "Before your next big payment",
+      "body": "{obligation} of {amount} is due in {days, plural, one {# day} other {# days}}.",
+      "cashNow": "Cash now",
+      "monthlyNet": "Monthly net",
+      "projected": "Projected left",
+      "note": "Projection: your balances today, plus your average monthly net flow, minus payments due before then. An estimate, not a guarantee."
+    },
+    "summary": {
+      "title": "Statement summary",
+      "period": "{period} · {count, plural, one {# transaction} other {# transactions}}",
+      "income": "Income",
+      "expenses": "Expenses",
+      "net": "Net cash flow",
+      "recurring": "Recurring payments",
+      "payments": "{count, plural, one {# payment} other {# payments}}",
+      "perMonth": "about {amount} a month",
+      "perMonthShort": "/ month",
+      "opportunity": "Potential savings",
+      "opportunityNote": "Estimated opportunity",
+      "methodAverage": "Estimated opportunity: the amount by which this month's discretionary spending is above your average for earlier months.",
+      "methodIllustrative": "Estimated opportunity: an illustrative 10% of discretionary spending, because the statement covers less than two months.",
+      "estimateNote": "This is not guaranteed savings."
+    },
+    "groups": {
+      "eating_out": "Eating out",
+      "entertainment": "Entertainment",
+      "shopping": "Shopping",
+      "travel": "Travel",
+      "subscriptions": "Subscriptions"
+    },
+    "review": {
+      "filter": "Filter transactions",
+      "all": "All ({count})",
+      "needsReview": "Needs a check ({count})",
+      "hint": "Low-confidence rows are marked so you can check them.",
+      "check": "Check",
+      "aiSuggestion": "AI suggestion",
+      "confidence": "How sure CaiMao is about this row",
+      "categoryFor": "Category for {merchant}",
+      "include": "Include",
+      "showMore": "Show {count} more"
+    },
+    "disclaimer": "CaiMao's analysis is an estimate based on the statement you uploaded. It isn't financial advice and doesn't guarantee savings.",
+    "backToBudget": "Back to Budget"
+  },
+  "StatementInsights": {
+    "net_negative": "You spent {amount} more than came in over this period.",
+    "net_positive": "{amount} more came in than went out over this period.",
+    "category_above_average": "You spent {amount} on {category} in {month}, around {diff} above your {months, plural, one {previous month} other {#-month average}}.",
+    "subscriptions": "You have {count, plural, one {# recurring subscription} other {# recurring subscriptions}} costing about {amount} a month.",
+    "essentials_share": "Rent, food and transport make up {pct}% of your spending.",
+    "unusual_payment": "One payment stands out: {merchant}, {amount} on {date}, much larger than your usual {category} spending.",
+    "regular_income": "Your regular income includes {source}, about {amount} a month.",
+    "projection_covered": "At your current spending rate, you're projected to have about {amount} left when {obligation} is due on {date}.",
+    "projection_short": "At your current spending rate, you could be about {amount} short when {obligation} is due on {date}.",
+    "opportunity": "Bringing discretionary spending down by about {monthly} a month could add roughly {total} to your buffer over {months, plural, one {# month} other {# months}}. This is an estimated opportunity, not guaranteed savings."
+  },
+  "Errors": {
+    "EMPTY": "The file is empty.",
+    "TOO_LARGE": "The file is larger than 5 MB.",
+    "UNSUPPORTED_TYPE": "Only CSV and PDF statements are supported.",
+    "EXTENSION_MISMATCH": "The file's contents don't match its name.",
+    "NOT_TEXT": "This doesn't look like a CSV text file.",
+    "PDF_ENCRYPTED": "This PDF is password-protected. Download an unprotected copy from your bank.",
+    "PDF_ACTIVE_CONTENT": "This PDF contains scripts or embedded files, so CaiMao won't open it.",
+    "PDF_TOO_MANY_PAGES": "The PDF has more than 40 pages.",
+    "NO_TRANSACTIONS": "CaiMao couldn't find any transactions. Try your bank's CSV export.",
+    "UNREADABLE": "CaiMao couldn't read this statement.",
+    "CONSENT_REQUIRED": "Please agree to let CaiMao read this statement first.",
+    "INVALID_STATE": "This statement has already been confirmed.",
+    "NOT_FOUND": "That item wasn't found.",
+    "SAVE_FAILED": "Couldn't save that change. Please try again.",
+    "NETWORK": "Couldn't reach CaiMao. Check your connection and try again.",
+    "UNAUTHORIZED": "Please sign in again.",
+    "PERMISSION_DENIED": "CaiMao's current permission level doesn't allow this.",
+    "INTERNAL": "Something went wrong. Please try again."
+  },
+  "Regulation": {
+    "checkerTitle": "Cross-border rules check",
+    "checkerBody": "Tell CaiMao where the money is going, why, and a little about you. The answer comes only from CaiMao's rule database, with the official source and the date each rule was checked.",
+    "formLabel": "Check transfer rules",
+    "from": "Money leaves",
+    "to": "Money arrives in",
+    "purposeLabel": "Purpose",
+    "purpose": {
+      "education": "Tuition / education",
+      "personal": "Personal"
+    },
+    "amount": "Amount",
+    "amountOptional": "Optional",
+    "currency": "Currency",
+    "aboutYou": "About you",
+    "aboutYouHint": "Some rules only apply to certain nationalities, residents or visa holders. Leave a field blank and CaiMao will tell you which rules depend on it.",
+    "check": "Check the rules",
+    "sameCountry": "Choose two different countries.",
+    "error": "Couldn't check the rules. Please try again.",
+    "resultLabel": "Rules for {from} to {to}",
+    "statusLabel": "Status",
+    "checkedAt": "Checked at {time}",
+    "whatThisMeans": "What this means",
+    "meaning": {
+      "COMPLIANT": "Based on the verified rules on record for {from} and {to}, this transfer appears to be permitted. Your bank or provider will still run its own checks.",
+      "ACTION_REQUIRED": "This transfer appears to be permitted, but some documents or steps are needed first. They're listed below.",
+      "BLOCKED": "A verified rule on record would not allow this transfer as described. See the requirement below and the official source.",
+      "NEEDS_VERIFICATION": "CaiMao can't give a definite answer yet. Some rules depend on details you haven't given, or a rule couldn't be fully verified."
+    },
+    "unverified": "I couldn't verify this requirement from the current regulatory database.",
+    "needDetails": "Tell CaiMao a little more to get a definite answer:",
+    "provideDetails": "Add these details",
+    "coverage": "Verified rules on record: {fromCountry} {fromCount} · {toCountry} {toCount}",
+    "requirements": "Requirements",
+    "documents": "Documents",
+    "limits": "Limits",
+    "considerations": "Important considerations",
+    "sources": "Official sources",
+    "onFile": "On file",
+    "prepare": "Prepare",
+    "side": {
+      "sending": "Rule in {country} (sending side)",
+      "receiving": "Rule in {country} (receiving side)",
+      "both": "Rule in {country}"
+    },
+    "cashOnly": "Cash only",
+    "notVerified": "Not verified",
+    "appliesTo": "Applies to: {who}",
+    "showAll": "Show all {count}",
+    "showFewer": "Show fewer",
+    "lastVerified": "Last verified {date}",
+    "noSources": "No official sources on record for this corridor.",
+    "disclaimer": "General information from official sources, checked on the date shown. Rules change and banks can ask for more. This isn't legal advice.",
+    "finding": {
+      "within_limit": "Within the limit of {limit} (this transfer is about {amount}).",
+      "over_limit": "Above the limit of {limit} (this transfer is about {amount}).",
+      "below_threshold": "Below the {limit} threshold (about {amount}), so nothing extra is needed for this rule.",
+      "documents_needed": "Prepare: {docs}.",
+      "documents_ready": "The documents this rule needs are on file.",
+      "report_over_threshold": "Above {limit}: a report is filed. Nothing extra is usually needed from you beyond answering your bank's questions.",
+      "report_below_threshold": "Below the {limit} reporting threshold.",
+      "cash_guidance": "Applies to carrying cash across the border, not to bank transfers. Threshold: {limit}.",
+      "unverified_rule": "This rule couldn't be confirmed on an official page, so it isn't used to decide the result.",
+      "depends_on": "Depends on your {fields}."
+    }
+  },
+  "ProfileFields": {
+    "nationality": "nationality",
+    "residency_status": "residency",
+    "visa_type": "visa or residence status",
+    "amount": "amount",
+    "destination": "study country",
+    "age": "age",
+    "student_status": "student status"
+  },
+  "BankingAbroad": {
+    "metaTitle": "Banking abroad",
+    "eyebrow": "Banking & Credit",
+    "title": "Banking abroad",
+    "description": "Opening a bank account in your study country: what banks usually ask for, which accounts are open to international students, and how credit history works there. All from official and bank sources.",
+    "countryNav": "Study country",
+    "aboutYou": "About you",
+    "aboutYouHint": "Bank eligibility depends on more than nationality: visa, residency, age and student status all matter.",
+    "edit": "Edit",
+    "doneEditing": "Close",
+    "destination": "Destination",
+    "askFirst": "Before CaiMao can say which banks are likely to accept you, it needs your {fields}.",
+    "howTitle": "How to open a bank account in {country}",
+    "steps": {
+      "1": {
+        "title": "Check eligibility",
+        "body": "Banks look at your immigration status, residency, age and whether you're a student. These are the factors on record:"
+      },
+      "2": {
+        "title": "Prepare your documents",
+        "body": "Gather originals before you apply. Typical documents:"
+      },
+      "3": {
+        "title": "Choose an account type",
+        "body": "Student and newcomer accounts often have lower fees. Compare monthly fees, minimum balances and international transfer support below."
+      },
+      "4": {
+        "title": "Choose a bank",
+        "body": "Pick an account you're likely to be eligible for, then check the bank's own page for the latest requirements."
+      },
+      "5": {
+        "title": "Apply online or in a branch",
+        "body": "Some banks let international students apply online; others ask you to visit a branch with your originals."
+      },
+      "6": {
+        "title": "Complete identity checks",
+        "body": "The bank verifies your identity and immigration status. Answer its questions accurately; it may ask about where your money comes from."
+      },
+      "7": {
+        "title": "Receive your account and card",
+        "body": "Your account details and debit card usually arrive by post or in the app. Keep your PIN and card details private."
+      },
+      "8": {
+        "title": "Set up digital banking",
+        "body": "Install the bank's app, turn on notifications and two-factor sign-in, and add your account to CaiMao's Financial Setup."
+      }
+    },
+    "sourcesLabel": "Sources:",
+    "banksTitle": "Accounts in {country}",
+    "banksHint": "Taken from each bank's own website. Anything the bank's page didn't confirm is marked \"Not confirmed\".",
+    "checkEligibility": "Check my eligibility",
+    "recheck": "Check again",
+    "bankDecides": "Only the bank can decide whether to open an account for you. Requirements can vary by branch and by customer, so treat this as guidance and confirm with the bank.",
+    "yes": "Yes",
+    "no": "No",
+    "notConfirmed": "Not confirmed",
+    "studentAccount": "Student account",
+    "intlStudents": "International students",
+    "residentRequired": "Must live there",
+    "minimumAge": "Minimum age",
+    "monthlyFee": "Monthly fee",
+    "minimumBalance": "Minimum balance",
+    "intlTransfers": "International transfers",
+    "moreDetails": "More details",
+    "visa": "Visa requirements",
+    "documents": "Documents",
+    "creditCard": "Credit cards",
+    "notes": "Notes",
+    "officialSite": "Official page",
+    "lastVerified": "Last verified {date}",
+    "choose": "Choose this bank",
+    "chosen": "Chosen for your plan",
+    "planTitle": "Your {country} financial setup",
+    "planBody": "CaiMao turns this into a step-by-step plan: documents, bank account, transfers from home, tuition, recurring payments and credit history.",
+    "createPlan": "Create my setup plan",
+    "reasons": {
+      "student_account_for_international": "The bank offers a student account and says international students can apply.",
+      "accepts_international_students": "The bank's page says international students can open this account.",
+      "not_for_international_students": "The bank's page says this account isn't open to international students.",
+      "under_minimum_age": "The bank's minimum age for this account is {age}.",
+      "resident_required": "The bank asks you to live in the country first. You may be able to apply once you've arrived.",
+      "local_citizen": "As a local national, standard accounts are usually open to you.",
+      "visa_requirement": "The bank has visa or residence-permit requirements. See more details.",
+      "unconfirmed": "Some of this bank's requirements couldn't be confirmed on its website.",
+      "varies_by_branch": "Requirements can vary by branch and by customer.",
+      "missing_details": "CaiMao needs a few more details about you first."
+    }
+  },
+  "CreditEducation": {
+    "title": "Building credit history in {country}",
+    "hasBureau": "There is a formal credit reporting system. Credit bureaus on record: {bureaus}.",
+    "noBureau": "There's no formal consumer credit bureau on record for this country.",
+    "bureauUnknown": "CaiMao couldn't confirm how credit reporting works here.",
+    "contributes": "What can contribute",
+    "whyMatters": "Why it can matter",
+    "habits": "Responsible habits",
+    "risks": "Common risks",
+    "newcomers": "For newcomers:",
+    "noGuarantee": "Good habits may help over time, but nothing guarantees a higher score, an approval or a better rate.",
+    "lastVerified": "Last verified {date}"
+  },
+  "Setup": {
+    "metaTitle": "My financial setup",
+    "title": "My financial setup",
+    "description": "Everything you need to sort out when you move to study abroad, in order, personalised to where you're from and where you're going.",
+    "countryNav": "Study country",
+    "eyebrow": "Study abroad setup",
+    "headline": "Your {country} financial setup",
+    "route": "From {from} to {to}",
+    "stepsDone": "steps done",
+    "refresh": "Refresh my plan",
+    "autoDone": "Done · CaiMao can see this",
+    "done": "Done",
+    "markDone": "Mark done",
+    "disclaimer": "Guidance based on official sources and banks' own pages. Banks and regulators make the final decisions.",
+    "steps": {
+      "documents": {
+        "title": "Prepare your documents",
+        "body": "Banks and universities usually ask for these:",
+        "cta": "Update your documents"
+      },
+      "open_account": {
+        "title": "Open a local bank account",
+        "body": "Find accounts you're likely to be eligible for.",
+        "have": "You have a local account: {name} ••••{last4}.",
+        "chosen": "You chose {bank} ({type}).",
+        "likely": "Likely options: {banks}.",
+        "missing": "Add your {fields} to see which banks are likely to accept you.",
+        "cta": "See bank options"
+      },
+      "debit_card": {
+        "title": "Get your debit card",
+        "body": "Once your account is open, activate the debit card and set up the bank's app with two-factor sign-in."
+      },
+      "transfer_rules": {
+        "title": "Understand the transfer rules",
+        "body": "Rules for money from {from} to {to}:",
+        "cta": "Check the rules in detail"
+      },
+      "receive_funds": {
+        "title": "Receive money from home",
+        "body": "When family sends money from {from}, the sending bank may ask for these documents:"
+      },
+      "pay_tuition": {
+        "title": "Pay tuition",
+        "none": "No tuition payment on record for this country.",
+        "paid": "{title} is paid.",
+        "due": "{title}: {amount}, due {date}.",
+        "cta": "Compare routes and pay"
+      },
+      "recurring": {
+        "title": "Set up recurring payments",
+        "body": "Rent, phone and other regular bills you can set up from your local account:",
+        "cta": "See bills"
+      },
+      "credit": {
+        "title": "Build credit history",
+        "body": "Learn how credit history works in your study country.",
+        "bureau": "Credit bureaus here: {bureaus}. Paying bills on time can contribute to a credit history.",
+        "cta": "Learn how credit works"
+      },
+      "restrictions": {
+        "title": "Review important rules",
+        "body": "Foreign-exchange, limit, reporting and tax rules on record for your countries:",
+        "none": "No restrictions on record for these countries."
+      }
+    }
+  },
+  "Explain": {
+    "none_available": "No provider can take this transfer at the requested amount.",
+    "best_vs_worst": "{best} results in approximately {extra} more reaching the recipient than {worst} after accounting for FX spread and fees.",
+    "lowest_fee_zero": "{provider} charges no transfer fee, but its exchange rate is {spread_pct}% below mid-market, which costs {spread_cost} on this amount.",
+    "lowest_fee": "{provider} charges the lowest transfer fee ({fee}), but its exchange rate is {spread_pct}% below mid-market, which costs {spread_cost} on this amount.",
+    "all_in": "{provider}''s all-in cost is {total} (fee {fee} + FX spread {spread}). These are estimates; the rate is fixed only when the transfer is executed.",
+    "all_in_other": "{provider}''s all-in cost is {total} (fee {fee} + FX spread {spread} + other charges {other}). These are estimates; the rate is fixed only when the transfer is executed."
+  },
+  "Agent": {
+    "help": "I can work through a payment end to end: find what's due, check your balances and the transfer rules, compare providers on what actually arrives, and prepare the transfer for your approval. I can also analyse a bank statement, check cross-border rules for any of my five countries, help you open a bank account abroad, explain local credit history and switch languages.",
+    "balances": "Across your accounts you hold about **{total}**, converted at CaiMao's mid-market demo rates.",
+    "spending": {
+      "summary": "Over the last 30 days you received **{income}** and spent **{expenses}** on everyday costs, leaving **{savings}**. Transfers between your own accounts are left out.",
+      "summaryWithObligations": "Over the last 30 days you received **{income}** and spent **{expenses}** on everyday costs, plus **{obligations}** in obligations paid through CaiMao, leaving **{savings}**. Transfers between your own accounts are left out."
+    },
+    "credit": {
+      "noCard": "There's no local credit card on file yet.",
+      "summary": "Your card balance is **{balance}** on a **{limit}** limit, which is **{pct}%** utilisation.\n\nYour payment is due in {days, plural, one {# day} other {# days}}. Paying on time helps maintain a positive payment history. Paying the full statement balance, rather than the {minimum} minimum, also avoids interest.\n\nThis is general guidance. CaiMao can't predict changes to your credit score or the outcome of any application.",
+      "country": "In {country}, credit history is kept by credit bureaus ({bureaus}). Paying bills and credit on time can contribute to a positive history, which lenders and some landlords may consider. I can't promise any score, approval or rate. The details and sources are in the card (last verified {date}).",
+      "countryNoBureau": "CaiMao couldn't confirm a formal consumer credit bureau for {country}. The card shows what is on record (last verified {date}).",
+      "none": "There's no credit information on record for {country}."
+    },
+    "language": {
+      "which": "Which language would you like: English, 简体中文 or 日本語?",
+      "switched": "Done. I'll reply in {language} from now on, and the app will switch too."
+    },
+    "setup": {
+      "whichCountry": "Which country are you moving to? I have researched guidance for Singapore, the UK, the US, Japan and China.",
+      "who": "Here's how opening a bank account in {country} usually works, from official and bank sources.",
+      "whoNational": "Here's what a {nationality} student usually needs to open a bank account in {country}, from official and bank sources.",
+      "documents": "**Documents banks typically ask for:**\n{docs}",
+      "askDetails": "Bank eligibility depends on more than nationality. Before I say which banks are likely to accept you, could you tell me your **{fields}**? For example, do you already have your student visa or pass, and have you arrived yet?",
+      "likely": "**Likely to accept you:** {banks}.",
+      "check": "**Worth checking with the bank:** {banks}.",
+      "bankDecides": "Only the bank decides, and requirements can vary by branch and customer.",
+      "sources": "Based on {count, plural, one {# official source} other {# official sources}}, last verified {date}."
+    },
+    "rules": {
+      "unverified": "I couldn't verify this requirement from the current regulatory database.",
+      "status": {
+        "COMPLIANT": "Based on the verified rules on record, sending this from {from} to {to} appears to be permitted. Your bank will still run its own checks.",
+        "ACTION_REQUIRED": "Sending this from {from} to {to} appears to be permitted, but some documents or steps are needed first.",
+        "BLOCKED": "A verified rule on record wouldn't allow this transfer from {from} to {to} as described. The card shows which rule and its official source.",
+        "NEEDS_VERIFICATION": "I can't give a definite answer for {from} to {to} yet."
+      },
+      "documents": "**Documents to prepare:**\n{docs}",
+      "reports": "{count, plural, one {One rule means} other {# rules mean}} the bank files a report at this amount. That's routine and usually needs nothing extra from you.",
+      "askDetails": "Some rules depend on your **{fields}**. Tell me and I'll check again.",
+      "sources": "Every rule in the card links to its official source ({count, plural, one {# source} other {# sources}}, last verified {date}).",
+      "disclaimer": "This is general information from official sources, not legal advice."
+    },
+    "statement": {
+      "none": "You haven't confirmed a statement yet. Go to **Budget → Analyse a statement**, upload a CSV or PDF, check the transactions and confirm. Then I can talk you through it.",
+      "summary": "From your statement: **{income}** came in, **{expenses}** went out, a net of **{net}**.",
+      "disclaimer": "These are estimates from your statement, not financial advice. Any savings figure is an estimated opportunity, not guaranteed."
+    },
+    "whyNot": "CaiMao ranks routes by what the recipient receives, not by the advertised fee. A fee-free provider can still cost more when its cost sits inside the exchange rate.",
+    "compare": {
+      "intro": "Comparing {src} → {dst} at a common send amount of **{amount}**. **{provider}** delivers the most.",
+      "introTuition": "Comparing {src} → {dst} at a common send amount of **{amount}** (about what your tuition needs). **{provider}** delivers the most."
+    },
+    "send": {
+      "intro": "Sending **{amount}** from {from} to {to}: **{provider}** delivers the most.",
+      "note": "In this prototype CaiMao executes payments only for obligations on file, such as tuition. Tell me a different amount to re-run the comparison."
+    },
+    "pay": {
+      "alreadyPaid": "Your {title} ({ref}) is already paid. You can see the receipt on the Activity & Security page.",
+      "noneUnpaid": "I couldn't find an unpaid obligation of that kind.",
+      "domestic": "{title} is a domestic payment in {currency}. In this prototype CaiMao prepares cross-border payments only.",
+      "notTuition": "{title} ({amount}) is due in {days, plural, one {# day} other {# days}} and is paid from your {currency} account. In this prototype CaiMao prepares cross-border tuition payments; ask me to pay your tuition to see the full workflow.",
+      "noAccount": "You have no {currency} account to fund this payment from.",
+      "fundsNote": "Estimate at the mid-market rate of {rate}, before provider fees and FX spread.",
+      "insufficientTitle": "Not enough funds to prepare this payment",
+      "insufficientReason": "{account} holds {balance}. Paying {amount} needs about {estimate} before fees.",
+      "insufficientTopUp": "Top up your home account, or",
+      "insufficientInstalment": "Ask the university about an instalment plan before the due date.",
+      "insufficientText": "Your {title} of **{amount}** is due in {days, plural, one {# day} other {# days}}, but {account} holds **{balance}**, short of the roughly **{estimate}** needed. I haven't prepared a transfer. Once the account is topped up, ask me again.",
+      "blockedTitle": "Transaction blocked",
+      "blockedReason": "This transfer breaks a rule in the regulatory database, so I won't prepare it.",
+      "blockedText": "I checked the {from} → {to} rules on record and this payment is **blocked**: {reasons} No transfer has been prepared. Splitting a payment to get around a limit isn't something I can help with; the university's finance office can advise on approved payment arrangements.",
+      "actionTitle": "Action required",
+      "actionReason": "Documents are missing for this transfer.",
+      "noRulesCorridor": "No rules are on record for this corridor, so it can't be cleared.",
+      "actionText": "Before I can prepare this payment, add these documents in Settings: {docs}.",
+      "noProvider": "None of the providers can take this transfer at this amount.",
+      "whyZeroFee": "{worst} charges no fee, but its exchange rate costs you more than {best}''s {fee} fee.",
+      "whyGeneric": "That's after fees and the margin hidden in each exchange rate.",
+      "recommendIntro": "Your tuition of **{amount}** is due in **{days, plural, one {# day} other {# days}}**, and {account} has enough to cover it. It meets all {count} transfer rules on record for {from} → {to}.",
+      "recommendBestExtra": "**{provider}** is your best route: about **{extra} more** reaches {payee} than with {worst}.",
+      "recommendBest": "**{provider}** is your best route.",
+      "recommendSend": "You'd send about **{send}** for the full {amount} to arrive.",
+      "recommendAsk": "Shall I prepare the payment? Nothing is sent until you approve it.",
+      "notPreparedTitle": "Transfer not prepared",
+      "notPreparedText": "I couldn't prepare the transfer: {reason}",
+      "chosenOther": "You chose {chosen}; {best} would deliver the same amount for less.",
+      "ready": "It's ready to review: **{send}** from {account} via **{provider}**, so {payee} gets **{gets}**.",
+      "readyCheck": "Check the details and confirm when you're happy. The rate is held for 15 minutes."
+    },
+    "suggest": {
+      "payTuition": "Pay my tuition",
+      "reviewSpending": "Review my spending",
+      "analyseStatement": "Review my statement analysis",
+      "setup": "Help me set up my finances",
+      "setupExample": "I'm a Chinese student moving to Singapore. How do I set up my finances?",
+      "rulesExample": "Rules for sending tuition from China to Singapore",
+      "creditHere": "How does credit history work in {country}?",
+      "haveStudentPass": "I have my student pass and I've arrived",
+      "tuitionRules": "Rules for sending tuition from {from} to {to}",
+      "createPlan": "Create my setup plan",
+      "withAmount": "Check sending {currency} 30,000 for tuition from {from} to {to}",
+      "prepareWith": "Prepare the payment with {provider}",
+      "prepare": "Prepare the payment",
+      "whyNotHomeBank": "Why not Home Bank?",
+      "checkRules": "Check transfer rules"
+    }
+  },
+  "AgentCardsGlobal": {
+    "creditTitle": "Credit history in {country}",
+    "bureaus": "Credit bureaus: {bureaus}.",
+    "noBureaus": "No formal credit bureau confirmed.",
+    "creditMore": "Learn how credit works there",
+    "planTitle": "Your {country} setup plan",
+    "openPlan": "Open my setup plan",
+    "statementTitle": "Your statement analysis",
+    "income": "Income",
+    "expenses": "Expenses",
+    "opportunity": "Est. opportunity / mo",
+    "opportunityNote": "The opportunity is an estimate, not guaranteed savings.",
+    "openStatement": "Open the full analysis",
+    "languageChanged": "Language updated.",
+    "banksTitle": "Bank accounts in {country}",
+    "needDetails": "To check eligibility, CaiMao needs your {fields}.",
+    "documents": "Documents banks usually ask for",
+    "bankDecides": "Only the bank decides; requirements can vary by branch and customer.",
+    "openBanking": "See all details and sources"
   }
 }

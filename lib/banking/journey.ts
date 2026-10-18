@@ -78,7 +78,7 @@ export function buildJourney(input: JourneyInput): Journey {
   const { profile } = input;
   const country = input.country ?? (isSupported(profile.study_country) ? profile.study_country : "GB");
   const home = profile.home_country;
-  const ticked = new Map(input.progress.filter((p) => p.country === country).map((p) => [p.step_key, p.completed]));
+  const ticked = new Map(input.progress.filter((p) => p.country === country && !p.step_key.startsWith("bank:")).map((p) => [p.step_key, p.completed]));
   const requirements = input.requirements.find((r) => r.country === country) ?? null;
   const credit = input.credit.find((c) => c.country === country) ?? null;
   const eligibility = checkEligibility(input.banks, bankingProfileFrom(profile, { destination: country }));
@@ -96,6 +96,8 @@ export function buildJourney(input: JourneyInput): Journey {
   }, input.fx);
 
   const localAccount = input.accounts.find((a) => a.country === country && a.kind === "bank");
+  const chosenId = input.progress.find((p) => p.country === country && p.step_key.startsWith("bank:") && p.completed)?.step_key.slice(5) ?? null;
+  const chosenBank = chosenId ? input.banks.find((b) => b.id === chosenId) ?? null : null;
   const tuition = input.obligations.find((o) => o.kind === "tuition" && o.destination_country === country);
   const recurring = input.obligations.filter((o) => o.kind === "rent" || o.kind === "other" || o.kind === "card");
   const localCard = input.cards.find((c) => c.currency === localAccount?.currency);
@@ -123,6 +125,7 @@ export function buildJourney(input: JourneyInput): Journey {
       check: eligibility.banks.filter((b) => b.verdict === "check_with_bank").map((b) => b.bank.bank_name),
       missing: eligibility.missing,
       account: localAccount ? { name: localAccount.name, last4: localAccount.account_last4 } : null,
+      chosen: chosenBank ? { id: chosenBank.id, name: chosenBank.bank_name, account_type: chosenBank.account_type, url: chosenBank.official_url } : null,
     },
     debit_card: { has_account: !!localAccount },
     transfer_rules: { status: inbound.status, rules: inbound.findings.length, sources: inbound.sources.length },

@@ -21,7 +21,13 @@ export type Status =
   | "DEMO_DATA"
   | "ESTIMATE"
   | "SANDBOX"
-  | "UNAVAILABLE";
+  | "UNAVAILABLE"
+  | "NEEDS_VERIFICATION"
+  | "VERIFIED"
+  | "LIKELY_ELIGIBLE"
+  | "CHECK_WITH_BANK"
+  | "NOT_AVAILABLE"
+  | "NEED_INFO";
 
 type Def = { className: string; Icon: typeof Info };
 
@@ -46,6 +52,12 @@ const DEFS: Record<Status, Def> = {
   ESTIMATE: { className: "bg-cream text-muted", Icon: Info },
   SANDBOX: { className: "bg-warning-soft text-warning-ink", Icon: FlaskConical },
   UNAVAILABLE: { className: "bg-cream text-faint", Icon: Ban },
+  NEEDS_VERIFICATION: { className: "bg-[#EFE3D9] text-cocoa", Icon: Info },
+  VERIFIED: { className: "bg-success-soft text-success-ink", Icon: ShieldCheck },
+  LIKELY_ELIGIBLE: { className: "bg-success-soft text-success-ink", Icon: CheckCircle2 },
+  CHECK_WITH_BANK: { className: "bg-gold-soft text-gold-ink", Icon: Info },
+  NOT_AVAILABLE: { className: "bg-cream text-muted", Icon: Ban },
+  NEED_INFO: { className: "bg-[#EFE3D9] text-cocoa", Icon: Info },
 };
 
 export function StatusBadge({ status, className, label, size = "md" }: { status: Status; className?: string; label?: string; size?: "sm" | "md" }) {

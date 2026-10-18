@@ -34,6 +34,7 @@ export async function GET(req: Request) {
       compare_amount: set.compare_amount,
       destination_amount: null,
       explanation: cmp.explanation,
+          explanation_parts: cmp.explanation_parts,
       advantage_vs: cmp.advantage_vs,
       fx_as_of: set.fx_as_of,
       fx_source: set.fx_source,

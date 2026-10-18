@@ -6,6 +6,7 @@ import { loadTuitionInsight } from "@/lib/views";
 import { COUNTRY_NAMES, CURRENCIES, type CountryCode, type Currency } from "@/lib/types";
 import { PageHeader } from "@/components/page-header";
 import { RulesTable } from "@/components/compliance-panel";
+import { RegulationChecker } from "@/components/regulatory/regulation-checker";
 import { TransferHistory } from "@/components/transfer-history";
 import { StatusBadge } from "@/components/status-badge";
 import { RoutePair } from "@/components/country-chip";
@@ -24,6 +25,7 @@ const COUNTRIES = Object.keys(COUNTRY_NAMES) as CountryCode[];
 export default async function TransfersPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
   const t = await getTranslations("TransfersPage");
   const tc = await getTranslations("Countries");
+  const tr = await getTranslations("Regulation");
   const repo = await getRepository();
   const sp = await searchParams;
   const [profile, obligations, requests, providers, accounts, fx] = await Promise.all([
@@ -72,6 +74,7 @@ export default async function TransfersPage({ searchParams }: { searchParams: Pr
           compare_amount: set.compare_amount,
           destination_amount: null,
           explanation: cmp.explanation,
+          explanation_parts: cmp.explanation_parts,
           advantage_vs: cmp.advantage_vs,
           fx_as_of: set.fx_as_of,
           fx_source: set.fx_source,
@@ -89,15 +92,32 @@ export default async function TransfersPage({ searchParams }: { searchParams: Pr
         }
       />
 
-      <section>
-        <div className="mb-4 flex flex-wrap items-end justify-between gap-3 px-1">
-          <div>
-            <h2 className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">{t("requirementsTitle")}</h2>
-            <p className="text-[14.5px] text-muted">{t("requirementsBody")}</p>
-          </div>
-          <StatusBadge status="DEMO_DATA" label={t("simulatedRules")} />
+      <section id="rules" className="scroll-mt-24">
+        <div className="mb-4 px-1">
+          <h2 className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">{tr("checkerTitle")}</h2>
+          <p className="max-w-[70ch] text-[14.5px] text-muted">{tr("checkerBody")}</p>
         </div>
-        <div className="rounded-[24px] bg-white p-5 shadow-card sm:p-6">
+        <RegulationChecker
+          defaults={{
+            source_country: profile.home_country,
+            destination_country: profile.study_country,
+            nationality: profile.nationality,
+            residency_status: profile.residency_status,
+            visa_type: profile.visa_type,
+          }}
+        />
+      </section>
+
+      <section>
+        <details className="group rounded-[24px] bg-white p-5 shadow-card sm:p-6">
+          <summary className="flex min-h-11 cursor-pointer list-none flex-wrap items-center justify-between gap-3">
+            <span>
+              <span className="block font-display text-[19px] font-extrabold tracking-[-0.03em] text-cocoa">{t("requirementsTitle")}</span>
+              <span className="block text-[14px] text-muted">{t("requirementsBody")}</span>
+            </span>
+            <StatusBadge status="DEMO_DATA" label={t("simulatedRules")} />
+          </summary>
+          <div className="mt-5">
           <form className="mb-5 flex flex-wrap items-end gap-3 text-[14px]" action="/transfers">
             <RoutePair from={src} to={dst} size={36} />
             <label className="flex flex-col gap-1">
@@ -112,7 +132,8 @@ export default async function TransfersPage({ searchParams }: { searchParams: Pr
           </form>
           <RulesTable rules={rules} />
           <p className="mt-4 text-[13px] leading-5 text-muted">{t("rulesDisclaimer")}</p>
-        </div>
+          </div>
+        </details>
       </section>
 
       <section>

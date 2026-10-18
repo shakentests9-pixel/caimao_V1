@@ -6,6 +6,8 @@ import { DEFAULT_MODEL } from "@/lib/agent/orchestrator";
 import { PageHeader } from "@/components/page-header";
 import { CurrencyPreference, DocumentsForm, PermissionForm, ScenarioForm, SignOutButton } from "@/components/settings-forms";
 import { SettingsSection } from "@/components/caimao/settings-section";
+import { LanguagePicker } from "@/components/language-picker";
+import { CrossBorderProfileForm } from "@/components/cross-border-profile-form";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
@@ -19,12 +21,15 @@ export default async function SettingsPage() {
   const agent = agentMode();
   const supa = dataMode() === "supabase";
   const t = await getTranslations("SettingsPage");
+  const tl = await getTranslations("Language");
 
   return (
     <div className="space-y-6">
       <PageHeader title={t("title")} />
       <nav className="cm-scroll-x -mx-1 flex gap-2 overflow-x-auto px-1" aria-label={t("sectionsNav")}>
         {[
+          ["language", t("nav.language")],
+          ["profile", t("nav.profile")],
           ["personalisation", t("nav.personalisation")],
           ["ai", t("nav.ai")],
           ["security", t("nav.security")],
@@ -39,6 +44,23 @@ export default async function SettingsPage() {
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-7">
+          <SettingsSection id="language" title={tl("title")} description={tl("description")}>
+            <LanguagePicker />
+          </SettingsSection>
+          <SettingsSection id="profile" title={t("profile.title")} description={t("profile.description")}>
+            <CrossBorderProfileForm
+              initial={{
+                nationality: profile.nationality,
+                home_country: profile.home_country,
+                study_country: profile.study_country,
+                age: profile.age,
+                student_status: profile.student_status,
+                visa_type: profile.visa_type,
+                residency_status: profile.residency_status,
+                tax_residency: profile.tax_residency,
+              }}
+            />
+          </SettingsSection>
           <SettingsSection id="personalisation" title={t("personalisation.title")} description={t("personalisation.description")}>
             <CurrencyPreference base={profile.base_currency} />
           </SettingsSection>

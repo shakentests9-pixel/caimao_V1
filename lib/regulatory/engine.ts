@@ -121,6 +121,8 @@ export function retrieveRules(rules: CountryRule[], q: RegulatoryQuery): { rule:
   return out;
 }
 
+const gates = (r: CountryRule) => r.enforcement === "block_above" || r.enforcement === "documents_above" || r.enforcement === "documents_always";
+
 /** RULE_EVALUATED: deterministic outcome for each retrieved rule. */
 export function evaluateRegulation(rules: CountryRule[], q: RegulatoryQuery, fx: FxService, now = new Date()): RegulatoryResult {
   const retrieved = retrieveRules(rules, q);
@@ -190,7 +192,8 @@ export function evaluateRegulation(rules: CountryRule[], q: RegulatoryQuery, fx:
   let status: RegulatoryStatus;
   if (!verifiedFindings.length) status = "NEEDS_VERIFICATION";
   else if (verifiedFindings.some((f) => f.outcome === "BLOCK")) status = "BLOCKED";
-  else if (missing.size || coverage.some((c) => c.verified_rules === 0) || findings.some((f) => f.outcome === "UNVERIFIED")) status = "NEEDS_VERIFICATION";
+  // An unverified rule only matters if it could gate the payment; unverified guidance is just shown.
+  else if (missing.size || coverage.some((c) => c.verified_rules === 0) || findings.some((f) => f.outcome === "UNVERIFIED" && gates(f.rule))) status = "NEEDS_VERIFICATION";
   else if (verifiedFindings.some((f) => f.outcome === "DOCUMENTS")) status = "ACTION_REQUIRED";
   else status = "COMPLIANT";
 

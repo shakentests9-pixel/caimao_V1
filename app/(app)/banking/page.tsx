@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ChevronRight, Globe2 } from "lucide-react";
 import { Check, Circle } from "lucide-react";
 import { getRepository } from "@/lib/session";
 import { formatMoney } from "@/lib/fx/service";
@@ -33,6 +35,17 @@ export default async function BankingPage() {
   return (
     <div className="space-y-10">
       <PageHeader title={t("title")} description={t("description", { study })} />
+
+      <Link href="/banking/abroad" className="cm-press cm-lift flex items-center gap-4 rounded-[24px] bg-white p-5 shadow-card">
+        <span className="flex size-12 shrink-0 items-center justify-center rounded-[16px] bg-brand-soft text-brand">
+          <Globe2 className="size-6" aria-hidden />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-display text-[18px] font-extrabold text-cocoa">{t("abroadCard.title")}</span>
+          <span className="block text-[14px] text-muted">{t("abroadCard.body")}</span>
+        </span>
+        <ChevronRight className="size-5 shrink-0 text-brand" aria-hidden />
+      </Link>
 
       {card && (
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[400px_minmax(0,1fr)] lg:gap-8">

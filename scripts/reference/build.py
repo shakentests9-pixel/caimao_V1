@@ -87,7 +87,8 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data/reference-research/*.json")))
         banks.append({
             "id": f"{c.lower()}-{slug}",
             "country": c,
-            **{k: b.get(k) for k in ["bank_name", "account_type", "student_account_available", "international_student_eligible", "resident_required", "minimum_age", "visa_requirements", "minimum_balance", "monthly_fee", "international_transfer_support", "credit_card_available", "official_url", "evidence_quote", "notes"]},
+            "account_type": b.get("account_type") or "Account details not confirmed",
+            **{k: b.get(k) for k in ["bank_name", "student_account_available", "international_student_eligible", "resident_required", "minimum_age", "visa_requirements", "minimum_balance", "monthly_fee", "international_transfer_support", "credit_card_available", "official_url", "evidence_quote", "notes"]},
             "documents": b.get("documents") or [],
             "last_verified": verified_on,
             "status": "verified" if b["confidence"] == "verified" else "needs_verification",

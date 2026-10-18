@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CalendarDays, ChevronRight, CreditCard, FileText, Globe2, ShieldCheck, Settings } from "lucide-react";
+import { CalendarDays, ChevronRight, CreditCard, FileText, Globe2, ShieldCheck, Settings, Compass, FileSearch } from "lucide-react";
 import { getRepository } from "@/lib/session";
 import { formatMoney } from "@/lib/fx/service";
 import { Avatar } from "@/components/brand";
@@ -26,7 +26,9 @@ export default async function ProfilePage() {
     { href: "/settings#security", label: t("links.security"), sub: t("links.securitySub"), Icon: ShieldCheck },
     { href: "/settings#documents", label: t("links.documents"), sub: t("links.documentsSub", { count: profile.documents_on_file.length }), Icon: FileText },
     { href: "/obligations", label: t("links.obligations"), sub: due ? t("links.obligationsDue", { count: due }) : t("links.obligationsClear"), Icon: CalendarDays },
+    { href: "/setup", label: t("links.setup"), sub: t("links.setupSub"), Icon: Compass },
     { href: "/banking", label: t("links.banking"), sub: t("links.bankingSub"), Icon: CreditCard },
+    { href: "/budget/statement", label: t("links.statement"), sub: t("links.statementSub"), Icon: FileSearch },
     { href: "/settings#demo", label: t("links.advanced"), sub: t("links.advancedSub"), Icon: Settings },
   ];
 

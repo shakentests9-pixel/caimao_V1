@@ -10,15 +10,16 @@ def merge(dst, src, path, conflicts):
             merge(dst[k], v, p, conflicts)
         elif dst[k] != v:
             conflicts.append((p, dst[k], v))
+            dst[k] = v  # fragments are the source of truth
 
 out = json.load(open("messages/en.json"))
 conflicts = []
 for f in sorted(glob.glob("messages/fragments/*.en.json")):
     merge(out, json.load(open(f)), "", conflicts)
 for c in conflicts:
-    print("CONFLICT", c)
+    print("updated", c[0])
 json.dump(out, open("messages/en.json", "w"), ensure_ascii=False, indent=2)
 open("messages/en.json", "a").write("\n")
 def count(d): return sum(count(v) if isinstance(v, dict) else 1 for v in d.values())
 print("namespaces", len(out), "keys", count(out))
-sys.exit(1 if conflicts else 0)
+

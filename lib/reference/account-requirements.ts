@@ -32,6 +32,36 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
     "last_verified": "2026-10-18"
   },
   {
+    "country": "GB",
+    "summary": "Any UK bank must see proof of identity and run an immigration status check before opening a current account, so an international student needs a passport and proof of immigration permission (now an eVisa, shared via a share code). Most banks also ask for proof of address, and many accept a university bank letter for it. Several major banks only offer their standard student account to people who have lived in the UK for 3 years or more. International students are pointed to dedicated international student accounts (HSBC, Lloyds, Santander) or to basic or standard accounts instead.",
+    "typical_documents": [
+      "Valid passport (proof of identity)",
+      "eVisa share code or other proof of immigration status (BRPs have been replaced by eVisas)",
+      "Proof of UK address, e.g. university banking letter, utility bill or bank statement dated within the last 3 months",
+      "Letter from your university confirming your student status and course (letter of introduction / bank letter)",
+      "Proof of acceptance onto a qualifying course (e.g. HSBC International Student Bank Account)",
+      "Selfie or short video for identity checks when applying through an app (NatWest, Barclays)"
+    ],
+    "eligibility_factors": [
+      "Valid immigration permission: banks must not open a current account for an overstayer",
+      "UK residence: Lloyds, Santander and NatWest require you to live in the UK; NatWest says non-residents cannot open an account",
+      "Length of UK residence: Barclays and NatWest student accounts require at least 3 years' UK residence, which rules out most international students",
+      "Minimum age: usually 18 (NatWest student account 17+; Santander international student page says 16+)",
+      "Enrolment on a qualifying full-time course at a UK university or college",
+      "Credit check consent for some accounts (e.g. Barclays Student Additions)",
+      "Basic bank accounts usually have no fees and no overdraft and may suit people refused a standard account"
+    ],
+    "sources": [
+      "https://www.ukcisa.org.uk/student-advice/finances/opening-a-bank-account/",
+      "https://www.gov.uk/government/publications/biometric-residence-documents-information-for-financial-providers/residence-documents-information-for-financial-providers",
+      "https://www.gov.uk/view-prove-immigration-status",
+      "https://www.natwest.com/current-accounts/what-do-you-need-to-open-a-current-account.html",
+      "https://www.hsbc.co.uk/current-accounts/compare/international-student-bank-account/",
+      "https://www.santander.co.uk/personal/current-accounts/santander-edge-student-current-account/international-student"
+    ],
+    "last_verified": "2026-10-18"
+  },
+  {
     "country": "JP",
     "summary": "International students holding a residence card (在留カード) can open an ordinary account at the major Japanese banks. Banks check the period of stay on the card: Mizuho and Japan Post Bank refuse applications if fewer than 3 months of stay remain, and Japan Post Bank will not open accounts for people whose original period of stay was 3 months or less and who have no residence card. Under the foreign-exchange rules a foreign national counts as a non-resident until 6 months after entering Japan (unless working at an office in Japan), and MUFG says non-residents face some restrictions on banking services. Foreign nationals cannot use MUFG's online 'Smart' account opening and must be verified at a branch. Register your address at the municipal office within 14 days of moving in, because Japan Post Bank cannot open an account if the residence card shows no address. Tell the bank when your address or period of stay changes, and close the account when you leave Japan.",
     "typical_documents": [
@@ -87,6 +117,35 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
       "https://www.uob.com.sg/personal/customer-service/accounts.page",
       "https://www.sc.com/sg/save/savings-accounts/jumpstart/",
       "https://www.hsbc.com.sg/international/open-an-account/"
+    ],
+    "last_verified": "2026-10-18"
+  },
+  {
+    "country": "US",
+    "summary": "An international student can usually open a US bank account without a Social Security number. By law, banks must collect your name, date of birth, address and an ID number, and non-U.S. persons may use an ITIN or a passport number and issuing country. Each bank sets its own rules. Without an SSN or ITIN you may only get an account that pays no interest. International students usually have to open the account in person at a branch.",
+    "typical_documents": [
+      "Passport (foreign passports accepted by some banks)",
+      "Secondary ID such as a student photo ID or Form I-20 (e.g. Chase lists the Student I-20 as a secondary ID)",
+      "Proof of U.S. physical address (e.g. a bill, lease or letter with your name and address)",
+      "Tax ID if you have one: SSN or ITIN (some banks also accept a foreign tax ID)",
+      "Letter confirming university enrollment (requested by some banks)"
+    ],
+    "eligibility_factors": [
+      "SSN not always required; ITIN or passport number may be used for identity",
+      "Without an SSN or ITIN you may be limited to a no-interest account",
+      "Many banks require international or non-permanent-resident customers to open in person at a branch",
+      "A U.S. physical address is commonly required (P.O. boxes not accepted at Wells Fargo)",
+      "Some online applications require U.S. citizenship or permanent/resident-alien status (e.g. Capital One 360, Citi online)",
+      "Minimum age is typically 17 or 18 depending on bank and channel"
+    ],
+    "sources": [
+      "https://www.fdic.gov/news/financial-institution-letters/2024/fil24015a.pdf",
+      "https://files.consumerfinance.gov/f/documents/cfpb_adult-fin-ed_checklist-for-opening-an-account.pdf",
+      "https://files-prod.consumerfinance.gov/f/documents/cfpb_checklist_opening_bank_account_web.pdf",
+      "https://www.fdic.gov/getbanked",
+      "https://bettermoneyhabits.bankofamerica.com/en/personal-banking/international-student-bank-account",
+      "https://www.chase.com/personal/banking/education/basics/bank-accounts-for-international-students",
+      "https://www.wellsfargo.com/help/checking-savings/open-close-account-faqs/"
     ],
     "last_verified": "2026-10-18"
   }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeftRight, Bell, GraduationCap, RefreshCw, Sparkles } from "lucide-react";
+import { loadJourney } from "@/lib/banking/service";
+import { ArrowLeftRight, Bell, ChevronRight, Compass, FileSearch, GraduationCap, Sparkles } from "lucide-react";
 import { getRepository } from "@/lib/session";
 import { getFxService } from "@/lib/finance";
 import { loadTuitionInsight, totalIn } from "@/lib/views";
@@ -30,6 +31,7 @@ export default async function Home() {
   const t = await getTranslations("HomePage");
   const tc = await getTranslations("Countries");
   const repo = await getRepository();
+  const journey = await loadJourney({ repo, actor: "user", correlationId: null });
   const [profile, accounts, obligations, transactions, budgets, fx] = await Promise.all([
     repo.getProfile(),
     repo.listAccounts(),
@@ -129,10 +131,25 @@ export default async function Home() {
         items={[
           { href: "/transfers", label: t("actions.sendMoney"), icon: ArrowLeftRight, tone: "brand" },
           { href: "/copilot?q=Pay%20my%20tuition", label: t("actions.payTuition"), icon: GraduationCap, tone: "gold" },
-          { href: `/transfers?from=${profile.home_currency}&to=${profile.study_currency}`, label: t("actions.exchange"), icon: RefreshCw, tone: "peach" },
+          { href: "/budget/statement", label: t("actions.analyseSpending"), icon: FileSearch, tone: "peach" },
           { href: "/copilot", label: t("askCaimao"), icon: Sparkles, tone: "cocoa" },
         ]}
       />
+
+      <Link href={`/setup?country=${journey.country}`} className="cm-press cm-lift flex items-center gap-4 rounded-[24px] bg-white p-4 shadow-card sm:p-5">
+        <span className="relative flex size-14 shrink-0 items-center justify-center rounded-full bg-cream" aria-hidden>
+          <svg viewBox="0 0 36 36" className="absolute inset-0 size-14 -rotate-90">
+            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#E9D8C8" strokeWidth="3" />
+            <circle cx="18" cy="18" r="15.5" fill="none" stroke="#A84A1A" strokeWidth="3" strokeLinecap="round" strokeDasharray={`${(journey.completed / journey.steps.length) * 97.4} 97.4`} />
+          </svg>
+          <Compass className="size-5 text-brand" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-display text-[17px] font-extrabold text-cocoa">{t("setupCard.title", { country: tc(journey.country) })}</span>
+          <span className="block text-[13.5px] text-muted">{t("setupCard.progress", { done: journey.completed, total: journey.steps.length })}</span>
+        </span>
+        <span className="inline-flex items-center gap-1 text-[14px] font-bold text-brand">{t("setupCard.cta")} <ChevronRight className="size-4" /></span>
+      </Link>
 
       <section>
         <SectionTitle title={t("yourAccounts")} />

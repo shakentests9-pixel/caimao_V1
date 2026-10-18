@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { FileSearch } from "lucide-react";
 import { CalendarClock } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { getRepository } from "@/lib/session";
@@ -78,7 +80,16 @@ export default async function BudgetPage() {
 
   return (
     <div className="space-y-8">
-      <PageHeader eyebrow={t("eyebrow")} title={t("title", { month: formatDate(s.window_end, { month: "long" }) })} description={t("description")} />
+      <PageHeader
+        eyebrow={t("eyebrow")}
+        title={t("title", { month: formatDate(s.window_end, { month: "long" }) })}
+        description={t("description")}
+        action={
+          <Link href="/budget/statement" className="cm-press cm-cta inline-flex h-12 items-center gap-2 rounded-[16px] px-5 text-[15px] font-extrabold">
+            <FileSearch className="size-5" aria-hidden /> {t("analyseStatement")}
+          </Link>
+        }
+      />
 
       {/* Hero */}
       <section className="grid grid-cols-1 items-center gap-6 rounded-[28px] bg-white p-6 shadow-card sm:p-8 lg:grid-cols-[1fr_260px]">

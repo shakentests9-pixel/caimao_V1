@@ -74,7 +74,7 @@ export const STUDENT_STATUSES: StudentStatus[] = ["full_time", "part_time", "adm
 
 /** Fields the user can edit about themselves. */
 export type ProfilePatch = Partial<
-  Pick<Profile, "base_currency" | "ai_permission_level" | "documents_on_file" | "nationality" | "visa_type" | "residency_status" | "student_status" | "age" | "tax_residency" | "language" | "home_country" | "study_country">
+  Pick<Profile, "base_currency" | "ai_permission_level" | "documents_on_file" | "nationality" | "visa_type" | "residency_status" | "student_status" | "age" | "tax_residency" | "language" | "home_country" | "study_country" | "home_currency" | "study_currency">
 >;
 
 export interface Account {

@@ -7,7 +7,7 @@ import { dataMode } from "./lib/config";
  * Route protection. Every page and API route except /login and /api/auth/*
  * needs a session: a Supabase Auth session, or the signed demo cookie in local demo mode.
  */
-const PUBLIC = [/^\/login/, /^\/welcome/, /^\/brand\//, /^\/api\/auth\//];
+const PUBLIC = [/^\/login/, /^\/welcome/, /^\/brand\//, /^\/api\/auth\//, /^\/api\/locale$/];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

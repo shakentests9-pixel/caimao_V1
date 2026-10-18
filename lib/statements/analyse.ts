@@ -209,12 +209,13 @@ export function analyseStatement(rows: StatementTransaction[], ctx: AnalysisCont
     const prior = monthly.slice(0, -1).map((m) => m.month);
     const byCatMonth = (cat: TransactionCategory, sub: string | null | undefined, m: string) =>
       spend.filter((r) => r.category === cat && (sub === undefined || r.subcategory === sub) && monthOf(r.date) === m).reduce((s, r) => s - r.value, 0);
+    // `label` is a message key (StatementPage.groups.*), so insights can be shown in any language.
     const groups: { cat: TransactionCategory; sub?: string | null; label: string }[] = [
-      { cat: "Food", sub: "Eating out", label: "Eating out" },
-      { cat: "Entertainment", label: "Entertainment" },
-      { cat: "Shopping", label: "Shopping" },
-      { cat: "Travel", label: "Travel" },
-      { cat: "Subscriptions", sub: "Digital services", label: "Subscriptions" },
+      { cat: "Food", sub: "Eating out", label: "eating_out" },
+      { cat: "Entertainment", label: "entertainment" },
+      { cat: "Shopping", label: "shopping" },
+      { cat: "Travel", label: "travel" },
+      { cat: "Subscriptions", sub: "Digital services", label: "subscriptions" },
     ];
     for (const g of groups) {
       const latest = byCatMonth(g.cat, g.sub, latestMonth);

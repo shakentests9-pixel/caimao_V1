@@ -48,6 +48,63 @@ export const CREDIT_SYSTEMS: CreditSystemInfo[] = [
     "last_verified": "2026-10-18"
   },
   {
+    "country": "GB",
+    "has_formal_bureau": true,
+    "foreigner_notes": "Overseas credit history does not transfer to the UK, so newcomers start with no file ('credit invisible') or a thin one and must build a UK history from scratch. Building enough history can take up to six months after opening accounts. Many international students cannot join the electoral register: it is open to UK, Irish and qualifying Commonwealth citizens with leave to remain, plus some EU citizens, so other nationals should rely on a UK bank account, monthly bills and contracts in their own name. HSBC says getting a credit card as an international student 'can be hard', and its Student Credit Card requires UK residency.",
+    "bureaus": [
+      "Experian",
+      "Equifax",
+      "TransUnion",
+      "Crediva (listed by MoneyHelper as a fourth agency)"
+    ],
+    "what_contributes": [
+      "Credit accounts and payment history, including missed or late payments and defaults",
+      "Current account data shared by major UK lenders",
+      "Service and utility accounts (monthly energy/water contracts, not prepayment meters)",
+      "Monthly mobile phone contracts (not pay-as-you-go)",
+      "Electoral register details",
+      "Public records such as County Court Judgments",
+      "Hard searches made when you apply for credit",
+      "Linked people such as joint borrowers, and previous addresses",
+      "Rent payments, if added through a third-party service"
+    ],
+    "why_it_matters": [
+      "Banks and lenders use your report to decide whether to lend to you or open an account",
+      "Mobile providers may check your report before offering a contract (not for pay-as-you-go)",
+      "Gas and electricity suppliers may check it before offering contracts",
+      "Landlords can check your report, though they usually see only public record information",
+      "Credit reference data is used to verify identity, age and residency and to detect fraud",
+      "A good history makes credit easier and cheaper to get"
+    ],
+    "responsible_behaviours": [
+      "Register on the electoral roll if you are eligible (UK, Irish, qualifying Commonwealth citizens with leave to enter or remain, and some EU citizens)",
+      "Open and run a UK current account well, routing bills through it",
+      "Put household bills in your name and pay by direct debit on time",
+      "Use a monthly mobile contract in your name rather than pay-as-you-go",
+      "If you use a credit or credit builder card, pay the full balance on time each month and keep usage to about 25% of your limit",
+      "Space out credit applications by several months",
+      "Check your credit report regularly for errors or identity theft; you can request it free from any agency"
+    ],
+    "risks": [
+      "Missed or late payments and defaults stay on your report for up to six years",
+      "Many hard searches in a short time can make lenders see you as higher risk",
+      "Applying for credit you are not eligible for, and repeated rejections, can harm your score",
+      "Credit builder cards often have low limits and high interest if not paid in full",
+      "Moving house often can lower your score",
+      "Debts owed abroad can still follow you even though the credit history does not"
+    ],
+    "sources": [
+      "https://www.moneyhelper.org.uk/en/everyday-money/credit/how-to-check-your-credit-report",
+      "https://ico.org.uk/for-the-public/credit/",
+      "https://www.experian.co.uk/consumer/guides/new-to-the-uk.html",
+      "https://www.equifax.co.uk/resources/loans-and-credit/credit-score-when-you-move-to-the-uk.html",
+      "https://www.transunion.co.uk/consumer/credit-invisibles",
+      "https://www.electoralcommission.org.uk/voting-and-elections/who-can-vote-uk-elections",
+      "https://www.hsbc.co.uk/credit-cards/products/student/"
+    ],
+    "last_verified": "2026-10-18"
+  },
+  {
     "country": "JP",
     "has_formal_bureau": true,
     "foreigner_notes": "Sumitomo Mitsui Card's general guidance says foreign residents can usually get a Japanese credit card if they hold a residence card or special permanent resident certificate, which requires a stay of 3+ months; people staying under 3 months cannot get one even with a passport and visa. Screening mainly looks at the applicant's attributes and credit information. Issuers do not publish their actual screening criteria. No official page confirming how foreign (overseas) credit history is treated was found.",
@@ -140,6 +197,55 @@ export const CREDIT_SYSTEMS: CreditSystemInfo[] = [
       "https://www.mas.gov.sg/contact-us/faqs/payments-faqs/licensed-credit-bureaus-faq",
       "https://www.mas.gov.sg/regulation/payments/licensing-for-credit-bureaus",
       "https://www.creditbureau.com.sg/"
+    ],
+    "last_verified": "2026-10-18"
+  },
+  {
+    "country": "US",
+    "has_formal_bureau": true,
+    "foreigner_notes": "Credit history from other countries does not transfer to the US credit system, so newcomers usually start with no US score. Some lenders may consider international credit history in limited cases. Common ways to start are a secured credit card (refundable deposit, often from about USD 200), being added as an authorized user on someone's card, or a credit-builder loan. Some card issuers accept an ITIN instead of an SSN; check each issuer.",
+    "bureaus": [
+      "Equifax",
+      "Experian",
+      "TransUnion"
+    ],
+    "what_contributes": [
+      "Payment history: about 35% of a FICO Score",
+      "Amounts owed / how much of your available credit you use: about 30%",
+      "Length of credit history / age of accounts: about 15%",
+      "Credit mix (number and types of accounts): about 10%",
+      "New credit / recent applications: about 10%",
+      "Collections, foreclosures or bankruptcies, and how long ago they happened"
+    ],
+    "why_it_matters": [
+      "Lenders use it to decide whether to offer mortgages, credit cards and auto loans",
+      "It affects the interest rates and credit limits you are offered",
+      "Used for tenant screening when renting",
+      "Used for insurance decisions",
+      "Rental payment history can appear in credit reports, and landlords use specialty tenant-screening reports"
+    ],
+    "responsible_behaviours": [
+      "Pay every bill on time; set up automatic payments or reminders",
+      "If you missed payments, get current and stay current",
+      "Keep balances low compared with your credit limit",
+      "Apply only for the credit you need; avoid many applications in a short period",
+      "Check your credit reports and dispute errors; get one free report from each bureau every 12 months",
+      "Ask your landlord whether they report rent payments, since on-time rent can help build credit"
+    ],
+    "risks": [
+      "Late or missed payments lower your score and stay on your report",
+      "High balances relative to your limits hurt your score",
+      "Many credit applications in a short period can signal financial trouble to lenders",
+      "Late rent and debts sent to collection can appear in credit reports",
+      "A landlord can deny you based on a tenant-screening report; you are entitled to an adverse action notice"
+    ],
+    "sources": [
+      "https://www.consumerfinance.gov/ask-cfpb/what-is-a-credit-score-en-315/",
+      "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/understand-your-credit-score/",
+      "https://www.consumerfinance.gov/ask-cfpb/how-do-i-get-and-keep-a-good-credit-score-en-318/",
+      "https://www.consumerfinance.gov/ask-cfpb/could-late-rent-payments-or-problems-with-a-landlord-be-in-my-credit-report-en-1815/",
+      "https://www.experian.com/blogs/ask-experian/credit-education/score-basics/what-affects-your-credit-scores/",
+      "https://www.experian.com/blogs/ask-experian/how-to-build-credit-when-new-to-us/"
     ],
     "last_verified": "2026-10-18"
   }

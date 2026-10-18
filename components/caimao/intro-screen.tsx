@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, ShieldCheck, Sparkles, Globe2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { CaiMaoMark, Wordmark } from "../brand";
+import { LanguagePicker } from "../language-picker";
 
 /**
  * First-time intro. "Get started" signs in to the demo account in local mode,
@@ -30,7 +31,10 @@ export function IntroScreen({ mode }: { mode: "memory" | "supabase" }) {
   return (
     <div className="min-h-dvh bg-ivory">
       <div className="mx-auto flex min-h-dvh max-w-[620px] flex-col px-5 pb-8 pt-8 sm:pt-12">
-        <Wordmark />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <Wordmark />
+          <LanguagePicker variant="compact" />
+        </div>
         <div className="mt-8 flex flex-1 flex-col justify-center sm:mt-12">
           <section className="rounded-[28px] bg-white p-6 text-center shadow-card sm:p-10">
             <div className="mx-auto overflow-hidden rounded-[26px] bg-brand px-3 pt-4">

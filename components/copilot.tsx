@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { ArrowUp, Check, ChevronDown, CircleX, GraduationCap, Loader2, Plus, RefreshCw, RotateCcw, Scale, ShieldCheck, PieChart } from "lucide-react";
+import { ArrowUp, Check, ChevronDown, CircleX, Compass, FileSearch, GraduationCap, Loader2, Plus, RefreshCw, RotateCcw, Scale, ShieldCheck, PieChart } from "lucide-react";
 import type { AgentCard, AgentEvent, Phase } from "@/lib/agent/protocol";
 import { PHASES } from "@/lib/agent/protocol";
 import type { ExecutionOutcome } from "@/lib/finance";
@@ -19,12 +19,14 @@ import { cn } from "@/lib/utils";
 
 /** Prompt keys (Copilot.prompts.*). The translated text is both the label and the message sent to the agent. */
 const QUICK_PROMPTS = ["payTuition", "compareRates", "canIAfford", "checkTransferRules"] as const;
-const MORE_ACTIONS = ["payTuition", "compareFxRates", "sendMoneyOverseas", "checkTransferRules", "reviewSpending", "buildCredit", "openBankAccount"] as const;
+const MORE_ACTIONS = ["payTuition", "compareFxRates", "sendMoneyOverseas", "checkTransferRules", "reviewSpending", "statementAnalysis", "setupFinances", "buildCredit", "openBankAccount"] as const;
 const STARTERS = [
   { id: "payTuition", prompt: "payTuition", Icon: GraduationCap, tone: "bg-brand-soft text-brand" },
   { id: "compareRates", prompt: "compareFxRates", Icon: RefreshCw, tone: "bg-peach-soft text-peach-ink" },
   { id: "checkTransferRules", prompt: "checkTransferRules", Icon: Scale, tone: "bg-gold-soft text-gold-ink" },
   { id: "reviewSpending", prompt: "reviewSpending", Icon: PieChart, tone: "bg-cream text-warning-ink" },
+  { id: "setupFinances", prompt: "setupFinances", Icon: Compass, tone: "bg-success-soft text-success-ink" },
+  { id: "statementAnalysis", prompt: "statementAnalysis", Icon: FileSearch, tone: "bg-[#EFE3D9] text-cocoa" },
 ] as const;
 
 /**
@@ -48,6 +50,18 @@ const FRIENDLY: Record<string, { summary?: boolean }> = {
   updateAccountBalance: { summary: true },
   markObligationPaid: { summary: true },
   createAuditLog: { summary: true },
+  getUserFinancialProfile: {},
+  getCountryBankingRequirements: { summary: true },
+  getAvailableBanks: { summary: true },
+  getBankEligibility: { summary: true },
+  getFundFlowRules: { summary: true },
+  getCreditSystemInfo: { summary: true },
+  getAccountSetupSteps: { summary: true },
+  getRequiredDocuments: { summary: true },
+  analyseSpending: { summary: true },
+  generateSavingsInsights: { summary: true },
+  getLanguagePreference: {},
+  updateLanguagePreference: { summary: true },
 };
 
 interface Step {
@@ -78,6 +92,8 @@ interface AssistantMsg {
   role: "assistant";
   blocks: Block[];
   suggestions: string[];
+  /** The suggestion that prepares a payment (shown as the primary button). */
+  prepare?: string;
   correlationId: string | null;
   mode: "llm" | "scripted" | null;
   model: string | null;
@@ -142,7 +158,7 @@ function reduce(m: AssistantMsg, e: AgentEvent): AssistantMsg {
       blocks.push({ kind: "notice", tone: "error", text: e.message });
       return { ...m, blocks };
     case "suggestions":
-      return { ...m, suggestions: e.items };
+      return { ...m, suggestions: e.items, prepare: e.prepare };
     case "done":
       for (const p of PHASES) if (phases[p] === "active" && p !== "Obtain approval") phases[p] = "done";
       return { ...m, done: true, phases };
@@ -231,6 +247,8 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
             const ev = JSON.parse(line) as AgentEvent;
             updateAssistant(asst.id, (m) => reduce(m, ev));
             if (ev.type === "meta") correlationRef.current[asst.id] = ev.correlation_id;
+            // A language change re-renders the app in the new language once the reply has arrived.
+            if (ev.type === "card" && ev.card.kind === "language") setTimeout(() => router.refresh(), 600);
             if (ev.type === "card" && ev.card.kind === "instruction") {
               const card = ev.card;
               // Open the confirmation screen once the instruction lands; the user still has to approve.
@@ -534,7 +552,7 @@ function AssistantMessage({
     }
     return [b];
   });
-  const prepare = isLast && m.done ? m.suggestions.find((s) => s.startsWith("Prepare the payment")) : undefined;
+  const prepare = isLast && m.done ? m.prepare ?? m.suggestions.find((s) => s.startsWith("Prepare the payment")) : undefined;
   return (
     <div className="flex gap-3">
       <MascotTile size={34} className="mt-0.5" />

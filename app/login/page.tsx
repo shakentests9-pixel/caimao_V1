@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { dataMode } from "@/lib/config";
 import { LoginForm } from "@/components/login-form";
 import { CaiMaoMark, Wordmark } from "@/components/brand";
+import { LanguagePicker } from "@/components/language-picker";
 
 export async function generateMetadata() {
   const t = await getTranslations("LoginPage");
@@ -26,7 +27,10 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       </div>
       <div className="flex items-center justify-center px-6 py-12">
         <div className="w-full max-w-[380px]">
-          <Wordmark className="mb-10 lg:hidden" />
+          <div className="mb-10 flex flex-wrap items-center justify-between gap-3 lg:justify-end">
+            <Wordmark className="lg:hidden" />
+            <LanguagePicker variant="compact" />
+          </div>
           <h1 className="font-display text-[34px] font-extrabold leading-tight tracking-[-0.05em] text-cocoa">{signup ? t("createAccount") : t("welcomeBack")}</h1>
           <p className="mt-2 text-[15.5px] text-muted">{mode === "memory" ? t("memoryMode") : t("supabaseMode")}</p>
           <div className="mt-8">

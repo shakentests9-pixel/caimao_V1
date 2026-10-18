@@ -4,6 +4,8 @@ import { formatRate } from "@/lib/fx/service";
 import { Money } from "./money";
 import { StatusBadge } from "./status-badge";
 import { cn, formatDateTime } from "@/lib/utils";
+import type { ExplanationPart } from "@/lib/remittance/engine";
+import { renderExplanation } from "@/lib/remittance/explain-i18n";
 
 export interface QuotesView {
   quotes: RemittanceQuote[];
@@ -13,6 +15,7 @@ export interface QuotesView {
   compare_amount: number;
   destination_amount: number | null;
   explanation: string;
+  explanation_parts?: ExplanationPart[];
   advantage_vs: { provider_name: string; extra_recipient_amount: number; lower_total_cost: number }[];
   fx_as_of: string;
   fx_source: string;
@@ -21,6 +24,7 @@ export interface QuotesView {
 /** The full technical comparison, shown when someone expands "See full comparison". */
 export function QuotesTable({ view }: { view: QuotesView }) {
   const t = useTranslations("QuotesTable");
+  const te = useTranslations("Explain");
   const src = view.quotes[0]?.source_currency;
   const dst = view.quotes[0]?.destination_currency;
   return (
@@ -80,7 +84,7 @@ export function QuotesTable({ view }: { view: QuotesView }) {
           rate: () => <span className="font-mono">{view.quotes[0] ? formatRate(view.quotes[0].market_fx_rate) : ""}</span>,
         })}
       </p>
-      <p className="mt-2 text-[13.5px] leading-6 text-cocoa-2">{view.explanation}</p>
+      <p className="mt-2 text-[13.5px] leading-6 text-cocoa-2">{renderExplanation(view.explanation_parts, te, view.explanation)}</p>
     </div>
   );
 }

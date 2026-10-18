@@ -56,7 +56,7 @@ export function inferDateOrder(samples: string[]): DateOrder {
 /** Parses the common statement date formats into ISO. `fallbackYear` fills "12 Mar" style dates. */
 export function parseDate(raw: string, order: DateOrder = "dmy", fallbackYear?: number): string | null {
   const s = raw.trim();
-  let m = s.match(/^(\d{4})[/.-年](\d{1,2})[/.-月](\d{1,2})日?/);
+  let m = s.match(/^(\d{4})[/.\-年](\d{1,2})[/.\-月](\d{1,2})日?/);
   if (m) return iso(+m[1], +m[2], +m[3]);
   m = s.match(/^(\d{1,2})[/.-](\d{1,2})[/.-](\d{2,4})\b/);
   if (m) return order === "mdy" ? iso(+m[3], +m[1], +m[2]) : iso(+m[3], +m[2], +m[1]);
@@ -108,7 +108,9 @@ export function parseAmount(raw: string): number | null {
     s = s.replace(/\b(dr|debit)\.?$/i, "");
   }
   s = s.replace(/\b(cr|credit)\.?$/i, "");
-  if (s.includes("-")) {
+  // Drop a leading currency symbol or code so "£-9.99" and "-£9.99" read the same.
+  s = s.replace(/^\s*[£$€¥￥₫]|^\s*(?:usd|gbp|sgd|cny|hkd|vnd|jpy|rmb)\s*/i, "").trim();
+  if (s.includes("-") || s.includes("−")) {
     if (/^\s*[-−]/.test(s) || /[-−]\s*$/.test(s)) negative = true;
     s = s.replace(/[-−]/g, "");
   }

@@ -74,3 +74,37 @@ OVERRIDES = {
     "cn-aml-large-value-report": {"enforcement": "report_above", "limit": 10000},
     "cn-foreigner-mobile-payment-limits": {"enforcement": "info", "applies_to": "Overseas visitors paying through mobile payment apps"},
 }
+
+OVERRIDES.update({
+    # ── United Kingdom ──
+    "gb-fx-no-exchange-control": {"enforcement": "info"},
+    "gb-cash-declaration-10000": {"channel": "cash", "enforcement": "report_above", "limit": 10000},
+    "gb-cash-seizure-suspicion": {"channel": "cash", "enforcement": "info"},
+    "gb-cash-advice-students": {"channel": "cash", "enforcement": "info"},
+    "gb-tuition-pay-by-bank-transfer": {"enforcement": "info"},
+    # Visa proof-of-funds rules are about the visa application, not the payment: guidance only.
+    "gb-visa-funds-london": {"enforcement": "info", "visa": ["student"], "applies_to": "Student visa applicants studying in London"},
+    "gb-visa-funds-outside-london": {"enforcement": "info", "visa": ["student"], "applies_to": "Student visa applicants studying outside London"},
+    "gb-visa-funds-28-day-rule": {"enforcement": "info", "visa": ["student"], "applies_to": "Student visa applicants who must show funds"},
+    "gb-visa-funds-foreign-currency": {"enforcement": "info", "visa": ["student"], "applies_to": "Student visa applicants who must show funds"},
+    "gb-bank-immigration-status-check": {"skip": "account-opening requirement, shown in Banking Abroad"},
+    "gb-confirmation-of-payee": {"skip": "UK domestic payments only"},
+    "gb-app-fraud-reimbursement": {"skip": "UK domestic payments only"},
+    "gb-bank-payment-refusal": {"enforcement": "info"},
+    "gb-money-mule-warning": {"enforcement": "info"},
+    "gb-aml-source-of-funds-checks": {"enforcement": "info"},
+})
+
+OVERRIDES.update({
+    # ── United States ──
+    "us-no-limit-currency-transport": {"channel": "cash", "enforcement": "info"},
+    "us-fincen-105-cmir": {"channel": "cash", "enforcement": "report_above", "limit": 10000},
+    "us-fincen-ctr-cash": {"skip": "cash deposits at US banks, not a cross-border transfer rule"},
+    "us-fincen-funds-travel-rule": {"enforcement": "info", "docs": []},
+    "us-ofac-sanctions": {"enforcement": "info"},
+    "us-cfpb-remittance-rights": {"enforcement": "info"},
+    # Who counts as a "U.S. person" for FBAR wasn't confirmed for F-1 students, so it stays informational.
+    "us-fbar-us-persons": {"enforcement": "info", "applies_to": "U.S. persons only (citizens, residents, and U.S. entities, trusts and estates)"},
+    "us-f1-proof-of-funds": {"enforcement": "info", "visa": ["student"], "applies_to": "F-1 student visa applicants"},
+    "us-cip-account-id": {"skip": "account-opening requirement, shown in Banking Abroad"},
+})
