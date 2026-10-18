@@ -409,9 +409,11 @@ async function fundFlow(c: Ctx, t: string, facts: Facts, profile: Profile) {
   const from = c.tc(source);
   const to = c.tc(destination);
   const parts: string[] = [];
-  if (result.unverified_message) {
+  const partial = !!result.unverified_message && result.findings.length > 0;
+  if (result.unverified_message && !partial) {
     parts.push(c.t("rules.unverified"));
   } else {
+    if (partial) parts.push(`${c.t("rules.unverified")} ${c.t("rules.unverifiedPart", { countries: (result.unverified_countries ?? []).map((x) => c.tc(x)).join(", ") })}`);
     parts.push(c.t(`rules.status.${result.status}`, { from, to }));
     const needed = result.documents.filter((d) => !d.on_file).map((d) => d.name);
     if (needed.length) parts.push(c.t("rules.documents", { docs: needed.map((d) => `- ${d}`).join("\n") }));

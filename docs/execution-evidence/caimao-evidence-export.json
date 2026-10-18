@@ -1,0 +1,2358 @@
+{
+  "exported_at": "2026-10-18T14:50:30.919Z",
+  "environment": "sandbox",
+  "user_id": "00000000-0000-4000-8000-00000000a1e5",
+  "executions": [
+    {
+      "user_id": "00000000-0000-4000-8000-00000000a1e5",
+      "transfer_request_id": "0b356ecd-5f50-4662-8174-037928554fdc",
+      "status": "COMPLETED",
+      "timestamp": "2026-10-18T14:50:30.834Z",
+      "provider": "Panda Remit Demo",
+      "source_amount": 26105.57,
+      "source_currency": "SGD",
+      "destination_amount": 15000,
+      "destination_currency": "GBP",
+      "fee": 15,
+      "recipient": "Example University Treasury",
+      "failure_reason": null,
+      "id": "5d6c247c-15f2-4b86-892d-4b85cb3b37c7",
+      "transaction_id": "UF-2026-000184"
+    }
+  ],
+  "transfer_requests": [
+    {
+      "id": "0b356ecd-5f50-4662-8174-037928554fdc",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5",
+      "obligation_id": "obl-tuition-2026-001",
+      "source_account_id": "acc-sg-bank",
+      "provider_id": "prov-panda-remit-demo",
+      "quote_id": "4397fb95-7752-4d0a-b910-8ae68d582c82",
+      "recipient": "Example University Treasury",
+      "recipient_country": "GB",
+      "purpose": "Education / Tuition",
+      "invoice_ref": "TUITION-2026-001",
+      "source_amount": 26105.57,
+      "source_currency": "SGD",
+      "destination_amount": 15000,
+      "destination_currency": "GBP",
+      "provider_fx_rate": 0.574920542635659,
+      "market_fx_rate": 0.5775193798449613,
+      "transfer_fee": 15,
+      "total_cost": 132.41,
+      "estimated_settlement_date": "2026-10-20",
+      "compliance_status": "COMPLIANT",
+      "compliance_snapshot": {
+        "status": "COMPLIANT",
+        "source_country": "SG",
+        "destination_country": "GB",
+        "transaction_type": "education",
+        "evaluations": [
+          {
+            "rule": {
+              "id": "rule-sg-id",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "Sender identification for outward remittances",
+              "rule_description": "The sender must be identified with a valid government-issued photo ID before an outward remittance is sent. Simulated rule for demonstration only. Not legal or regulatory advice; verify with the official source.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "documents_always",
+              "documentation_required": [
+                "Passport or national ID"
+              ],
+              "official_source": "Monetary Authority of Singapore (MAS)",
+              "official_source_url": "https://www.mas.gov.sg",
+              "effective_date": "2024-01-01",
+              "risk_level": "LOW",
+              "last_verified": "2026-09-15",
+              "is_demo": true,
+              "status": "simulated",
+              "channel": "bank_transfer",
+              "regulator": "Monetary Authority of Singapore (MAS)"
+            },
+            "outcome": "PASS",
+            "message": "Required documents are on file.",
+            "documents": [
+              {
+                "name": "Passport or national ID",
+                "on_file": true
+              }
+            ]
+          },
+          {
+            "rule": {
+              "id": "rule-sg-limit",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "Single outward transfer limit (demo corridor)",
+              "rule_description": "A single outward transfer may not exceed SGD 200,000 in this demo corridor. Simulated rule for demonstration only. Not legal or regulatory advice; verify with the official source.",
+              "currency": "SGD",
+              "limit_amount": 200000,
+              "enforcement": "block_above",
+              "documentation_required": [],
+              "official_source": "Monetary Authority of Singapore (MAS)",
+              "official_source_url": "https://www.mas.gov.sg",
+              "effective_date": "2024-01-01",
+              "risk_level": "MEDIUM",
+              "last_verified": "2026-09-15",
+              "is_demo": true,
+              "status": "simulated",
+              "channel": "bank_transfer",
+              "regulator": "Monetary Authority of Singapore (MAS)"
+            },
+            "outcome": "PASS",
+            "message": "Within the limit of SGD 200,000.00 (≈ SGD 26,105.57).",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "rule-sg-edu",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "education",
+              "rule_name": "Education payments need a supporting invoice",
+              "rule_description": "Transfers made for tuition must reference an invoice issued by the institution. Simulated rule for demonstration only. Not legal or regulatory advice; verify with the official source.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "documents_always",
+              "documentation_required": [
+                "University invoice"
+              ],
+              "official_source": "Monetary Authority of Singapore (MAS)",
+              "official_source_url": "https://www.mas.gov.sg",
+              "effective_date": "2024-01-01",
+              "risk_level": "LOW",
+              "last_verified": "2026-09-15",
+              "is_demo": true,
+              "status": "simulated",
+              "channel": "bank_transfer",
+              "regulator": "Monetary Authority of Singapore (MAS)"
+            },
+            "outcome": "PASS",
+            "message": "Required documents are on file.",
+            "documents": [
+              {
+                "name": "University invoice",
+                "on_file": true
+              }
+            ]
+          },
+          {
+            "rule": {
+              "id": "rule-gb-sof",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "any",
+              "rule_name": "Source-of-funds declaration above GBP 10,000",
+              "rule_description": "Inbound payments above GBP 10,000 need a source-of-funds declaration from the payer. Simulated rule for demonstration only. Not legal or regulatory advice; verify with the official source.",
+              "currency": "GBP",
+              "limit_amount": 10000,
+              "enforcement": "documents_above",
+              "documentation_required": [
+                "Source-of-funds declaration"
+              ],
+              "official_source": "Financial Conduct Authority (FCA)",
+              "official_source_url": "https://www.fca.org.uk",
+              "effective_date": "2025-04-01",
+              "risk_level": "MEDIUM",
+              "last_verified": "2026-09-15",
+              "is_demo": true,
+              "status": "simulated",
+              "channel": "bank_transfer",
+              "regulator": "Financial Conduct Authority (FCA)"
+            },
+            "outcome": "PASS",
+            "message": "Above GBP 10,000.00 (≈ GBP 15,076.47). Required documents are on file.",
+            "documents": [
+              {
+                "name": "Source-of-funds declaration",
+                "on_file": true
+              }
+            ]
+          },
+          {
+            "rule": {
+              "id": "rule-gb-edu",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "education",
+              "rule_name": "University fee payments quote the student reference",
+              "rule_description": "Payments to UK universities must quote the student's enrolment reference so the institution can match the funds. Simulated rule for demonstration only. Not legal or regulatory advice; verify with the official source.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "documents_always",
+              "documentation_required": [
+                "Confirmation of enrolment (CAS)"
+              ],
+              "official_source": "UK Council for International Student Affairs (UKCISA)",
+              "official_source_url": "https://www.ukcisa.org.uk",
+              "effective_date": "2025-01-01",
+              "risk_level": "LOW",
+              "last_verified": "2026-09-15",
+              "is_demo": true,
+              "status": "simulated",
+              "channel": "bank_transfer",
+              "regulator": "UK Council for International Student Affairs (UKCISA)"
+            },
+            "outcome": "PASS",
+            "message": "Required documents are on file.",
+            "documents": [
+              {
+                "name": "Confirmation of enrolment (CAS)",
+                "on_file": true
+              }
+            ]
+          },
+          {
+            "rule": {
+              "id": "gb-fx-no-exchange-control-in",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "any",
+              "rule_name": "No UK exchange controls",
+              "rule_description": "The UK abolished exchange controls in 1979, so you do not need government approval to move money into or out of the UK. Normal bank checks and the cash declaration rule still apply.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "HM Revenue & Customs",
+              "official_source_url": "https://www.gov.uk/hmrc-internal-manuals/capital-gains-manual/cg78400",
+              "effective_date": "1979-10-24",
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "fx_control",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "HM Revenue & Customs",
+              "evidence_quote": "Exchange control was introduced into the United Kingdom shortly before the outbreak of the 1939-45 war and was abolished on 24 October 1979.",
+              "i18n": {
+                "zh-CN": {
+                  "name": "英国没有外汇管制",
+                  "summary": "英国已于 1979 年取消外汇管制，因此资金进出英国无需政府批准。银行的常规审核和现金申报规定仍然适用。"
+                },
+                "ja": {
+                  "name": "英国には為替管理なし",
+                  "summary": "英国は1979年に為替管理を廃止したため、英国への資金の持ち込みや英国からの持ち出しに政府の承認は必要ありません。ただし、通常の銀行の確認や現金申告のルールは引き続き適用されます。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "No UK exchange controls",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "gb-tuition-pay-by-bank-transfer",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "education",
+              "rule_name": "Pay tuition fees by bank transfer, arranged with your university",
+              "rule_description": "Rather than carrying cash for fees, contact your university before you leave home and ask whether you can pay your fees in advance by bank transfer. If that is not possible, ask the university about other payment methods.",
+              "currency": "GBP",
+              "limit_amount": null,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "UK Council for International Student Affairs (UKCISA) - advisory body",
+              "official_source_url": "https://www.ukcisa.org.uk/student-advice/finances/bringing-money-to-the-uk/",
+              "effective_date": null,
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "student_provision",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "UK Council for International Student Affairs (UKCISA) - advisory body",
+              "evidence_quote": "contact your institution before you leave home and ask if you can pay your fees in advance, by bank transfer.",
+              "i18n": {
+                "zh-CN": {
+                  "name": "与大学安排，通过银行转账缴纳学费",
+                  "summary": "不要携带现金缴费，而应在离开本国前联系你的大学，询问能否通过银行转账提前缴纳学费。如果不行，请向大学询问其他付款方式。"
+                },
+                "ja": {
+                  "name": "学費は大学と調整のうえ銀行振込で支払う",
+                  "summary": "学費のために現金を持ち歩くのではなく、出国前に大学に連絡し、銀行振込で学費を前払いできるか確認してください。それができない場合は、ほかの支払方法について大学に問い合わせてください。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Pay tuition fees by bank transfer, arranged with your university",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "gb-visa-funds-london",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "education",
+              "rule_name": "Student visa living-cost funds (London): £1,529 per month",
+              "rule_description": "To get a Student visa for a course in London you must show £1,529 per month for living costs (for up to 9 months), on top of your first-year course fees shown on your CAS.",
+              "currency": "GBP",
+              "limit_amount": 1529,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Home Office (UK Visas and Immigration)",
+              "official_source_url": "https://www.gov.uk/student-visa/money",
+              "effective_date": null,
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "student_provision",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": [
+                "student"
+              ],
+              "applies_to": "Student visa applicants studying in London",
+              "minimum_amount": 1529,
+              "maximum_amount": null,
+              "restrictions": "Amount is per month for up to 9 months. Extra funds are required for each dependant (£845 per month in London). Overdrafts, cryptocurrency, stocks and shares, pensions and unregulated accounts cannot be used.",
+              "exceptions": "Student union sabbatical officers and applicants who have lived in the UK with a visa for at least 12 months are exempt. Some nationalities need not provide evidence upfront unless asked.",
+              "regulator": "Home Office (UK Visas and Immigration)",
+              "evidence_quote": "£1,529 per month (for up to 9 months) for courses in London",
+              "i18n": {
+                "zh-CN": {
+                  "name": "学生签证生活费资金（伦敦）：每月 £1,529",
+                  "summary": "申请就读伦敦课程的学生签证（Student visa），除 CAS 上所列的第一年课程费用外，你还必须证明有每月 £1,529 的生活费（最多计 9 个月）。"
+                },
+                "ja": {
+                  "name": "学生ビザの生活費資金（ロンドン）：月 £1,529",
+                  "summary": "ロンドンのコースで学生ビザ（Student visa）を取得するには、CAS に記載された1年目の学費に加えて、生活費として月 £1,529（最大9か月分）を示す必要があります。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Student visa living-cost funds (London): £1,529 per month",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "gb-visa-funds-outside-london",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "education",
+              "rule_name": "Student visa living-cost funds (outside London): £1,171 per month",
+              "rule_description": "To get a Student visa for a course outside London you must show £1,171 per month for living costs (for up to 9 months), on top of your first-year course fees shown on your CAS.",
+              "currency": "GBP",
+              "limit_amount": 1171,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Home Office (UK Visas and Immigration)",
+              "official_source_url": "https://www.gov.uk/student-visa/money",
+              "effective_date": null,
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "student_provision",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": [
+                "student"
+              ],
+              "applies_to": "Student visa applicants studying outside London",
+              "minimum_amount": 1171,
+              "maximum_amount": null,
+              "restrictions": "Amount is per month for up to 9 months. Extra funds are required for each dependant (£680 per month outside London). Overdrafts, cryptocurrency, stocks and shares, pensions and unregulated accounts cannot be used.",
+              "exceptions": "Student union sabbatical officers and applicants who have lived in the UK with a visa for at least 12 months are exempt. Some nationalities need not provide evidence upfront unless asked.",
+              "regulator": "Home Office (UK Visas and Immigration)",
+              "evidence_quote": "£1,171 per month (for up to 9 months) for courses outside London",
+              "i18n": {
+                "zh-CN": {
+                  "name": "学生签证生活费资金（伦敦以外）：每月 £1,171",
+                  "summary": "申请就读伦敦以外课程的学生签证（Student visa），除 CAS 上所列的第一年课程费用外，你还必须证明有每月 £1,171 的生活费（最多计 9 个月）。"
+                },
+                "ja": {
+                  "name": "学生ビザの生活費資金（ロンドン以外）：月 £1,171",
+                  "summary": "ロンドン以外のコースで学生ビザ（Student visa）を取得するには、CAS に記載された1年目の学費に加えて、生活費として月 £1,171（最大9か月分）を示す必要があります。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Student visa living-cost funds (outside London): £1,171 per month",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "gb-visa-funds-28-day-rule",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "education",
+              "rule_name": "28-day rule for visa proof of funds",
+              "rule_description": "The required money must sit in the account for at least 28 days in a row, and the end of that 28-day period must be within 31 days of the date you apply for your visa. If the balance dips below the required amount on any day, the evidence will not meet the rule.",
+              "currency": "GBP",
+              "limit_amount": null,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Home Office (UK Visas and Immigration)",
+              "official_source_url": "https://www.gov.uk/student-visa/money",
+              "effective_date": null,
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "documentation",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": [
+                "student"
+              ],
+              "applies_to": "Student visa applicants who must show funds",
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": "The account must give immediate access to the money; a parent's or partner's account must be one they control.",
+              "exceptions": "Same exemptions as the maintenance requirement (12 months' UK residence on a visa, sabbatical officers, listed nationalities unless asked).",
+              "regulator": "Home Office (UK Visas and Immigration)",
+              "evidence_quote": "You must have this money for at least 28 days in a row. The end date of the 28-day period must be within 31 days of the date you apply for your visa.",
+              "i18n": {
+                "zh-CN": {
+                  "name": "签证资金证明的 28 天规则",
+                  "summary": "所需资金必须在账户中连续存放至少 28 天，且这 28 天期间的结束日距你申请签证之日不得超过 31 天。如果任何一天余额低于所需金额，该证明将不符合规定。"
+                },
+                "ja": {
+                  "name": "ビザ資金証明の28日ルール",
+                  "summary": "必要な資金は少なくとも28日間連続して口座に置かれている必要があり、その28日間の最終日はビザを申請する日から31日以内でなければなりません。いずれかの日に残高が必要額を下回った場合、その証拠は要件を満たしません。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "28-day rule for visa proof of funds",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "gb-visa-funds-foreign-currency",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "education",
+              "rule_name": "Funds in foreign currency converted at OANDA spot rate",
+              "rule_description": "You can show visa funds held in a foreign currency. UKVI converts them to pounds using the OANDA spot rate on the date you apply, so keep a buffer in case the exchange rate moves against you.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Home Office (UK Visas and Immigration)",
+              "official_source_url": "https://www.gov.uk/guidance/financial-evidence-for-student-and-child-student-route-applicants",
+              "effective_date": null,
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "fx_control",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": [
+                "student"
+              ],
+              "applies_to": "Student visa applicants who must show funds",
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "Home Office (UK Visas and Immigration)",
+              "evidence_quote": "If the money is in a foreign currency, we will convert it to British pounds using the spot exchange rate on OANDA for the date of the application.",
+              "i18n": {
+                "zh-CN": {
+                  "name": "外币资金按 OANDA 即期汇率换算",
+                  "summary": "你可以用外币持有的资金作为签证资金证明。UKVI 会按你申请当日的 OANDA 即期汇率将其换算为英镑，因此请预留缓冲，以防汇率出现不利变动。"
+                },
+                "ja": {
+                  "name": "外貨建て資金は OANDA のスポットレートで換算",
+                  "summary": "外貨で保有している資金もビザ資金として示せます。UKVI は申請日の OANDA のスポットレートでポンドに換算するため、為替レートが不利に動いた場合に備えて余裕を持たせておきましょう。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Funds in foreign currency converted at OANDA spot rate",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "gb-money-mule-warning",
+              "source_country": "*",
+              "destination_country": "GB",
+              "transaction_type": "any",
+              "rule_name": "Never let others move money through your account (money mules)",
+              "rule_description": "If you let someone pay money into your account and pass it on, you become a 'money mule' and are taking part in money laundering, which is a crime. The FCA warns this could carry a prison sentence of up to 14 years.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Financial Conduct Authority",
+              "official_source_url": "https://www.ukcisa.org.uk/student-advice/finances/bringing-money-to-the-uk/",
+              "effective_date": null,
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "aml",
+              "direction": "inbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": "Do not let anyone you don't know deposit money into your account or ask you to transfer it on.",
+              "exceptions": null,
+              "regulator": "Financial Conduct Authority",
+              "evidence_quote": "As a money mule you are involved in money laundering, which is a criminal offence.",
+              "i18n": {
+                "zh-CN": {
+                  "name": "切勿让他人通过你的账户转移资金（钱骡）",
+                  "summary": "如果你让别人把钱转入你的账户再转出去，你就成了“钱骡”（money mule），参与了洗钱，这是犯罪行为。FCA 警告，这可能被判处最高 14 年监禁。"
+                },
+                "ja": {
+                  "name": "他人に口座を使って資金を移動させない（マネーミュール）",
+                  "summary": "他人にあなたの口座へお金を入金させ、それを転送すると、あなたは「マネーミュール」（money mule）となり、マネーロンダリングに加担することになります。これは犯罪です。FCA は、最長14年の懲役刑が科される可能性があると警告しています。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Never let others move money through your account (money mules)",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "sg-fx-no-exchange-control-out",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "Exchange controls fully liberalised",
+              "rule_description": "Singapore lifted its exchange controls in 1978. You do not need any exchange-control approval to send money out of or bring money into Singapore, though normal bank anti-money-laundering checks still apply.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Monetary Authority of Singapore",
+              "official_source_url": "https://www.mas.gov.sg/-/media/MAS/Notices/PDF/754--Exchange-Control-Liberalisation-25-May-1978.pdf",
+              "effective_date": "1978-06-01",
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "fx_control",
+              "direction": "outbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "Monetary Authority of Singapore",
+              "evidence_quote": "no exchange control formalities or approvals are required for all forms of payments or capital transfers",
+              "i18n": {
+                "zh-CN": {
+                  "name": "外汇管制已全面放开",
+                  "summary": "新加坡于 1978 年取消外汇管制。你从新加坡汇出资金或将资金汇入新加坡，都无需任何外汇管制审批，但银行的常规反洗钱审核仍然适用。"
+                },
+                "ja": {
+                  "name": "為替管理は完全自由化",
+                  "summary": "シンガポールは1978年に為替管理を撤廃しました。シンガポールからの送金やシンガポールへの資金の持ち込みに為替管理上の承認は一切不要ですが、銀行による通常のマネーロンダリング防止チェックは引き続き適用されます。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Exchange controls fully liberalised",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "sg-aml-bank-wire-outbound-small",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "Bank wire transfers up to S$1,500: sender and recipient details",
+              "rule_description": "For any cross-border wire transfer of S$1,500 or less, the sending bank must include your name and account number plus the recipient's name and account number. Have the recipient's exact name and account details ready.",
+              "currency": "SGD",
+              "limit_amount": 1500,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Monetary Authority of Singapore",
+              "official_source_url": "https://www.mas.gov.sg/-/media/mas-media-library/regulation/notices/amld/notice-626/mas-notice-626-dated-28-march-2024.pdf",
+              "effective_date": "2024-04-01",
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "aml",
+              "direction": "outbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": null,
+              "maximum_amount": 1500,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "Monetary Authority of Singapore",
+              "evidence_quote": "In a cross-border wire transfer where the amount to be transferred is below or equal to S$1,500",
+              "i18n": {
+                "zh-CN": {
+                  "name": "S$1,500 及以下的银行电汇：须附汇款人和收款人信息",
+                  "summary": "对于金额为 S$1,500 或以下的任何跨境电汇，汇款银行必须附上你的姓名和账号，以及收款人的姓名和账号。请提前准备好收款人的准确姓名和账户信息。"
+                },
+                "ja": {
+                  "name": "S$1,500 以下の銀行電信送金：送金人と受取人の情報",
+                  "summary": "S$1,500 以下の国境を越える電信送金では、送金銀行はあなたの氏名と口座番号、受取人の氏名と口座番号を付記しなければなりません。受取人の正確な氏名と口座情報を用意しておきましょう。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Bank wire transfers up to S$1,500: sender and recipient details",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "sg-aml-bank-wire-outbound-large",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "Bank wire transfers above S$1,500: extra sender identifier",
+              "rule_description": "For a cross-border wire transfer above S$1,500, the bank must also send one extra piece of information about you: your address, your ID number, or your date and place of birth.",
+              "currency": "SGD",
+              "limit_amount": 1500,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Monetary Authority of Singapore",
+              "official_source_url": "https://www.mas.gov.sg/-/media/mas-media-library/regulation/notices/amld/notice-626/mas-notice-626-dated-28-march-2024.pdf",
+              "effective_date": "2024-04-01",
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "aml",
+              "direction": "outbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": 1500,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "Monetary Authority of Singapore",
+              "evidence_quote": "In a cross-border wire transfer where the amount to be transferred exceeds S$1,500",
+              "i18n": {
+                "zh-CN": {
+                  "name": "超过 S$1,500 的银行电汇：须额外附一项汇款人识别信息",
+                  "summary": "对于超过 S$1,500 的跨境电汇，银行还必须额外发送一项关于你的信息：你的地址、身份证件号码，或出生日期和出生地。"
+                },
+                "ja": {
+                  "name": "S$1,500 超の銀行電信送金：送金人の追加識別情報",
+                  "summary": "S$1,500 を超える国境を越える電信送金では、銀行はあなたに関する追加情報をもう1つ送らなければなりません。住所、身分証明書番号、または生年月日と出生地のいずれかです。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Bank wire transfers above S$1,500: extra sender identifier",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "sg-aml-psp-wire-thresholds-out",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "Remittance companies: same S$1,500 information rule",
+              "rule_description": "Licensed payment and remittance companies follow the same rule as banks. Above S$1,500 they must verify who you are and send your address, ID number or date and place of birth along with the transfer.",
+              "currency": "SGD",
+              "limit_amount": 1500,
+              "enforcement": "info",
+              "documentation_required": [],
+              "official_source": "Monetary Authority of Singapore",
+              "official_source_url": "https://www.mas.gov.sg/-/media/mas-media-library/regulation/notices/amld/psn01-aml-cft-notice---specified-payment-services/notice-psn01-dated-2-april-2024.pdf",
+              "effective_date": "2024-04-04",
+              "last_verified": "2026-10-18",
+              "risk_level": "LOW",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "aml",
+              "direction": "outbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": 1500,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": null,
+              "regulator": "Monetary Authority of Singapore",
+              "evidence_quote": "the wire transfer originator's unique identification number",
+              "i18n": {
+                "zh-CN": {
+                  "name": "汇款公司：同样适用 S$1,500 信息规则",
+                  "summary": "持牌支付和汇款公司遵守与银行相同的规则。金额超过 S$1,500 时，它们必须核实你的身份，并随汇款一并发送你的地址、身份证件号码，或出生日期和出生地。"
+                },
+                "ja": {
+                  "name": "送金業者：同じ S$1,500 の情報ルール",
+                  "summary": "ライセンスを持つ決済・送金業者も銀行と同じルールに従います。S$1,500 を超える場合、本人確認を行い、送金とともにあなたの住所、身分証明書番号、または生年月日と出生地を送らなければなりません。"
+                }
+              }
+            },
+            "outcome": "INFO",
+            "message": "Remittance companies: same S$1,500 information rule",
+            "documents": []
+          },
+          {
+            "rule": {
+              "id": "sg-aml-psp-cdd-walkin-out",
+              "source_country": "SG",
+              "destination_country": "*",
+              "transaction_type": "any",
+              "rule_name": "ID check for one-off cross-border remittances",
+              "rule_description": "If you use a remittance company without an existing account relationship, it must check your identity (customer due diligence) for any cross-border transfer, whatever the amount. Bring your passport or pass.",
+              "currency": null,
+              "limit_amount": null,
+              "enforcement": "documents_always",
+              "documentation_required": [
+                "Passport or national ID"
+              ],
+              "official_source": "Monetary Authority of Singapore",
+              "official_source_url": "https://www.mas.gov.sg/-/media/mas-media-library/regulation/notices/amld/psn01-aml-cft-notice---specified-payment-services/notice-psn01-dated-2-april-2024.pdf",
+              "effective_date": "2024-04-04",
+              "last_verified": "2026-10-18",
+              "risk_level": "MEDIUM",
+              "is_demo": false,
+              "status": "verified",
+              "rule_category": "documentation",
+              "direction": "outbound",
+              "channel": "bank_transfer",
+              "nationality_condition": null,
+              "residency_condition": null,
+              "visa_condition": null,
+              "applies_to": null,
+              "minimum_amount": null,
+              "maximum_amount": null,
+              "restrictions": null,
+              "exceptions": "Applies to customers without an existing business relationship with the payment service provider.",
+              "regulator": "Monetary Authority of Singapore",
+              "evidence_quote": "any funds by cross-border wire transfer",
+              "i18n": {
+                "zh-CN": {
+                  "name": "一次性跨境汇款的身份核查",
+                  "summary": "如果你在没有既有账户关系的情况下使用汇款公司，无论金额多少，该公司都必须对任何跨境汇款核查你的身份（客户尽职调查）。请携带护照或准证。"
+                },
+                "ja": {
+                  "name": "1回限りの国境を越える送金の本人確認",
+                  "summary": "既存の口座取引関係がない送金業者を利用する場合、金額にかかわらず、国境を越えるすべての送金について、業者はあなたの本人確認（顧客デューデリジェンス）を行わなければなりません。パスポートまたはパスを持参してください。"
+                }
+              }
+            },
+            "outcome": "PASS",
+            "message": "Required documents are on file.",
+            "documents": [
+              {
+                "name": "Passport or national ID",
+                "on_file": true
+              }
+            ]
+          }
+        ],
+        "required_documents": [
+          {
+            "name": "Passport or national ID",
+            "on_file": true
+          },
+          {
+            "name": "University invoice",
+            "on_file": true
+          },
+          {
+            "name": "Source-of-funds declaration",
+            "on_file": true
+          },
+          {
+            "name": "Confirmation of enrolment (CAS)",
+            "on_file": true
+          }
+        ],
+        "coverage": "rules_found",
+        "checked_at": "2026-10-18T14:50:30.123Z"
+      },
+      "required_documents": [
+        {
+          "name": "Passport or national ID",
+          "on_file": true
+        },
+        {
+          "name": "University invoice",
+          "on_file": true
+        },
+        {
+          "name": "Source-of-funds declaration",
+          "on_file": true
+        },
+        {
+          "name": "Confirmation of enrolment (CAS)",
+          "on_file": true
+        }
+      ],
+      "status": "COMPLETED",
+      "prepared_by": "ai_agent",
+      "approved_at": "2026-10-18T14:50:30.216Z",
+      "approval_ack": true,
+      "created_at": "2026-10-18T14:50:30.138Z",
+      "expires_at": "2026-10-18T15:05:30.138Z"
+    }
+  ],
+  "statements": [
+    {
+      "id": "8e234056-1154-4441-a041-4f4580c85b34",
+      "file_type": "csv",
+      "row_count": 92,
+      "period_start": "2026-07-01",
+      "period_end": "2026-09-28",
+      "status": "CONFIRMED",
+      "sha256": "7d586ee226ee4e119dcc5f570f65166a29243dc56e7054f504fba04a2045568f",
+      "created_at": "2026-10-18T14:50:29.551Z"
+    }
+  ],
+  "audit_logs": [
+    {
+      "actor": "ai_agent",
+      "action": "OBLIGATION_PAID",
+      "tool": "markObligationPaid",
+      "permission_level": 3,
+      "details": {
+        "obligation_id": "obl-tuition-2026-001",
+        "invoice": "TUITION-2026-001",
+        "transaction_id": "UF-2026-000184",
+        "status": "PAID"
+      },
+      "approval_status": "APPROVED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "36790092-de55-425e-b96a-fa62a1dfa256",
+      "timestamp": "2026-10-18T14:50:30.860Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "BALANCE_UPDATED",
+      "tool": "updateAccountBalance",
+      "permission_level": 3,
+      "details": {
+        "account": "Singapore Bank ****4821",
+        "before": "SGD 32,000.00",
+        "change": "−SGD 26,105.57",
+        "after": "SGD 5,894.43",
+        "transaction_id": "UF-2026-000184"
+      },
+      "approval_status": "APPROVED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "f4019794-7238-497c-a76d-32091adae18f",
+      "timestamp": "2026-10-18T14:50:30.848Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "TRANSFER_EXECUTED",
+      "tool": "executeSandboxTransfer",
+      "permission_level": 3,
+      "details": {
+        "transaction_id": "UF-2026-000184",
+        "provider_reference": "SBX-CCC09301",
+        "provider": "Panda Remit Demo",
+        "sent": "SGD 26,105.57",
+        "received": "GBP 15,000.00",
+        "recipient": "Example University Treasury",
+        "environment": "sandbox"
+      },
+      "approval_status": "APPROVED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "405d6577-751d-4bd3-9f6f-d746f9c28071",
+      "timestamp": "2026-10-18T14:50:30.840Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "USER_APPROVAL",
+      "tool": "confirmationScreen",
+      "permission_level": 3,
+      "details": {
+        "transfer_request_id": "0b356ecd-5f50-4662-8174-037928554fdc",
+        "acknowledgement": "I have reviewed this transaction.",
+        "amount": "SGD 26,105.57"
+      },
+      "approval_status": "APPROVED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "d80b46be-81e3-4611-b976-578a0aab7b0d",
+      "timestamp": "2026-10-18T14:50:30.222Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "TRANSFER_PREPARED",
+      "tool": "createTransferInstruction",
+      "permission_level": 2,
+      "details": {
+        "transfer_request_id": "0b356ecd-5f50-4662-8174-037928554fdc",
+        "obligation": "University Tuition (TUITION-2026-001)",
+        "provider": "Panda Remit Demo",
+        "source": "Singapore Bank ****4821",
+        "send": "SGD 26,105.57",
+        "recipient_gets": "GBP 15,000.00",
+        "compliance": "COMPLIANT",
+        "expires_at": "2026-10-18T15:05:30.138Z"
+      },
+      "approval_status": "PENDING",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "5c8d725c-f2cc-43b4-b751-ae247983c239",
+      "timestamp": "2026-10-18T14:50:30.143Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "TRANSFER_RULE_CHECK",
+      "tool": "getTransferRules",
+      "permission_level": 1,
+      "details": {
+        "corridor": "SG→GB",
+        "transaction_type": "education",
+        "amount": "SGD 26,105.57",
+        "status": "COMPLIANT",
+        "rules_checked": [
+          {
+            "id": "rule-sg-id",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-sg-limit",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-sg-edu",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-gb-sof",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-gb-edu",
+            "outcome": "PASS"
+          },
+          {
+            "id": "gb-fx-no-exchange-control-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-tuition-pay-by-bank-transfer",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-london",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-outside-london",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-28-day-rule",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-foreign-currency",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-money-mule-warning",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-fx-no-exchange-control-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-outbound-small",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-outbound-large",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-wire-thresholds-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-cdd-walkin-out",
+            "outcome": "PASS"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "b4fe20f5-8c04-4954-bff2-76bf7ee9dc04",
+      "timestamp": "2026-10-18T14:50:30.125Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "COST_CALCULATION",
+      "tool": "calculateTransferCost",
+      "permission_level": 0,
+      "details": {
+        "method": "total_cost = transfer_fee + fx_spread_cost + other_charges; ranked by recipient amount",
+        "best_value": "Panda Remit Demo",
+        "lowest_advertised_fee": "Home Bank",
+        "ranking": [
+          "Panda Remit Demo: GBP 14,939.31",
+          "Multi-Currency Wallet Demo: GBP 14,900.80",
+          "Home Bank: GBP 14,685.16"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "b619c36a-b523-4e9b-b5d4-65e0608cfcc9",
+      "timestamp": "2026-10-18T14:50:30.117Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "TRANSFER_RULE_CHECK",
+      "tool": "getTransferRules",
+      "permission_level": 1,
+      "details": {
+        "corridor": "SG→GB",
+        "transaction_type": "education",
+        "amount": "SGD 25,973.15",
+        "status": "COMPLIANT",
+        "rules_checked": [
+          {
+            "id": "rule-sg-id",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-sg-limit",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-sg-edu",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-gb-sof",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-gb-edu",
+            "outcome": "PASS"
+          },
+          {
+            "id": "gb-fx-no-exchange-control-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-tuition-pay-by-bank-transfer",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-london",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-outside-london",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-28-day-rule",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-foreign-currency",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-money-mule-warning",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-fx-no-exchange-control-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-outbound-small",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-outbound-large",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-wire-thresholds-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-cdd-walkin-out",
+            "outcome": "PASS"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "d6760422-cabe-4a5f-9c15-41d6435307e9",
+      "timestamp": "2026-10-18T14:50:30.112Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "FX_RATE_READ",
+      "tool": "getFXRate",
+      "permission_level": 0,
+      "details": {
+        "pair": "SGD/GBP",
+        "rate": 0.5775193798449613
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "26bc9126-6921-48cb-a1c9-86be5c19a7c1",
+      "timestamp": "2026-10-18T14:50:30.106Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "ACCOUNTS_READ",
+      "tool": "getAccounts",
+      "permission_level": 1,
+      "details": {
+        "accounts": 3
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "0ee1338c-e523-4e32-a98d-6375cc10cee7",
+      "timestamp": "2026-10-18T14:50:30.102Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "OBLIGATIONS_READ",
+      "tool": "getObligations",
+      "permission_level": 1,
+      "details": {},
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "3bb0a8fa-3b48-48e2-bed2-1b0c115bf6b9",
+      "timestamp": "2026-10-18T14:50:30.099Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "PROFILE_READ",
+      "tool": "getUserProfile",
+      "permission_level": 1,
+      "details": {},
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-ea7a479a",
+      "id": "19e3811e-f037-4910-b231-c446cd937792",
+      "timestamp": "2026-10-18T14:50:30.096Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "COST_CALCULATION",
+      "tool": "calculateTransferCost",
+      "permission_level": 0,
+      "details": {
+        "method": "total_cost = transfer_fee + fx_spread_cost + other_charges; ranked by recipient amount",
+        "best_value": "Panda Remit Demo",
+        "lowest_advertised_fee": "Home Bank",
+        "ranking": [
+          "Panda Remit Demo: GBP 14,939.31",
+          "Multi-Currency Wallet Demo: GBP 14,900.80",
+          "Home Bank: GBP 14,685.16"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "8a0822c1-9bda-427b-a6c0-677e80274595",
+      "timestamp": "2026-10-18T14:50:30.057Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "QUOTE_RETRIEVAL",
+      "tool": "getRemittanceQuotes",
+      "permission_level": 1,
+      "details": {
+        "pair": "SGD/GBP",
+        "compare_amount": "SGD 26,000.00",
+        "providers": [
+          {
+            "provider": "Home Bank",
+            "recipient_gets": 14685.16,
+            "total_cost": 572,
+            "available": true
+          },
+          {
+            "provider": "Panda Remit Demo",
+            "recipient_gets": 14939.31,
+            "total_cost": 131.93,
+            "available": true
+          },
+          {
+            "provider": "Multi-Currency Wallet Demo",
+            "recipient_gets": 14900.8,
+            "total_cost": 198.62,
+            "available": true
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "d571fddb-563e-42f3-bdc9-357fe45af0f8",
+      "timestamp": "2026-10-18T14:50:30.053Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "TRANSFER_RULE_CHECK",
+      "tool": "getTransferRules",
+      "permission_level": 1,
+      "details": {
+        "corridor": "SG→GB",
+        "transaction_type": "education",
+        "amount": "SGD 25,973.15",
+        "status": "COMPLIANT",
+        "rules_checked": [
+          {
+            "id": "rule-sg-id",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-sg-limit",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-sg-edu",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-gb-sof",
+            "outcome": "PASS"
+          },
+          {
+            "id": "rule-gb-edu",
+            "outcome": "PASS"
+          },
+          {
+            "id": "gb-fx-no-exchange-control-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-tuition-pay-by-bank-transfer",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-london",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-outside-london",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-28-day-rule",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-visa-funds-foreign-currency",
+            "outcome": "INFO"
+          },
+          {
+            "id": "gb-money-mule-warning",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-fx-no-exchange-control-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-outbound-small",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-outbound-large",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-wire-thresholds-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-cdd-walkin-out",
+            "outcome": "PASS"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "5fe7fcc0-65d0-4d46-82f5-71054a63f42f",
+      "timestamp": "2026-10-18T14:50:30.043Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "FX_RATE_READ",
+      "tool": "getFXRate",
+      "permission_level": 0,
+      "details": {
+        "pair": "SGD/GBP",
+        "rate": 0.5775193798449613
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "d5694c36-0ce4-4625-a348-0112a7bd6dc5",
+      "timestamp": "2026-10-18T14:50:30.036Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "ACCOUNTS_READ",
+      "tool": "getAccounts",
+      "permission_level": 1,
+      "details": {
+        "accounts": 3
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "63d337e5-8b5d-4df2-9335-78bf21d55163",
+      "timestamp": "2026-10-18T14:50:30.032Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "OBLIGATIONS_READ",
+      "tool": "getObligations",
+      "permission_level": 1,
+      "details": {},
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "d1ea288f-e457-407a-bc4e-c1c6cf555457",
+      "timestamp": "2026-10-18T14:50:30.029Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "PROFILE_READ",
+      "tool": "getUserProfile",
+      "permission_level": 1,
+      "details": {},
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-70ba63ce",
+      "id": "8d583ffd-37be-43e5-89fe-0197205cf999",
+      "timestamp": "2026-10-18T14:50:30.020Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RESULT_PRESENTED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "status": "NEEDS_VERIFICATION",
+        "sources": 7,
+        "unverified": false
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-f95cbbbd",
+      "id": "03dfa1fc-8165-41c9-8bae-9989dcefaf07",
+      "timestamp": "2026-10-18T14:50:29.987Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "CLARIFICATION_REQUESTED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "missing": [
+          "amount"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-f95cbbbd",
+      "id": "62bfce8d-8bad-45e0-9820-ca03727bf887",
+      "timestamp": "2026-10-18T14:50:29.984Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RULE_EVALUATED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "status": "NEEDS_VERIFICATION",
+        "outcomes": [
+          {
+            "id": "jp-fefta-payment-report-30m-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "jp-fefta-bank-legality-check-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "jp-sanctions-asset-freeze-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "jp-customs-means-of-payment-1m-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "jp-mynumber-overseas-remittance-in",
+            "outcome": "DOCUMENTS"
+          },
+          {
+            "id": "jp-bank-identity-verification-remittance-in",
+            "outcome": "DOCUMENTS"
+          },
+          {
+            "id": "jp-fefta-foreigner-residency-6-months-in",
+            "outcome": "INFO"
+          }
+        ],
+        "coverage": [
+          {
+            "country": "VN",
+            "side": "sending",
+            "verified_rules": 0,
+            "unverified_rules": 0
+          },
+          {
+            "country": "JP",
+            "side": "receiving",
+            "verified_rules": 6,
+            "unverified_rules": 0
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-f95cbbbd",
+      "id": "ef616623-f537-4e22-9a81-f41bada0b561",
+      "timestamp": "2026-10-18T14:50:29.977Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RULE_RETRIEVED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "rules": [
+          "jp-fefta-payment-report-30m-in",
+          "jp-fefta-bank-legality-check-in",
+          "jp-sanctions-asset-freeze-in",
+          "jp-customs-means-of-payment-1m-in",
+          "jp-mynumber-overseas-remittance-in",
+          "jp-bank-identity-verification-remittance-in",
+          "jp-fefta-foreigner-residency-6-months-in"
+        ],
+        "sources": [
+          {
+            "regulator": "Ministry of Finance Japan (reports submitted via the Bank of Japan)",
+            "url": "https://www.boj.or.jp/about/services/tame/t_seido.htm",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Ministry of Finance Japan",
+            "url": "https://www.mof.go.jp/policy/international_policy/gaitame_kawase/gaitame/economic_sanctions/gaitame_leaflet.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Ministry of Finance Japan",
+            "url": "https://www.mof.go.jp/policy/international_policy/gaitame_kawase/gaitame/economic_sanctions/20250109222118.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Japan Customs (Ministry of Finance)",
+            "url": "https://www.customs.go.jp/english/c-answer_e/keitaibetsuso/7305_e.htm",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "National Tax Agency",
+            "url": "https://www.bk.mufg.jp/tsukau/kaigai/soukin/index.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Financial Services Agency",
+            "url": "https://www.mizuhobank.co.jp/retail/tetsuduki/gaikoku_soukin/index.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Ministry of Finance Japan",
+            "url": "https://www.mof.go.jp/about_mof/act/kokuji_tsuutatsu/tsuutatsu/TU-20230601-4672.pdf",
+            "last_verified": "2026-10-18"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-f95cbbbd",
+      "id": "06be89f5-4ee0-4d6f-abe1-45834823bde1",
+      "timestamp": "2026-10-18T14:50:29.974Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RULE_QUERY",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "corridor": "VN→JP",
+        "purpose": "education",
+        "amount": null,
+        "nationality": "provided",
+        "residency_status": "provided",
+        "visa_type": "provided"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-f95cbbbd",
+      "id": "4ac63cfd-0c1b-4a3f-9124-8589e8f490ba",
+      "timestamp": "2026-10-18T14:50:29.971Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "PROFILE_READ",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "fields": [
+          "nationality",
+          "residency_status",
+          "visa_type",
+          "documents_on_file"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-f95cbbbd",
+      "id": "271ed5ac-4be3-43e5-8936-a605eb30f989",
+      "timestamp": "2026-10-18T14:50:29.967Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RESULT_PRESENTED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "status": "COMPLIANT",
+        "sources": 14,
+        "unverified": false
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-b33ff6bb",
+      "id": "fc38ff7f-41ae-4c32-8003-4e40613f7a1b",
+      "timestamp": "2026-10-18T14:50:29.937Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RULE_EVALUATED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "status": "COMPLIANT",
+        "outcomes": [
+          {
+            "id": "cn-fx-annual-convenience-quota",
+            "outcome": "PASS"
+          },
+          {
+            "id": "cn-fx-quota-not-a-cap",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-edu-study-abroad-quota-choice",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-edu-tuition-above-quota-docs",
+            "outcome": "PASS"
+          },
+          {
+            "id": "cn-edu-boc-self-funded-study-docs",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-fx-prohibited-uses",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-fx-purchase-purpose-categories",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-aml-structuring-watch-list-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-outward-remittance-domestic-daily",
+            "outcome": "PASS"
+          },
+          {
+            "id": "cn-cash-export-foreign-currency",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-rmb-cash-limit-out",
+            "outcome": "INFO"
+          },
+          {
+            "id": "cn-aml-large-value-report-out",
+            "outcome": "REPORT"
+          },
+          {
+            "id": "sg-fx-no-exchange-control-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-bank-wire-inbound",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-wire-thresholds-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-aml-psp-cdd-walkin-in",
+            "outcome": "PASS"
+          },
+          {
+            "id": "sg-reporting-cash-cbni-in",
+            "outcome": "INFO"
+          },
+          {
+            "id": "sg-tax-foreign-sourced-income",
+            "outcome": "INFO"
+          }
+        ],
+        "coverage": [
+          {
+            "country": "CN",
+            "side": "sending",
+            "verified_rules": 10,
+            "unverified_rules": 0
+          },
+          {
+            "country": "SG",
+            "side": "receiving",
+            "verified_rules": 5,
+            "unverified_rules": 0
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-b33ff6bb",
+      "id": "602264a1-a3a5-4cf6-9d20-6fd5c92f1b0f",
+      "timestamp": "2026-10-18T14:50:29.934Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RULE_RETRIEVED",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "rules": [
+          "cn-fx-annual-convenience-quota",
+          "cn-fx-quota-not-a-cap",
+          "cn-edu-study-abroad-quota-choice",
+          "cn-edu-tuition-above-quota-docs",
+          "cn-edu-boc-self-funded-study-docs",
+          "cn-fx-prohibited-uses",
+          "cn-fx-purchase-purpose-categories",
+          "cn-aml-structuring-watch-list-out",
+          "cn-outward-remittance-domestic-daily",
+          "cn-cash-export-foreign-currency",
+          "cn-rmb-cash-limit-out",
+          "cn-aml-large-value-report-out",
+          "sg-fx-no-exchange-control-in",
+          "sg-aml-bank-wire-inbound",
+          "sg-aml-psp-wire-thresholds-in",
+          "sg-aml-psp-cdd-walkin-in",
+          "sg-reporting-cash-cbni-in",
+          "sg-tax-foreign-sourced-income"
+        ],
+        "sources": [
+          {
+            "regulator": "State Administration of Foreign Exchange",
+            "url": "https://www.safe.gov.cn/tianjin/2024/0430/2464.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "State Administration of Foreign Exchange",
+            "url": "https://www.safe.gov.cn/xiamen/file/file/20211022/f4794075e84e40dd9394be523a52731b.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "State Administration of Foreign Exchange",
+            "url": "https://www.safe.gov.cn/tianjin/2026/0706/3085.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "State Administration of Foreign Exchange",
+            "url": "https://www.boc.cn/en/pbservice/pb4/200806/t20080626_1323972.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "State Administration of Foreign Exchange",
+            "url": "https://www.safe.gov.cn/safe/file/file/20210402/30fab7a9646f417ca9d2f67ff4c1e5f0.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "State Administration of Foreign Exchange",
+            "url": "https://www.boc.cn/en/pbservice/pb4/200806/t20080626_1323979.html",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "State Administration of Foreign Exchange; General Administration of Customs",
+            "url": "https://www.gov.cn/gongbao/content/2004/content_63085.htm",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "People's Bank of China",
+            "url": "https://english.www.gov.cn/AssetsZi/A_Guide_to_Working_and_Living_in_China_as_Business_Expatriates_2025.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "People's Bank of China",
+            "url": "https://www.gov.cn/gongbao/content/2017/content_5213199.htm",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Monetary Authority of Singapore",
+            "url": "https://www.mas.gov.sg/-/media/MAS/Notices/PDF/754--Exchange-Control-Liberalisation-25-May-1978.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Monetary Authority of Singapore",
+            "url": "https://www.mas.gov.sg/-/media/mas-media-library/regulation/notices/amld/notice-626/mas-notice-626-dated-28-march-2024.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Monetary Authority of Singapore",
+            "url": "https://www.mas.gov.sg/-/media/mas-media-library/regulation/notices/amld/psn01-aml-cft-notice---specified-payment-services/notice-psn01-dated-2-april-2024.pdf",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Singapore Police Force (Suspicious Transaction Reporting Office)",
+            "url": "https://www.police.gov.sg/Advisories/Commercial-Crimes/Suspicious-Transaction-Reporting-Office/Cross-border-cash-movement-reporting",
+            "last_verified": "2026-10-18"
+          },
+          {
+            "regulator": "Inland Revenue Authority of Singapore",
+            "url": "https://www.iras.gov.sg/docs/default-source/e-tax/tax-exemption-for-foreign-sourced-income285e5d43d6af4001b3ce35da1e9005b5.pdf?sfvrsn=b5092fba_21",
+            "last_verified": "2026-10-18"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-b33ff6bb",
+      "id": "640d6b95-6ec3-4415-b577-b138708d2212",
+      "timestamp": "2026-10-18T14:50:29.931Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "RULE_QUERY",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "corridor": "CN→SG",
+        "purpose": "education",
+        "amount": "USD 30000",
+        "nationality": "provided",
+        "residency_status": "provided",
+        "visa_type": "provided"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-b33ff6bb",
+      "id": "c9464536-ce3e-4b4a-9d1a-9a0c3fbda1d2",
+      "timestamp": "2026-10-18T14:50:29.928Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "PROFILE_READ",
+      "tool": "getFundFlowRules",
+      "permission_level": 1,
+      "details": {
+        "fields": [
+          "nationality",
+          "residency_status",
+          "visa_type",
+          "documents_on_file"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "rg-b33ff6bb",
+      "id": "b7ca6012-88ba-4895-bbba-87f64c8f77ab",
+      "timestamp": "2026-10-18T14:50:29.925Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "ACTION_PLAN_CREATED",
+      "tool": "getAccountSetupSteps",
+      "permission_level": 2,
+      "details": {
+        "country": "SG",
+        "from": "SG",
+        "steps": [
+          {
+            "key": "documents",
+            "done": true
+          },
+          {
+            "key": "open_account",
+            "done": true
+          },
+          {
+            "key": "receive_funds",
+            "done": true
+          },
+          {
+            "key": "compare_routes",
+            "done": true
+          },
+          {
+            "key": "pay_tuition",
+            "done": false
+          },
+          {
+            "key": "recurring",
+            "done": false
+          },
+          {
+            "key": "credit",
+            "done": false
+          },
+          {
+            "key": "restrictions",
+            "done": false
+          }
+        ],
+        "likely_banks": [
+          "DBS Bank",
+          "OCBC Bank",
+          "Standard Chartered Bank (Singapore)"
+        ],
+        "transfer_status": "COMPLIANT",
+        "missing": []
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "fs-1f9c0fc9",
+      "id": "c22f8b97-12fe-430e-bd9d-af5f39df33cd",
+      "timestamp": "2026-10-18T14:50:29.893Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "ELIGIBILITY_CHECKED",
+      "tool": "getBankEligibility",
+      "permission_level": 1,
+      "details": {
+        "country": "SG",
+        "verdicts": [
+          {
+            "bank": "sg-dbs-bank",
+            "verdict": "likely_eligible"
+          },
+          {
+            "bank": "sg-ocbc-bank",
+            "verdict": "likely_eligible"
+          },
+          {
+            "bank": "sg-standard-chartered-bank-singapore",
+            "verdict": "likely_eligible"
+          },
+          {
+            "bank": "sg-hsbc-bank-singapore",
+            "verdict": "check_with_bank"
+          },
+          {
+            "bank": "sg-united-overseas-bank-uob",
+            "verdict": "check_with_bank"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "bk-60736b60",
+      "id": "d3099e1f-48a1-48a5-8e8c-199027727485",
+      "timestamp": "2026-10-18T14:50:29.845Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "BANK_OPTIONS_RETRIEVED",
+      "tool": "getAvailableBanks",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "banks": [
+          {
+            "id": "sg-dbs-bank",
+            "status": "verified",
+            "url": "https://www.dbs.com.sg/personal/deposits/for-foreigners/new-to-singapore"
+          },
+          {
+            "id": "sg-ocbc-bank",
+            "status": "verified",
+            "url": "https://www.ocbc.com/personal-banking/cards/ocbc-frank-account-frank-debit-card"
+          },
+          {
+            "id": "sg-united-overseas-bank-uob",
+            "status": "needs_verification",
+            "url": "https://www.uob.com.sg/personal/highlights/life-moments/foreigner-open-bank-account-in-singapore.page"
+          },
+          {
+            "id": "sg-standard-chartered-bank-singapore",
+            "status": "verified",
+            "url": "https://www.sc.com/sg/save/savings-accounts/jumpstart/"
+          },
+          {
+            "id": "sg-hsbc-bank-singapore",
+            "status": "needs_verification",
+            "url": "https://www.hsbc.com.sg/international/open-an-account/"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "bk-60736b60",
+      "id": "40cdd520-8397-462d-8633-bbb28521cd5f",
+      "timestamp": "2026-10-18T14:50:29.839Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "BANK_REQUIREMENTS_RETRIEVED",
+      "tool": "getCountryBankingRequirements",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "sources": [
+          "https://www.dbs.com.sg/personal/support/bank-account-opening-documents-required.html",
+          "https://www.dbs.com.sg/personal/deposits/for-foreigners/new-to-singapore",
+          "https://www.ocbc.com/personal-banking/cards/ocbc-frank-account-frank-debit-card",
+          "https://www.uob.com.sg/personal/customer-service/accounts.page",
+          "https://www.sc.com/sg/save/savings-accounts/jumpstart/",
+          "https://www.hsbc.com.sg/international/open-an-account/"
+        ],
+        "last_verified": "2026-10-18"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "bk-60736b60",
+      "id": "4b2a59a0-13a5-499a-a565-5f19d3bdc373",
+      "timestamp": "2026-10-18T14:50:29.836Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "PROFILE_READ",
+      "tool": "getBankEligibility",
+      "permission_level": 1,
+      "details": {
+        "fields": [
+          "nationality",
+          "age",
+          "student_status",
+          "visa_type",
+          "residency_status"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "bk-60736b60",
+      "id": "59287482-35c2-4615-906f-b4d4743d141d",
+      "timestamp": "2026-10-18T14:50:29.833Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "BANK_REQUIREMENTS_RETRIEVED",
+      "tool": "getCreditSystemInfo",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "topic": "credit",
+        "sources": [
+          "https://www.moneysense.gov.sg/credit-reports-and-creditworthiness/",
+          "https://www.mas.gov.sg/contact-us/faqs/payments-faqs/licensed-credit-bureaus-faq",
+          "https://www.mas.gov.sg/regulation/payments/licensing-for-credit-bureaus",
+          "https://www.creditbureau.com.sg/"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "d663d7c9-9717-4a66-a6b2-b71dc952bc98",
+      "timestamp": "2026-10-18T14:50:29.782Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "CLARIFICATION_REQUESTED",
+      "tool": "getBankEligibility",
+      "permission_level": 1,
+      "details": {
+        "missing": [
+          "age",
+          "visa_type",
+          "residency_status"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "5f73d4ad-6661-46be-b9a7-1cda359bf4d6",
+      "timestamp": "2026-10-18T14:50:29.776Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "BANK_OPTIONS_RETRIEVED",
+      "tool": "getAvailableBanks",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "banks": [
+          {
+            "id": "sg-dbs-bank",
+            "status": "verified",
+            "url": "https://www.dbs.com.sg/personal/deposits/for-foreigners/new-to-singapore"
+          },
+          {
+            "id": "sg-ocbc-bank",
+            "status": "verified",
+            "url": "https://www.ocbc.com/personal-banking/cards/ocbc-frank-account-frank-debit-card"
+          },
+          {
+            "id": "sg-united-overseas-bank-uob",
+            "status": "needs_verification",
+            "url": "https://www.uob.com.sg/personal/highlights/life-moments/foreigner-open-bank-account-in-singapore.page"
+          },
+          {
+            "id": "sg-standard-chartered-bank-singapore",
+            "status": "verified",
+            "url": "https://www.sc.com/sg/save/savings-accounts/jumpstart/"
+          },
+          {
+            "id": "sg-hsbc-bank-singapore",
+            "status": "needs_verification",
+            "url": "https://www.hsbc.com.sg/international/open-an-account/"
+          }
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "45dbba94-4bb8-4759-8ed0-b282c4faa9da",
+      "timestamp": "2026-10-18T14:50:29.773Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "BANK_REQUIREMENTS_RETRIEVED",
+      "tool": "getCountryBankingRequirements",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "sources": [
+          "https://www.dbs.com.sg/personal/support/bank-account-opening-documents-required.html",
+          "https://www.dbs.com.sg/personal/deposits/for-foreigners/new-to-singapore",
+          "https://www.ocbc.com/personal-banking/cards/ocbc-frank-account-frank-debit-card",
+          "https://www.uob.com.sg/personal/customer-service/accounts.page",
+          "https://www.sc.com/sg/save/savings-accounts/jumpstart/",
+          "https://www.hsbc.com.sg/international/open-an-account/"
+        ],
+        "last_verified": "2026-10-18"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "4910304f-8f0f-45d7-adda-017e8992b661",
+      "timestamp": "2026-10-18T14:50:29.767Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "PROFILE_READ",
+      "tool": "getBankEligibility",
+      "permission_level": 1,
+      "details": {
+        "fields": [
+          "nationality",
+          "age",
+          "student_status",
+          "visa_type",
+          "residency_status"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "f158e308-5c81-4454-94c1-083a865f6a1c",
+      "timestamp": "2026-10-18T14:50:29.764Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "BANK_OPTIONS_RETRIEVED",
+      "tool": "getAvailableBanks",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "banks": [
+          "sg-dbs-bank",
+          "sg-ocbc-bank",
+          "sg-united-overseas-bank-uob",
+          "sg-standard-chartered-bank-singapore",
+          "sg-hsbc-bank-singapore"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "83285c88-51e5-4206-a18c-ff0d53b29738",
+      "timestamp": "2026-10-18T14:50:29.759Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "BANK_REQUIREMENTS_RETRIEVED",
+      "tool": "getCountryBankingRequirements",
+      "permission_level": 0,
+      "details": {
+        "country": "SG",
+        "sources": [
+          "https://www.dbs.com.sg/personal/support/bank-account-opening-documents-required.html",
+          "https://www.dbs.com.sg/personal/deposits/for-foreigners/new-to-singapore",
+          "https://www.ocbc.com/personal-banking/cards/ocbc-frank-account-frank-debit-card",
+          "https://www.uob.com.sg/personal/customer-service/accounts.page",
+          "https://www.sc.com/sg/save/savings-accounts/jumpstart/",
+          "https://www.hsbc.com.sg/international/open-an-account/"
+        ]
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-350d7be0",
+      "id": "5cd60077-3f2e-45f2-8030-33a1689cb45a",
+      "timestamp": "2026-10-18T14:50:29.753Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "ai_agent",
+      "action": "TRANSACTIONS_READ",
+      "tool": "analyseSpending",
+      "permission_level": 1,
+      "details": {
+        "statement": "8e234056"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "wf-29193482",
+      "id": "37fc3bb9-bad2-431a-9161-9d84a8c235c1",
+      "timestamp": "2026-10-18T14:50:29.697Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "system",
+      "action": "SPENDING_ANALYSED",
+      "tool": "analyseSpending",
+      "permission_level": 1,
+      "details": {
+        "rows": 92,
+        "currency": "GBP",
+        "insights": [
+          "net_negative",
+          "category_above_average",
+          "subscriptions",
+          "essentials_share",
+          "unusual_payment",
+          "regular_income",
+          "projection_covered",
+          "opportunity"
+        ],
+        "recurring": 10,
+        "estimated_opportunity_monthly": 135.45,
+        "method": "above_average",
+        "profile_language": "en",
+        "refresh": false
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "st-8e234056",
+      "id": "be8d925f-ef75-4c1d-8d3c-b306d0c5e71c",
+      "timestamp": "2026-10-18T14:50:29.658Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "TRANSACTIONS_CONFIRMED",
+      "tool": null,
+      "permission_level": 1,
+      "details": {
+        "rows_included": 92,
+        "rows_excluded": 0,
+        "unreviewed_low_confidence": 0
+      },
+      "approval_status": "APPROVED",
+      "result": "SUCCESS",
+      "correlation_id": "st-8e234056",
+      "id": "6cecdff4-39ce-40b5-a381-94c8b18de3cd",
+      "timestamp": "2026-10-18T14:50:29.646Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "system",
+      "action": "TRANSACTIONS_EXTRACTED",
+      "tool": "classifyTransactions",
+      "permission_level": 1,
+      "details": {
+        "rows": 92,
+        "needs_review": 0,
+        "by_source": {
+          "rule": 13,
+          "merchant": 79
+        },
+        "ai_suggestions_requested": 0,
+        "ai_payload": "none"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "st-8e234056",
+      "id": "4fc5d71c-d3c2-42fd-a811-264c23677b80",
+      "timestamp": "2026-10-18T14:50:29.567Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "system",
+      "action": "STATEMENT_PARSED",
+      "tool": "parseBankStatement",
+      "permission_level": 1,
+      "details": {
+        "rows": 92,
+        "period": [
+          "2026-07-01",
+          "2026-09-28"
+        ],
+        "account_hint": "••••7730",
+        "warnings": []
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "st-8e234056",
+      "id": "6b90175b-e243-433b-b39a-28bf3648fc6f",
+      "timestamp": "2026-10-18T14:50:29.564Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "STATEMENT_UPLOADED",
+      "tool": "parseBankStatement",
+      "permission_level": 1,
+      "details": {
+        "file_type": "csv",
+        "size_bytes": 4867,
+        "sha256": "7d586ee226ee",
+        "consent": true,
+        "file_stored": false
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": "st-8e234056",
+      "id": "b2853d38-f76b-4d2e-95a1-e65eaf733333",
+      "timestamp": "2026-10-18T14:50:29.561Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    },
+    {
+      "actor": "user",
+      "action": "DEMO_RESET",
+      "tool": null,
+      "permission_level": 0,
+      "details": {
+        "scenario": "standard"
+      },
+      "approval_status": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "correlation_id": null,
+      "id": "28c95fbd-3a5d-4291-85b0-ed4b7fce5548",
+      "timestamp": "2026-10-18T14:50:29.489Z",
+      "user_id": "00000000-0000-4000-8000-00000000a1e5"
+    }
+  ]
+}

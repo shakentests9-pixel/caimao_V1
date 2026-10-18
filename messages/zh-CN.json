@@ -1417,7 +1417,8 @@
       "cash_guidance": "适用于随身携带现金出入境，不适用于银行转账。门槛：{limit}。",
       "unverified_rule": "这条规则未能在官方页面上得到确认，因此不用于判定结果。",
       "depends_on": "取决于你的{fields}。"
-    }
+    },
+    "unverifiedPart": "{countries}方面目前没有已核实的规则记录，这一部分需要向银行或官方监管机构确认。下面列出的是 CaiMao 能够核实的内容。"
   },
   "ProfileFields": {
     "nationality": "国籍",
@@ -1648,7 +1649,8 @@
       "reports": "{count, plural, one {有一条规则要求} other {有 # 条规则要求}}银行在此金额下提交申报。这属于例行程序，通常无需你额外做什么。",
       "askDetails": "部分规则取决于你的**{fields}**。告诉我之后，我会重新检查。",
       "sources": "卡片中的每条规则都附有官方来源链接（{count, plural, one {# 个来源} other {# 个来源}}，最近核实于 {date}）。",
-      "disclaimer": "以上为来自官方来源的一般信息，不构成法律建议。"
+      "disclaimer": "以上为来自官方来源的一般信息，不构成法律建议。",
+      "unverifiedPart": "{countries}方面目前没有已核实的规则记录，这一部分需要向银行或官方监管机构确认。下面列出的是 CaiMao 能够核实的内容。"
     },
     "statement": {
       "none": "你还没有确认任何对账单。请前往**预算 → 分析对账单**，上传 CSV 或 PDF 文件，核对交易记录后确认。之后我就可以为你讲解。",

@@ -76,6 +76,8 @@ export interface RegulatoryResult {
   missing_info: MissingField[];
   /** Set when status is NEEDS_VERIFICATION because nothing (or nothing verified) matched. */
   unverified_message: string | null;
+  /** Countries whose side of the transfer has no verified rule on record. */
+  unverified_countries: CountryCode[];
   checked_at: string;
 }
 
@@ -188,6 +190,7 @@ export function evaluateRegulation(rules: CountryRule[], q: RegulatoryQuery, fx:
     return { country, side, verified_rules: mine.filter((f) => f.rule.status === "verified").length, unverified_rules: mine.filter((f) => f.rule.status !== "verified").length };
   });
 
+  const uncovered = [...new Set(coverage.filter((c) => c.verified_rules === 0).map((c) => c.country))];
   const verifiedFindings = findings.filter((f) => f.rule.status === "verified" && f.outcome !== "CONDITIONAL" && f.rule.channel !== "cash");
   let status: RegulatoryStatus;
   if (!verifiedFindings.length) status = "NEEDS_VERIFICATION";
@@ -227,7 +230,10 @@ export function evaluateRegulation(rules: CountryRule[], q: RegulatoryQuery, fx:
     considerations,
     sources: [...sourceMap.values()],
     missing_info: [...missing],
-    unverified_message: status === "NEEDS_VERIFICATION" && !verifiedFindings.length ? UNVERIFIED_MESSAGE : null,
+    // The exact sentence whenever part of the answer couldn't be verified: nothing verified at all,
+    // or a side of the transfer with no verified rule on record (named in unverified_countries).
+    unverified_message: status === "NEEDS_VERIFICATION" && (!verifiedFindings.length || uncovered.length) ? UNVERIFIED_MESSAGE : null,
+    unverified_countries: status === "NEEDS_VERIFICATION" ? (verifiedFindings.length ? uncovered : [...new Set([q.source_country, q.destination_country])]) : [],
     checked_at: now.toISOString(),
   };
 }

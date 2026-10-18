@@ -280,7 +280,8 @@
       "cash_guidance": "Applies to carrying cash across the border, not to bank transfers. Threshold: {limit}.",
       "unverified_rule": "This rule couldn't be confirmed on an official page, so it isn't used to decide the result.",
       "depends_on": "Depends on your {fields}."
-    }
+    },
+    "unverifiedPart": "No verified rule is on record for {countries}, so that side needs checking with the bank or the official regulator. What CaiMao could verify is shown below."
   },
   "ProfileFields": {
     "nationality": "nationality",
@@ -534,7 +535,8 @@
       "reports": "{count, plural, one {One rule means} other {# rules mean}} the bank files a report at this amount. That's routine and usually needs nothing extra from you.",
       "askDetails": "Some rules depend on your **{fields}**. Tell me and I'll check again.",
       "sources": "Every rule in the card links to its official source ({count, plural, one {# source} other {# sources}}, last verified {date}).",
-      "disclaimer": "This is general information from official sources, not legal advice."
+      "disclaimer": "This is general information from official sources, not legal advice.",
+      "unverifiedPart": "No verified rule is on record for {countries}, so that side needs checking with the bank or the official regulator. What CaiMao could verify is shown below."
     },
     "statement": {
       "none": "You haven't confirmed a statement yet. Go to **Budget → Analyse a statement**, upload a CSV or PDF, check the transactions and confirm. Then I can talk you through it.",

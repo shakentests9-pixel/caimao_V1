@@ -25,7 +25,25 @@ export const BANKS: BankProduct[] = [
       "Bank may request other valid ID or certification documents"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "minimum_balance": "最低存款 RMB 1.00（人民币）；外币不低于等值 RMB 20.00",
+        "notes": "关于外国人的开户资格只有概括性说明；国际学生的资格是根据外国人的资格推断的。16 岁及以上的年龄要求仅针对中国公民说明。境内和境外客户均可办理汇出境外汇款（电汇、汇票、MoneyGram）；超过限额的自费出国留学需提供录取通知书和学校缴费通知书（https://www.icbc.com.cn/en/column/1438058479532523679.html）。ICBC 还提供出国留学贷款和境外开户见证服务。外国人申请信用卡的资格尚未确认。",
+        "documents": [
+          "护照或外国人永久居留身份证（外国公民）",
+          "银行可能要求提供其他有效身份证件或证明文件"
+        ]
+      },
+      "ja": {
+        "minimum_balance": "最低預入額 RMB 1.00（人民元）。外貨は RMB 20.00 相当額以上",
+        "notes": "外国人の口座開設資格は一般的に記載されているのみで、留学生の資格は外国人の資格から推測したものです。16歳以上という年齢要件は中国国民についてのみ記載されています。海外送金（電信送金、送金小切手、MoneyGram）は国内外の顧客が利用できます。基準額を超える私費留学には入学許可書と学校の納付通知書が必要です（https://www.icbc.com.cn/en/column/1438058479532523679.html）。ICBC は留学ローンや海外口座開設の見証サービスも提供しています。外国人のクレジットカード申込資格は確認されていません。",
+        "documents": [
+          "パスポートまたは外国人永久居留身分証（外国人永久居留身份证）（外国籍の方）",
+          "銀行がその他の有効な身分証明書や証明書類を求める場合があります"
+        ]
+      }
+    }
   },
   {
     "id": "cn-bank-of-china",
@@ -49,7 +67,25 @@ export const BANKS: BankProduct[] = [
       "Residence permit for expatriates (accepted ID)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "minimum_balance": "首次存款 RMB 1，或等值 RMB 100 的外币",
+        "notes": "依据摘自 BOC 的入境人士指南（https://www.boc.cn/en/custserv/202404/t20240403_24845718.html）。信用卡规定：https://www.boc.cn/bcservice/bi2/202402/P020240207374945846200.pdf。有文件记载汇出境外汇款和留学购汇服务（https://www.boc.cn/en/pbservice/pb4/200806/t20080626_1323979.html）；BOC 还提供出国留学外汇贷款和境外开户见证服务。resident_required=false 的依据是购汇“无户籍限制”（No registered permanent residence restriction）以及开户接受护照。16 岁及以上的年龄要求仅针对中国公民说明。",
+        "documents": [
+          "护照（外国公民）",
+          "外国人居留许可（可接受的身份证件）"
+        ]
+      },
+      "ja": {
+        "minimum_balance": "初回預入額 RMB 1、または RMB 100 相当の外貨",
+        "notes": "根拠は BOC の訪中者向けガイドからの引用です（https://www.boc.cn/en/custserv/202404/t20240403_24845718.html）。クレジットカードの規定：https://www.boc.cn/bcservice/bi2/202402/P020240207374945846200.pdf。海外送金と留学のための外貨購入サービスが記載されています（https://www.boc.cn/en/pbservice/pb4/200806/t20080626_1323979.html）。また、留学向け外貨ローンや海外口座開設の見証サービスも提供しています。resident_required=false は、外貨購入に「戸籍による制限なし」（No registered permanent residence restriction）とあること、および口座開設でパスポートが受け付けられることに基づいています。16歳以上という年齢要件は中国国民についてのみ記載されています。",
+        "documents": [
+          "パスポート（外国籍の方）",
+          "外国人居留許可（受付可能な身分証明書）"
+        ]
+      }
+    }
   },
   {
     "id": "cn-china-construction-bank",
@@ -70,7 +106,15 @@ export const BANKS: BankProduct[] = [
     "notes": "All ccb.com pages (www, www1, www2, en, kr, tool subdomains) were blocked to the fetch tool by robots.txt; search results gave only page titles (e.g. '个人存款账户实名制规定的有效身份证件有', '个人开户服务手册', '关于外国人持永久居留身份证可办业务清单的公告'). No fields could be confirmed.",
     "documents": [],
     "last_verified": "2026-10-18",
-    "status": "needs_verification"
+    "status": "needs_verification",
+    "i18n": {
+      "zh-CN": {
+        "notes": "所有 ccb.com 页面（www、www1、www2、en、kr、tool 子域名）均因 robots.txt 而无法被抓取工具访问；搜索结果只给出了页面标题（例如“个人存款账户实名制规定的有效身份证件有”“个人开户服务手册”“关于外国人持永久居留身份证可办业务清单的公告”）。没有任何字段能够确认。"
+      },
+      "ja": {
+        "notes": "ccb.com のすべてのページ（www、www1、www2、en、kr、tool の各サブドメイン）は robots.txt によって取得ツールからのアクセスがブロックされ、検索結果からはページタイトルしか得られませんでした（例：「个人存款账户实名制规定的有效身份证件有」「个人开户服务手册」「关于外国人持永久居留身份证可办业务清单的公告」）。確認できた項目はありません。"
+      }
+    }
   },
   {
     "id": "cn-agricultural-bank-of-china",
@@ -95,7 +139,25 @@ export const BANKS: BankProduct[] = [
       "Mainland China mobile number (recommended)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "notes": "来源为 ABC 海南分行网站上的《入境人士支付服务指南》（第 2 版，2024-03-28）。ABC 为外国客户提供个人跨境汇出汇款以及工资购汇并汇出服务（首次办理需提供：身份证件、服务合同、税后收入证明）。ABC 的“College Student Card”（信用类卡，需学生证或录取通知书，首年年费免除）确实存在（https://www.abchina.com/en/personal/debit-card/csc/），但未说明国际学生是否有资格申请。student_account_available 指的就是该卡。resident_required=false，因为该指南不要求居留许可（只需护照）。",
+        "documents": [
+          "外国护照或外国人永久居留身份证",
+          "中国大陆住址证明（建议提供）",
+          "中国大陆手机号码（建议提供）"
+        ]
+      },
+      "ja": {
+        "notes": "出典は ABC 海南分行のサイトに掲載された訪中者向け決済サービスガイド（第2版、2024-03-28）です。ABC は外国人顧客向けに、個人の海外送金と、給与による外貨購入・送金サービスを提供しています（初回は身分証明書、サービス契約書、税引後所得の証明が必要）。ABC の「College Student Card」（クレジット型カード。学生証または入学通知書が必要、初年度年会費無料）は存在します（https://www.abchina.com/en/personal/debit-card/csc/）が、留学生が対象かどうかは記載されていません。student_account_available はこのカードを指します。ガイドでは居留許可は求められていない（パスポートのみ）ため、resident_required=false としています。",
+        "documents": [
+          "外国のパスポートまたは外国人永久居留身分証",
+          "中国本土の住所証明（推奨）",
+          "中国本土の携帯電話番号（推奨）"
+        ]
+      }
+    }
   },
   {
     "id": "cn-china-merchants-bank",
@@ -116,7 +178,17 @@ export const BANKS: BankProduct[] = [
     "notes": "Only the credit-card requirement was confirmed (https://xyk.cmbchina.com/LatteSubsite/zhishi/0033.html). CMB English and Chinese product pages (All-in-one card, overseas remittance, FX sale/purchase) are JavaScript-rendered and returned no content; direct download was blocked by the network proxy. Account-opening eligibility, documents, fees and remittance details need verification.",
     "documents": [],
     "last_verified": "2026-10-18",
-    "status": "needs_verification"
+    "status": "needs_verification",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "信用卡：外国人须提供居留许可或就业许可",
+        "notes": "仅确认了信用卡要求（https://xyk.cmbchina.com/LatteSubsite/zhishi/0033.html）。CMB 的中英文产品页面（一卡通（All-in-one card）、境外汇款、外汇买卖）由 JavaScript 渲染，未返回任何内容；直接下载被网络代理阻止。开户资格、所需材料、费用和汇款详情需要核实。"
+      },
+      "ja": {
+        "visa_requirements": "クレジットカード：外国人は居留許可または就業許可が必要",
+        "notes": "クレジットカードの要件のみ確認できました（https://xyk.cmbchina.com/LatteSubsite/zhishi/0033.html）。CMB の英語・中国語の商品ページ（All-in-one card〔一卡通〕、海外送金、外貨売買）は JavaScript で描画されるため内容を取得できず、直接ダウンロードもネットワークプロキシにブロックされました。口座開設資格、必要書類、手数料、送金の詳細は確認が必要です。"
+      }
+    }
   },
   {
     "id": "gb-hsbc-uk",
@@ -141,7 +213,27 @@ export const BANKS: BankProduct[] = [
       "Proof of acceptance onto a qualifying course at a UK university or college"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "monthly_fee": "无月费",
+        "notes": "HSBC 的国际客户页面表示，无论你是刚到英国还是“还没到英国”，都可以开立 HSBC Bank Account，并可“向英国以外的 150 多个目的地收发资金”。开户后可使用 Global Money Account 等仅限客户的产品。专门的产品页面（hsbc.co.uk/current-accounts/products/international-student/）无法抓取，因此签证和居住要求尚未确认。",
+        "documents": [
+          "有效身份证件，例如护照",
+          "地址证明，例如最近 3 个月内的账单或银行对账单",
+          "英国大学或学院符合条件课程的录取证明"
+        ]
+      },
+      "ja": {
+        "monthly_fee": "月額手数料なし",
+        "notes": "HSBC の海外向けページによると、英国に来たばかりの人も「まだ到着していない」人も HSBC Bank Account を開設でき、「英国外の150を超える送金先との間で送受金」ができます。Global Money Account など顧客限定の商品も利用できます。専用の商品ページ（hsbc.co.uk/current-accounts/products/international-student/）は取得できなかったため、ビザや居住の要件は確認されていません。",
+        "documents": [
+          "有効な身分証明書（例：パスポート）",
+          "住所証明（例：過去3か月以内の日付の請求書や銀行取引明細書）",
+          "英国の大学またはカレッジの対象コースへの入学許可の証明"
+        ]
+      }
+    }
   },
   {
     "id": "gb-barclays",
@@ -168,7 +260,31 @@ export const BANKS: BankProduct[] = [
       "Postgraduates: letter from your university confirming course details (in branch)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "monthly_fee": "开立或使用学生账户不收费",
+        "notes": "Student Additions 要求在英国居住至少 3 年并全日制学习；免息安排透支额度在第一学期最高 £500，第 1 年最高 £1,000，从第 2 年起最高 £1,500（英国学生）。学生页面表示国际学生可以在应用程序中申请标准的 Barclays 账户，但 Barclays Bank Account 和 Basic Account 页面列出的条件是“年满 18 岁且未接受全日制教育”，并要求有英国手机号码和住址。这一矛盾需要向 Barclays 核实。",
+        "documents": [
+          "身份证件照片",
+          "用于身份核查的本人短视频",
+          "课程详情和 UCAS 状态代码",
+          "同意进行信用审查",
+          "研究生：大学出具的确认课程详情的信函（在网点提交）"
+        ]
+      },
+      "ja": {
+        "monthly_fee": "学生口座の開設・利用は無料",
+        "notes": "Student Additions は英国での3年以上の居住と全日制での就学が条件で、無利息の取り決め済み当座貸越（arranged overdraft）は1学期目が最大 £500、1年目が最大 £1,000、2年目以降が最大 £1,500 です（英国の学生の場合）。学生向けページでは、留学生はアプリで標準の Barclays 口座を申し込めるとしていますが、Barclays Bank Account と Basic Account のページには「18歳以上で全日制教育を受けていないこと」とあり、英国の携帯電話番号と自宅住所も必要とされています。この矛盾は Barclays に確認する必要があります。",
+        "documents": [
+          "本人確認書類の写真",
+          "本人確認用の自分の短い動画",
+          "コースの詳細と UCAS ステータスコード",
+          "信用調査への同意",
+          "大学院生：コースの詳細を証明する大学のレター（支店で提出）"
+        ]
+      }
+    }
   },
   {
     "id": "gb-lloyds-bank",
@@ -192,7 +308,25 @@ export const BANKS: BankProduct[] = [
       "Proof of identity if not an existing Lloyds customer"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "monthly_fee": "无月费",
+        "notes": "要求包括年满 18 岁并居住在英国。接收国际汇款时，通常需要账户持有人姓名、IBAN 或账号以及 SWIFT/BIC。Lloyds 的 New to UK 页面表示，非英国护照“仅限手机银行应用程序”使用，并接受国际地址。透支和签证要求未说明。",
+        "documents": [
+          "有效护照",
+          "如果不是 Lloyds 现有客户，需提供身份证明"
+        ]
+      },
+      "ja": {
+        "monthly_fee": "月額手数料なし",
+        "notes": "要件には18歳以上であることと英国に住んでいることが含まれます。海外からの送金を受け取るには、通常、口座名義人の氏名、IBAN または口座番号、SWIFT/BIC が必要です。Lloyds の New to UK ページには、英国以外のパスポートは「モバイルバンキングアプリのみ」で受け付けられ、海外の住所も受け付けるとあります。当座貸越とビザの要件は記載されていません。",
+        "documents": [
+          "有効なパスポート",
+          "Lloyds の既存顧客でない場合は本人確認書類"
+        ]
+      }
+    }
   },
   {
     "id": "gb-natwest",
@@ -219,7 +353,33 @@ export const BANKS: BankProduct[] = [
       "Non-UK/EU nationals: eVisa share code (at a branch)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "非英国/欧盟国籍人士开立 NatWest 账户：需提供非英国/欧盟护照，并附有效的 eVisa share code（共享码），且必须在网点提供",
+        "monthly_fee": "无月费",
+        "notes": "Student Account 要求在英国居住 3 年，并就读至少 2 年的全日制本科课程（或 1 年以上的护理课程）。该账户提供从 £500 起的免息安排透支（18 岁及以上）。NatWest 表示：“如果你不是英国居民，就无法在 NatWest 开立银行账户。”未找到专门的国际学生账户。",
+        "documents": [
+          "带照片的身份证件：护照、英国或欧盟/EEA 驾照，或欧盟/EEA 国民身份证",
+          "地址证明，例如水电煤账单、银行对账单、UCAS 信函、Student Finance 信函或大学信函",
+          "16 位 UCAS 代码（学生账户）",
+          "用于身份比对的自拍照",
+          "非英国/欧盟国籍人士：eVisa share code（在网点提供）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "英国・EU 以外の国籍の人が NatWest 口座を開設する場合：英国・EU 以外のパスポートと有効な eVisa のシェアコード（share code）が必要で、シェアコードは支店で提示しなければなりません",
+        "monthly_fee": "月額手数料なし",
+        "notes": "Student Account は、英国での3年間の居住と、2年以上の全日制学部課程（または1年以上の看護課程）への在籍が条件です。£500 からの無利息の取り決め済み当座貸越があります（18歳以上）。NatWest は「英国の居住者でない場合、NatWest で銀行口座を開設することはできません」としています。留学生専用の口座は見つかりませんでした。",
+        "documents": [
+          "写真付き身分証明書：パスポート、英国または EU/EEA の運転免許証、または EU/EEA の国民IDカード",
+          "住所証明（例：公共料金の請求書、銀行取引明細書、UCAS のレター、Student Finance のレター、大学のレター）",
+          "16桁の UCAS コード（学生口座）",
+          "本人照合用の自撮り写真",
+          "英国・EU 以外の国籍の人：eVisa のシェアコード（支店で提示）"
+        ]
+      }
+    }
   },
   {
     "id": "gb-santander-uk",
@@ -244,7 +404,31 @@ export const BANKS: BankProduct[] = [
       "Share code or visa"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "必须能够提供你的 share code/签证",
+        "minimum_balance": "未说明最低金额；要保留免息、免费的透支，你必须每 4 个月存入 £500",
+        "monthly_fee": "无月费",
+        "notes": "不同来源对最低年龄的说法相互矛盾：国际学生页面写的是“16 岁及以上并居住在英国”，但 Key Facts Document（2026 年 4 月）写的是“学生、年满 18 岁并居住在英国”。根据 KFD，安排透支额度从 £250 起，在第 1-3 年提高到 £1,500，但未说明国际学生是否有资格获得。在境外使用 Santander 自动取款机不收费。KFD：https://www.santander.co.uk/assets/s3fs-public/AD_documents/Santander_Edge_Student_current_account_Key_Facts_Document%20-_BANK0548APR26PUBCDT.pdf",
+        "documents": [
+          "身份证明",
+          "地址证明，例如大学出具的银行开户信函",
+          "share code 或签证"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "シェアコード（share code）またはビザを提示できる必要があります",
+        "minimum_balance": "最低額の記載なし。無利息・手数料無料の当座貸越を維持するには、4か月ごとに £500 を入金する必要があります",
+        "monthly_fee": "月額手数料なし",
+        "notes": "最低年齢について情報源の間で食い違いがあります。留学生向けページは「16歳以上で英国に住んでいること」としていますが、Key Facts Document（2026年4月）は「学生で、18歳以上、英国に住んでいること」としています。KFD によると、取り決め済み当座貸越は £250 から始まり、1-3年目に £1,500 まで上がりますが、留学生が対象かどうかは記載されていません。海外の Santander の ATM は手数料無料です。KFD：https://www.santander.co.uk/assets/s3fs-public/AD_documents/Santander_Edge_Student_current_account_Key_Facts_Document%20-_BANK0548APR26PUBCDT.pdf",
+        "documents": [
+          "本人確認書類",
+          "住所証明（大学の銀行口座開設用レターなど）",
+          "シェアコードまたはビザ"
+        ]
+      }
+    }
   },
   {
     "id": "jp-mufg-bank-ltd",
@@ -270,7 +454,31 @@ export const BANKS: BankProduct[] = [
       "Passport or residence certificate (住民票) may be requested for residence cards issued on or after 14 June 2026"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "需要在留卡（在留カード）；MUFG 会核查卡上的在留期间和在留资格。在日本居住超过 6 个月的客户被视为居住者；非居住者在银行服务方面会受到一些限制。",
+        "monthly_fee": "未发现月费。纸质存折：2022 年 4 月 1 日或之后开立的普通账户每年 JPY 550（含税）（1 月底时未满 18 岁或 70 岁及以上的客户不收取）。未使用账户管理费：2021 年 7 月 1 日或之后开立且 2 年以上未使用的账户，可能每年收取 JPY 1,320（含税）。",
+        "notes": "外国国籍和双重国籍人士必须在网点核实身份，不能使用“Smart account opening”。未满 15 岁的申请人需由父母申请。可通过 Mitsubishi UFJ Direct（网上）和网点柜台办理境外汇款；法律规定须提供个人编号（My Number），银行可能会询问用途。到期前通知会要求客户寄送更新后的在留卡复印件，否则交易可能受到限制；并要求客户在离开日本时注销账户。未找到专门的学生账户。",
+        "documents": [
+          "在留卡（在留カード）",
+          "确认个人编号（My Number）的文件",
+          "个人印章（不接受橡皮图章）",
+          "对于 2026 年 6 月 14 日或之后签发的在留卡，银行可能要求提供护照或居民证明（住民票）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "在留カードが必要です。MUFG はカードに記載された在留期間と在留資格を確認します。日本に6か月を超えて住んでいる顧客は居住者として扱われ、非居住者は銀行サービスに一部制限があります。",
+        "monthly_fee": "月額手数料は見つかりませんでした。紙の通帳：2022年4月1日以降に開設した普通預金口座は年 JPY 550（税込）（1月末時点で18歳未満または70歳以上の顧客には課されません）。未利用口座手数料：2021年7月1日以降に開設し、2年以上利用されていない口座には年 JPY 1,320（税込）がかかる場合があります。",
+        "notes": "外国籍・二重国籍の人は支店で本人確認を受ける必要があり、「Smart account opening」（スマート口座開設）は利用できません。15歳未満の申込者は親が申し込む必要があります。海外送金は Mitsubishi UFJ Direct（三菱UFJダイレクト、オンライン）と支店窓口で利用でき、法律により個人番号（マイナンバー）が必要で、銀行が目的を尋ねることがあります。期限前の案内では、更新後の在留カードのコピーを送るよう求めており、送らない場合は取引が制限されることがあります。また、日本を離れる際は口座を解約するよう求めています。学生専用の口座は見つかりませんでした。",
+        "documents": [
+          "在留カード",
+          "個人番号（マイナンバー）を確認できる書類",
+          "印鑑（ゴム印は不可）",
+          "2026年6月14日以降に交付された在留カードの場合、パスポートまたは住民票の提出を求められることがあります"
+        ]
+      }
+    }
   },
   {
     "id": "jp-sumitomo-mitsui-banking-corporation",
@@ -293,7 +501,25 @@ export const BANKS: BankProduct[] = [
       "Residence card (在留カード) or special permanent resident certificate (特別永住者証明書)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "外国人必须提供在留卡或特别永住者证明书。所抓取页面未说明在留期间要求。",
+        "monthly_fee": "Olive：无年费（年会費無料）；满足条件时免收 ATM 手续费。",
+        "notes": "SMBC 表示，高中生和大学生可以自行开户。未满 15 岁的申请人不能使用自拍验证（需由父母申请）。申请该服务后，可通过 SMBC Direct 24 小时办理境外汇款；必须告知个人编号（My Number）。不能通过电话银行办理。",
+        "documents": [
+          "在留卡（在留カード）或特别永住者证明书（特別永住者証明書）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "外国人は在留カードまたは特別永住者証明書を提示する必要があります。取得したページには在留期間の要件は記載されていませんでした。",
+        "monthly_fee": "Olive：年会費無料。条件を満たすと ATM 手数料が無料になります。",
+        "notes": "SMBC によると、高校生と大学生は自分で口座を開設できます。15歳未満の申込者は自撮りによる本人確認を利用できません（親が申し込みます）。海外送金はサービスの申込み後、SMBC Direct（SMBCダイレクト）で24時間利用でき、個人番号（マイナンバー）の届出が必要です。テレフォンバンキングでは利用できません。",
+        "documents": [
+          "在留カードまたは特別永住者証明書"
+        ]
+      }
+    }
   },
   {
     "id": "jp-mizuho-bank-ltd",
@@ -319,7 +545,29 @@ export const BANKS: BankProduct[] = [
       "Passport may also be requested for newer residence cards"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "需要在留卡（包括特定在留卡）。如果你的在留期间在不到 3 个月内结束，申请将被拒绝。非居住者不能持有综合账户（総合口座）。",
+        "notes": "网上和网点开户均仅提供日语服务。出于反洗钱目的，银行会核查在留期限、就业限制和在留卡号码。境外汇款仅面向 Mizuho 账户持有人，在指定网点办理（部分需预约以视频通话办理），不能通过网上分行办理。必须提供个人编号（My Number）。学费账单可作为用途证明。个人每笔汇入的境外汇款收费 JPY 2,500。在留期间延长时请告知 Mizuho，离开日本时请注销账户。",
+        "documents": [
+          "在留卡（在留カード）",
+          "学生证或在学证明（或员工证）",
+          "个人印章或签名（不接受 Shachihata 式橡皮印章）",
+          "对于新式在留卡，银行也可能要求提供护照"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "在留カード（特定在留カードを含む）が必要です。在留期間の終了まで3か月未満の場合、申込みは断られます。非居住者は総合口座を持てません。",
+        "notes": "オンラインと支店での口座開設はいずれも日本語のみです。マネーロンダリング防止のため、銀行は在留期限、就労制限、在留カード番号を確認します。海外送金は Mizuho の口座保有者向けで、指定の支店で取り扱い（一部は予約制のビデオ通話）、インターネット支店では利用できません。個人番号（マイナンバー）が必要です。学費の請求書は目的の証明として受け付けられます。個人の場合、海外からの入金は1件 JPY 2,500 です。在留期間が延長されたら Mizuho に知らせ、日本を離れるときは口座を解約してください。",
+        "documents": [
+          "在留カード",
+          "学生証または在学証明書（または社員証）",
+          "印鑑またはサイン（シヤチハタ等のゴム印は不可）",
+          "新しい在留カードの場合、パスポートの提出も求められることがあります"
+        ]
+      }
+    }
   },
   {
     "id": "jp-japan-post-bank-co-ltd",
@@ -345,7 +593,31 @@ export const BANKS: BankProduct[] = [
       "Phone number (the app uses voice call or SMS verification)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "需要在留卡（须载有当前住址；如果卡上没有照片，需提供额外文件）。如果在留期间在申请后 3 个月内到期，申请将被拒绝。原在留期间为 3 个月或以下且没有在留卡的人不能开户。持有留学（Student）在留资格的人还必须出示学生证。",
+        "monthly_fee": "未发现账户管理费。使用硬币存取款时收取 ATM 手续费。普通储蓄和定期储蓄的存款上限各为每人 1,300 万日元（JPY 13 million）。",
+        "notes": "16 岁的最低年龄适用于本人自行申请的申请人；15 岁或以下儿童的账户由父母开立。柜台和 Yucho Direct 的国际汇款分别于 2025 年 8 月 29 日和 31 日结束，由 2025 年 7 月推出的网上“ゆうちょの国際送金”服务取代，该服务面向已登记个人编号（My Number）并完成身份核实的个人。限额：每笔低于 JPY 1M，每日 JPY 2M，每月 JPY 5M。在留卡更新或搬家后，请更新在留卡和住址信息，否则交易可能会被暂时限制。离开日本时请注销账户。",
+        "documents": [
+          "载有当前住址的在留卡（在留カード）",
+          "学生证（适用于留学 / Student 在留资格）",
+          "如果卡上没有照片，需提供额外身份证明，例如住民票副本（住民票の写し）",
+          "电话号码（应用程序使用语音电话或短信验证）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "在留カードが必要です（現住所の記載があるもの。写真がない場合は追加書類が必要）。申込みから3か月以内に在留期間が満了する場合、申込みは断られます。当初の在留期間が3か月以下で在留カードを持たない人は口座を開設できません。「留学」（Student）の在留資格を持つ人は学生証も提示する必要があります。",
+        "monthly_fee": "口座手数料は見つかりませんでした。硬貨での預入・払戻しには ATM 手数料がかかります。預入限度額は、通常貯金と定期性貯金それぞれ1人 1,300万円（JPY 13 million）です。",
+        "notes": "最低年齢16歳は、本人が申し込む場合に適用されます。15歳以下の子どもの口座は親が開設します。窓口と Yucho Direct（ゆうちょダイレクト）の国際送金はそれぞれ2025年8月29日と31日に終了し、2025年7月に開始したオンラインの「ゆうちょの国際送金」に置き換えられました。このサービスは個人番号（マイナンバー）を登録し、本人確認を完了した個人が利用できます。限度額：1件 JPY 1M 未満、1日 JPY 2M、1か月 JPY 5M。在留カードの更新や転居の後は、在留カードと住所の情報を更新してください。更新しないと取引が一時的に制限されることがあります。日本を離れるときは口座を解約してください。",
+        "documents": [
+          "現住所が記載された在留カード",
+          "学生証（「留学」/ Student の在留資格の場合）",
+          "カードに写真がない場合は、住民票の写しなどの追加の本人確認書類",
+          "電話番号（アプリでは音声通話または SMS で認証します）"
+        ]
+      }
+    }
   },
   {
     "id": "sg-dbs-bank",
@@ -371,7 +643,33 @@ export const BANKS: BankProduct[] = [
       "Proof of tax residency, e.g. passport or national identity card"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "有效准证，例如 Employment Pass、S Pass、Student Pass，或 MOM 或 ICA 签发的 In-Principle Approval",
+        "minimum_balance": "无最低余额要求，也无需首次存款",
+        "monthly_fee": "未登记电子对账单（e-statements）的每月收费 S$2；16 岁及以下的客户或已登记电子对账单的客户免收",
+        "notes": "My Account 页面对最低年龄注明“No age restriction”（无年龄限制）。DBS Remit：“可向 50 多个目的地当日汇款，且免手续费。”所抓取页面中未发现专门的学生账户。其他来源：https://www.dbs.com.sg/personal/deposits/savings-accounts/my-account、https://www.dbs.com.sg/personal/support/bank-account-opening-documents-required.html、https://www.dbs.com.sg/personal/support/card-application-eligibility.html",
+        "documents": [
+          "护照个人信息页（未过期）",
+          "Student Pass 或学校出具的证明信（3 个月内开具；姓名和 FIN 必须与申请一致）",
+          "居住地址证明，例如学校出具的证明信（不接受邮政信箱、转交、办公室和学校地址）",
+          "税务居民身份证明，例如护照或国民身份证"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "有効なパス（Employment Pass、S Pass、Student Pass、または MOM や ICA の In-Principle Approval など）",
+        "minimum_balance": "最低残高なし、初回入金も不要",
+        "monthly_fee": "電子明細（e-statements）に登録していない場合は月 S$2。16歳までの顧客または電子明細に登録している顧客は免除",
+        "notes": "My Account のページには最低年齢について「No age restriction」（年齢制限なし）とあります。DBS Remit：「50以上の送金先に即日・手数料無料で送金できます。」取得したページでは学生専用の口座は見つかりませんでした。その他の出典：https://www.dbs.com.sg/personal/deposits/savings-accounts/my-account、https://www.dbs.com.sg/personal/support/bank-account-opening-documents-required.html、https://www.dbs.com.sg/personal/support/card-application-eligibility.html",
+        "documents": [
+          "パスポートの身分事項ページ（有効期限内のもの）",
+          "Student Pass または学校の証明レター（3か月以内の日付。氏名と FIN が申込内容と一致している必要があります）",
+          "居住住所の証明（例：学校の証明レター。私書箱、気付〔c/o〕、勤務先、学校の住所は不可）",
+          "税務上の居住地の証明（例：パスポートまたは国民IDカード）"
+        ]
+      }
+    }
   },
   {
     "id": "sg-ocbc-bank",
@@ -397,7 +695,33 @@ export const BANKS: BankProduct[] = [
       "Foreign students: original faculty/hall residence letter from school, submitted at an OCBC branch"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "外国人需要有效准证，例如 Employment Pass、S-Pass 或 Student Pass",
+        "minimum_balance": "首次存款 S$0；未说明最低平均余额要求",
+        "monthly_fee": "低于最低余额费（fall-below fee）S$0",
+        "notes": "可通过 OCBC Online Banking 以 19 种货币办理境外转账；每笔最低 SGD 100 或 USD 100；需提供收款人全名、地址、账号/IBAN 和 SWIFT 代码（https://www.ocbc.com/personal-banking/digital-banking/overseas-funds-transfer.page）。FRANK Debit Card 境外交易：收取 3.25% 手续费和 2.80% 货币兑换费。信用卡来源：https://www.ocbc.com/personal-banking/cards/ocbc-frank-credit-card",
+        "documents": [
+          "有效期至少 6 个月的护照",
+          "有效准证（例如 Student Pass）",
+          "最近 3 个月内的地址证明（电话账单、CPF 对账单、银行对账单或政府信函）",
+          "外国学生：学校出具的院系/宿舍居住证明信原件，须在 OCBC 网点提交"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "外国人は有効なパス（例：Employment Pass、S-Pass、Student Pass）が必要",
+        "minimum_balance": "初回入金 S$0。最低平均残高の記載なし",
+        "monthly_fee": "最低残高割れ手数料（fall-below fee）S$0",
+        "notes": "海外送金は OCBC Online Banking で19通貨に対応しています。1件あたり最低 SGD 100 または USD 100 で、受取人のフルネーム、住所、口座番号/IBAN、SWIFT コードが必要です（https://www.ocbc.com/personal-banking/digital-banking/overseas-funds-transfer.page）。FRANK Debit Card の海外取引：手数料 3.25% と通貨換算手数料 2.80%。クレジットカードの出典：https://www.ocbc.com/personal-banking/cards/ocbc-frank-credit-card",
+        "documents": [
+          "有効期間が6か月以上残っているパスポート",
+          "有効なパス（例：Student Pass）",
+          "過去3か月以内の日付の住所証明（電話料金の請求書、CPF の明細書、銀行取引明細書、または政府からの書簡）",
+          "外国人学生：学校が発行する学部・寮の居住証明レターの原本を OCBC の支店で提出"
+        ]
+      }
+    }
   },
   {
     "id": "sg-united-overseas-bank-uob",
@@ -423,7 +747,33 @@ export const BANKS: BankProduct[] = [
       "Originals only; photocopied or digital copies not accepted; branch visit required for new foreign customers"
     ],
     "last_verified": "2026-10-18",
-    "status": "needs_verification"
+    "status": "needs_verification",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "UOB 账户常见问题列出新外国客户可使用 Employment Pass/S Pass/Dependent Pass；其中未列出 Student Pass",
+        "minimum_balance": "Uniplus 无最低存款要求；部分 UOB 账户无最低余额要求（大专学生页面）",
+        "monthly_fee": "部分 UOB 账户不收取低于最低余额费；16 至 24 岁的申请人在部分账户和借记卡上可享 3 年免费",
+        "notes": "矛盾之处：UOB 的外国人指南向国际学生推荐 Uniplus，但其账户常见问题（https://www.uob.com.sg/personal/customer-service/accounts.page）只列出 Employment Pass/S Pass/Dependent Pass。找到的境外转账页面只涵盖通过手机号码以 TMRW 向马来西亚（DuitNow）和泰国（PromptPay）转账。抓取到的 Uniplus 产品页面文字中没有显示资格/费用。其他来源：https://www.uob.com.sg/personal/highlights/life-moments/adulting/tertiary-students.page、https://www.uob.com.sg/personal/cards/cashback/evol-card/index.page",
+        "documents": [
+          "护照原件（有效期至少 6 个月）",
+          "居住地址证明（例如最近的水电煤或电信账单）",
+          "准证（常见问题列出 Employment Pass/S Pass/Dependent Pass）",
+          "仅接受原件；不接受复印件或电子副本；新外国客户须前往网点办理"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "UOB の口座に関する FAQ では、新規の外国人顧客について Employment Pass/S Pass/Dependent Pass が挙げられており、Student Pass は挙げられていません",
+        "minimum_balance": "Uniplus は最低入金額なし。一部の UOB 口座は最低残高なし（高等教育機関の学生向けページ）",
+        "monthly_fee": "一部の UOB 口座は最低残高割れ手数料なし。16～24歳の申込者は、一部の口座とデビットカードで3年間手数料が免除されます",
+        "notes": "矛盾点：UOB の外国人向けガイドは留学生に Uniplus を勧めていますが、口座に関する FAQ（https://www.uob.com.sg/personal/customer-service/accounts.page）には Employment Pass/S Pass/Dependent Pass しか挙げられていません。見つかった海外送金のページは、電話番号による TMRW でのマレーシア（DuitNow）とタイ（PromptPay）への送金のみを扱っています。取得した Uniplus の商品ページのテキストには、資格や手数料は表示されていませんでした。その他の出典：https://www.uob.com.sg/personal/highlights/life-moments/adulting/tertiary-students.page、https://www.uob.com.sg/personal/cards/cashback/evol-card/index.page",
+        "documents": [
+          "パスポートの原本（有効期間6か月以上）",
+          "居住住所の証明（例：最新の公共料金や通信料金の請求書）",
+          "パス（FAQ には Employment Pass/S Pass/Dependent Pass が記載）",
+          "原本のみ。コピーやデジタルコピーは不可。新規の外国人顧客は支店への来店が必要"
+        ]
+      }
+    }
   },
   {
     "id": "sg-standard-chartered-bank-singapore",
@@ -448,7 +798,31 @@ export const BANKS: BankProduct[] = [
       "Proof of address, any of: last 3 months' utility bill, last 3 months' bank statement, telecommunications bill, tenancy agreement, or government-issued document stating address (e.g. IRAS, CPF, ICA)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "持有有效学生/长期/就业准证、居住在新加坡的外国人",
+        "minimum_balance": "无最低存款要求",
+        "monthly_fee": "无低于最低余额费，也无月费",
+        "notes": "定位为“面向 18 至 26 岁的青年”（年轻人和学生）。产品条款修订于 2026 年 5 月 1 日生效。SC Remit：“可向 50 多个市场汇款”（https://www.sc.com/sg/bank-with-us/remittance/）。信用卡来源：https://www.sc.com/sg/credit-cards/smart-credit-card/（收入标准仅列出一套；需复核是否有针对外国人的规定）。",
+        "documents": [
+          "护照",
+          "有效的学生/长期/就业准证",
+          "地址证明，以下任一项：最近 3 个月的水电煤账单、最近 3 个月的银行对账单、电信账单、租赁协议，或载有地址的政府签发文件（例如 IRAS、CPF、ICA）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "有効な学生・長期・就労パスを持ち、シンガポールに住む外国人",
+        "minimum_balance": "最低入金額なし",
+        "monthly_fee": "最低残高割れ手数料なし、月額手数料なし",
+        "notes": "「18～26歳の若者向け」（若年層と学生）と位置づけられています。商品規定の改定は2026年5月1日に発効します。SC Remit：「50を超える市場へ送金できます」（https://www.sc.com/sg/bank-with-us/remittance/）。クレジットカードの出典：https://www.sc.com/sg/credit-cards/smart-credit-card/（収入基準は1種類のみ表示。外国人向けの規定がないか再確認が必要）。",
+        "documents": [
+          "パスポート",
+          "有効な学生・長期・就労パス",
+          "住所証明（次のいずれか）：過去3か月の公共料金の請求書、過去3か月の銀行取引明細書、通信料金の請求書、賃貸借契約書、または住所が記載された政府発行の書類（例：IRAS、CPF、ICA）"
+        ]
+      }
+    }
   },
   {
     "id": "sg-hsbc-bank-singapore",
@@ -472,7 +846,25 @@ export const BANKS: BankProduct[] = [
       "Proof of latest address (utility bill, phone bill, government-issued identity documents or bank statements)"
     ],
     "last_verified": "2026-10-18",
-    "status": "needs_verification"
+    "status": "needs_verification",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "居住在新加坡的有效 FIN 持有人必须上传护照复印件和地址证明；未特别提及 Student Pass",
+        "notes": "18 岁的年龄要求适用于网上申请。美国、加拿大、法国或泽西岛的居民不能通过应用程序申请。Global Money Transfers：“可更快、免手续费地向 50 多个国家/地区进行国际汇款。”最低余额和低于最低余额费无法确认（收费表 PDF 的表格出现乱码）。其他来源：https://www.hsbc.com.sg/accounts/products/everyday-global/、https://www.hsbc.com.sg/credit-cards/products/revolution/",
+        "documents": [
+          "护照（适用于新加坡/马来西亚以外的国籍）",
+          "最新地址证明（水电煤账单、电话账单、政府签发的身份证件或银行对账单）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "シンガポールに住む有効な FIN の保有者は、パスポートのコピーと住所証明をアップロードする必要があります。Student Pass については特に言及されていません",
+        "notes": "18歳という年齢はオンライン申込みに適用されます。米国、カナダ、フランス、ジャージーの居住者はアプリで申し込めません。Global Money Transfers：「50を超える国・地域へ、より速く手数料無料で海外送金できます。」最低残高と最低残高割れ手数料は確認できませんでした（手数料表の PDF の表が文字化けしていたため）。その他の出典：https://www.hsbc.com.sg/accounts/products/everyday-global/、https://www.hsbc.com.sg/credit-cards/products/revolution/",
+        "documents": [
+          "パスポート（シンガポール・マレーシア以外の国籍の場合）",
+          "最新の住所証明（公共料金の請求書、電話料金の請求書、政府発行の身分証明書、または銀行取引明細書）"
+        ]
+      }
+    }
   },
   {
     "id": "us-bank-of-america",
@@ -497,7 +889,31 @@ export const BANKS: BankProduct[] = [
       "Proof of U.S. address and enrollment letter (per BofA Better Money Habits guide)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "接受外国护照，无论是否持有美国签发的签证",
+        "minimum_balance": "所抓取页面未说明开户存款金额。保持每日最低余额 USD 500 是免除月费的选项之一。",
+        "monthly_fee": "SafeBalance 为 USD 4.95；如果任一账户所有人未满 25 岁，或每日最低余额达到 USD 500 及以上，可免收",
+        "notes": "国际学生需要亲自前往金融中心（financial center）与工作人员面谈。电汇：“你可以用 140 多种货币向 200 多个国家汇款”；以外币汇出时不收取汇出电汇费，但会有汇率加价。费用数据来自 https://info.bankofamerica.com/en/student-banking/banking-accounts。ITIN 持有人申请信用卡的资格未确认；BofA 的指南建议没有美国信用记录的人使用担保信用卡（secured card）。",
+        "documents": [
+          "两种未过期的身份证件；主要身份证件可以是外国护照（无论是否有美国签证）",
+          "纳税人识别号（如适用）（SSN、ITIN 或外国税号）",
+          "美国地址证明和在读证明信（根据 BofA Better Money Habits 指南）"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "米国発行のビザの有無にかかわらず、外国のパスポートを受け付けます",
+        "minimum_balance": "取得したページには開設時の入金額の記載がありません。1日の最低残高 USD 500 は手数料免除の方法の一つです。",
+        "monthly_fee": "SafeBalance は USD 4.95。口座名義人のいずれかが25歳未満の場合、または1日の最低残高が USD 500 以上の場合は免除",
+        "notes": "留学生は金融センター（financial center）で担当者と対面で手続きします。電信送金：「140以上の通貨で200を超える国に送金できます」。外貨で送金する場合は送金手数料はかかりませんが、為替レートの上乗せがあります。手数料データの出典：https://info.bankofamerica.com/en/student-banking/banking-accounts。ITIN 保有者のクレジットカード申込資格は確認できませんでした。BofA のガイドでは、米国での信用履歴がない人にはデポジット型カード（secured card）を勧めています。",
+        "documents": [
+          "有効期限内の身分証明書2種類。主たる身分証明書は外国のパスポートでも可（米国ビザの有無は問わない）",
+          "納税者番号（該当する場合）（SSN、ITIN、または外国の納税者番号）",
+          "米国の住所証明と在学証明レター（BofA の Better Money Habits ガイドによる）"
+        ]
+      }
+    }
   },
   {
     "id": "us-chase",
@@ -522,7 +938,29 @@ export const BANKS: BankProduct[] = [
       "Offer code (for the college offer)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "minimum_balance": "无最低开户存款要求",
+        "monthly_fee": "USD 4.95；如果账户所有人年龄在 17 至 24 岁之间，或每个对账周期有 USD 250 及以上的合格电子存款，则为 USD 0",
+        "notes": "汇入的国内和国际电汇每笔收费 USD 15。Chase Secure Checking 不提供汇出电汇。Chase 的教育页面表示，非美国居民“可能可以在没有 SSN 的情况下在部分金融机构开立银行账户”。17 岁的最低年龄是该优惠页面提到的最低年龄。信用卡信息：https://www.chase.com/personal/credit-cards/education/basics/can-international-students-get-credit-cards",
+        "documents": [
+          "主要带照片身份证件（例如护照）",
+          "显示美国地址的次要身份证件，例如带照片的学生证或 Student I-20",
+          "优惠代码（适用于大学生优惠）"
+        ]
+      },
+      "ja": {
+        "minimum_balance": "開設時の最低入金額なし",
+        "monthly_fee": "USD 4.95。口座名義人が17～24歳の場合、または各明細期間に USD 250 以上の対象となる電子入金がある場合は USD 0",
+        "notes": "国内・海外からの電信送金の受取は1件 USD 15 です。Chase Secure Checking では電信送金の送金はできません。Chase の教育ページでは、米国の非居住者は「一部の金融機関では SSN がなくても銀行口座を開設できる場合がある」としています。17歳という最低年齢は、オファーページに記載されている最も低い年齢です。クレジットカード情報：https://www.chase.com/personal/credit-cards/education/basics/can-international-students-get-credit-cards",
+        "documents": [
+          "主たる写真付き身分証明書（例：パスポート）",
+          "米国の住所が記載された副次的な身分証明書（例：写真付き学生証、Student I-20）",
+          "オファーコード（大学生向けオファーの場合）"
+        ]
+      }
+    }
   },
   {
     "id": "us-wells-fargo",
@@ -547,7 +985,29 @@ export const BANKS: BankProduct[] = [
       "Proof of physical U.S. address if not shown on ID (no P.O. Box or private mailbox)"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "minimum_balance": "所抓取页面未说明开户存款金额。保持每日最低余额 USD 1,500 是免除月费的选项之一。",
+        "monthly_fee": "USD 15；如果主要账户所有人年龄为 17-24 岁（至 25 岁为止），或有 USD 500 及以上的合格电子存款、每日最低余额 USD 1,500，或 USD 5,000 及以上的合格余额，则免收",
+        "notes": "非美国永久居民必须预约到网点办理；网上开户需要 SSN/ITIN、美国实际地址，且年满 18 岁。国际电汇可汇往 200 多个国家；电汇费为数字渠道 USD 30 / 网点 USD 40；网上电汇需要当前的美国住址；会有汇率加价。存在“Student and Teen Checking”页面，但未抓取。来源：https://www.wellsfargo.com/checking/everyday/ 和 https://www.wellsfargo.com/mobile-online-banking/wires/",
+        "documents": [
+          "SSN 或 ITIN；或者（对于没有美国纳税人识别号的非美国公民）可证明国籍或居住地的政府签发身份证件，例如护照",
+          "在网点开户需提供两种身份证件（主要和次要）",
+          "如果身份证件上没有显示，则需提供美国实际地址证明（不接受邮政信箱或私人信箱）"
+        ]
+      },
+      "ja": {
+        "minimum_balance": "取得したページには開設時の入金額の記載がありません。1日の最低残高 USD 1,500 は手数料免除の方法の一つです。",
+        "monthly_fee": "USD 15。主たる口座名義人が17-24歳（25歳になるまで）の場合、または USD 500 以上の対象となる電子入金、1日の最低残高 USD 1,500、USD 5,000 以上の対象残高のいずれかがある場合は免除",
+        "notes": "米国の永住者でない人は支店の予約が必要です。オンラインでの開設には SSN/ITIN、米国の実際の住所、18歳以上であることが必要です。海外への電信送金は200を超える国に対応し、手数料はデジタル USD 30 / 支店 USD 40 です。オンラインでの電信送金には現在の米国の住所が必要で、為替レートの上乗せがあります。「Student and Teen Checking」のページはありますが、取得していません。出典：https://www.wellsfargo.com/checking/everyday/ および https://www.wellsfargo.com/mobile-online-banking/wires/",
+        "documents": [
+          "SSN または ITIN、または（米国の納税者番号を持たない米国市民以外の人の場合）国籍または居住地を証明する政府発行の身分証明書（パスポートなど）",
+          "支店で開設する場合は身分証明書2種類（主たるものと副次的なもの）",
+          "身分証明書に記載がない場合は米国の実際の住所の証明（私書箱や私設郵便箱は不可）"
+        ]
+      }
+    }
   },
   {
     "id": "us-citibank",
@@ -568,7 +1028,15 @@ export const BANKS: BankProduct[] = [
     "notes": "The residency and age rule above applies to online applications. Whether international (F-1) students can open in a branch with a passport was not confirmed. Fees, opening deposit and student options were not shown on fetched pages (https://www.citi.com/banking/checking-account rendered no content). Citi says an international wire 'may be sent in USD or in the local foreign currency'.",
     "documents": [],
     "last_verified": "2026-10-18",
-    "status": "needs_verification"
+    "status": "needs_verification",
+    "i18n": {
+      "zh-CN": {
+        "notes": "上述居住和年龄规定适用于网上申请。国际（F-1）学生能否持护照在网点开户尚未确认。所抓取页面未显示费用、开户存款和学生选项（https://www.citi.com/banking/checking-account 未呈现任何内容）。Citi 表示，国际电汇“可以以 USD 或当地外币汇出”。"
+      },
+      "ja": {
+        "notes": "上記の居住と年齢の規則はオンライン申込みに適用されます。留学生（F-1）がパスポートで支店で開設できるかどうかは確認できませんでした。取得したページには手数料、開設時の入金額、学生向けの選択肢は表示されていませんでした（https://www.citi.com/banking/checking-account は内容が表示されませんでした）。Citi によると、海外への電信送金は「USD または現地の外貨で送金できる」とのことです。"
+      }
+    }
   },
   {
     "id": "us-capital-one",
@@ -594,6 +1062,32 @@ export const BANKS: BankProduct[] = [
       "Citizenship information"
     ],
     "last_verified": "2026-10-18",
-    "status": "verified"
+    "status": "verified",
+    "i18n": {
+      "zh-CN": {
+        "visa_requirements": "不向非移民签证持有人提供：仅限美国公民或合法永久居民",
+        "minimum_balance": "开户无最低存款要求，也无最低余额维持要求",
+        "monthly_fee": "无每月周期服务费",
+        "notes": "Capital One 向 18 岁及以上的学生推广 360 Checking（https://www.capitalone.com/bank/checking-accounts/checking-accounts-for-students/），但披露文件将其限定为美国公民或合法永久居民，因此 F-1 学生似乎不符合资格。汇出的国际电汇只能通过网点办理，且并非所有账户类型都符合条件（https://www.capitalone.com/help-center/checking-savings/wire-transfer-support/）。国内汇出电汇：USD 30。Capital One 关于国际学生信用卡的文章没有确认 Capital One 接受 ITIN。",
+        "documents": [
+          "SSN 或 ITIN",
+          "位于美国 50 个州之一或华盛顿特区（Washington, D.C.）的美国实际地址",
+          "美国手机号码",
+          "公民身份信息"
+        ]
+      },
+      "ja": {
+        "visa_requirements": "非移民ビザの保有者は利用不可：米国市民または合法的永住者のみ",
+        "minimum_balance": "開設時の最低入金額なし、維持すべき最低残高なし",
+        "monthly_fee": "月次サービス手数料なし",
+        "notes": "Capital One は18歳以上の学生に 360 Checking を宣伝していますが（https://www.capitalone.com/bank/checking-accounts/checking-accounts-for-students/）、開示書類では米国市民または合法的永住者に限定されているため、F-1 の学生は対象外とみられます。海外への電信送金は支店でのみ送金でき、すべての口座タイプが対象ではありません（https://www.capitalone.com/help-center/checking-savings/wire-transfer-support/）。国内向け電信送金：USD 30。Capital One の留学生向けクレジットカードの記事では、Capital One が ITIN を受け付けるかどうかは確認されていません。",
+        "documents": [
+          "SSN または ITIN",
+          "米国50州のいずれかまたはワシントン D.C. にある米国の実際の住所",
+          "米国の携帯電話番号",
+          "市民権（国籍）に関する情報"
+        ]
+      }
+    }
   }
 ] as BankProduct[];

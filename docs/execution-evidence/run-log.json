@@ -1,0 +1,125 @@
+[
+ [
+  "statement",
+  "8e234056-1154-4441-a041-4f4580c85b34",
+  {
+   "income": 4492,
+   "expenses": 4687.83,
+   "net": -195.83,
+   "essential": 3389.48,
+   "discretionary": 1298.35,
+   "transfers_out": 150
+  },
+  {
+   "monthly": 135.45,
+   "months": 1,
+   "total": 135.45,
+   "method": "above_average",
+   "categories": [
+    "Food"
+   ]
+  },
+  [
+   "net_negative",
+   "category_above_average",
+   "subscriptions",
+   "essentials_share",
+   "unusual_payment",
+   "regular_income",
+   "projection_covered",
+   "opportunity"
+  ]
+ ],
+ [
+  "statement_agent",
+  [
+   "analyseSpending",
+   "generateSavingsInsights"
+  ],
+  "From your statement: **GBP 4,492.00** came in, **GBP 4,687.83** went out, a net of **−GBP 195.83**.\n\n- You spent GBP 195.83 more than came in over this period.\n- You spent GBP 234.30 on Eating out in September, around GBP 135.45 above your 2-month average.\n- You have 6 recurring subscriptions costin"
+ ],
+ [
+  "banking_agent",
+  [
+   "getCountryBankingRequirements",
+   "getAvailableBanks",
+   "getBankEligibility",
+   "getCreditSystemInfo"
+  ],
+  "Here's what a student from China usually needs to open a bank account in Singapore, from official and bank sources.\n\n**Documents banks typically ask for:**\n- Valid passport (DBS: must not be expired; OCBC and UOB: at least 6 months validity)\n- Student's Pass, or an official certification letter from"
+ ],
+ [
+  "setup_plan",
+  4,
+  [
+   "documents",
+   "open_account",
+   "receive_funds",
+   "compare_routes",
+   "pay_tuition",
+   "recurring",
+   "credit",
+   "restrictions"
+  ]
+ ],
+ [
+  "rules_cn_sg",
+  "COMPLIANT",
+  [
+   [
+    "State Administration of Foreign Exchange",
+    "https://www.safe.gov.cn/tianjin/2024/0430/2464.html",
+    "2026-10-18"
+   ],
+   [
+    "State Administration of Foreign Exchange",
+    "https://www.safe.gov.cn/xiamen/file/file/20211022/f4794075e84e40dd9394be523a52731b.pdf",
+    "2026-10-18"
+   ],
+   [
+    "State Administration of Foreign Exchange",
+    "https://www.safe.gov.cn/tianjin/2026/0706/3085.html",
+    "2026-10-18"
+   ]
+  ]
+ ],
+ [
+  "rules_vn_jp",
+  "NEEDS_VERIFICATION",
+  [
+   "checked_at",
+   "considerations",
+   "coverage",
+   "documents",
+   "findings",
+   "limits",
+   "missing_info",
+   "query",
+   "sources",
+   "status",
+   "unverified_message"
+  ]
+ ],
+ [
+  "tuition",
+  [
+   "getUserProfile",
+   "getObligations",
+   "getAccounts",
+   "getFXRate",
+   "getTransferRules",
+   "getRemittanceQuotes",
+   "calculateTransferCost",
+   "getUserProfile",
+   "getObligations",
+   "getAccounts",
+   "getFXRate",
+   "getTransferRules",
+   "calculateTransferCost",
+   "createTransferInstruction"
+  ],
+  "0b356ecd-5f50-4662-8174-037928554fdc",
+  "PENDING_APPROVAL",
+  "{\"execution\": {\"transaction_id\": \"UF-2026-000184\", \"status\": \"COMPLETED\", \"timestamp\": \"2026-10-18T14:50:30.834Z\", \"provider\": \"Panda Remit Demo\", \"source_amount\": 26105.57, \"source_currency\": \"SGD\", \"destination_amount\": 15000, \"destination_currency\": \"GBP\", \"fee\": 15, \"recipient\": \"Example Univers"
+ ]
+]

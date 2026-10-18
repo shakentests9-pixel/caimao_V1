@@ -10,16 +10,30 @@ const ALLOWED: TransactionCategory[] = [
 
 /**
  * Optional AI suggestions for rows the rules couldn't classify.
- * Data boundary: only the masked merchant name and the direction (in/out) are sent —
+ * Data boundary: only the masked merchant name and the direction are sent, for debits that
+ * aren't person-to-person transfers —
  * no dates, amounts, balances, account hints, names or the raw statement. Suggestions
  * stay flagged for the user's review and are labelled "AI suggestion" in the UI.
  * Without an API key (or on any error) the rows are returned unchanged.
  */
+/** Person-to-person and own-account transfers can carry someone's name: never sent to the model. */
+const PERSONAL = /\b(from|to)\s+[a-z]|\b(transfer|tfr|trf|faster payment|fps|paynow|zelle|venmo|bacs|standing order|so)\b|转账|汇款|振込/i;
+
+/**
+ * Exactly what may leave CaiMao for an AI category suggestion: fallback-classified debits whose
+ * merchant isn't a person, as {index, masked merchant, direction}. Pure, so it's unit-tested.
+ */
+export function buildAiPayload(rows: StatementTransaction[]) {
+  const ambiguous = rows
+    .filter((r) => r.category_source === "fallback" && r.direction === "debit" && !PERSONAL.test(r.merchant) && !PERSONAL.test(r.description))
+    .slice(0, 40);
+  return { ambiguous, items: ambiguous.map((r, i) => ({ i, merchant: r.merchant.slice(0, 60), direction: r.direction })) };
+}
+
 export async function suggestCategories(rows: StatementTransaction[]): Promise<{ rows: StatementTransaction[]; sent: number }> {
-  const ambiguous = rows.filter((r) => r.category_source === "fallback").slice(0, 40);
+  const { ambiguous, items } = buildAiPayload(rows);
   if (!ambiguous.length || agentMode() !== "llm") return { rows, sent: 0 };
 
-  const items = ambiguous.map((r, i) => ({ i, merchant: r.merchant.slice(0, 60), direction: r.direction }));
   try {
     const client = new Anthropic();
     const res = await client.messages.create({

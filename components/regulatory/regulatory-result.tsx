@@ -98,6 +98,11 @@ export function RegulatoryResultCard({ result, compact, onProvide }: { result: R
         <p className="text-[15px] leading-6 text-cocoa">
           {result.unverified_message ? t("unverified") : t(`meaning.${result.status}`, { from, to })}
         </p>
+        {result.unverified_message && result.findings.length ? (
+          <p className="mt-1.5 text-[14px] leading-6 text-cocoa-2">
+            {t("unverifiedPart", { countries: (result.unverified_countries ?? []).map((c) => tc(c)).join(", ") })}
+          </p>
+        ) : null}
         {result.missing_info.length ? (
           <div className="mt-3 rounded-[16px] bg-white p-3.5">
             <p className="text-[14px] font-bold text-cocoa">{t("needDetails")}</p>
