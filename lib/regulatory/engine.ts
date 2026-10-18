@@ -92,7 +92,7 @@ const corridorMatch = (r: CountryRule, q: RegulatoryQuery) =>
 const directionMatch = (r: CountryRule, side: "sending" | "receiving") =>
   !r.direction || r.direction === "both" || (side === "sending" ? r.direction === "outbound" : r.direction === "inbound");
 
-/** RULE_QUERY + RULE_SOURCE_RETRIEVED: the subset of rules relevant to this person and corridor. */
+/** RULE_QUERY + RULE_RETRIEVED: the subset of rules relevant to this person and corridor. */
 export function retrieveRules(rules: CountryRule[], q: RegulatoryQuery): { rule: CountryRule; side: Finding["side"]; conditional: MissingField[] }[] {
   const out: { rule: CountryRule; side: Finding["side"]; conditional: MissingField[] }[] = [];
   for (const r of rules) {

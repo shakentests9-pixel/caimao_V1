@@ -51,7 +51,7 @@ describe("banking abroad", () => {
     expect(banks.requirements?.typical_documents.length).toBeGreaterThan(0);
     const audit = (await repo.listAudit()).filter((a) => a.correlation_id === r.events.find((e) => e.type === "meta" && "correlation_id" in e)?.["correlation_id" as never]);
     const actions = (await repo.listAudit()).map((a) => a.action);
-    expect(actions).toEqual(expect.arrayContaining(["COUNTRY_REQUIREMENTS_RETRIEVED", "BANK_OPTIONS_RETRIEVED"]));
+    expect(actions).toEqual(expect.arrayContaining(["BANK_REQUIREMENTS_RETRIEVED", "BANK_OPTIONS_RETRIEVED"]));
     expect(audit).toBeDefined();
   });
 
@@ -113,7 +113,7 @@ describe("regulatory assistant", () => {
     expect(result.findings.some((f) => f.rule.destination_country === "SG" && f.side === "receiving")).toBe(true);
     expect(["COMPLIANT", "ACTION_REQUIRED"]).toContain(result.status);
     const actions = (await repo.listAudit()).filter((a) => a.correlation_id === "t8").map((a) => a.action).reverse(); // listAudit is newest first
-    expect(actions).toEqual(["RULE_QUERY", "RULE_SOURCE_RETRIEVED", "RULE_EVALUATED", "RESULT_PRESENTED"]);
+    expect(actions).toEqual(["RULE_QUERY", "RULE_RETRIEVED", "RULE_EVALUATED", "RESULT_PRESENTED"]);
     // Personal details are never written to the audit log.
     const q = (await repo.listAudit()).find((a) => a.correlation_id === "t8" && a.action === "RULE_QUERY")!;
     expect(q.details.nationality).toBe("provided");

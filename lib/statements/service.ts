@@ -12,8 +12,8 @@ import { StatementError } from "./validate";
 /**
  * Statement workflow with consent and an audit trail:
  *   upload (consent) → STATEMENT_UPLOADED → parse → STATEMENT_PARSED → classify → TRANSACTIONS_EXTRACTED
- *   → preview (nothing saved as analysis yet) → user edits categories → USER_CONFIRMED_IMPORT
- *   → analysis → SPENDING_ANALYSIS_COMPLETED.
+ *   → preview (nothing saved as analysis yet) → user edits categories → TRANSACTIONS_CONFIRMED
+ *   → analysis → SPENDING_ANALYSED.
  * Balances and the main ledger are never touched by a statement.
  */
 
@@ -96,7 +96,7 @@ export async function confirmImport(repo: Repository, uploadId: string) {
   if (upload.status !== "PREVIEW") throw new DomainError("INVALID_STATE", "This statement has already been confirmed.");
   const ctx: ActionContext = { repo, actor: "user", correlationId: workflowId(uploadId) };
   const txns = await repo.listStatementTransactions(uploadId);
-  await audit(ctx, "USER_CONFIRMED_IMPORT", {
+  await audit(ctx, "TRANSACTIONS_CONFIRMED", {
     approval: "APPROVED",
     details: { rows_included: txns.filter((t) => t.included).length, rows_excluded: txns.filter((t) => !t.included).length, unreviewed_low_confidence: txns.filter((t) => t.included && t.needs_review).length },
   });
@@ -121,7 +121,7 @@ async function runAnalysis(repo: Repository, uploadId: string, refresh: boolean,
   const record = { id: randomUUID(), upload_id: uploadId, user_id: repo.userId, created_at: new Date().toISOString(), result: analysis as unknown as Record<string, unknown> };
   if (upload.status === "PREVIEW") await repo.confirmStatement(uploadId, record);
   else await repo.saveStatementAnalysis(uploadId, record); // re-analysis after edits
-  await audit({ repo, actor: "system", correlationId: workflowId(uploadId) }, "SPENDING_ANALYSIS_COMPLETED", {
+  await audit({ repo, actor: "system", correlationId: workflowId(uploadId) }, "SPENDING_ANALYSED", {
     tool: "analyseSpending",
     details: {
       rows: analysis.rows_analysed,

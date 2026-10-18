@@ -8,7 +8,7 @@ import { buildJourney, STEP_KEYS, type StepKey } from "./journey";
 
 /**
  * getCountryBankingRequirements / getAvailableBanks / getBankEligibility, audited:
- *   COUNTRY_REQUIREMENTS_RETRIEVED → BANK_OPTIONS_RETRIEVED → ELIGIBILITY_CHECKED (or CLARIFICATION_REQUESTED)
+ *   BANK_REQUIREMENTS_RETRIEVED → BANK_OPTIONS_RETRIEVED → ELIGIBILITY_CHECKED (or CLARIFICATION_REQUESTED)
  * and ACTION_PLAN_CREATED when the user asks CaiMao to make their setup plan (Level 2: prepare).
  */
 export async function bankingGuidance(ctx: ActionContext, input: { country: SupportedCountry; override?: Partial<BankingProfile>; tool?: string }) {
@@ -16,7 +16,7 @@ export async function bankingGuidance(ctx: ActionContext, input: { country: Supp
   const [profile, banks, reqs, credit] = await Promise.all([ctx.repo.getProfile(), ctx.repo.listBanks(), ctx.repo.listAccountRequirements(), ctx.repo.listCreditSystems()]);
   await audit(ctx, "PROFILE_READ", { tool, level: PermissionLevel.Read, details: { fields: ["nationality", "age", "student_status", "visa_type", "residency_status"] } });
   const requirements = reqs.find((r) => r.country === input.country) ?? null;
-  await audit(ctx, "COUNTRY_REQUIREMENTS_RETRIEVED", {
+  await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", {
     tool: "getCountryBankingRequirements",
     level: PermissionLevel.Information,
     details: { country: input.country, sources: requirements?.sources ?? [], last_verified: requirements?.last_verified ?? null },

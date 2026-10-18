@@ -119,7 +119,7 @@ describe("import confirmation and analysis", () => {
     await expect(confirmImport(repo, upload.id)).rejects.toThrow(/already/);
 
     const actions = (await repo.listAudit()).map((a) => a.action);
-    for (const a of ["STATEMENT_UPLOADED", "STATEMENT_PARSED", "TRANSACTIONS_EXTRACTED", "USER_CONFIRMED_IMPORT", "SPENDING_ANALYSIS_COMPLETED"]) expect(actions).toContain(a);
+    for (const a of ["STATEMENT_UPLOADED", "STATEMENT_PARSED", "TRANSACTIONS_EXTRACTED", "TRANSACTIONS_CONFIRMED", "SPENDING_ANALYSED"]) expect(actions).toContain(a);
   });
 
   it("TEST 4: spending analysis identifies recurring subscriptions and the rise in eating out", async () => {

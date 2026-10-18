@@ -58,9 +58,9 @@ const FINANCIAL: AuditAction[] = [
 
 /** Evidence families for the newer workflows, shown per run (one correlation id = one run). */
 const FAMILIES: Record<"statement" | "regulation" | "banking", AuditAction[]> = {
-  statement: ["STATEMENT_UPLOADED", "STATEMENT_PARSED", "TRANSACTIONS_EXTRACTED", "USER_CONFIRMED_IMPORT", "TRANSACTION_RECATEGORISED", "SPENDING_ANALYSIS_COMPLETED", "STATEMENT_DELETED"],
-  regulation: ["RULE_QUERY", "RULE_SOURCE_RETRIEVED", "RULE_EVALUATED", "CLARIFICATION_REQUESTED", "RESULT_PRESENTED"],
-  banking: ["COUNTRY_REQUIREMENTS_RETRIEVED", "BANK_OPTIONS_RETRIEVED", "ELIGIBILITY_CHECKED", "ACTION_PLAN_CREATED"],
+  statement: ["STATEMENT_UPLOADED", "STATEMENT_PARSED", "TRANSACTIONS_EXTRACTED", "TRANSACTIONS_CONFIRMED", "TRANSACTION_RECATEGORISED", "SPENDING_ANALYSED", "STATEMENT_DELETED"],
+  regulation: ["RULE_QUERY", "RULE_RETRIEVED", "RULE_EVALUATED", "CLARIFICATION_REQUESTED", "RESULT_PRESENTED"],
+  banking: ["BANK_REQUIREMENTS_RETRIEVED", "BANK_OPTIONS_RETRIEVED", "ELIGIBILITY_CHECKED", "ACTION_PLAN_CREATED"],
 };
 const WORKFLOW_ACTIONS: AuditAction[] = [...FAMILIES.statement, ...FAMILIES.regulation, ...FAMILIES.banking, "PROFILE_READ"];
 const familyOf = (logs: AuditLog[]): keyof typeof FAMILIES | undefined =>
@@ -233,7 +233,7 @@ export default async function ActivityPage() {
                 <div className="mt-1 font-mono text-[11.5px] text-faint">{w.id}</div>
                 <ActivityTimeline logs={w.logs.filter((l) => l.action !== "PROFILE_READ")} firstName={firstName} />
                 {(() => {
-                  const src = w.logs.find((l) => l.action === "RULE_SOURCE_RETRIEVED")?.details.sources as { regulator: string; url: string; last_verified: string }[] | undefined;
+                  const src = w.logs.find((l) => l.action === "RULE_RETRIEVED")?.details.sources as { regulator: string; url: string; last_verified: string }[] | undefined;
                   return src?.length ? (
                     <p className="mt-3 text-[12.5px] text-muted">{t("workflows.sources", { count: src.length, date: src.map((s) => s.last_verified).sort()[0] })}</p>
                   ) : null;

@@ -99,7 +99,7 @@ export const GLOBAL_TOOLS = [
     schema: z.object({ country: supported }),
     async run(ctx, input) {
       const req = (await ctx.repo.listAccountRequirements()).find((r) => r.country === input.country) ?? null;
-      await audit(ctx, "COUNTRY_REQUIREMENTS_RETRIEVED", { tool: "getCountryBankingRequirements", level: PermissionLevel.Information, details: { country: input.country, sources: req?.sources ?? [] } });
+      await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", { tool: "getCountryBankingRequirements", level: PermissionLevel.Information, details: { country: input.country, sources: req?.sources ?? [] } });
       if (!req) return { data: { found: false, message: "No researched requirements on record for this country." }, summary: `${input.country}: no requirements on record` };
       return { data: req, summary: `${input.country}: ${req.typical_documents.length} typical documents · ${req.sources.length} sources` };
     },
@@ -215,7 +215,7 @@ export const GLOBAL_TOOLS = [
     schema: z.object({ country: supported }),
     async run(ctx, input) {
       const info = (await ctx.repo.listCreditSystems()).find((c) => c.country === input.country) ?? null;
-      await audit(ctx, "COUNTRY_REQUIREMENTS_RETRIEVED", { tool: "getCreditSystemInfo", level: PermissionLevel.Information, details: { country: input.country, topic: "credit", sources: info?.sources ?? [] } });
+      await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", { tool: "getCreditSystemInfo", level: PermissionLevel.Information, details: { country: input.country, topic: "credit", sources: info?.sources ?? [] } });
       if (!info) return { data: { found: false }, summary: `${input.country}: no credit information on record` };
       return { data: info, summary: `${input.country}: ${info.bureaus.length} bureaus on record`, cards: [{ kind: "credit_info", info }] };
     },
@@ -249,7 +249,7 @@ export const GLOBAL_TOOLS = [
       const p = input as typeof input & Persona;
       if (p.purpose === "bank_account") {
         const req = (await ctx.repo.listAccountRequirements()).find((r) => r.country === p.country) ?? null;
-        await audit(ctx, "COUNTRY_REQUIREMENTS_RETRIEVED", { tool: "getRequiredDocuments", level: PermissionLevel.Information, details: { country: p.country, purpose: "bank_account" } });
+        await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", { tool: "getRequiredDocuments", level: PermissionLevel.Information, details: { country: p.country, purpose: "bank_account" } });
         return { data: { documents: req?.typical_documents ?? [], sources: req?.sources ?? [], last_verified: req?.last_verified ?? null }, summary: `${req?.typical_documents.length ?? 0} documents for a bank account` };
       }
       const profile = await ctx.repo.getProfile();

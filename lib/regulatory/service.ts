@@ -21,7 +21,7 @@ export interface RegulationRequest {
 
 /**
  * getTransferRules / getFundFlowRules: the audited regulatory workflow.
- *   PROFILE_READ → RULE_QUERY → RULE_SOURCE_RETRIEVED → RULE_EVALUATED → (CLARIFICATION_REQUESTED) → RESULT_PRESENTED
+ *   PROFILE_READ → RULE_QUERY → RULE_RETRIEVED → RULE_EVALUATED → (CLARIFICATION_REQUESTED) → RESULT_PRESENTED
  * Only structured rules are used. Personal details are logged as "provided / not provided", never their values.
  */
 export async function checkRegulation(ctx: ActionContext, req: RegulationRequest, tool = "getFundFlowRules"): Promise<RegulatoryResult> {
@@ -58,7 +58,7 @@ export async function checkRegulation(ctx: ActionContext, req: RegulationRequest
   });
 
   const result = evaluateRegulation(rules, query, fx);
-  await audit(ctx, "RULE_SOURCE_RETRIEVED", {
+  await audit(ctx, "RULE_RETRIEVED", {
     tool,
     level,
     details: { rules: result.findings.map((f) => f.rule.id), sources: result.sources.map((s) => ({ regulator: s.regulator, url: s.url, last_verified: s.last_verified })) },
