@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { useDateLocale } from "@/lib/i18n/date";
 import { useTranslations } from "next-intl";
 import type { Obligation } from "@/lib/types";
 import { Money } from "../money";
@@ -18,6 +19,7 @@ export function dueLabel(days: number, t: Translate) {
 /** Upcoming and paid obligations as a vertical timeline. */
 export function ObligationTimeline({ items, highlightKind = "tuition", action }: { items: Obligation[]; highlightKind?: Obligation["kind"]; action?: (o: Obligation) => React.ReactNode }) {
   const t = useTranslations("ObligationTimeline");
+  const dl = useDateLocale();
   return (
     <ol>
       {items.map((o) => {
@@ -29,7 +31,7 @@ export function ObligationTimeline({ items, highlightKind = "tuition", action }:
           <li key={o.id} className="relative flex gap-3 pb-4 last:pb-0 sm:gap-4">
             <div className="flex w-[54px] shrink-0 flex-col items-end pt-3 text-right sm:w-[62px]">
               <span className={cn("font-display text-[16px] font-extrabold leading-5", paid ? "text-success-ink" : soon ? "text-brand" : "text-cocoa")}>{paid ? t("paid") : dueLabel(days, t)}</span>
-              <span className="text-[12px] text-muted">{formatDate(paid && o.paid_at ? o.paid_at : o.due_date, { day: "numeric", month: "short" })}</span>
+              <span className="text-[12px] text-muted">{formatDate(paid && o.paid_at ? o.paid_at : o.due_date, { day: "numeric", month: "short" }, dl)}</span>
             </div>
             <div className="relative flex flex-col items-center" aria-hidden>
               <span className={cn("mt-4 flex size-4 items-center justify-center rounded-full ring-4 ring-white", paid ? "bg-success-ink" : highlight ? "bg-brand" : soon ? "bg-gold" : "bg-sand")}>

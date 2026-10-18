@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getDateLocale } from "@/lib/i18n/date-server";
 import { ChevronRight, Globe2 } from "lucide-react";
 import { Check, Circle } from "lucide-react";
 import { getRepository } from "@/lib/session";
@@ -25,6 +26,7 @@ export default async function BankingPage() {
   const repo = await getRepository();
   const [[card], checklist, profile, accounts] = await Promise.all([repo.listCreditCards(), repo.listChecklist(), repo.getProfile(), repo.listAccounts()]);
   const [t, tc] = await Promise.all([getTranslations("BankingPage"), getTranslations("Countries")]);
+  const dl = await getDateLocale();
   const study = SHORT.includes(profile.study_country) ? t(`studyShort.${profile.study_country}`) : tc(profile.study_country);
   const utilisation = card ? card.current_balance / card.credit_limit : 0;
   const due = card ? daysFromToday(card.payment_due_date) : 0;
@@ -54,7 +56,7 @@ export default async function BankingPage() {
             <dl className="mt-5 grid max-w-[400px] grid-cols-2 gap-3">
               <div className="rounded-[20px] bg-white p-4 shadow-card">
                 <dt className="text-[13px] font-semibold text-muted">{t("nextPayment")}</dt>
-                <dd className="font-display text-[20px] font-extrabold text-cocoa">{formatDate(card.payment_due_date, { day: "numeric", month: "short" })}</dd>
+                <dd className="font-display text-[20px] font-extrabold text-cocoa">{formatDate(card.payment_due_date, { day: "numeric", month: "short" }, dl)}</dd>
                 <dd className="text-[13px] font-bold text-brand">{t("inDays", { days: due })}</dd>
               </div>
               <div className="rounded-[20px] bg-white p-4 shadow-card">
@@ -75,7 +77,7 @@ export default async function BankingPage() {
                       {h.status === "ON_TIME" ? <Check className="size-4" strokeWidth={3} /> : <Circle className="size-3" />}
                       <span className="sr-only">{h.status === "ON_TIME" ? t("history.onTime") : h.status === "LATE" ? t("history.late") : t("history.noStatement")}</span>
                     </span>
-                    <span className="text-[12px] font-semibold text-muted">{formatDate(h.month + "-01", { month: "short" })}</span>
+                    <span className="text-[12px] font-semibold text-muted">{formatDate(h.month + "-01", { month: "short" }, dl)}</span>
                   </li>
                 ))}
               </ol>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getDateLocale } from "@/lib/i18n/date-server";
 import { FileSearch } from "lucide-react";
 import { CalendarClock } from "lucide-react";
 import { getTranslations } from "next-intl/server";
@@ -55,6 +56,7 @@ function friendlyInsights(s: BudgetSummary, t: T, tcat: T): string[] {
 
 export default async function BudgetPage() {
   const t = await getTranslations("BudgetPage");
+  const dl = await getDateLocale();
   const tcat = await getTranslations("Categories");
   const repo = await getRepository();
   const [transactions, accounts, obligations, budgets, profile, fx] = await Promise.all([
@@ -82,7 +84,7 @@ export default async function BudgetPage() {
     <div className="space-y-8">
       <PageHeader
         eyebrow={t("eyebrow")}
-        title={t("title", { month: formatDate(s.window_end, { month: "long" }) })}
+        title={t("title", { month: formatDate(s.window_end, { month: "long" }, dl) })}
         description={t("description")}
         action={
           <Link href="/budget/statement" className="cm-press cm-cta inline-flex h-12 items-center gap-2 rounded-[16px] px-5 text-[15px] font-extrabold">
@@ -95,7 +97,7 @@ export default async function BudgetPage() {
       <section className="grid grid-cols-1 items-center gap-6 rounded-[28px] bg-white p-6 shadow-card sm:p-8 lg:grid-cols-[1fr_260px]">
         <div>
           <div className="text-[14px] text-muted">
-            {t("windowLine", { start: formatDate(s.window_start, { day: "numeric", month: "short" }), end: formatDate(s.window_end, { day: "numeric", month: "short" }) })}
+            {t("windowLine", { start: formatDate(s.window_start, { day: "numeric", month: "short" }, dl), end: formatDate(s.window_end, { day: "numeric", month: "short" }, dl) })}
           </div>
           <div className="mt-2 flex items-baseline gap-2 font-display">
             <span className="text-[18px] font-medium text-muted">{c}</span>

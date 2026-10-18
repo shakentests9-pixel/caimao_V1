@@ -1,4 +1,5 @@
 import { useTranslations } from "next-intl";
+import { useDateLocale } from "@/lib/i18n/date";
 import type { RemittanceQuote } from "@/lib/types";
 import { formatRate } from "@/lib/fx/service";
 import { Money } from "./money";
@@ -24,6 +25,7 @@ export interface QuotesView {
 /** The full technical comparison, shown when someone expands "See full comparison". */
 export function QuotesTable({ view }: { view: QuotesView }) {
   const t = useTranslations("QuotesTable");
+  const dl = useDateLocale();
   const te = useTranslations("Explain");
   const src = view.quotes[0]?.source_currency;
   const dst = view.quotes[0]?.destination_currency;
@@ -79,7 +81,7 @@ export function QuotesTable({ view }: { view: QuotesView }) {
         {t.rich("footnote", {
           dst: dst ?? "",
           source: view.fx_source,
-          asOf: formatDateTime(view.fx_as_of),
+          asOf: formatDateTime(view.fx_as_of, dl),
           amount: () => <Money amount={view.compare_amount} currency={src} />,
           rate: () => <span className="font-mono">{view.quotes[0] ? formatRate(view.quotes[0].market_fx_rate) : ""}</span>,
         })}

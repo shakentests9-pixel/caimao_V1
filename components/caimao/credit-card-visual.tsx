@@ -1,4 +1,5 @@
 import type { CreditCard } from "@/lib/types";
+import { useDateLocale } from "@/lib/i18n/date";
 import { formatMoney } from "@/lib/fx/service";
 import { cn, formatDate } from "@/lib/utils";
 import { useTranslations } from "next-intl";
@@ -8,11 +9,12 @@ export function CreditCardVisual({ card, className }: { card: CreditCard; classN
   const utilisation = card.current_balance / card.credit_limit;
   const issuer = card.issuer.replace(/ Student Credit Card$/i, "");
   const t = useTranslations("CreditCardVisual");
+  const dl = useDateLocale();
   return (
     <div
       className={cn("cm-premium cm-ring relative isolate aspect-[1.586/1] w-full max-w-[400px] overflow-hidden rounded-[24px] p-6 shadow-float", className)}
       role="img"
-      aria-label={t("ariaLabel", { issuer: card.issuer, last4: card.last4, used: formatMoney(card.current_balance, card.currency), limit: formatMoney(card.credit_limit, card.currency), due: formatDate(card.payment_due_date) })}
+      aria-label={t("ariaLabel", { issuer: card.issuer, last4: card.last4, used: formatMoney(card.current_balance, card.currency), limit: formatMoney(card.credit_limit, card.currency), due: formatDate(card.payment_due_date, undefined, dl) })}
     >
       <div className="cm-dots pointer-events-none absolute inset-0 -z-10 opacity-40" />
       <div className="flex items-start justify-between">
@@ -30,7 +32,7 @@ export function CreditCardVisual({ card, className }: { card: CreditCard; classN
         <div className="flex items-end justify-between">
           <div>
             <div className="num font-display text-[21px] font-extrabold">{t("used", { amount: formatMoney(card.current_balance, card.currency).replace(".00", "") })}</div>
-            <div className="text-[13px] text-cream">{t("limitDue", { limit: formatMoney(card.credit_limit, card.currency).replace(".00", ""), due: formatDate(card.payment_due_date, { day: "numeric", month: "short" }) })}</div>
+            <div className="text-[13px] text-cream">{t("limitDue", { limit: formatMoney(card.credit_limit, card.currency).replace(".00", ""), due: formatDate(card.payment_due_date, { day: "numeric", month: "short" }, dl) })}</div>
           </div>
           <div className="num text-right font-display text-[22px] font-extrabold text-gold">{Math.round(utilisation * 100)}%</div>
         </div>

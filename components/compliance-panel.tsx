@@ -1,4 +1,5 @@
 "use client";
+import { useDateLocale } from "@/lib/i18n/date";
 import { useState } from "react";
 import { CheckCircle2, ChevronDown, CircleAlert, CircleX, ExternalLink, FileCheck2, FileWarning, Info } from "lucide-react";
 import * as Collapsible from "@radix-ui/react-collapsible";
@@ -17,6 +18,7 @@ const OUTCOME = {
 
 function SourceLine({ rule }: { rule: CountryRule }) {
   const t = useTranslations("CompliancePanel");
+  const dl = useDateLocale();
   return (
     <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12.5px] text-muted">
       <span>
@@ -26,7 +28,7 @@ function SourceLine({ rule }: { rule: CountryRule }) {
           <ExternalLink className="size-3" />
         </a>
       </span>
-      <span>{t("lastVerified", { date: formatDate(rule.last_verified) })}</span>
+      <span>{t("lastVerified", { date: formatDate(rule.last_verified, undefined, dl) })}</span>
       {rule.is_demo && <StatusBadge status="DEMO_DATA" label={t("simulatedRule")} size="sm" />}
     </div>
   );

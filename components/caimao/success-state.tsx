@@ -1,4 +1,5 @@
 "use client";
+import { useDateLocale } from "@/lib/i18n/date";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import type { ExecutionOutcome } from "@/lib/finance";
@@ -29,6 +30,7 @@ export function SuccessState({
   Description: React.ElementType;
 }) {
   const t = useTranslations("SuccessState");
+  const dl = useDateLocale();
   return (
     <div className="relative overflow-hidden px-6 pb-7 pt-10 text-center sm:px-8">
       <div className="pointer-events-none absolute inset-x-0 -top-28 mx-auto size-[300px] rounded-full bg-gold opacity-20 blur-[80px]" aria-hidden />
@@ -56,7 +58,7 @@ export function SuccessState({
           [t("rows.paidFrom"), <span key="f" className="num">{formatMoney(execution.source_amount, execution.source_currency)}</span>],
           [t("rows.newBalance"), <span key="b" className="num">{formatMoney(execution.new_balance, execution.source_currency)}</span>],
           [t("rows.via"), <span key="v">{execution.provider} · <span className="font-mono text-[12.5px] text-muted">{execution.provider_reference}</span></span>],
-          [t("rows.when"), formatDateTime(execution.timestamp)],
+          [t("rows.when"), formatDateTime(execution.timestamp, dl)],
         ].map(([k, v]) => (
           <div key={k as string} className="flex items-center justify-between gap-3 py-2.5">
             <dt className="text-muted">{k}</dt>

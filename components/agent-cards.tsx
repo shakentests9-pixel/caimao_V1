@@ -1,4 +1,5 @@
 "use client";
+import { useDateLocale } from "@/lib/i18n/date";
 import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -124,6 +125,7 @@ export function AgentCardView({
   const t = useTranslations("AgentCards");
   const tc = useTranslations("Countries");
   const tg = useTranslations("AgentCardsGlobal");
+  const dl = useDateLocale();
   const ts = useTranslations("Setup");
   switch (card.kind) {
     case "obligations": {
@@ -193,7 +195,7 @@ export function AgentCardView({
             <div><dt className="text-muted">{t("instruction.from")}</dt><dd className="font-bold text-cocoa">{card.account_label.replace("****", "•••• ")}</dd></div>
             <div><dt className="text-muted">{t("instruction.provider")}</dt><dd className="font-bold text-cocoa">{card.provider_name}</dd></div>
             <div><dt className="text-muted">{t("instruction.fee")}</dt><dd className="font-bold text-cocoa">{formatMoney(r.transfer_fee, r.source_currency)}</dd></div>
-            <div><dt className="text-muted">{t("instruction.arrives")}</dt><dd className="font-bold text-cocoa">{formatDate(r.estimated_settlement_date, { weekday: "short", day: "numeric", month: "short" })}</dd></div>
+            <div><dt className="text-muted">{t("instruction.arrives")}</dt><dd className="font-bold text-cocoa">{formatDate(r.estimated_settlement_date, { weekday: "short", day: "numeric", month: "short" }, dl)}</dd></div>
           </dl>
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
             <span className="max-w-[34ch] text-[13.5px] text-muted">

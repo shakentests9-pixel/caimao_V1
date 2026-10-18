@@ -1,4 +1,5 @@
 "use client";
+import { useDateLocale } from "@/lib/i18n/date";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -13,6 +14,7 @@ import { formatDateTime } from "@/lib/utils";
 
 export function TransferHistory({ rows }: { rows: { request: TransferRequest; provider_name: string; account_label: string; obligation_title: string | null }[] }) {
   const t = useTranslations("TransferHistory");
+  const dl = useDateLocale();
   const [target, setTarget] = useState<ConfirmTarget | null>(null);
   if (!rows.length) return <EmptyState title={t("emptyTitle")} body={t("emptyBody")} />;
   return (
@@ -29,7 +31,7 @@ export function TransferHistory({ rows }: { rows: { request: TransferRequest; pr
               <div className="min-w-0 flex-1">
                 <div className="truncate text-[15.5px] font-extrabold text-cocoa">{rest.obligation_title ?? r.purpose}</div>
                 <div className="truncate text-[13px] text-muted">
-                  {rest.provider_name} · {formatDateTime(r.created_at)}
+                  {rest.provider_name} · {formatDateTime(r.created_at, dl)}
                 </div>
               </div>
               <div className="flex items-center gap-2 text-[14.5px]">

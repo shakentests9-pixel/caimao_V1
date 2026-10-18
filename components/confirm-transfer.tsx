@@ -1,4 +1,5 @@
 "use client";
+import { useDateLocale } from "@/lib/i18n/date";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -94,6 +95,7 @@ export function ConfirmTransferDialog({
 }) {
   const router = useRouter();
   const t = useTranslations("ConfirmTransfer");
+  const dl = useDateLocale();
   const tc = useTranslations("Countries");
   const [ack, setAck] = useState(false);
   const [stage, setStage] = useState<Stage>({ kind: "requirements" });
@@ -129,7 +131,7 @@ export function ConfirmTransferDialog({
   const isTuition = /tuition/i.test(target.obligation_title ?? r.purpose);
   const items = requirementItems(r, t);
   const ready = r.compliance_status === "COMPLIANT";
-  const arrival = formatDate(r.estimated_settlement_date, { weekday: "short", day: "numeric", month: "short" });
+  const arrival = formatDate(r.estimated_settlement_date, { weekday: "short", day: "numeric", month: "short" }, dl);
 
   async function confirm() {
     setStage({ kind: "executing", step: 0 });
@@ -175,7 +177,7 @@ export function ConfirmTransferDialog({
     <Dialog open={open} onOpenChange={(o) => stage.kind !== "executing" && onOpenChange(o)}>
       <DialogContent hideClose={stage.kind === "executing"}>
         {stage.kind === "done" ? (
-          <SuccessState execution={stage.execution} isTuition={isTuition} arrival={formatDate(r.estimated_settlement_date, { day: "numeric", month: "short" })} onDone={() => onOpenChange(false)} Title={DialogTitle} Description={DialogDescription} />
+          <SuccessState execution={stage.execution} isTuition={isTuition} arrival={formatDate(r.estimated_settlement_date, { day: "numeric", month: "short" }, dl)} onDone={() => onOpenChange(false)} Title={DialogTitle} Description={DialogDescription} />
         ) : stage.kind === "requirements" ? (
           /* Step 1: transfer requirements */
           <div className="p-6 sm:p-7">

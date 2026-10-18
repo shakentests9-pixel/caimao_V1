@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getDateLocale } from "@/lib/i18n/date-server";
 import { ArrowRight, Check } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { getRepository } from "@/lib/session";
@@ -12,6 +13,7 @@ import { cn, daysFromToday, formatDate } from "@/lib/utils";
 
 export async function generateMetadata() {
   const t = await getTranslations("ObligationsPage");
+
   return { title: t("metaTitle") };
 }
 
@@ -36,6 +38,7 @@ function urgency(o: Obligation, t: T) {
 
 export default async function ObligationsPage({ searchParams }: { searchParams: Promise<{ view?: string }> }) {
   const t = await getTranslations("ObligationsPage");
+  const dl = await getDateLocale();
   const tc = await getTranslations("Countries");
   const repo = await getRepository();
   const { view: v } = await searchParams;
@@ -74,14 +77,14 @@ export default async function ObligationsPage({ searchParams }: { searchParams: 
               <Money amount={tuition.amount} currency={tuition.currency} className="font-display text-[40px] font-extrabold leading-none text-cocoa sm:text-[48px]" />
               <dl className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-[14.5px]">
                 <div><dt className="text-muted">{t("invoice")}</dt><dd className="font-mono text-[14px] text-cocoa">{tuition.invoice_ref}</dd></div>
-                <div><dt className="text-muted">{t("due.label")}</dt><dd className="text-cocoa">{formatDate(tuition.due_date)}</dd></div>
+                <div><dt className="text-muted">{t("due.label")}</dt><dd className="text-cocoa">{formatDate(tuition.due_date, undefined, dl)}</dd></div>
                 <div><dt className="text-muted">{t("purpose")}</dt><dd className="text-cocoa">{tuition.purpose}</dd></div>
                 <div><dt className="text-muted">{t("country")}</dt><dd className="text-cocoa">{tc(tuition.destination_country)}</dd></div>
               </dl>
             </div>
             {tuition.status === "PAID" ? (
               <div className="text-right text-[14.5px] text-cocoa-2">
-                <div className="flex items-center justify-end gap-1.5 font-medium text-success-ink"><Check className="size-4" strokeWidth={3} /> {t("paidOn", { date: tuition.paid_at ? formatDate(tuition.paid_at) : "" })}</div>
+                <div className="flex items-center justify-end gap-1.5 font-medium text-success-ink"><Check className="size-4" strokeWidth={3} /> {t("paidOn", { date: tuition.paid_at ? formatDate(tuition.paid_at, undefined, dl) : "" })}</div>
                 {exec ? <div className="text-muted">{t.rich("viaProvider", { provider: exec.provider, transactionId: exec.transaction_id, mono: (c) => <span className="font-mono">{c}</span> })}</div> : null}
                 <Link href="/evidence" className="mt-2 inline-flex min-h-11 items-center gap-1 font-medium text-brand hover:underline">{t("viewReceipt")} <ArrowRight className="size-4" /></Link>
               </div>
@@ -118,7 +121,7 @@ export default async function ObligationsPage({ searchParams }: { searchParams: 
         <div className="space-y-8">
           {[...groups.entries()].map(([month, items]) => (
             <section key={month}>
-              <h2 className="mb-3 px-1 font-display text-[18px] font-extrabold text-cocoa">{formatDate(month + "-01", { month: "long", year: "numeric" })}</h2>
+              <h2 className="mb-3 px-1 font-display text-[18px] font-extrabold text-cocoa">{formatDate(month + "-01", { month: "long", year: "numeric" }, dl)}</h2>
               <ul className="space-y-3">
                 {items.map((o) => {
                   const date = o.status === "PAID" && o.paid_at ? o.paid_at : o.due_date;
@@ -127,8 +130,8 @@ export default async function ObligationsPage({ searchParams }: { searchParams: 
                   return (
                     <li key={o.id} className={cn("cm-lift flex items-center gap-4 rounded-[24px] p-4 shadow-card sm:p-5", important ? "cm-best" : "bg-white")}>
                       <div className={cn("flex w-14 shrink-0 flex-col items-center rounded-[16px] py-2", o.status === "PAID" ? "bg-success-soft" : daysFromToday(o.due_date) <= 7 ? "bg-gold-soft" : "bg-cream")}>
-                        <span className="text-[11.5px] font-medium uppercase text-muted">{formatDate(date, { weekday: "short" })}</span>
-                        <span className="num font-display text-[22px] font-extrabold leading-tight text-cocoa">{formatDate(date, { day: "numeric" })}</span>
+                        <span className="text-[11.5px] font-medium uppercase text-muted">{formatDate(date, { weekday: "short" }, dl)}</span>
+                        <span className="num font-display text-[22px] font-extrabold leading-tight text-cocoa">{formatDate(date, { day: "numeric" }, dl)}</span>
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="truncate text-[16px] font-extrabold text-cocoa">{o.title}</div>

@@ -682,5 +682,15 @@
     "documents": "Documents banks usually ask for",
     "bankDecides": "Only the bank decides; requirements can vary by branch and customer.",
     "openBanking": "See all details and sources"
+  },
+  "EvidencePage": {
+    "workflows": {
+      "title": "Workflow evidence",
+      "description": "Statement analysis, rule checks and banking setup, step by step. Each event records the time, the run ID, who acted, the permission level, the result and the source where one applies.",
+      "statement": "Statement analysis",
+      "regulation": "Regulation check",
+      "banking": "Banking setup",
+      "sources": "{count, plural, one {# official source} other {# official sources}} · earliest last verified {date}"
+    }
   }
 }
