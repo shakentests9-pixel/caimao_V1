@@ -97,6 +97,32 @@ function save() {
   }
 }
 
+/**
+ * Demo state shared between server processes.
+ *
+ * Vercel deploys pages and /api routes as separate functions, each with its own memory. In demo
+ * mode the /api function is the source of truth (every change goes through it); before rendering,
+ * the page function pulls a snapshot of the mutable state from it (see lib/session.ts).
+ * Reference tables never change at runtime, so they're left out of the snapshot.
+ */
+const STATIC_KEYS = ["country_rules", "fx_rates", "remittance_providers"] as const;
+export type DemoSnapshot = Omit<MemoryDb, (typeof STATIC_KEYS)[number]> & { __version: number };
+
+export function exportDemoSnapshot(): DemoSnapshot {
+  const db = load();
+  const out: Record<string, unknown> = { __version: STORE_VERSION };
+  for (const [k, v] of Object.entries(db)) if (!(STATIC_KEYS as readonly string[]).includes(k)) out[k] = v;
+  return out as DemoSnapshot;
+}
+
+export function importDemoSnapshot(snapshot: DemoSnapshot): boolean {
+  if (!snapshot || snapshot.__version !== STORE_VERSION || !snapshot.profile) return false;
+  const db = load();
+  const { __version: _v, ...rest } = snapshot;
+  g.__uniflowDb = { ...db, ...(rest as Partial<MemoryDb>) } as MemoryDb;
+  return true;
+}
+
 const clone = <T>(v: T): T => structuredClone(v);
 const round2 = (n: number) => Math.round(n * 100) / 100;
 

@@ -16,7 +16,7 @@ export function maskIdentifiers(text: string): string {
 }
 
 const PREFIXES =
-  /^(?:(?:card payment|card purchase|contactless|pos|visa|mastercard|debit card|purchase|payment to|payment from|direct debit|dd|so|standing order|fpi|fpo|bgc|bacs|tfr|transfer|faster payment|bill payment|online payment|apple pay|google pay|nets|paywave|eftpos|ach|zelle to|zelle from|check card|recurring)\b[\s:*-]*)+/i;
+  /^(?:(?:card payment|card purchase|contactless|pos|visa|mastercard|debit card|purchase|payment to|payment from|direct debit|dd|so|standing order|fpi|fpo|bgc|bacs|tfr|transfer|faster payment|bill payment|online payment|apple pay|google pay|nets|paywave|eftpos|ach|zelle to|zelle from|check card|recurring|bp|cr|dr|vis|cpt|atm|chq|fp|deb|obp|dbt)\b[\s:*-]*)+/i;
 
 const NOISE = [
   /\b\d{2}[/.-]\d{2}(?:[/.-]\d{2,4})?\b/g, // embedded dates

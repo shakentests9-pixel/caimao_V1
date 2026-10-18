@@ -161,7 +161,28 @@
     "disclaimer": "CaiMao's analysis is an estimate based on the statement you uploaded. It isn't financial advice and doesn't guarantee savings.",
     "backToBudget": "Back to Budget",
     "unusualWhyAny": "Much larger than your typical payment of about {typical}.",
-    "sharedDemo": "This is a shared demo account: anyone using the demo can see what's uploaded here. Use the sample statement or a made-up file, not a real bank statement."
+    "sharedDemo": "This is a shared demo account: anyone using the demo can see what's uploaded here. Use the sample statement or a made-up file, not a real bank statement.",
+    "sample": {
+      "title": "What a bank statement looks like",
+      "body": "This is CaiMao's sample statement from a fictional bank. The PDF or CSV your bank lets you download will look similar.",
+      "badge": "Sample · fictional data",
+      "readsTitle": "What CaiMao reads",
+      "reads": {
+        "date": "The date of each payment",
+        "details": "Payment details, tidied into a merchant name (TESCO STORES 2800 becomes Tesco)",
+        "amounts": "Paid out and paid in, for the amount and whether money left or arrived",
+        "balance": "The running balance, to double-check money in and out"
+      },
+      "leavesTitle": "What CaiMao leaves out",
+      "leaves": {
+        "name": "Your name and address aren't saved",
+        "numbers": "Account and card numbers are masked to the last four digits (••••7730)"
+      },
+      "formatsNote": "Most banks offer a PDF statement or a CSV export in their app or online banking. Text-based PDFs work; scanned photos don't yet.",
+      "openPdf": "Open the full sample",
+      "downloadCsv": "Download as CSV",
+      "imageAlt": "Sample statement from the fictional UK Bank: an account summary, then a table of dated payments with paid out, paid in and balance columns."
+    }
   },
   "StatementInsights": {
     "net_negative": "You spent {amount} more than came in over this period.",

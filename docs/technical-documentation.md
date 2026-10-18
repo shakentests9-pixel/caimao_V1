@@ -76,6 +76,7 @@ flowchart LR
   - Reference rows carry reviewed translations of their descriptive text (`i18n`).
   - `lib/reference/localize.ts` overlays them for display. Flags, numbers, URLs and names the engines use are never translated.
   - Arrays are replaced only when they match item for item.
+- **Demo mode on serverless hosts.** Vercel deploys pages and `/api` routes as two functions with separate memory. In demo mode the `/api` function is the source of truth, because every change goes through it. `proxy.ts` tags each request as `page` or `api`. Before a page renders, `lib/session.ts` pulls a snapshot of the mutable demo state from `GET /api/demo/state`; reference tables are left out. The snapshot is fetched once per request, and if the fetch fails the page renders from its own copy. The UI language follows the `CAIMAO_LOCALE` cookie, which every language change updates.
 - **Evidence by construction.** Each workflow run has a correlation ID (`wf-`, `st-`, `rg-`, `bk-`, `fs-`). Every step writes an audit event with the actor, tool, permission level, result and details. The Activity & Security page groups events by run.
 
 ## 3. Data model
@@ -300,7 +301,7 @@ Domestic-only items (for example UK fraud reimbursement) and account-opening ide
 
 ## 8. Testing
 
-`npm test` runs 126 tests in nine files:
+`npm test` runs 127 tests in nine files:
 
 | File | Covers |
 | --- | --- |
@@ -312,6 +313,6 @@ Domestic-only items (for example UK fraud reimbursement) and account-opening ide
 | `privacy.test.ts` | What the AI model may see |
 | `budget.test.ts` | Budgeting |
 | `agent-fallback.test.ts` | Model fallback |
-| `demo-session.test.ts` | Demo sign-in verifies across separate server processes (serverless hosts) |
+| `demo-session.test.ts` | Demo sign-in and demo state work across separate server processes (Vercel runs pages and `/api` as separate functions) |
 
 `npm run lint` type-checks the project, and `npm run build` is the production build Vercel runs.

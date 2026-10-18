@@ -16,6 +16,7 @@ import { ConfirmTransferDialog, type ConfirmTarget } from "./confirm-transfer";
 import type { Status } from "./status-badge";
 import { MascotTile } from "./brand";
 import { cn } from "@/lib/utils";
+import { LOCALE_COOKIE } from "@/lib/i18n/locale";
 
 /** Prompt keys (Copilot.prompts.*). The translated text is both the label and the message sent to the agent. */
 const QUICK_PROMPTS = ["payTuition", "compareRates", "canIAfford", "checkTransferRules"] as const;
@@ -248,7 +249,11 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
             updateAssistant(asst.id, (m) => reduce(m, ev));
             if (ev.type === "meta") correlationRef.current[asst.id] = ev.correlation_id;
             // A language change re-renders the app in the new language once the reply has arrived.
-            if (ev.type === "card" && ev.card.kind === "language") setTimeout(() => router.refresh(), 600);
+            if (ev.type === "card" && ev.card.kind === "language") {
+              // The interface follows the language cookie; keep it in step with the profile change.
+              document.cookie = `${LOCALE_COOKIE}=${ev.card.language}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax${location.protocol === "https:" ? "; secure" : ""}`;
+              setTimeout(() => router.refresh(), 600);
+            }
             if (ev.type === "card" && ev.card.kind === "instruction") {
               const card = ev.card;
               // Open the confirmation screen once the instruction lands; the user still has to approve.

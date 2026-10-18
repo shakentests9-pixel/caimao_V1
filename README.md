@@ -418,7 +418,7 @@ Audit events for the run: `TRANSFER_RULE_CHECK → QUOTE_RETRIEVAL → COST_CALC
 npm test
 ```
 
-126 tests across nine files. The new features are covered by `tests/statements.test.ts`, `tests/global-setup.test.ts`, `tests/agent-i18n.test.ts` and `tests/privacy.test.ts` (statement parsing and confirmation, NEEDS_VERIFICATION, sources and last-verified dates, eligibility clarification, statement RLS, approval still required, the tuition flow unchanged, translations complete, the assistant understanding every chip in all three languages, and what the AI model may see).
+127 tests across nine files. The new features are covered by `tests/statements.test.ts`, `tests/global-setup.test.ts`, `tests/agent-i18n.test.ts` and `tests/privacy.test.ts` (statement parsing and confirmation, NEEDS_VERIFICATION, sources and last-verified dates, eligibility clarification, statement RLS, approval still required, the tuition flow unchanged, translations complete, the assistant understanding every chip in all three languages, and what the AI model may see).
 
 | # | Scenario | Expected | Test |
 | --- | --- | --- | --- |
@@ -452,7 +452,7 @@ npm test
 
 **From GitHub:** Vercel builds every push. Work on a branch, open a pull request to get a preview URL, and merge to `main` to update production. `unpdf` is listed in `serverExternalPackages` (`next.config.ts`) so PDF parsing works in Vercel functions; no extra configuration is needed.
 
-**Demo-only deployment** (no Supabase): set `UNIFLOW_DATA_MODE=memory` and `DEMO_SESSION_SECRET`. The demo store lives in server memory (mirrored to the OS temp directory on read-only filesystems), so on serverless hosts it can reset between cold starts. Use Supabase for anything beyond a single-presenter demo.
+**Demo-only deployment** (no Supabase): works on Vercel with no configuration; optionally set `DEMO_SESSION_SECRET`. The demo store lives in server memory. Vercel runs pages and `/api` routes as separate functions, so in demo mode the `/api` function holds the state and each page render pulls a snapshot of it (`GET /api/demo/state`, tagged by `proxy.ts`; see `lib/session.ts`) before drawing — settings, language, statements and payments therefore show up straight away. State still resets when Vercel recycles the functions (cold start). Use Supabase for anything beyond a demo.
 
 ---
 

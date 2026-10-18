@@ -1319,7 +1319,28 @@
     "disclaimer": "CaiMao 的分析是基于你上传的对账单所做的估算，不构成财务建议，也不保证能节省开支。",
     "backToBudget": "返回预算",
     "unusualWhyAny": "远高于你通常约 {typical} 的单笔支出。",
-    "sharedDemo": "这是一个共享的演示账户：使用演示的任何人都能看到这里上传的内容。请使用示例对账单或虚构的文件，不要上传真实的银行对账单。"
+    "sharedDemo": "这是一个共享的演示账户：使用演示的任何人都能看到这里上传的内容。请使用示例对账单或虚构的文件，不要上传真实的银行对账单。",
+    "sample": {
+      "title": "银行对账单是什么样子",
+      "body": "这是 CaiMao 提供的示例对账单，来自一家虚构的银行。你从银行下载的 PDF 或 CSV 会与此类似。",
+      "badge": "示例 · 虚构数据",
+      "readsTitle": "CaiMao 会读取的内容",
+      "reads": {
+        "date": "每笔交易的日期",
+        "details": "交易详情，整理成商户名称（例如 TESCO STORES 2800 会变成 Tesco）",
+        "amounts": "支出和收入：金额以及资金是转出还是转入",
+        "balance": "账户余额，用来核对资金的进出"
+      },
+      "leavesTitle": "CaiMao 不会保留的内容",
+      "leaves": {
+        "name": "不会保存你的姓名和地址",
+        "numbers": "账号和卡号会被遮蔽，只保留最后四位（••••7730）"
+      },
+      "formatsNote": "大多数银行都可以在 App 或网上银行中下载 PDF 对账单或导出 CSV。支持文字型 PDF，暂不支持扫描的照片。",
+      "openPdf": "查看完整示例",
+      "downloadCsv": "下载 CSV",
+      "imageAlt": "虚构的 UK Bank 示例对账单：先是账户概要，然后是按日期排列的交易表，包含支出、收入和余额列。"
+    }
   },
   "StatementInsights": {
     "net_negative": "在此期间，你的支出比收入多 {amount}。",

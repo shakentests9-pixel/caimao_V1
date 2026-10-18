@@ -5,6 +5,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import { CheckCircle2, FileText, Loader2, ShieldCheck, Trash2 } from "lucide-react";
 import type { StatementTransaction, StatementUpload } from "@/lib/types";
 import type { StatementAnalysis } from "@/lib/statements/analyse";
+import { SampleStatementPreview } from "./sample-statement-preview";
 import { StatementUploadCard, type UploadResult } from "./statement-upload";
 import { StatementReview, type RowChange } from "./statement-review";
 import { StatementAnalysisView } from "./statement-analysis";
@@ -86,7 +87,10 @@ export function StatementWorkspace({ initial, history, sharedDemo = false }: { i
       ) : null}
 
       {!state ? (
-        <StatementUploadCard sharedDemo={sharedDemo} onUploaded={(r: UploadResult) => setState({ upload: r.upload, transactions: r.transactions, analysis: null })} />
+        <>
+          <StatementUploadCard sharedDemo={sharedDemo} onUploaded={(r: UploadResult) => setState({ upload: r.upload, transactions: r.transactions, analysis: null })} />
+          <SampleStatementPreview />
+        </>
       ) : (
         <>
           {/* File header */}

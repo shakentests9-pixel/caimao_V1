@@ -12,7 +12,14 @@ const PUBLIC = [/^\/login/, /^\/welcome/, /^\/brand\//, /^\/api\/auth\//, /^\/ap
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isPublic = PUBLIC.some((r) => r.test(pathname));
-  let response = NextResponse.next({ request });
+  // Tell the server which kind of request this is (overwrites anything the client sent):
+  // in demo mode only page renders pull the shared demo state (see lib/session.ts).
+  const forward = () => {
+    const h = new Headers(request.headers);
+    h.set("x-caimao-surface", pathname.startsWith("/api/") ? "api" : "page");
+    return NextResponse.next({ request: { headers: h } });
+  };
+  let response = forward();
   let signedIn = false;
 
   if (dataMode() === "supabase") {
@@ -21,7 +28,7 @@ export async function proxy(request: NextRequest) {
         getAll: () => request.cookies.getAll(),
         setAll: (list) => {
           list.forEach(({ name, value }) => request.cookies.set(name, value));
-          response = NextResponse.next({ request });
+          response = forward();
           list.forEach(({ name, value, options }) => response.cookies.set(name, value, options));
         },
       },
