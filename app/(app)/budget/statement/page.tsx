@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { getRepository } from "@/lib/session";
+import { dataMode } from "@/lib/config";
 import { PageHeader } from "@/components/page-header";
 import { StatementWorkspace } from "@/components/statements/statement-workspace";
 import type { StatementAnalysis } from "@/lib/statements/analyse";
@@ -26,7 +27,8 @@ export default async function StatementPage() {
   return (
     <div className="space-y-2">
       <PageHeader eyebrow={t("eyebrow")} title={t("title")} description={t("description")} />
-      <StatementWorkspace initial={initial} history={history} />
+      {/* In demo mode every visitor shares one demo account, so real statements shouldn't go in. */}
+      <StatementWorkspace initial={initial} history={history} sharedDemo={dataMode() === "memory"} />
     </div>
   );
 }

@@ -491,6 +491,7 @@ supabase/migrations/     0001 schema, RLS, execution function; 0002 global finan
 messages/                en, zh-CN, ja (en built from messages/fragments by scripts/i18n-merge.py)
 data/reference-research/ researched source data per country + reviewed translations (i18n.json)
 scripts/reference/       build.py + overrides.py: research JSON → lib/reference/*.ts
+scripts/evidence/        run-workflows.py: reproduces docs/execution-evidence against a running app
 docs/                    technical documentation, security self-assessment, execution evidence
 scripts/seed-supabase.ts
 tests/

@@ -160,7 +160,8 @@
     },
     "disclaimer": "CaiMao's analysis is an estimate based on the statement you uploaded. It isn't financial advice and doesn't guarantee savings.",
     "backToBudget": "Back to Budget",
-    "unusualWhyAny": "Much larger than your typical payment of about {typical}."
+    "unusualWhyAny": "Much larger than your typical payment of about {typical}.",
+    "sharedDemo": "This is a shared demo account: anyone using the demo can see what's uploaded here. Use the sample statement or a made-up file, not a real bank statement."
   },
   "StatementInsights": {
     "net_negative": "You spent {amount} more than came in over this period.",

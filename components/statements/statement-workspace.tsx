@@ -16,7 +16,7 @@ type State = { upload: StatementUpload; transactions: StatementTransaction[]; an
  * Upload → preview (review and correct) → confirm → analysis. Nothing is analysed or kept
  * as an analysis until the user confirms the preview; the user can delete everything at any time.
  */
-export function StatementWorkspace({ initial, history }: { initial: State; history: StatementUpload[] }) {
+export function StatementWorkspace({ initial, history, sharedDemo = false }: { initial: State; history: StatementUpload[]; sharedDemo?: boolean }) {
   const t = useTranslations("StatementPage");
   const te = useTranslations("Errors");
   const format = useFormatter();
@@ -86,7 +86,7 @@ export function StatementWorkspace({ initial, history }: { initial: State; histo
       ) : null}
 
       {!state ? (
-        <StatementUploadCard onUploaded={(r: UploadResult) => setState({ upload: r.upload, transactions: r.transactions, analysis: null })} />
+        <StatementUploadCard sharedDemo={sharedDemo} onUploaded={(r: UploadResult) => setState({ upload: r.upload, transactions: r.transactions, analysis: null })} />
       ) : (
         <>
           {/* File header */}

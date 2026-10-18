@@ -15,7 +15,7 @@ const MAX = 5 * 1024 * 1024;
  * Upload card. Explicit consent is required before anything is sent; the file goes to
  * CaiMao's server once, is parsed in memory and discarded.
  */
-export function StatementUploadCard({ onUploaded }: { onUploaded: (r: UploadResult) => void }) {
+export function StatementUploadCard({ onUploaded, sharedDemo = false }: { onUploaded: (r: UploadResult) => void; sharedDemo?: boolean }) {
   const t = useTranslations("StatementPage");
   const te = useTranslations("Errors");
   const input = useRef<HTMLInputElement>(null);
@@ -77,6 +77,12 @@ export function StatementUploadCard({ onUploaded }: { onUploaded: (r: UploadResu
     <section className="rounded-[28px] bg-white p-5 shadow-card sm:p-7" aria-labelledby="upload-title">
       <h2 id="upload-title" className="font-display text-[22px] font-extrabold tracking-[-0.03em] text-cocoa">{t("uploadTitle")}</h2>
       <p className="mt-1 text-[15px] text-muted">{t("uploadHint")}</p>
+      {sharedDemo ? (
+        <p role="note" className="mt-4 flex items-start gap-2.5 rounded-[16px] border border-gold/40 bg-gold-soft px-4 py-3 text-[14px] leading-6 text-gold-ink">
+          <ShieldCheck className="mt-1 size-4 shrink-0" aria-hidden />
+          <span>{t("sharedDemo")}</span>
+        </p>
+      ) : null}
 
       <label
         htmlFor="statement-file"

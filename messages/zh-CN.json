@@ -1318,7 +1318,8 @@
     },
     "disclaimer": "CaiMao 的分析是基于你上传的对账单所做的估算，不构成财务建议，也不保证能节省开支。",
     "backToBudget": "返回预算",
-    "unusualWhyAny": "远高于你通常约 {typical} 的单笔支出。"
+    "unusualWhyAny": "远高于你通常约 {typical} 的单笔支出。",
+    "sharedDemo": "这是一个共享的演示账户：使用演示的任何人都能看到这里上传的内容。请使用示例对账单或虚构的文件，不要上传真实的银行对账单。"
   },
   "StatementInsights": {
     "net_negative": "在此期间，你的支出比收入多 {amount}。",
