@@ -4,7 +4,7 @@ import type { Account, ComplianceStatus, Obligation, PaymentExecution, Profile }
 import { FxService, roundMoney } from "./fx/service";
 import { evaluateCompliance } from "./compliance/engine";
 import { compareQuotes } from "./remittance/engine";
-import { buildQuoteSet, pickSourceAccount, transactionTypeFor } from "./finance";
+import { buildQuoteSet, payerOf, pickSourceAccount, transactionTypeFor } from "./finance";
 import { daysFromToday } from "./utils";
 
 /**
@@ -53,6 +53,7 @@ export async function loadTuitionInsight(repo: Repository, profile: Profile, acc
       source_amount: estimate,
       source_currency: srcCcy,
       documents_on_file: profile.documents_on_file,
+      payer: payerOf(profile),
     },
     fx,
   );

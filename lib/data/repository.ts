@@ -1,4 +1,13 @@
 import type {
+  AccountRequirements,
+  BankProduct,
+  CreditSystemInfo,
+  FinancialSetupProgress,
+  ProfilePatch,
+  StatementAnalysisRecord,
+  StatementTransaction,
+  StatementUpload,
+  SupportedCountry,
   Account,
   AiConversationMessage,
   AuditLog,
@@ -38,7 +47,7 @@ export interface Repository {
   readonly userId: string;
 
   getProfile(): Promise<Profile>;
-  updateProfile(patch: Partial<Pick<Profile, "base_currency" | "ai_permission_level" | "documents_on_file">>): Promise<Profile>;
+  updateProfile(patch: ProfilePatch): Promise<Profile>;
 
   listAccounts(): Promise<Account[]>;
   listTransactions(): Promise<Transaction[]>;
@@ -68,11 +77,38 @@ export interface Repository {
   appendAudit(entry: Omit<AuditLog, "id" | "timestamp" | "user_id">): Promise<AuditLog>;
   listAudit(): Promise<AuditLog[]>;
 
+  // ── Banking abroad reference data (shared, read-only) ──
+  listBanks(): Promise<BankProduct[]>;
+  listAccountRequirements(): Promise<AccountRequirements[]>;
+  listCreditSystems(): Promise<CreditSystemInfo[]>;
+
+  // ── Financial Setup journey progress (per user) ──
+  listSetupProgress(): Promise<FinancialSetupProgress[]>;
+  setSetupProgress(country: SupportedCountry, stepKey: string, completed: boolean): Promise<void>;
+
+  // ── Statement analysis (per user). Raw files are never passed to the repository. ──
+  createStatement(upload: StatementUpload, transactions: StatementTransaction[]): Promise<void>;
+  getStatement(id: string): Promise<StatementUpload | null>;
+  listStatements(): Promise<StatementUpload[]>;
+  listStatementTransactions(uploadId: string): Promise<StatementTransaction[]>;
+  updateStatementTransactions(uploadId: string, patches: StatementTransactionPatch[]): Promise<void>;
+  /** Marks the upload CONFIRMED and stores its analysis together. Fails if it isn't the user's PREVIEW upload. */
+  confirmStatement(uploadId: string, analysis: StatementAnalysisRecord): Promise<void>;
+  /** Replaces the analysis of an already-confirmed statement (after category edits). */
+  saveStatementAnalysis(uploadId: string, analysis: StatementAnalysisRecord): Promise<void>;
+  getStatementAnalysis(uploadId: string): Promise<StatementAnalysisRecord | null>;
+  /** Hard-deletes the upload, its transactions and its analysis. Audit entries stay. */
+  deleteStatement(uploadId: string): Promise<boolean>;
+  /** Removes unconfirmed previews past their expiry. Returns how many were removed. */
+  purgeExpiredStatements(now?: Date): Promise<number>;
+
   appendConversation(msg: Omit<AiConversationMessage, "id" | "created_at" | "user_id">): Promise<void>;
 
   getScenario(): Promise<SeedScenario["id"]>;
   reset(scenario?: SeedScenario["id"]): Promise<void>;
 }
+
+export type StatementTransactionPatch = { id: string } & Partial<Pick<StatementTransaction, "category" | "subcategory" | "included" | "needs_review" | "category_source" | "confidence">>;
 
 export class RepositoryError extends Error {
   constructor(

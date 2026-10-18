@@ -1,5 +1,13 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import type {
+  AccountRequirements,
+  BankProduct,
+  CreditSystemInfo,
+  FinancialSetupProgress,
+  StatementAnalysisRecord,
+  StatementTransaction,
+  StatementUpload,
+  SupportedCountry,
   Account,
   AiConversationMessage,
   AuditLog,
@@ -17,7 +25,8 @@ import type {
   TransferRequest,
 } from "../types";
 import { buildSeed, type SeedScenario } from "../seed";
-import { RepositoryError, type CommitExecutionInput, type Repository } from "./repository";
+import { RepositoryError, type CommitExecutionInput, type Repository, type StatementTransactionPatch } from "./repository";
+import { REFERENCE } from "../reference";
 
 /**
  * PostgreSQL storage through Supabase.
@@ -50,7 +59,18 @@ export class SupabaseRepository implements Repository {
     const [row] = await this.rows<Profile & { demo_scenario: string }>(this.user.from("profiles").select("*").eq("id", this.userId));
     if (!row) throw new RepositoryError("NOT_FOUND", "Profile not found. Run the seed script for this user.");
     const { data: u } = await this.user.from("users").select("email").eq("id", this.userId).maybeSingle();
-    return { ...row, email: (u?.email as string) ?? "", ai_permission_level: num(row.ai_permission_level) };
+    return {
+      ...row,
+      email: (u?.email as string) ?? "",
+      ai_permission_level: num(row.ai_permission_level),
+      nationality: row.nationality ?? null,
+      visa_type: row.visa_type ?? null,
+      residency_status: row.residency_status ?? null,
+      student_status: row.student_status ?? null,
+      age: row.age == null ? null : num(row.age),
+      tax_residency: row.tax_residency ?? null,
+      language: row.language ?? "en",
+    };
   }
   async updateProfile(patch: Parameters<Repository["updateProfile"]>[0]) {
     await this.check(this.admin.from("profiles").update(patch).eq("id", this.userId));
@@ -86,7 +106,8 @@ export class SupabaseRepository implements Repository {
 
   async listCountryRules() {
     const r = await this.rows<CountryRule>(this.user.from("country_rules").select("*"));
-    return r.map((x) => ({ ...x, limit_amount: x.limit_amount == null ? null : num(x.limit_amount) }));
+    const n = (v: number | null | undefined) => (v == null ? null : num(v));
+    return r.map((x) => ({ ...x, limit_amount: n(x.limit_amount), minimum_amount: n(x.minimum_amount), maximum_amount: n(x.maximum_amount) }));
   }
   async listFxRates() {
     const r = await this.rows<FxRate>(this.user.from("fx_rates").select("*"));
@@ -175,6 +196,100 @@ export class SupabaseRepository implements Repository {
     await this.check(this.user.from("ai_conversations").insert({ ...msg, user_id: this.userId }));
   }
 
+  async listBanks() {
+    return this.rows<BankProduct>(this.user.from("banks").select("*").order("country").order("bank_name"));
+  }
+  async listAccountRequirements() {
+    return this.rows<AccountRequirements>(this.user.from("bank_account_requirements").select("*"));
+  }
+  async listCreditSystems() {
+    return this.rows<CreditSystemInfo>(this.user.from("credit_system_rules").select("*"));
+  }
+
+  async listSetupProgress() {
+    return this.rows<FinancialSetupProgress>(this.user.from("user_financial_setup").select("*").eq("user_id", this.userId));
+  }
+  async setSetupProgress(country: SupportedCountry, stepKey: string, completed: boolean) {
+    await this.check(
+      this.admin
+        .from("user_financial_setup")
+        .upsert({ user_id: this.userId, country, step_key: stepKey, completed, updated_at: new Date().toISOString() }, { onConflict: "user_id,country,step_key" }),
+    );
+  }
+
+  async createStatement(upload: StatementUpload, transactions: StatementTransaction[]) {
+    if (upload.user_id !== this.userId || transactions.some((t) => t.user_id !== this.userId || t.upload_id !== upload.id)) {
+      throw new RepositoryError("CONFLICT", "Statement rows must belong to the signed-in user");
+    }
+    await this.check(this.admin.from("statement_uploads").insert(upload));
+    if (transactions.length) {
+      const { error } = await this.admin.from("statement_transactions").insert(transactions);
+      if (error) {
+        await this.admin.from("statement_uploads").delete().eq("id", upload.id).eq("user_id", this.userId);
+        throw new RepositoryError("STORAGE", error.message);
+      }
+    }
+  }
+  async getStatement(id: string) {
+    const [row] = await this.rows<StatementUpload>(this.user.from("statement_uploads").select("*").eq("id", id).eq("user_id", this.userId));
+    return row ?? null;
+  }
+  async listStatements() {
+    return this.rows<StatementUpload>(this.user.from("statement_uploads").select("*").eq("user_id", this.userId).order("created_at", { ascending: false }));
+  }
+  async listStatementTransactions(uploadId: string) {
+    const r = await this.rows<StatementTransaction>(
+      this.user.from("statement_transactions").select("*").eq("upload_id", uploadId).eq("user_id", this.userId).order("date", { ascending: false }),
+    );
+    return r.map((t) => ({ ...t, amount: num(t.amount), confidence: num(t.confidence) }));
+  }
+  async updateStatementTransactions(uploadId: string, patches: StatementTransactionPatch[]) {
+    if (!(await this.getStatement(uploadId))) throw new RepositoryError("NOT_FOUND", "Statement not found");
+    for (const { id, ...patch } of patches) {
+      await this.check(this.admin.from("statement_transactions").update(patch).eq("id", id).eq("upload_id", uploadId).eq("user_id", this.userId));
+    }
+  }
+  async confirmStatement(uploadId: string, analysis: StatementAnalysisRecord) {
+    if (analysis.user_id !== this.userId || analysis.upload_id !== uploadId) throw new RepositoryError("CONFLICT", "Analysis does not match the statement");
+    const { data, error } = await this.admin
+      .from("statement_uploads")
+      .update({ status: "CONFIRMED", confirmed_at: new Date().toISOString(), expires_at: null })
+      .eq("id", uploadId)
+      .eq("user_id", this.userId)
+      .eq("status", "PREVIEW")
+      .select("id");
+    if (error) throw new RepositoryError("STORAGE", error.message);
+    if (!data?.length) throw new RepositoryError("CONFLICT", "Only a statement preview can be confirmed");
+    await this.check(this.admin.from("statement_analyses").upsert(analysis, { onConflict: "upload_id" }));
+  }
+  async saveStatementAnalysis(uploadId: string, analysis: StatementAnalysisRecord) {
+    const upload = await this.getStatement(uploadId);
+    if (!upload || upload.status !== "CONFIRMED") throw new RepositoryError("CONFLICT", "Only a confirmed statement has an analysis");
+    if (analysis.user_id !== this.userId || analysis.upload_id !== uploadId) throw new RepositoryError("CONFLICT", "Analysis does not match the statement");
+    await this.check(this.admin.from("statement_analyses").upsert(analysis, { onConflict: "upload_id" }));
+  }
+  async getStatementAnalysis(uploadId: string) {
+    const [row] = await this.rows<StatementAnalysisRecord>(this.user.from("statement_analyses").select("*").eq("upload_id", uploadId).eq("user_id", this.userId));
+    return row ?? null;
+  }
+  async deleteStatement(uploadId: string) {
+    // Transactions and the analysis are removed by ON DELETE CASCADE.
+    const { data, error } = await this.admin.from("statement_uploads").delete().eq("id", uploadId).eq("user_id", this.userId).select("id");
+    if (error) throw new RepositoryError("STORAGE", error.message);
+    return (data?.length ?? 0) > 0;
+  }
+  async purgeExpiredStatements(now = new Date()) {
+    const { data, error } = await this.admin
+      .from("statement_uploads")
+      .delete()
+      .eq("user_id", this.userId)
+      .eq("status", "PREVIEW")
+      .lt("expires_at", now.toISOString())
+      .select("id");
+    if (error) throw new RepositoryError("STORAGE", error.message);
+    return data?.length ?? 0;
+  }
+
   async getScenario() {
     const { data } = await this.user.from("profiles").select("demo_scenario").eq("id", this.userId).maybeSingle();
     return ((data?.demo_scenario as string) ?? "standard") as SeedScenario["id"];
@@ -182,12 +297,19 @@ export class SupabaseRepository implements Repository {
 
   /** Re-seeds this user's demo data. Audit history is append-only and is kept. */
   async reset(scenario: SeedScenario["id"] = "standard") {
-    await seedSupabaseUser(this.admin, this.userId, scenario);
+    const { language } = await this.getProfile();
+    await seedSupabaseUser(this.admin, this.userId, scenario, undefined, { language });
   }
 }
 
 /** Writes the demo dataset for one user. Used by reset and by scripts/seed-supabase.ts. */
-export async function seedSupabaseUser(admin: SupabaseClient, userId: string, scenario: SeedScenario["id"] = "standard", email?: string) {
+export async function seedSupabaseUser(
+  admin: SupabaseClient,
+  userId: string,
+  scenario: SeedScenario["id"] = "standard",
+  email?: string,
+  keep: Partial<Pick<Profile, "language">> = {},
+) {
   const seed = buildSeed(new Date(), scenario);
   const ok = async (q: PromiseLike<{ error: { message: string } | null }>, what: string) => {
     const { error } = await q;
@@ -197,6 +319,9 @@ export async function seedSupabaseUser(admin: SupabaseClient, userId: string, sc
   await ok(admin.from("country_rules").upsert(seed.country_rules), "country_rules");
   await ok(admin.from("fx_rates").upsert(seed.fx_rates), "fx_rates");
   await ok(admin.from("remittance_providers").upsert(seed.remittance_providers), "remittance_providers");
+  await ok(admin.from("banks").upsert(REFERENCE.banks), "banks");
+  await ok(admin.from("bank_account_requirements").upsert(REFERENCE.accountRequirements), "bank_account_requirements");
+  await ok(admin.from("credit_system_rules").upsert(REFERENCE.creditSystems), "credit_system_rules");
 
   if (email) await ok(admin.from("users").upsert({ id: userId, email }), "users");
 
@@ -210,7 +335,7 @@ export async function seedSupabaseUser(admin: SupabaseClient, userId: string, sc
   }
 
   const { email: _e, id: _id, ...profile } = seed.profile;
-  await ok(admin.from("profiles").upsert({ ...profile, id: userId, demo_scenario: scenario }), "profiles");
+  await ok(admin.from("profiles").upsert({ ...profile, ...keep, id: userId, demo_scenario: scenario }), "profiles");
   await ok(admin.from("accounts").insert(seed.accounts.map((a) => ({ ...a, id: pid(a.id), user_id: userId }))), "accounts");
   await ok(admin.from("transactions").insert(seed.transactions.map((t) => ({ ...t, id: pid(t.id), account_id: pid(t.account_id), user_id: userId }))), "transactions");
   await ok(admin.from("obligations").insert(seed.obligations.map((o) => ({ ...o, id: pid(o.id), user_id: userId }))), "obligations");

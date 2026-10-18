@@ -1,8 +1,12 @@
 import { Check, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { PHASES, type Phase } from "@/lib/agent/protocol";
 import { cn } from "@/lib/utils";
 
 export type PhaseState = "pending" | "active" | "done" | "stopped";
+
+/** Message key for a phase: "Check compliance" → "Check_compliance" (WorkflowRail.phases.*). */
+const phaseKey = (p: Phase) => p.replace(/ /g, "_");
 
 /**
  * The agent's journey: Understand → Analyse → Check compliance → Compare →
@@ -10,6 +14,7 @@ export type PhaseState = "pending" | "active" | "done" | "stopped";
  * halo for the current step, sand for what's ahead.
  */
 export function AgentProgress({ states, className, compact }: { states: Partial<Record<Phase, PhaseState>>; className?: string; compact?: boolean }) {
+  const t = useTranslations("WorkflowRail");
   const doneCount = PHASES.filter((p) => states[p] === "done").length;
   const stopped = PHASES.find((p) => states[p] === "stopped");
   const active = PHASES.find((p) => states[p] === "active");
@@ -21,7 +26,7 @@ export function AgentProgress({ states, className, compact }: { states: Partial<
       <div className={cn("md:hidden", compact === false && "hidden")}>
         <div className="flex items-baseline justify-between text-[13px]">
           <span className={cn("font-bold", stopped ? "text-error-ink" : "text-cocoa")}>
-            {stopped ? `Stopped at ${stopped.toLowerCase()}` : doneCount === PHASES.length ? "All steps complete" : current}
+            {stopped ? t("stoppedAt", { phase: phaseKey(stopped) }) : doneCount === PHASES.length ? t("allComplete") : t(`phases.${phaseKey(current)}`)}
           </span>
           <span className="num text-muted">
             {doneCount}/{PHASES.length}
@@ -36,7 +41,7 @@ export function AgentProgress({ states, className, compact }: { states: Partial<
       </div>
 
       {/* Tablet/desktop: eight evenly spaced steps, labels under the dots. */}
-      <ol className={cn("hidden grid-cols-8 md:grid", compact === false && "grid")} aria-label="CaiMao's progress">
+      <ol className={cn("hidden grid-cols-8 md:grid", compact === false && "grid")} aria-label={t("progressLabel")}>
         {PHASES.map((p, i) => {
           const s = states[p] ?? "pending";
           const next = PHASES[i + 1];
@@ -63,8 +68,8 @@ export function AgentProgress({ states, className, compact }: { states: Partial<
                 {s === "done" ? <Check className="size-3.5" strokeWidth={3} /> : s === "stopped" ? <X className="size-3.5" strokeWidth={3} /> : <span className="num">{i + 1}</span>}
               </span>
               <span className={cn("mt-1.5 px-1 text-[12.5px] leading-tight transition-colors", s === "pending" ? "font-semibold text-muted" : s === "stopped" ? "font-bold text-error-ink" : s === "active" ? "font-extrabold text-brand" : "font-bold text-success-ink")}>
-                {p}
-                <span className="sr-only">{s === "done" ? " (done)" : s === "active" ? " (in progress)" : s === "stopped" ? " (stopped)" : " (not started)"}</span>
+                {t(`phases.${phaseKey(p)}`)}
+                <span className="sr-only"> {s === "done" ? t("state.done") : s === "active" ? t("state.active") : s === "stopped" ? t("state.stopped") : t("state.pending")}</span>
               </span>
             </li>
           );

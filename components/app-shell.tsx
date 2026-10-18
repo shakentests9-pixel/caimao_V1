@@ -1,12 +1,14 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ArrowLeftRight, CalendarDays, Cat, CreditCard, Home, PieChart, Settings, ShieldCheck, User, type LucideIcon } from "lucide-react";
 import { Avatar, MascotTile, Wordmark } from "./brand";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
   href: string;
+  /** Message keys under "Nav": short visible label and full name for screen readers. */
   label: string;
   name: string;
   icon?: LucideIcon;
@@ -15,23 +17,23 @@ interface NavItem {
 
 /** Desktop rail: short labels; `name` is the full name for screen readers. */
 const RAIL: NavItem[] = [
-  { href: "/", label: "Home", name: "Home", icon: Home },
-  { href: "/copilot", label: "CaiMao", name: "CaiMao assistant", mascot: true },
-  { href: "/transfers", label: "Send", name: "Transfers", icon: ArrowLeftRight },
-  { href: "/budget", label: "Budget", name: "Budget", icon: PieChart },
-  { href: "/obligations", label: "Bills", name: "Bills and obligations", icon: CalendarDays },
-  { href: "/banking", label: "Credit", name: "Banking and credit", icon: CreditCard },
+  { href: "/", label: "labels.home", name: "names.home", icon: Home },
+  { href: "/copilot", label: "labels.caimao", name: "names.caimao", mascot: true },
+  { href: "/transfers", label: "labels.send", name: "names.transfers", icon: ArrowLeftRight },
+  { href: "/budget", label: "labels.budget", name: "names.budget", icon: PieChart },
+  { href: "/obligations", label: "labels.bills", name: "names.bills", icon: CalendarDays },
+  { href: "/banking", label: "labels.credit", name: "names.banking", icon: CreditCard },
 ];
 const RAIL_SECONDARY: NavItem[] = [
-  { href: "/settings", label: "Settings", name: "Settings", icon: Settings },
-  { href: "/evidence", label: "Activity", name: "Activity and security", icon: ShieldCheck },
+  { href: "/settings", label: "labels.settings", name: "names.settings", icon: Settings },
+  { href: "/evidence", label: "labels.activity", name: "names.activity", icon: ShieldCheck },
 ];
 const BOTTOM: NavItem[] = [
-  { href: "/", label: "Home", name: "Home", icon: Home },
-  { href: "/transfers", label: "Transfers", name: "Transfers", icon: ArrowLeftRight },
-  { href: "/copilot", label: "CaiMao", name: "CaiMao assistant", mascot: true },
-  { href: "/budget", label: "Budget", name: "Budget", icon: PieChart },
-  { href: "/profile", label: "Profile", name: "Profile", icon: User },
+  { href: "/", label: "labels.home", name: "names.home", icon: Home },
+  { href: "/transfers", label: "labels.transfers", name: "names.transfers", icon: ArrowLeftRight },
+  { href: "/copilot", label: "labels.caimao", name: "names.caimao", mascot: true },
+  { href: "/budget", label: "labels.budget", name: "names.budget", icon: PieChart },
+  { href: "/profile", label: "labels.profile", name: "names.profile", icon: User },
 ];
 
 const PROFILE_SECTIONS = ["/profile", "/settings", "/evidence", "/banking", "/obligations"];
@@ -56,6 +58,7 @@ export function AppShell({ name, dueCount, children }: { name: string; dueCount:
 
 export function NavRail({ name, dueCount }: { name: string; dueCount: number }) {
   const pathname = usePathname();
+  const t = useTranslations("Nav");
   const item = (n: NavItem, small?: boolean) => {
     const active = isActive(pathname, n.href);
     const Icon = n.icon;
@@ -63,7 +66,7 @@ export function NavRail({ name, dueCount }: { name: string; dueCount: number }) 
       <Link
         key={n.href}
         href={n.href}
-        aria-label={n.name}
+        aria-label={t(n.name)}
         aria-current={active ? "page" : undefined}
         className={cn("group relative flex w-full flex-col items-center gap-1.5 rounded-[18px] py-2 transition-colors", !n.mascot && (active ? "text-brand" : "text-muted hover:text-cocoa"))}
       >
@@ -81,15 +84,15 @@ export function NavRail({ name, dueCount }: { name: string; dueCount: number }) 
             ) : null}
           </span>
         )}
-        <span className={cn("text-[11.5px] font-extrabold", n.mascot ? (active ? "text-brand" : "text-cocoa") : "")}>{n.label}</span>
-        {n.href === "/obligations" && dueCount > 0 ? <span className="sr-only">{dueCount} due</span> : null}
+        <span className={cn("text-[11.5px] font-extrabold", n.mascot ? (active ? "text-brand" : "text-cocoa") : "")}>{t(n.label)}</span>
+        {n.href === "/obligations" && dueCount > 0 ? <span className="sr-only">{t("dueCount", { count: dueCount })}</span> : null}
       </Link>
     );
   };
 
   return (
-    <aside className="fixed inset-y-6 left-6 z-30 hidden w-[96px] flex-col items-center rounded-[30px] bg-white py-5 shadow-card lg:flex" aria-label="Main navigation">
-      <Link href="/" aria-label="CaiMao home" className="cm-press mb-5 flex flex-col items-center gap-1">
+    <aside className="fixed inset-y-6 left-6 z-30 hidden w-[96px] flex-col items-center rounded-[30px] bg-white py-5 shadow-card lg:flex" aria-label={t("mainNavigation")}>
+      <Link href="/" aria-label={t("caimaoHome")} className="cm-press mb-5 flex flex-col items-center gap-1">
         <MascotTile size={48} priority />
         <span className="font-display text-[12.5px] font-extrabold tracking-[-0.04em] text-cocoa">CaiMao</span>
       </Link>
@@ -98,7 +101,7 @@ export function NavRail({ name, dueCount }: { name: string; dueCount: number }) 
         <span className="my-2 h-px w-10 bg-line" aria-hidden />
         {RAIL_SECONDARY.map((n) => item(n, true))}
       </nav>
-      <Link href="/profile" aria-label={`Profile: ${name}`} aria-current={pathname.startsWith("/profile") ? "page" : undefined} className={cn("cm-press mt-2 rounded-[18px] p-0.5", pathname.startsWith("/profile") && "ring-[3px] ring-gold")}>
+      <Link href="/profile" aria-label={t("profileOf", { name })} aria-current={pathname.startsWith("/profile") ? "page" : undefined} className={cn("cm-press mt-2 rounded-[18px] p-0.5", pathname.startsWith("/profile") && "ring-[3px] ring-gold")}>
         <Avatar name={name} size={46} />
       </Link>
     </aside>
@@ -106,13 +109,14 @@ export function NavRail({ name, dueCount }: { name: string; dueCount: number }) 
 }
 
 export function MobileTopBar() {
+  const t = useTranslations("Nav");
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center justify-between bg-ivory/90 px-4 backdrop-blur-md lg:hidden">
-      <Link href="/" aria-label="CaiMao home">
+      <Link href="/" aria-label={t("caimaoHome")}>
         <Wordmark size={36} />
       </Link>
       <span className="flex items-center gap-1.5 rounded-full bg-gold-soft px-3 py-1.5 text-[12px] font-extrabold text-gold-ink">
-        <span className="size-1.5 rounded-full bg-gold" aria-hidden /> Sandbox
+        <span className="size-1.5 rounded-full bg-gold" aria-hidden /> {t("sandbox")}
       </span>
     </header>
   );
@@ -120,20 +124,21 @@ export function MobileTopBar() {
 
 export function BottomNav() {
   const pathname = usePathname();
+  const t = useTranslations("Nav");
   return (
     <nav
       className="fixed inset-x-0 bottom-0 z-40 flex items-end justify-around border-t border-line bg-white/95 px-2 pb-[max(10px,env(safe-area-inset-bottom))] pt-2 backdrop-blur-xl lg:hidden"
-      aria-label="Main navigation"
+      aria-label={t("mainNavigation")}
     >
       {BOTTOM.map((n) => {
         const active = isActive(pathname, n.href) || (n.href === "/profile" && PROFILE_SECTIONS.some((p) => pathname.startsWith(p)));
         if (n.mascot) {
           return (
-            <Link key={n.href} href={n.href} aria-label={n.name} aria-current={active ? "page" : undefined} className="cm-press -mt-7 flex flex-col items-center gap-1">
+            <Link key={n.href} href={n.href} aria-label={t(n.name)} aria-current={active ? "page" : undefined} className="cm-press -mt-7 flex flex-col items-center gap-1">
               <span className={cn("flex size-[58px] items-center justify-center rounded-[22px] bg-brand text-white shadow-glow ring-4 ring-white", active && "ring-gold")}>
                 <Cat className="size-[26px]" />
               </span>
-              <span className={cn("text-[11px] font-extrabold", active ? "text-brand" : "text-cocoa")}>{n.label}</span>
+              <span className={cn("text-[11px] font-extrabold", active ? "text-brand" : "text-cocoa")}>{t(n.label)}</span>
             </Link>
           );
         }
@@ -141,7 +146,7 @@ export function BottomNav() {
         return (
           <Link key={n.href} href={n.href} aria-current={active ? "page" : undefined} className={cn("flex min-h-12 min-w-14 flex-col items-center justify-center gap-1 rounded-2xl", active ? "text-brand" : "text-muted")}>
             <Icon className="size-[22px]" />
-            <span className="text-[11px] font-extrabold">{n.label}</span>
+            <span className="text-[11px] font-extrabold">{t(n.label)}</span>
           </Link>
         );
       })}

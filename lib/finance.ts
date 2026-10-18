@@ -29,7 +29,9 @@ export class DomainError extends Error {
       | "INVALID_STATE"
       | "EXPIRED"
       | "PROVIDER_UNAVAILABLE"
-      | "PAYMENT_FAILED",
+      | "PAYMENT_FAILED"
+      | "CONSENT_REQUIRED"
+      | "INVALID_FILE",
     message: string,
     public details: Record<string, unknown> = {},
   ) {
@@ -87,7 +89,7 @@ export async function checkTransferRules(
   input: { source_country: CountryCode; destination_country: CountryCode; transaction_type: "education" | "personal"; source_amount: number; source_currency: Currency },
 ): Promise<ComplianceResult> {
   const [rules, profile, fx] = await Promise.all([ctx.repo.listCountryRules(), ctx.repo.getProfile(), getFxService(ctx.repo)]);
-  const result = evaluateCompliance(rules, { ...input, documents_on_file: profile.documents_on_file }, fx);
+  const result = evaluateCompliance(rules, { ...input, documents_on_file: profile.documents_on_file, payer: payerOf(profile) }, fx);
   await audit(ctx, "TRANSFER_RULE_CHECK", {
     tool: "getTransferRules",
     level: PermissionLevel.Read,
@@ -102,6 +104,8 @@ export async function checkTransferRules(
   });
   return result;
 }
+
+export const payerOf = (p: Profile) => ({ nationality: p.nationality, residency_status: p.residency_status, visa_type: p.visa_type });
 
 export async function listRulesForCorridor(repo: Repository, source: CountryCode, destination: CountryCode) {
   return matchRules(await repo.listCountryRules(), { source_country: source, destination_country: destination });

@@ -4,7 +4,9 @@ import type {
   CountryCode,
   CountryRule,
   Currency,
+  ResidencyStatus,
   RuleEvaluation,
+  VisaType,
 } from "../types";
 import { formatMoney, type FxService } from "../fx/service";
 
@@ -20,15 +22,36 @@ export interface ComplianceInput {
   source_amount: number;
   source_currency: Currency;
   documents_on_file: string[];
+  /** The payer's details, used to match researched rules that only apply to some people. */
+  payer?: { nationality: CountryCode | null; residency_status: ResidencyStatus | null; visa_type: VisaType | null };
 }
 
-export function matchRules(rules: CountryRule[], q: { source_country: CountryCode; destination_country: CountryCode; transaction_type?: string }): CountryRule[] {
-  return rules.filter(
-    (r) =>
+type PayerConditions = ComplianceInput["payer"];
+
+/**
+ * Rules that gate a bank transfer: simulated demo rules and verified researched rules.
+ * Border-cash rules and unverified rules are guidance only and never gate a payment.
+ * A rule limited to certain people applies only when the payer is known to match.
+ */
+export function matchRules(
+  rules: CountryRule[],
+  q: { source_country: CountryCode; destination_country: CountryCode; transaction_type?: string; payer?: PayerConditions },
+): CountryRule[] {
+  return rules.filter((r) => {
+    const corridor =
       (r.source_country === q.source_country || r.source_country === "*") &&
       (r.destination_country === q.destination_country || r.destination_country === "*") &&
-      (!q.transaction_type || r.transaction_type === "any" || r.transaction_type === q.transaction_type),
-  );
+      (!q.transaction_type || r.transaction_type === "any" || r.transaction_type === q.transaction_type);
+    if (!corridor) return false;
+    if (r.status === "needs_verification" || r.channel === "cash") return false;
+    if (r.direction === "outbound" && r.source_country === "*") return false;
+    if (r.direction === "inbound" && r.destination_country === "*") return false;
+    const p = q.payer;
+    if (r.nationality_condition?.length && !(p?.nationality && r.nationality_condition.includes(p.nationality))) return false;
+    if (r.residency_condition && p?.residency_status !== r.residency_condition) return false;
+    if (r.visa_condition?.length && !(p?.visa_type && r.visa_condition.includes(p.visa_type))) return false;
+    return true;
+  });
 }
 
 export function evaluateCompliance(rules: CountryRule[], input: ComplianceInput, fx: FxService, now = new Date()): ComplianceResult {
@@ -42,6 +65,8 @@ export function evaluateCompliance(rules: CountryRule[], input: ComplianceInput,
     const amountText = amountInRuleCcy != null && rule.currency ? `≈ ${formatMoney(amountInRuleCcy, rule.currency)}` : "";
 
     switch (rule.enforcement) {
+      case "report_above":
+        return { rule, outcome: "INFO", message: over ? `Above ${limitText} (${amountText}): the bank files a report. Nothing extra is needed from you.` : rule.rule_name, documents: [] };
       case "block_above":
         return over
           ? { rule, outcome: "BLOCK", message: `Transfer ${amountText} exceeds the limit of ${limitText}.`, documents: [] }

@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { getRepository } from "@/lib/session";
 import { buildQuoteSet, getFxService, listRulesForCorridor } from "@/lib/finance";
 import { compareQuotes } from "@/lib/remittance/engine";
@@ -13,11 +14,16 @@ import { MascotInsightCard } from "@/components/caimao/mascot-insight-card";
 import { formatMoney } from "@/lib/fx/service";
 import { Button } from "@/components/ui/button";
 
-export const metadata = { title: "Transfers" };
+export async function generateMetadata() {
+  const t = await getTranslations("TransfersPage");
+  return { title: t("metaTitle") };
+}
 
 const COUNTRIES = Object.keys(COUNTRY_NAMES) as CountryCode[];
 
 export default async function TransfersPage({ searchParams }: { searchParams: Promise<Record<string, string | undefined>> }) {
+  const t = await getTranslations("TransfersPage");
+  const tc = await getTranslations("Countries");
   const repo = await getRepository();
   const sp = await searchParams;
   const [profile, obligations, requests, providers, accounts, fx] = await Promise.all([
@@ -45,14 +51,14 @@ export default async function TransfersPage({ searchParams }: { searchParams: Pr
     return {
       request: r,
       provider_name: providers.find((p) => p.id === r.provider_id)?.name ?? r.provider_id,
-      account_label: a ? `${a.name} ****${a.account_last4}` : "Account",
+      account_label: a ? `${a.name} ****${a.account_last4}` : t("accountFallback"),
       obligation_title: obligations.find((o) => o.id === r.obligation_id)?.title ?? null,
     };
   });
 
   return (
     <div className="space-y-10">
-      <PageHeader title="Send money" description="Transparent routes for your money, before you approve. CaiMao compares providers on what your recipient actually gets." />
+      <PageHeader title={t("title")} description={t("description")} />
 
       <TransferCalculator
         from={from}
@@ -73,12 +79,12 @@ export default async function TransfersPage({ searchParams }: { searchParams: Pr
         aside={
           insight.state === "due" ? (
             <MascotInsightCard
-              headline="Paying tuition? I'll take it from here."
-              body={`${formatMoney(insight.obligation.amount, insight.obligation.currency)} to ${insight.obligation.payee.replace(" Treasury", "")}, due in ${insight.days} days. I'll check the rules, pick the best route and get it ready for your approval.`}
-              actions={[{ href: "/copilot?q=Pay%20my%20tuition", label: "Pay tuition", primary: true }]}
+              headline={t("tuitionDueHeadline")}
+              body={t("tuitionDueBody", { amount: formatMoney(insight.obligation.amount, insight.obligation.currency), payee: insight.obligation.payee.replace(" Treasury", ""), days: insight.days })}
+              actions={[{ href: "/copilot?q=Pay%20my%20tuition", label: t("payTuition"), primary: true }]}
             />
           ) : insight.state === "paid" ? (
-            <MascotInsightCard headline="Tuition paid." body={insight.execution ? `Transaction ${insight.execution.transaction_id} via ${insight.execution.provider}.` : undefined} actions={[{ href: "/evidence", label: "View receipt", primary: true }]} />
+            <MascotInsightCard headline={t("tuitionPaidHeadline")} body={insight.execution ? t("tuitionPaidBody", { transactionId: insight.execution.transaction_id, provider: insight.execution.provider }) : undefined} actions={[{ href: "/evidence", label: t("viewReceipt"), primary: true }]} />
           ) : null
         }
       />
@@ -86,31 +92,31 @@ export default async function TransfersPage({ searchParams }: { searchParams: Pr
       <section>
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3 px-1">
           <div>
-            <h2 className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">Transfer requirements</h2>
-            <p className="text-[14.5px] text-muted">From CaiMao&apos;s rules database. CaiMao can only cite rules listed here.</p>
+            <h2 className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">{t("requirementsTitle")}</h2>
+            <p className="text-[14.5px] text-muted">{t("requirementsBody")}</p>
           </div>
-          <StatusBadge status="DEMO_DATA" label="Simulated rules" />
+          <StatusBadge status="DEMO_DATA" label={t("simulatedRules")} />
         </div>
         <div className="rounded-[24px] bg-white p-5 shadow-card sm:p-6">
           <form className="mb-5 flex flex-wrap items-end gap-3 text-[14px]" action="/transfers">
             <RoutePair from={src} to={dst} size={36} />
             <label className="flex flex-col gap-1">
-              <span className="text-muted">From</span>
-              <select name="src" defaultValue={src} className="h-11 rounded-[14px] bg-cream px-4 font-semibold text-cocoa">{COUNTRIES.map((c) => <option key={c} value={c}>{COUNTRY_NAMES[c]}</option>)}</select>
+              <span className="text-muted">{t("from")}</span>
+              <select name="src" defaultValue={src} className="h-11 rounded-[14px] bg-cream px-4 font-semibold text-cocoa">{COUNTRIES.map((c) => <option key={c} value={c}>{tc(c)}</option>)}</select>
             </label>
             <label className="flex flex-col gap-1">
-              <span className="text-muted">To</span>
-              <select name="dst" defaultValue={dst} className="h-11 rounded-[14px] bg-cream px-4 font-semibold text-cocoa">{COUNTRIES.map((c) => <option key={c} value={c}>{COUNTRY_NAMES[c]}</option>)}</select>
+              <span className="text-muted">{t("to")}</span>
+              <select name="dst" defaultValue={dst} className="h-11 rounded-[14px] bg-cream px-4 font-semibold text-cocoa">{COUNTRIES.map((c) => <option key={c} value={c}>{tc(c)}</option>)}</select>
             </label>
-            <Button type="submit" variant="ink">Show rules</Button>
+            <Button type="submit" variant="ink">{t("showRules")}</Button>
           </form>
           <RulesTable rules={rules} />
-          <p className="mt-4 text-[13px] leading-5 text-muted">These rules are simulated for the demo and aren&apos;t legal advice. Each one links to the official source to check.</p>
+          <p className="mt-4 text-[13px] leading-5 text-muted">{t("rulesDisclaimer")}</p>
         </div>
       </section>
 
       <section>
-        <h2 className="mb-4 px-1 font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">Your transfers</h2>
+        <h2 className="mb-4 px-1 font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">{t("yourTransfers")}</h2>
         <TransferHistory rows={history} />
       </section>
     </div>

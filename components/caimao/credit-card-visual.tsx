@@ -1,22 +1,24 @@
 import type { CreditCard } from "@/lib/types";
 import { formatMoney } from "@/lib/fx/service";
 import { cn, formatDate } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 /** The student's card as a digital card: issuer, last four, used vs limit, due date. */
 export function CreditCardVisual({ card, className }: { card: CreditCard; className?: string }) {
   const utilisation = card.current_balance / card.credit_limit;
   const issuer = card.issuer.replace(/ Student Credit Card$/i, "");
+  const t = useTranslations("CreditCardVisual");
   return (
     <div
       className={cn("cm-premium cm-ring relative isolate aspect-[1.586/1] w-full max-w-[400px] overflow-hidden rounded-[24px] p-6 shadow-float", className)}
       role="img"
-      aria-label={`${card.issuer} ending ${card.last4}: ${formatMoney(card.current_balance, card.currency)} used of ${formatMoney(card.credit_limit, card.currency)}, payment due ${formatDate(card.payment_due_date)}`}
+      aria-label={t("ariaLabel", { issuer: card.issuer, last4: card.last4, used: formatMoney(card.current_balance, card.currency), limit: formatMoney(card.credit_limit, card.currency), due: formatDate(card.payment_due_date) })}
     >
       <div className="cm-dots pointer-events-none absolute inset-0 -z-10 opacity-40" />
       <div className="flex items-start justify-between">
         <div>
           <div className="font-display text-[19px] font-extrabold leading-tight">{issuer}</div>
-          <div className="text-[13px] text-cream">Student Credit</div>
+          <div className="text-[13px] text-cream">{t("studentCredit")}</div>
         </div>
         <svg width="40" height="30" viewBox="0 0 40 30" aria-hidden>
           <rect x="0.5" y="0.5" width="39" height="29" rx="6" fill="#F5B14C" stroke="#d9963a" />
@@ -27,8 +29,8 @@ export function CreditCardVisual({ card, className }: { card: CreditCard; classN
       <div className="absolute inset-x-6 bottom-5">
         <div className="flex items-end justify-between">
           <div>
-            <div className="num font-display text-[21px] font-extrabold">{formatMoney(card.current_balance, card.currency).replace(".00", "")} used</div>
-            <div className="text-[13px] text-cream">of {formatMoney(card.credit_limit, card.currency).replace(".00", "")} · due {formatDate(card.payment_due_date, { day: "numeric", month: "short" })}</div>
+            <div className="num font-display text-[21px] font-extrabold">{t("used", { amount: formatMoney(card.current_balance, card.currency).replace(".00", "") })}</div>
+            <div className="text-[13px] text-cream">{t("limitDue", { limit: formatMoney(card.credit_limit, card.currency).replace(".00", ""), due: formatDate(card.payment_due_date, { day: "numeric", month: "short" }) })}</div>
           </div>
           <div className="num text-right font-display text-[22px] font-extrabold text-gold">{Math.round(utilisation * 100)}%</div>
         </div>

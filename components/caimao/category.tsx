@@ -1,8 +1,12 @@
-import { BookOpen, Bus, Coffee, Film, GraduationCap, Home, Plane, Repeat, ShoppingBasket, Smartphone, Wallet, ArrowLeftRight, type LucideIcon } from "lucide-react";
+import { BookOpen, Bus, Coffee, Film, GraduationCap, Home, Plane, Repeat, ShoppingBasket, ShoppingBag, Smartphone, Stethoscope, Receipt, CircleHelp, Wallet, ArrowLeftRight, type LucideIcon } from "lucide-react";
 import type { TransactionCategory } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-/** One colour and icon per spending category, shared by charts, rows and budget cards. */
+/**
+ * One colour and icon per spending category, shared by charts, rows and budget cards.
+ * Display names live in messages under "Categories" (keyed by TransactionCategory); `label` is
+ * English-only and kept for components not yet migrated.
+ */
 export const CATEGORY: Record<TransactionCategory, { color: string; soft: string; ink: string; Icon: LucideIcon; label: string }> = {
   Income: { color: "#3FAF6C", soft: "#E1F4E8", ink: "#23794A", Icon: Wallet, label: "Income" },
   Accommodation: { color: "#A84A1A", soft: "#FFF1E4", ink: "#A84A1A", Icon: Home, label: "Accommodation" },
@@ -12,6 +16,10 @@ export const CATEGORY: Record<TransactionCategory, { color: string; soft: string
   Entertainment: { color: "#C9874F", soft: "#F7E7D6", ink: "#8A4E1E", Icon: Film, label: "Entertainment" },
   Travel: { color: "#8C5A3C", soft: "#F1E4DA", ink: "#6E4329", Icon: Plane, label: "Travel" },
   Subscriptions: { color: "#E9D8C8", soft: "#F6EADF", ink: "#5C3B2C", Icon: Repeat, label: "Subscriptions" },
+  Shopping: { color: "#D98E5F", soft: "#FBE6D6", ink: "#8A3E12", Icon: ShoppingBag, label: "Shopping" },
+  Healthcare: { color: "#6FA58A", soft: "#E1F0E7", ink: "#2F6B4E", Icon: Stethoscope, label: "Healthcare" },
+  Fees: { color: "#B0705A", soft: "#F5E3DC", ink: "#7A3B26", Icon: Receipt, label: "Fees" },
+  Other: { color: "#CDB9A8", soft: "#F6EADF", ink: "#5C3B2C", Icon: CircleHelp, label: "Other" },
   Transfers: { color: "#D7C6B8", soft: "#F6EADF", ink: "#5C3B2C", Icon: ArrowLeftRight, label: "Transfers" },
 };
 

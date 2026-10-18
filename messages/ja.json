@@ -1,0 +1,1073 @@
+{
+  "Meta": {
+    "description": "留学も、お金の管理も、もっとスマートに。CaiMao は留学生の学費の支払い、送金の比較、通貨の管理をサポートし、すべての支払いはご自身で承認できます。"
+  },
+  "Countries": {
+    "SG": "シンガポール",
+    "GB": "イギリス",
+    "CN": "中国",
+    "VN": "ベトナム",
+    "HK": "香港",
+    "US": "アメリカ",
+    "JP": "日本"
+  },
+  "Permissions": {
+    "level0": {
+      "name": "説明のみ",
+      "text": "CaiMao は説明や質問への回答ができますが、あなたの口座は見られません。"
+    },
+    "level1": {
+      "name": "閲覧",
+      "text": "CaiMao は残高、支出、請求など、あなたの家計を分析できます。"
+    },
+    "level2": {
+      "name": "アシスト",
+      "text": "CaiMao は選択肢を比較し、あなたが確認できるよう支払いを準備できます。"
+    },
+    "level3": {
+      "name": "あなたの承認",
+      "text": "お金が動くのは、あなたが各支払いを確認した後だけです。"
+    }
+  },
+  "SettingsPage": {
+    "metaTitle": "設定",
+    "title": "設定",
+    "sectionsNav": "設定のセクション",
+    "nav": {
+      "personalisation": "パーソナライズ",
+      "ai": "CaiMao の権限",
+      "security": "セキュリティ",
+      "documents": "書類",
+      "demo": "デモ設定"
+    },
+    "personalisation": {
+      "title": "パーソナライズ",
+      "description": "合計残高を表示する通貨を選べます。"
+    },
+    "ai": {
+      "title": "CaiMao のサポート範囲",
+      "description": "支払いには必ずあなたの承認が必要です。"
+    },
+    "demo": {
+      "title": "デモ設定",
+      "description": "新しいデータセットを読み込んで、別の結果を試せます。"
+    },
+    "info": {
+      "data": "データ",
+      "dataSupabase": "Supabase PostgreSQL（行レベルセキュリティ付き）",
+      "dataLocal": "ローカルのデモストア",
+      "ai": "AI",
+      "aiLlm": "Claude ツール呼び出し · {model}",
+      "aiPlanner": "内蔵プランナー（Claude を使うには ANTHROPIC_API_KEY を追加してください）",
+      "rules": "ルール",
+      "rulesValue": "デモ用の模擬規制"
+    },
+    "security": {
+      "title": "セキュリティ",
+      "signInEmail": "メールアドレスとパスワード",
+      "signInDemo": "デモログイン",
+      "signedInAs": "{email} でログイン中",
+      "signedInAsDemo": "{name}（デモ）としてログイン中",
+      "approvalTitle": "すべての支払いにあなたの承認が必要",
+      "approvalText": "CaiMao は支払いを準備しますが、承認できるのはあなただけです。",
+      "maskedTitle": "口座番号は常にマスク表示",
+      "maskedText": "保存・表示されるのは下4桁のみです。",
+      "logTitle": "改ざんできないアクティビティログ",
+      "logText": "すべてのチェックと支払いが記録され、編集することはできません。",
+      "sandboxTitle": "サンドボックスモード",
+      "sandboxText": "このデモでは実際のお金は動きません。"
+    },
+    "documents": {
+      "title": "書類",
+      "description": "CaiMao は各送金ルールに照らしてこれらの書類を確認します。書類を1つ削除すると、送金が「対応が必要」と表示される様子を確認できます。"
+    }
+  },
+  "SettingsForms": {
+    "showBalancesIn": "残高の表示通貨",
+    "permissionsLabel": "CaiMao のサポート範囲",
+    "recommended": "おすすめ",
+    "approvalTitle": "支払いには必ずあなたの承認が必要です。",
+    "approvalText": "この権限を常時オンにすることはできません。支払いはその都度ご自身で確認します。",
+    "documents": {
+      "passport": "パスポートまたは国民IDカード",
+      "universityInvoice": "大学の請求書",
+      "cas": "在籍確認書（CAS）",
+      "sourceOfFunds": "資金源申告書",
+      "admissionLetter": "入学許可書"
+    },
+    "ready": "準備完了",
+    "notAdded": "未追加",
+    "loaded": "読み込み済み",
+    "resetDemo": "デモをリセット",
+    "load": "読み込む",
+    "signOut": "ログアウト"
+  },
+  "ProfilePage": {
+    "metaTitle": "プロフィール",
+    "route": "送金ルート",
+    "currencies": "通貨",
+    "settings": "設定",
+    "links": {
+      "currency": "通貨と地域",
+      "currencySub": "残高は{currency}で表示",
+      "security": "セキュリティ",
+      "securitySub": "ログイン、マスク表示、承認",
+      "documents": "書類",
+      "documentsSub": "{count}件準備完了",
+      "obligations": "支払い予定",
+      "obligationsDue": "{count, plural, one {支払い予定 #件} other {支払い予定 #件}}",
+      "obligationsClear": "すべて対応済み",
+      "banking": "銀行とクレジット",
+      "bankingSub": "カード、信用プロフィール、銀行口座の準備",
+      "advanced": "詳細設定",
+      "advancedSub": "デモシナリオとシステム情報"
+    },
+    "helpTitle": "CaiMao のサポート範囲",
+    "helpDescription": "支払いには必ずあなたの承認が必要です。",
+    "changePermission": "CaiMao の権限を変更",
+    "activityTitle": "アクティビティとセキュリティ",
+    "verifiedTransfer": "検証済みの送金",
+    "completed": "完了",
+    "activityEmpty": "あなたの支払いと、その裏で行われたすべてのチェックがここに表示されます。",
+    "openActivity": "アクティビティとセキュリティを開く"
+  },
+  "BankingPage": {
+    "metaTitle": "銀行とクレジット",
+    "title": "銀行とクレジット",
+    "description": "留学中に{study}での金融プロフィールを築きましょう。情報提供のみを目的としており、CaiMao があなたに代わって申し込みを行うことはありません。",
+    "studyShort": {
+      "GB": "イギリス",
+      "US": "アメリカ"
+    },
+    "nextPayment": "次回の支払い",
+    "inDays": "あと{days}日",
+    "minimum": "最低支払額",
+    "full": "全額：{amount}",
+    "paymentHistory": "支払い履歴",
+    "history": {
+      "onTime": "期日どおりに支払い",
+      "late": "遅延",
+      "noStatement": "明細なし"
+    },
+    "historyLegend": "チェック＝期日どおりに支払い · 丸＝明細未発行",
+    "numberWords": {
+      "zero": "0",
+      "one": "1",
+      "two": "2",
+      "three": "3",
+      "four": "4",
+      "five": "5",
+      "six": "6",
+      "seven": "7",
+      "eight": "8",
+      "nine": "9",
+      "ten": "10"
+    },
+    "dueHeadline": "支払い期日まであと{days}日です。",
+    "dueBody": "期日どおりに支払うことで、良好な支払い履歴を保てます。最低支払額ではなく全額の {amount} を支払えば、利息もかかりません。",
+    "askCredit": "クレジットについて CaiMao に聞く",
+    "profileTitle": "{study}での金融プロフィールを築く",
+    "profileSubtitle": "CaiMao が確認できる情報をもとに作成しています。確認できないステップは未完了のままになります。",
+    "checklist": {
+      "account": "現地の銀行口座",
+      "accountMissing": "まだ連携されていません",
+      "onTime": "請求を期日どおりに支払い",
+      "onTimeDetail": "これまでに{count}回、カードを期日どおりに支払いました",
+      "utilisation": "カード残高の管理",
+      "utilisationDetail": "利用限度額の{percent}%を使用中",
+      "address": "学期中の住所を登録",
+      "addressDetail": "おすすめのステップです。この項目は CaiMao からは確認できません。",
+      "done": "完了",
+      "todo": "未完了",
+      "watch": "要注意",
+      "suggested": "おすすめ"
+    },
+    "disclaimer": "これらは一般的に推奨される習慣ですが、特定の信用スコアや審査通過を保証できるものではありません。一般的な情報であり、金融アドバイスではありません。",
+    "openAccount": "現地の銀行口座を開設"
+  },
+  "BankSetup": {
+    "title": "{country}で銀行口座を準備する",
+    "countryShort": {
+      "GB": "イギリス",
+      "US": "アメリカ"
+    },
+    "readyUndo": "{label}：準備完了。元に戻す",
+    "ready": "準備完了",
+    "markDone": "完了にする",
+    "country": "国",
+    "progress": "{total}件中{done}件準備完了",
+    "disclaimer": "情報提供のみを目的としています。必要書類は銀行ごとに異なるため、事前に各銀行にご確認ください。"
+  },
+  "CreditCardVisual": {
+    "ariaLabel": "{issuer}（末尾 {last4}）：限度額 {limit} のうち {used} を利用中、支払期日 {due}",
+    "studentCredit": "学生クレジット",
+    "used": "{amount} 利用中",
+    "limitDue": "限度額 {limit} · 期日 {due}"
+  },
+  "EvidencePage": {
+    "metaTitle": "アクティビティとセキュリティ",
+    "title": "アクティビティとセキュリティ",
+    "description": "CaiMao が行ったすべての支払いとチェックを順に表示します。ここに記録された内容は編集・削除できません。",
+    "export": "エクスポート",
+    "verification": {
+      "ariaLabel": "最新の検証済み送金",
+      "badge": "検証済みの送金",
+      "completed": "支払い完了",
+      "route": "{recipient} へ {provider} 経由 · {time} · サンドボックス"
+    },
+    "empty": {
+      "title": "まだ支払いはありません",
+      "body": "支払いを承認すると、その領収書と裏で行われたすべてのチェックがここに表示されます。",
+      "action": "CaiMao で学費を支払う"
+    },
+    "stats": {
+      "payments": "支払い",
+      "approvals": "あなたの承認",
+      "ruleChecks": "ルールチェック",
+      "stopped": "停止"
+    },
+    "control": {
+      "title": "あなたが主導権を持つ仕組み",
+      "approvalTitle": "あなたの承認なしでは何も動きません",
+      "approvalText": "CaiMao は支払いを準備できますが、送金されるのはあなたが確認したときだけです。サーバー側でもその承認を再確認します。",
+      "rulesTitle": "ルールは2回チェック",
+      "rulesText": "送金ルールは、CaiMao がルートを提案するときと、支払いを準備するときの2回チェックされます。",
+      "recordTitle": "信頼できる記録",
+      "recordText": "各ステップは、使用したツール、その権限レベル、結果とともに追記専用のログに書き込まれます。"
+    },
+    "timeline": {
+      "ariaLabel": "タイムライン",
+      "payment": "この支払いの経緯",
+      "latest": "最新のアクティビティ"
+    },
+    "technical": {
+      "title": "技術的な監査ログを見る",
+      "summary": "{runs}回のワークフロー実行における{events}件の金融イベント（ツール、権限レベル、結果を含む）",
+      "paymentDetails": "支払いの詳細",
+      "executionsCaption": "サンドボックスでの支払い実行",
+      "standalone": "単独",
+      "auditLog": "技術的な監査ログ",
+      "footnote": "残高やプロフィールの参照などの読み取り操作も記録され、エクスポートに含まれます。監査エントリはデータベース上で追記専用です。"
+    },
+    "executionColumns": {
+      "transactionId": "取引ID",
+      "status": "ステータス",
+      "timestamp": "日時",
+      "provider": "送金サービス",
+      "sent": "送金額",
+      "received": "受取額",
+      "fee": "手数料",
+      "recipient": "受取人"
+    },
+    "auditColumns": {
+      "timestamp": "日時",
+      "actor": "実行者",
+      "action": "アクション",
+      "tool": "ツール",
+      "level": "レベル",
+      "approval": "承認",
+      "result": "結果",
+      "details": "詳細"
+    },
+    "actors": {
+      "aiAgent": "AI エージェント",
+      "user": "ユーザー",
+      "system": "システム"
+    },
+    "approvalStatus": {
+      "NOT_REQUIRED": "不要",
+      "PENDING": "保留中",
+      "APPROVED": "承認済み",
+      "DECLINED": "拒否"
+    },
+    "results": {
+      "SUCCESS": "成功",
+      "FAILURE": "失敗",
+      "BLOCKED": "ブロック済み"
+    }
+  },
+  "ActivityTimeline": {
+    "empty": "まだ表示する内容はありません。",
+    "done": "完了",
+    "stopped": "停止",
+    "you": "あなた",
+    "yourApproval": "あなたの承認",
+    "permissionLevel": "権限レベル {level}"
+  },
+  "AuditActions": {
+    "TRANSFER_RULE_CHECK": "送金要件を確認",
+    "TRANSFER_RULE_CHECK_BLOCKED": "送金要件を満たしていません",
+    "QUOTE_RETRIEVAL": "見積もりを取得",
+    "COST_CALCULATION": "送金サービスを比較",
+    "TRANSFER_PREPARED": "送金の確認準備が完了",
+    "TRANSFER_REJECTED": "準備前に送金を停止",
+    "USER_APPROVAL": "{name}が承認",
+    "USER_DECLINED": "{name}がキャンセル",
+    "TRANSFER_EXECUTED": "支払いを実行",
+    "TRANSFER_FAILED": "支払いに失敗",
+    "BALANCE_UPDATED": "残高を更新",
+    "OBLIGATION_PAID": "学費を支払い済みに設定",
+    "PERMISSION_DENIED": "AI の権限設定によりブロック",
+    "STATEMENT_UPLOADED": "明細をアップロード",
+    "STATEMENT_PARSED": "明細を読み取り",
+    "TRANSACTIONS_EXTRACTED": "取引を抽出",
+    "USER_CONFIRMED_IMPORT": "{name}がインポートを確認",
+    "TRANSACTION_RECATEGORISED": "{name}がカテゴリを変更",
+    "SPENDING_ANALYSIS_COMPLETED": "支出を分析",
+    "STATEMENT_DELETED": "明細を削除",
+    "RULE_QUERY": "ルールを検索",
+    "RULE_SOURCE_RETRIEVED": "公式情報源を取得",
+    "RULE_EVALUATED": "ルールを評価",
+    "CLARIFICATION_REQUESTED": "詳細情報をリクエスト",
+    "RESULT_PRESENTED": "結果を表示",
+    "COUNTRY_REQUIREMENTS_RETRIEVED": "口座開設の要件を取得",
+    "BANK_OPTIONS_RETRIEVED": "銀行の選択肢を取得",
+    "ELIGIBILITY_CHECKED": "利用資格を確認",
+    "ACTION_PLAN_CREATED": "準備プランを作成",
+    "SETUP_STEP_UPDATED": "準備ステップを更新"
+  },
+  "Status": {
+    "COMPLIANT": "適合",
+    "ACTION_REQUIRED": "対応が必要",
+    "BLOCKED": "ブロック済み",
+    "PAYMENT_DUE": "支払い期限",
+    "UPCOMING": "予定",
+    "PROCESSING": "処理中",
+    "PAID": "支払い済み",
+    "BEST_VALUE": "最もお得",
+    "COMPLETED": "完了",
+    "FAILED": "失敗",
+    "PENDING_APPROVAL": "承認待ち",
+    "APPROVED": "承認済み",
+    "EXECUTING": "送金中",
+    "CANCELLED": "キャンセル済み",
+    "REJECTED": "却下",
+    "DEMO_DATA": "デモデータ",
+    "ESTIMATE": "概算",
+    "SANDBOX": "サンドボックス",
+    "UNAVAILABLE": "利用不可"
+  },
+  "ComplianceBadge": {
+    "compliant": "送金可能",
+    "actionRequired": "対応が必要",
+    "blocked": "ブロック済み"
+  },
+  "ChecklistCard": {
+    "progress": "{total}件中{done}件準備完了",
+    "state": {
+      "done": "完了",
+      "todo": "未完了",
+      "blocked": "ブロック済み",
+      "info": "参考情報"
+    }
+  },
+  "TransferSummaryCard": {
+    "youSend": "送金額",
+    "theyReceive": "受取額",
+    "routeAria": "{from}から{to}へ"
+  },
+  "SuccessState": {
+    "tuitionPaid": "学費の支払い完了",
+    "paymentSent": "送金完了",
+    "srDescription": "サンドボックスでの支払いが完了しました",
+    "to": "<b>{recipient}</b> 宛て",
+    "expected": "着金予定 <b>{arrival}</b>",
+    "rows": {
+      "transaction": "取引",
+      "status": "ステータス",
+      "paidFrom": "支払元",
+      "newBalance": "新しい残高",
+      "via": "経由",
+      "when": "日時"
+    },
+    "savedSteps": "CaiMao はすべてのステップをアクティビティとセキュリティに保存しました。",
+    "viewReceipt": "領収書を見る",
+    "done": "完了"
+  },
+  "CompliancePanel": {
+    "source": "出典：",
+    "lastVerified": "最終確認日 {date}",
+    "simulatedRule": "模擬ルール",
+    "noRulesCorridor": "この送金ルートのルールが登録されていないため、CaiMao は確認を完了できません。",
+    "outcome": {
+      "passed": "クリア",
+      "documentsNeeded": "書類が必要",
+      "blocked": "ブロック済み",
+      "forInformation": "参考情報"
+    },
+    "risk": "{level, select, LOW {低リスク} MEDIUM {中リスク} HIGH {高リスク} other {リスク：{level}}}",
+    "onFile": "（提出済み）",
+    "missingDoc": "（未提出）",
+    "titleCompliant": "送金要件を確認しました",
+    "titleBlocked": "この送金は実行できません",
+    "titleActionRequired": "先にいくつか対応が必要です",
+    "rulesPassed": "{from} → {to}：{total}件中{passed}件のルールをクリア",
+    "missing": "不足：{names}",
+    "documentsComplete": "書類はすべて揃っています（{count}件）",
+    "hideRules": "ルールを隠す",
+    "showRules": "確認したルールを表示",
+    "noRules": "この送金ルートのルールは登録されていません。",
+    "any": "指定なし",
+    "documents": "書類：{names}"
+  },
+  "AgentCards": {
+    "paid": "支払い済み",
+    "availableFunds": "利用可能な資金",
+    "enoughToCover": "支払いに十分です",
+    "needsAbout": "あと約 {amount} 必要です",
+    "transferRequirements": "送金要件",
+    "checked": "確認済み",
+    "documentsReady": "{total}件中{ready}件の書類が準備完了",
+    "rulesMet": "{count}件のルールを満たしています",
+    "ruleBlocks": "送金ルールによりこの支払いはブロックされています",
+    "missing": "不足：{names}",
+    "cannotClear": "このルートはまだ確認を完了できません",
+    "ready": "準備完了",
+    "blocked": "ブロック済み",
+    "actionNeeded": "対応が必要",
+    "hideRules": "ルールを隠す",
+    "seeRules": "確認した{count}件のルールを見る",
+    "rulesFor": "{corridor} のルール",
+    "simulatedRules": "模擬ルール",
+    "receives": "{recipient} の受取額",
+    "instruction": {
+      "readyToReview": "送金の確認準備ができました",
+      "tuitionPaid": "学費の支払い完了",
+      "transferSent": "送金完了",
+      "transferCancelled": "送金をキャンセルしました",
+      "transfer": "送金",
+      "from": "送金元",
+      "provider": "送金サービス",
+      "fee": "手数料",
+      "arrives": "着金",
+      "notePending": "まだ何も送金されていません。お金が動くのは、あなたが確認した後だけです。",
+      "noteCompleted": "あなたの承認後、サンドボックスで送金されました。",
+      "noteCancelled": "お金は動いていません。",
+      "noteFailed": "サンドボックスでの支払いに失敗しました。残高は変わっていません。",
+      "reviewTransfer": "送金内容を確認",
+      "viewReceipt": "領収書を見る"
+    },
+    "blockedCard": {
+      "actionRequired": "先にいくつか対応が必要です",
+      "blocked": "この送金は実行できません"
+    },
+    "spending": {
+      "in": "入金",
+      "spent": "支出",
+      "saved": "貯蓄",
+      "leftAfterBills": "今後の支払い後、約<b>{amount}</b>が残ります。"
+    },
+    "bankingIn": "{country}での銀行口座",
+    "openChecklist": "チェックリストをすべて開く"
+  },
+  "ConfirmTransfer": {
+    "execSteps": {
+      "recordingApproval": "承認を記録しています",
+      "sendingPayment": "支払いを送金しています",
+      "updatingBalance": "残高を更新しています",
+      "savingReceipt": "領収書を保存しています"
+    },
+    "docs": {
+      "identity": {
+        "ready": "本人確認済み",
+        "needed": "本人確認書類が必要"
+      },
+      "tuitionInvoice": {
+        "ready": "学費の請求書 準備完了",
+        "needed": "学費の請求書が必要"
+      },
+      "sourceOfFunds": {
+        "ready": "資金源の申告 準備完了",
+        "needed": "資金源申告書が必要"
+      },
+      "universityReference": {
+        "ready": "大学の参照番号 準備完了",
+        "needed": "大学の参照番号が必要"
+      },
+      "admissionLetter": {
+        "ready": "入学許可書 準備完了",
+        "needed": "入学許可書が必要"
+      }
+    },
+    "docReady": "{name} 準備完了",
+    "docNeeded": "{name}が必要",
+    "stateReady": "準備完了",
+    "stateNeeded": "必要",
+    "stateBlocked": "ブロック済み",
+    "stateOk": "OK",
+    "overLimit": "送金限度額を超えています",
+    "withinLimit": "送金限度額の範囲内です",
+    "errorDefault": "送金を完了できませんでした。",
+    "errorNetwork": "ネットワークエラーです。もう一度お試しになる前に、アクティビティとセキュリティを確認してください。",
+    "sandbox": "サンドボックス",
+    "readyToSend": "送金しますか？",
+    "purpose": "目的：{purpose}",
+    "universityTuition": "大学の学費",
+    "requirementsChecked": "送金要件を確認しました",
+    "cannotGoAhead": "この送金は実行できません",
+    "thingsNeeded": "先にいくつか対応が必要です",
+    "everythingInPlace": "この支払いに必要なものはすべて揃っています。",
+    "sortTheseOut": "これらを解決してから、もう一度 CaiMao に準備を依頼してください。",
+    "hideRules": "ルールを隠す",
+    "seeAllRules": "確認した{count}件のルールをすべて見る",
+    "reviewTransfer": "送金内容を確認",
+    "cancelTransfer": "送金をキャンセル",
+    "rateExpired": "このレートは有効期限が切れました。もう一度 CaiMao に送金の準備を依頼してください。",
+    "noLongerConfirmable": "この送金は確認できなくなりました。",
+    "requirements": "要件",
+    "reviewYourTransfer": "送金内容の確認",
+    "preparedNothingSent": "CaiMao が準備しました。まだ何も送金されていません。",
+    "receives": "{recipient} の受取額",
+    "rows": {
+      "recipient": "受取人",
+      "from": "送金元",
+      "provider": "送金サービス",
+      "fee": "手数料",
+      "exchangeRate": "為替レート",
+      "arrival": "着金",
+      "requirements": "要件",
+      "documents": "書類"
+    },
+    "midMarket": "仲値 {rate}",
+    "checked": "確認済み",
+    "notMet": "未充足",
+    "complete": "完了",
+    "completeCount": "完了（{count}件）",
+    "paymentFailed": "支払いに失敗しました",
+    "paymentNotSent": "支払いは送金されていません",
+    "iReviewed": "この送金内容を確認しました",
+    "confirmPay": "確認して支払う",
+    "cancel": "キャンセル",
+    "alwaysApproval": "支払いには必ずあなたの承認が必要です。",
+    "rateHeld": "レート保証：残り {time}",
+    "close": "閉じる"
+  },
+  "Copilot": {
+    "prompts": {
+      "payTuition": "学費を支払いたい",
+      "compareRates": "レートを比較したい",
+      "canIAfford": "支払う余裕はありますか？",
+      "checkTransferRules": "送金ルールを確認したい",
+      "compareFxRates": "為替レートを比較したい",
+      "sendMoneyOverseas": "海外に送金したい",
+      "reviewSpending": "支出を見直したい",
+      "buildCredit": "クレジットの実績を作りたい",
+      "openBankAccount": "現地の銀行口座を開設したい"
+    },
+    "starters": {
+      "payTuition": {
+        "title": "学費を支払う",
+        "sub": "最適なルートを見つけ、承認できる状態まで準備します"
+      },
+      "compareRates": {
+        "title": "レートを比較",
+        "sub": "送金サービスごとに実際に届く金額を確認"
+      },
+      "checkTransferRules": {
+        "title": "送金ルールを確認",
+        "sub": "シンガポールとイギリスの間で適用されるルール"
+      },
+      "reviewSpending": {
+        "title": "支出を見直す",
+        "sub": "今月はいつもと比べてどうか"
+      }
+    },
+    "tools": {
+      "getUserProfile": {
+        "running": "あなたの設定を確認しています",
+        "done": "プロフィールを読み込みました"
+      },
+      "getObligations": {
+        "running": "支払い予定を確認しています",
+        "done": "支払い予定を確認しました"
+      },
+      "getAccounts": {
+        "running": "口座を確認しています",
+        "done": "口座を確認しました"
+      },
+      "getFXRate": {
+        "running": "本日のレートを取得しています",
+        "done": "本日のレートを取得しました"
+      },
+      "getTransferRules": {
+        "running": "送金要件を確認しています",
+        "done": "送金要件を確認しました"
+      },
+      "getRemittanceQuotes": {
+        "running": "見積もりを取得しています",
+        "done": "送金サービスの見積もりを取得しました"
+      },
+      "calculateTransferCost": {
+        "running": "実質コストを比較しています",
+        "done": "実質コストを比較しました"
+      },
+      "createTransferInstruction": {
+        "running": "送金を準備しています",
+        "done": "送金を準備しました"
+      },
+      "getTransactions": {
+        "running": "支出を確認しています",
+        "done": "支出を確認しました"
+      },
+      "getCreditSummary": {
+        "running": "クレジットカードを確認しています",
+        "done": "クレジットカードを確認しました"
+      },
+      "getBankSetupChecklist": {
+        "running": "チェックリストを読み込んでいます",
+        "done": "チェックリストを読み込みました"
+      },
+      "USER_APPROVAL": {
+        "running": "承認を記録しています",
+        "done": "支払いを承認しました"
+      },
+      "executeSandboxTransfer": {
+        "running": "支払いを送金しています",
+        "done": "支払いを送金しました（サンドボックス）"
+      },
+      "updateAccountBalance": {
+        "running": "残高を更新しています",
+        "done": "残高を更新しました"
+      },
+      "markObligationPaid": {
+        "running": "学費を支払い済みにしています",
+        "done": "学費を支払い済みにしました"
+      },
+      "createAuditLog": {
+        "running": "領収書を保存しています",
+        "done": "アクティビティとセキュリティに保存しました"
+      }
+    },
+    "errors": {
+      "unreachable": "CaiMao に接続できませんでした。",
+      "generic": "問題が発生しました。"
+    },
+    "steps": {
+      "approvalRecorded": "承認を記録しました",
+      "approvalSummary": "確認画面であなたが承認しました",
+      "executing": "サンドボックス送金を実行中",
+      "executeSummary": "{txId} · COMPLETED · 参照番号 {ref}",
+      "updatingBalances": "残高を更新中",
+      "markingPaid": "支払い予定を支払い済みに設定中",
+      "writingAudit": "監査ログを書き込み中",
+      "auditSummary": "承認、実行、残高、支払い予定のイベントを記録しました"
+    },
+    "completed": {
+      "sent": "完了しました{tuition, select, yes {。学費のお支払いが済みました 🎓} other {}}。**{amount}** を {provider} 経由で {recipient} に送金中です（取引 **{txId}**）。",
+      "verified": "再確認しました：{account} の残高は現在 **{balance}** です{paid, select, yes {。また、{invoiceRef} は **支払い済み** になっています} other {}}。すべての記録はアクティビティとセキュリティで確認できます。"
+    },
+    "declined": "承知しました。キャンセルしたので、**お金は動いていません**。準備ができたら、いつでもまた声をかけてください。",
+    "header": {
+      "working": "処理中…",
+      "idle": "すべての支払いはあなたが承認します。",
+      "builtInPlanner": "内蔵プランナー",
+      "newChat": "新しいチャット"
+    },
+    "empty": {
+      "greeting": "こんにちは、{firstName}さん。何をお手伝いしましょうか？",
+      "intro": "口座と送金ルールを確認し、送金サービスを比較して、支払いを準備します。お金が動く前に、すべての支払いをあなたが承認します。"
+    },
+    "composer": {
+      "moreActions": "その他の操作",
+      "placeholder": "お金のことを CaiMao に質問…",
+      "messageLabel": "CaiMao にメッセージ",
+      "send": "送信"
+    },
+    "activity": {
+      "failedStep": "問題が発生しました",
+      "comparedProviders": "{count}社の送金サービスを比較しました",
+      "thinking": "考え中…",
+      "done": "完了",
+      "failed": "失敗",
+      "hideDetails": "詳細を隠す",
+      "showDetails": "CaiMao が確認した内容を見る（{count}件）"
+    }
+  },
+  "WorkflowRail": {
+    "phases": {
+      "Understand": "理解",
+      "Analyse": "分析",
+      "Check_compliance": "適合性チェック",
+      "Compare": "比較",
+      "Recommend": "提案",
+      "Obtain_approval": "承認の取得",
+      "Execute": "実行",
+      "Verify": "検証"
+    },
+    "stoppedAt": "{phase, select, Understand {理解} Analyse {分析} Check_compliance {適合性チェック} Compare {比較} Recommend {提案} Obtain_approval {承認の取得} Execute {実行} Verify {検証} other {{phase}}}の段階で停止しました",
+    "allComplete": "すべてのステップが完了しました",
+    "progressLabel": "CaiMao の進捗",
+    "state": {
+      "done": "（完了）",
+      "active": "（進行中）",
+      "stopped": "（停止）",
+      "pending": "（未開始）"
+    }
+  },
+  "PermissionChip": {
+    "title": "権限レベル {level}：{name}",
+    "levels": {
+      "L0": {
+        "name": "説明のみ"
+      },
+      "L1": {
+        "name": "閲覧"
+      },
+      "L2": {
+        "name": "アシスト"
+      },
+      "L3": {
+        "name": "あなたの承認"
+      }
+    }
+  },
+  "Categories": {
+    "Income": "収入",
+    "Accommodation": "住居",
+    "Food": "食費",
+    "Transportation": "交通",
+    "Education": "教育",
+    "Entertainment": "娯楽",
+    "Travel": "旅行",
+    "Subscriptions": "サブスクリプション",
+    "Shopping": "ショッピング",
+    "Healthcare": "医療",
+    "Fees": "手数料",
+    "Other": "その他",
+    "Transfers": "送金"
+  },
+  "TransfersPage": {
+    "metaTitle": "送金",
+    "title": "送金する",
+    "description": "承認する前に、お金の流れをはっきりと。CaiMao は受取人が実際に受け取る金額で送金サービスを比較します。",
+    "accountFallback": "口座",
+    "tuitionDueHeadline": "学費のお支払いですか？ここからは私にお任せください。",
+    "tuitionDueBody": "{payee} への {amount}、期限まであと{days}日です。ルールを確認し、最適なルートを選んで、承認できるように準備します。",
+    "payTuition": "学費を支払う",
+    "tuitionPaidHeadline": "学費の支払いが完了しました。",
+    "tuitionPaidBody": "取引 {transactionId}（{provider} 経由）。",
+    "viewReceipt": "領収書を見る",
+    "requirementsTitle": "送金要件",
+    "requirementsBody": "CaiMao のルールデータベースより。CaiMao が引用できるのは、ここに掲載されているルールのみです。",
+    "simulatedRules": "模擬ルール",
+    "from": "送金元",
+    "to": "送金先",
+    "showRules": "ルールを表示",
+    "rulesDisclaimer": "これらのルールはデモ用の模擬データであり、法的助言ではありません。各ルールには、確認用の公式情報源へのリンクがあります。",
+    "yourTransfers": "あなたの送金"
+  },
+  "TransferCalculator": {
+    "calculatorLabel": "送金計算ツール",
+    "youSend": "送金額",
+    "sendCurrency": "送金通貨",
+    "swapCurrencies": "通貨を入れ替える",
+    "feeLine": "手数料 {fee}",
+    "feeNone": "なし",
+    "updating": "更新中",
+    "theyReceive": "受取額",
+    "receiveCurrency": "受取通貨",
+    "via": "<strong>{provider}</strong> 経由",
+    "estimatedArrival": "着金予定：{arrival}",
+    "continue": "CaiMao で続ける",
+    "estimatesNote": "デモ用レートでの概算です。CaiMao は何かを準備する前に送金ルールを確認します。",
+    "providersLabel": "送金サービス",
+    "compareProviders": "送金サービスを比較",
+    "compareProvidersBody": "実際に届く金額の順に表示しています。手数料無料が最安とは限りません。"
+  },
+  "TransferProviderCard": {
+    "arrival": {
+      "label": "着金",
+      "today": "本日",
+      "nextBusinessDay": "翌営業日",
+      "businessDays": "{days}営業日"
+    },
+    "bestValue": "最もお得",
+    "noTransferFee": "送金手数料無料",
+    "recipientGets": "受取額",
+    "fee": "手数料",
+    "none": "なし",
+    "rate": "レート",
+    "sendForArrive": "<amt>{send}</amt> を送金すると {receive} が届きます",
+    "spreadNote": "コストは為替レートに含まれています（仲値より{pct}%低いレート）。",
+    "advantage": "{provider} より {amount} 多く受取 · レート {rate}",
+    "hideFullComparison": "詳細な比較を隠す",
+    "seeFullComparison": "詳細な比較を見る",
+    "bestOption": "最適な選択肢",
+    "moreArrives": "{provider} より約 {amount} 多く届きます。",
+    "mostArrives": "このルートが最も多く届きます。",
+    "estimateNote": "本日のデモ用レートでの概算です。",
+    "youSend": "送金額",
+    "preparePayment": "支払いを準備",
+    "hideOtherRoutes": "他のルートを隠す",
+    "compareAllRoutes": "全{count}件のルートを比較"
+  },
+  "QuotesTable": {
+    "tableLabel": "送金サービス比較表",
+    "provider": "送金サービス",
+    "fxRate": "為替レート",
+    "fxSpread": "為替スプレッド",
+    "fee": "手数料",
+    "totalCost": "総コスト",
+    "recipientGets": "受取額",
+    "settlement": "着金",
+    "sendToDeliver": "<send></send> を送金して <deliver></deliver> を届ける",
+    "footnote": "{dst}への共通の送金額 <amount></amount> で比較しています。仲値 <rate></rate>（{source}、{asOf}）。総コスト＝手数料＋為替スプレッド＋その他の費用。お支払いまでは概算です。"
+  },
+  "TransferHistory": {
+    "emptyTitle": "まだ送金はありません",
+    "emptyBody": "CaiMao が送金を準備すると、ここに表示されます。",
+    "expired": "期限切れ",
+    "review": "確認する"
+  },
+  "ObligationsPage": {
+    "metaTitle": "支払い予定",
+    "title": "支払い予定",
+    "description": "支払うべきものを日付順に表示し、それぞれの支払い状況も確認できます。",
+    "paid": "支払い済み",
+    "dueSoon": "まもなく期限 · {due}",
+    "due": {
+      "label": "期限",
+      "today": "本日期限",
+      "todayLower": "本日期限",
+      "inDays": "{days, plural, one {期限まであと#日} other {期限まであと#日}}",
+      "inDaysLower": "{days, plural, one {期限まであと#日} other {期限まであと#日}}",
+      "overdue": "{days, plural, one {期限を#日超過} other {期限を#日超過}}"
+    },
+    "tuitionLine": "学費 · {university}",
+    "invoice": "請求書",
+    "purpose": "目的",
+    "country": "国",
+    "paidOn": "{date}に支払い済み",
+    "viaProvider": "{provider} 経由 · <mono>{transactionId}</mono>",
+    "viewReceipt": "領収書を見る",
+    "payWithCaiMao": "CaiMao で支払う",
+    "filterLabel": "支払い予定を絞り込む",
+    "tabs": {
+      "upcoming": "今後",
+      "paid": "支払い済み",
+      "all": "すべて"
+    },
+    "emptyPaidTitle": "まだ支払いはありません",
+    "emptyTitle": "すべて対応済みです",
+    "emptyPaidBody": "CaiMao で支払ったものがここに表示されます。",
+    "emptyBody": "待機中の請求はありません。次の請求は CaiMao がお知らせします。"
+  },
+  "BudgetPage": {
+    "metaTitle": "予算",
+    "eyebrow": "予算",
+    "title": "あなたの{month}",
+    "description": "今月の状況を、評価せずにわかりやすく表示します。カテゴリは加盟店ごとに自動で分類されます。",
+    "insights": {
+      "spentVsUsual": "今月の{category}の支出は、いつもより約 {currency} {amount} {direction, select, more {多く} other {少なく}}なっています。",
+      "steady": "{category}はいつもどおりの金額です。",
+      "afterBills": "今後予定されている {bills} の支払いを済ませても、口座全体で約 {currency} {amount} が残ります。"
+    },
+    "windowLine": "過去30日間 · {start} – {end}",
+    "spent": "支出",
+    "leftInPlan": "予算の残り",
+    "ofPlanTotal": "予算 {plan} 中",
+    "moneyIn": "入金",
+    "thisMonth": "今月",
+    "netSaved": "純貯蓄額",
+    "afterBillsPaid": "{amount} の支払い後",
+    "afterSpending": "支出後",
+    "talkItThrough": "CaiMao に相談する",
+    "byCategory": "カテゴリ別の支出",
+    "shareOfSpending": "支出の{pct}%",
+    "pctOfPlan": "予算 {plan} の{pct}%",
+    "over": "{currency} {amount} 超過",
+    "noPlan": "予算未設定",
+    "vsUsual": "いつもより {currency} {amount} {direction, select, more {多い} other {少ない}}",
+    "billsComingUp": "今後の支払い",
+    "nothingDue": "今後30日間に期限のある支払いはありません。",
+    "due": {
+      "today": "本日期限",
+      "inDays": "{days, plural, one {期限まであと#日} other {期限まであと#日}}",
+      "overdue": "{days, plural, one {期限を#日超過} other {期限を#日超過}}"
+    },
+    "freeAfter": "これらの支払い後、約<b>{amount}</b>を自由に使えます。",
+    "transactions": "取引",
+    "showAll": "すべて表示（{count}件）"
+  },
+  "SpendingDonut": {
+    "spent": "支出"
+  },
+  "Nav": {
+    "labels": {
+      "home": "ホーム",
+      "caimao": "CaiMao",
+      "send": "送金",
+      "budget": "予算",
+      "bills": "支払い",
+      "credit": "クレジット",
+      "settings": "設定",
+      "activity": "アクティビティ",
+      "transfers": "送金",
+      "profile": "プロフィール"
+    },
+    "names": {
+      "home": "ホーム",
+      "caimao": "CaiMao アシスタント",
+      "transfers": "送金",
+      "budget": "予算",
+      "bills": "支払い予定",
+      "banking": "銀行とクレジット",
+      "settings": "設定",
+      "activity": "アクティビティとセキュリティ",
+      "profile": "プロフィール"
+    },
+    "dueCount": "期限 {count}件",
+    "mainNavigation": "メインナビゲーション",
+    "caimaoHome": "CaiMao ホーム",
+    "profileOf": "プロフィール：{name}",
+    "sandbox": "サンドボックス"
+  },
+  "HomePage": {
+    "metaTitle": "ホーム",
+    "notifications": "通知：支払い期限 {count}件",
+    "profile": "プロフィール",
+    "insight": {
+      "dueHeadline": "学費の支払い期限まであと{days}日です。",
+      "betterRoute": "{payee}に約 {currency} {amount} 多く届く可能性のあるルートを見つけました。{source}の残高で足ります。",
+      "enoughToCover": "{source}の残高で支払えます。",
+      "notCovered": "{source}の残高ではまだ足りません。入金していただければ、最適なルートを探します。",
+      "yourAccount": "あなたの口座",
+      "yourHomeAccount": "母国の口座",
+      "estimateNote": "本日のデモ用レートで、最もコストの高いルートと比べた概算です。最終的な金額はお支払い時に確定します。",
+      "seeOptions": "選択肢を見る",
+      "paidHeadline": "学費の支払いは完了しています。",
+      "onItsWay": "{amount} を {recipient} に送金中です。",
+      "paymentComplete": "学費の支払いが完了しました。",
+      "viewReceipt": "領収書を見る",
+      "viewTransfer": "送金を見る",
+      "nothingDue": "現在、期限の近い支払いはありません。",
+      "askMe": "レート、送金ルール、支出について何でも聞いてください。"
+    },
+    "askCaimao": "CaiMao に聞く",
+    "actions": {
+      "sendMoney": "送金する",
+      "payTuition": "学費を支払う",
+      "exchange": "両替"
+    },
+    "yourAccounts": "あなたの口座",
+    "comingUp": "今後の予定",
+    "payWithCaimao": "CaiMao で支払う",
+    "thisMonth": "今月",
+    "budgetLink": "予算",
+    "thirtyDays": "30日間",
+    "recentActivity": "最近のアクティビティ",
+    "categories": {
+      "Income": "収入",
+      "Accommodation": "住居",
+      "Food": "食費",
+      "Transportation": "交通",
+      "Education": "教育",
+      "Entertainment": "娯楽",
+      "Travel": "旅行",
+      "Subscriptions": "サブスクリプション",
+      "Shopping": "ショッピング",
+      "Healthcare": "医療",
+      "Fees": "手数料",
+      "Other": "その他",
+      "Transfers": "送金"
+    }
+  },
+  "HeroBalanceCard": {
+    "totalBalance": "合計残高",
+    "across": "{count}口座の合計 · 仲値のデモ用レート",
+    "showBalance": "残高を表示",
+    "hideBalance": "残高を隠す"
+  },
+  "QuickActionGrid": {
+    "quickActions": "クイックアクション"
+  },
+  "ObligationTimeline": {
+    "today": "今日",
+    "tomorrow": "明日",
+    "daysLate": "{days}日超過",
+    "inDays": "{days}日後",
+    "paid": "支払い済み",
+    "dueSoon": "まもなく期限"
+  },
+  "MascotInsightCard": {
+    "insight": "CaiMao のインサイト"
+  },
+  "Greeting": {
+    "hello": "こんにちは、{name}さん",
+    "morning": "おはようございます、{name}さん",
+    "afternoon": "こんにちは、{name}さん",
+    "evening": "こんばんは、{name}さん"
+  },
+  "IntroScreen": {
+    "demoError": "デモを開始できませんでした。もう一度お試しください。",
+    "headline": "留学も、お金の管理も、もっとスマートに。",
+    "intro": "CaiMao なら、学費の支払い、送金の比較、複数通貨の保有、国をまたいだ請求の管理まで、すべてひとつの場所で行えます。",
+    "featureArrives": "届く金額が見える",
+    "featureLegwork": "面倒な作業は CaiMao にお任せ",
+    "featureApprove": "すべての支払いはあなたが承認",
+    "getStarted": "はじめる",
+    "haveAccount": "すでにアカウントをお持ちの方",
+    "disclaimer": "コンペティション用プロトタイプ · サンドボックス決済のみ · 規制データは模擬データです"
+  },
+  "WelcomePage": {
+    "metaTitle": "ようこそ"
+  },
+  "LoginPage": {
+    "metaTitle": "ログイン",
+    "headline": "留学も、お金の管理も、もっとスマートに。",
+    "pitch": "国境を越えて学費を支払い、届く金額を正確に把握し、主導権は自分の手に。面倒な作業は CaiMao が行い、すべての支払いはあなたが承認します。",
+    "disclaimer": "コンペティション用プロトタイプ · サンドボックス決済のみ · 規制データは模擬データです",
+    "createAccount": "アカウントを作成",
+    "welcomeBack": "おかえりなさい",
+    "memoryMode": "ローカルデモモードです。デモ用の学生としてログインすると、すべての機能を試せます。",
+    "supabaseMode": "CaiMao にログインしてください。新しいアカウントにはデモデータが用意されています。"
+  },
+  "LoginForm": {
+    "demoRoute": "シンガポール → イギリス",
+    "signInFailed": "ログインに失敗しました。",
+    "continueAs": "{name}として続ける",
+    "configureSupabase": "行レベルセキュリティ付きの実際のアカウントを使うには、.env.local で Supabase を設定してください。",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "signIn": "ログイン",
+    "signUpFailed": "登録に失敗しました。",
+    "checkInbox": "受信トレイを確認してメールアドレスを認証してから、ログインしてください。",
+    "createAccount": "アカウントを作成"
+  },
+  "Brand": {
+    "markAlt": "メガネをかけて本を読む CaiMao の猫と、通貨の間を流れるコイン",
+    "lockupAlt": "CaiMao：メガネをかけ、開いた本を持つ白い学者風の猫。ドル、ルーブル、ユーロ、人民元の間をコインが流れ、その下に CaiMao のロゴタイプ"
+  },
+  "BaseCurrencySelect": {
+    "showBalancesIn": "残高の表示通貨"
+  },
+  "ShowMore": {
+    "showLess": "表示を減らす"
+  },
+  "AccountCard": {
+    "multiCurrencyWallet": "複数通貨ウォレット"
+  },
+  "TransactionRow": {
+    "categories": {
+      "Income": "収入",
+      "Accommodation": "住居",
+      "Food": "食費",
+      "Transportation": "交通",
+      "Education": "教育",
+      "Entertainment": "娯楽",
+      "Travel": "旅行",
+      "Subscriptions": "サブスクリプション",
+      "Shopping": "ショッピング",
+      "Healthcare": "医療",
+      "Fees": "手数料",
+      "Other": "その他",
+      "Transfers": "送金"
+    }
+  },
+  "PageHeader": {
+    "seeAll": "すべて見る"
+  },
+  "Dialog": {
+    "close": "閉じる"
+  }
+}

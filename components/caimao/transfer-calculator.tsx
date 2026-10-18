@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ArrowDownUp, Clock3, Loader2 } from "lucide-react";
 import type { Currency } from "@/lib/types";
 import { CURRENCY_DECIMALS, formatMoney, formatRate } from "@/lib/fx/service";
@@ -9,13 +10,16 @@ import { CurrencySelector } from "./currency-selector";
 import { ProviderComparison, arrivalLabel } from "./transfer-provider-card";
 import { cn } from "@/lib/utils";
 
-const COUNTRY_WORD: Record<Currency, string> = { SGD: "Singapore", GBP: "the UK", USD: "the US", CNY: "China", HKD: "Hong Kong", VND: "Vietnam" };
+// Used only to build the assistant prompt in the link below (data for the agent, not UI copy).
+const COUNTRY_WORD: Record<Currency, string> = { SGD: "Singapore", GBP: "the UK", USD: "the US", CNY: "China", HKD: "Hong Kong", VND: "Vietnam", JPY: "Japan" };
 
 /**
  * Send / receive card plus the provider list. Quotes come from /api/quotes, which runs
  * the same engine as the assistant; selecting a provider updates the receive amount.
  */
 export function TransferCalculator({ initial, from: from0, to: to0, amount: amount0, aside }: { initial: QuotesView; from: Currency; to: Currency; amount: number; aside?: React.ReactNode }) {
+  const t = useTranslations("TransferCalculator");
+  const tp = useTranslations("TransferProviderCard");
   const [from, setFrom] = useState<Currency>(from0);
   const [to, setTo] = useState<Currency>(to0);
   const [raw, setRaw] = useState(String(amount0));
@@ -64,8 +68,8 @@ export function TransferCalculator({ initial, from: from0, to: to0, amount: amou
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(340px,0.92fr)_minmax(0,1.08fr)] lg:gap-8">
       <div className="space-y-6">
-        <section className="rounded-[28px] bg-white p-5 shadow-card sm:p-6" aria-label="Transfer calculator">
-          <label htmlFor="send-amount" className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-muted">You send</label>
+        <section className="rounded-[28px] bg-white p-5 shadow-card sm:p-6" aria-label={t("calculatorLabel")}>
+          <label htmlFor="send-amount" className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-muted">{t("youSend")}</label>
           <div className="mt-2 flex items-center gap-3 rounded-[20px] bg-cream px-4 py-3">
             <input
               id="send-amount"
@@ -75,7 +79,7 @@ export function TransferCalculator({ initial, from: from0, to: to0, amount: amou
               className="num min-w-0 flex-1 bg-transparent font-display text-[32px] font-extrabold tracking-[-0.04em] text-cocoa outline-none sm:text-[38px]"
               aria-describedby="rate-line"
             />
-            <CurrencySelector value={from} onChange={setFrom} label="Send currency" />
+            <CurrencySelector value={from} onChange={setFrom} label={t("sendCurrency")} />
           </div>
 
           <div className="relative z-10 my-2.5 flex items-center gap-3 pl-3">
@@ -88,7 +92,7 @@ export function TransferCalculator({ initial, from: from0, to: to0, amount: amou
                 setTo(from);
               }}
               className="cm-press flex size-11 shrink-0 items-center justify-center rounded-full bg-cream text-cocoa hover:bg-sand"
-              aria-label="Swap currencies"
+              aria-label={t("swapCurrencies")}
             >
               <ArrowDownUp className={cn("size-5 transition-transform duration-300", spin && "rotate-180")} />
             </button>
@@ -96,43 +100,43 @@ export function TransferCalculator({ initial, from: from0, to: to0, amount: amou
               {quote ? (
                 <>
                   <span className="num whitespace-nowrap font-mono text-[13.5px] font-semibold">1 {from} = {formatRate(quote.provider_fx_rate)} {to}</span>
-                  <span className="block text-muted sm:inline"><span className="hidden sm:inline"> · </span>fee {fee === 0 ? "none" : formatMoney(fee, from)}</span>
+                  <span className="block text-muted sm:inline"><span className="hidden sm:inline"> · </span>{t("feeLine", { fee: fee === 0 ? t("feeNone") : formatMoney(fee, from) })}</span>
                 </>
               ) : null}
-              {loading && <Loader2 className="ml-2 inline size-4 animate-spin text-brand" aria-label="Updating" />}
+              {loading && <Loader2 className="ml-2 inline size-4 animate-spin text-brand" aria-label={t("updating")} />}
             </span>
           </div>
 
-          <div className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-muted">They receive</div>
+          <div className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-muted">{t("theyReceive")}</div>
           <div className="mt-2 flex items-center gap-3 rounded-[20px] bg-cream px-4 py-3">
             <output className={cn("num min-w-0 flex-1 truncate font-display text-[32px] font-extrabold tracking-[-0.04em] text-brand transition-opacity sm:text-[38px]", loading && "opacity-50")} aria-live="polite">
               {from === to ? "—" : new Intl.NumberFormat("en-GB", { minimumFractionDigits: d, maximumFractionDigits: d }).format(receive)}
             </output>
-            <CurrencySelector value={to} onChange={setTo} label="Receive currency" />
+            <CurrencySelector value={to} onChange={setTo} label={t("receiveCurrency")} />
           </div>
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-[14px]">
-            <span className="text-cocoa-2">{quote ? <>via <strong className="font-extrabold text-cocoa">{quote.provider_name}</strong></> : null}</span>
+            <span className="text-cocoa-2">{quote ? t.rich("via", { provider: quote.provider_name, strong: (c) => <strong className="font-extrabold text-cocoa">{c}</strong> }) : null}</span>
             {quote ? (
               <span className="flex items-center gap-1.5 font-extrabold text-success-ink">
-                <Clock3 className="size-4" /> Estimated arrival: {arrivalLabel(quote)}
+                <Clock3 className="size-4" /> {t("estimatedArrival", { arrival: arrivalLabel(quote, tp) })}
               </span>
             ) : null}
           </div>
 
           <Link href={href} className={cn("cm-press cm-cta mt-6 hidden h-[54px] w-full items-center justify-center gap-2 rounded-[16px] text-[16px] font-extrabold sm:flex", disabled && "pointer-events-none opacity-45")}>
-            Continue with CaiMao
+            {t("continue")}
           </Link>
-          <p className="mt-3 text-center text-[13px] text-muted">Estimates at demo rates. CaiMao checks the transfer rules before anything is prepared.</p>
+          <p className="mt-3 text-center text-[13px] text-muted">{t("estimatesNote")}</p>
         </section>
         {aside}
       </div>
 
       {from !== to && (
-        <section aria-label="Providers">
+        <section aria-label={t("providersLabel")}>
           <div className="mb-4 px-1">
-            <h2 className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">Compare providers</h2>
-            <p className="text-[14.5px] text-muted">Ranked by what actually arrives. A zero fee isn&apos;t always cheapest.</p>
+            <h2 className="font-display text-[22px] font-extrabold tracking-[-0.04em] text-cocoa">{t("compareProviders")}</h2>
+            <p className="text-[14.5px] text-muted">{t("compareProvidersBody")}</p>
           </div>
           <ProviderComparison view={view} selectedId={selected} onSelect={setSelected} />
         </section>
@@ -141,7 +145,7 @@ export function TransferCalculator({ initial, from: from0, to: to0, amount: amou
       {/* Phones: the next step stays in reach above the bottom bar. */}
       <div className="fixed inset-x-4 bottom-[86px] z-30 sm:hidden">
         <Link href={href} className={cn("cm-press cm-cta flex h-[54px] w-full items-center justify-center gap-2 rounded-[16px] text-[16px] font-extrabold shadow-float", disabled && "pointer-events-none opacity-45")}>
-          Continue with CaiMao
+          {t("continue")}
         </Link>
       </div>
       <div className="h-14 sm:hidden" aria-hidden />

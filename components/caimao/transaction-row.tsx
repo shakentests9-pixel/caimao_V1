@@ -1,10 +1,12 @@
+import { useTranslations } from "next-intl";
 import type { Transaction } from "@/lib/types";
 import { Money } from "../money";
-import { CategoryIcon, CATEGORY } from "./category";
+import { CategoryIcon } from "./category";
 import { cn, formatDate } from "@/lib/utils";
 
 /** Merchant-style row: category icon, merchant, category + date, signed amount. */
 export function TransactionRow({ t, account }: { t: Transaction; account?: string }) {
+  const tr = useTranslations("TransactionRow");
   const incoming = t.amount > 0;
   return (
     <li className="flex items-center gap-3.5 border-b border-line px-1 py-3 last:border-0">
@@ -12,7 +14,7 @@ export function TransactionRow({ t, account }: { t: Transaction; account?: strin
       <div className="min-w-0 flex-1">
         <div className="truncate text-[15px] font-bold text-cocoa">{t.merchant.replace(/ transfer$/, "")}</div>
         <div className="truncate text-[13px] text-muted">
-          {CATEGORY[t.category].label} · {formatDate(t.date, { day: "numeric", month: "short" })}
+          {tr(`categories.${t.category}`)} · {formatDate(t.date, { day: "numeric", month: "short" })}
           {account ? ` · ${account}` : ""}
         </div>
       </div>

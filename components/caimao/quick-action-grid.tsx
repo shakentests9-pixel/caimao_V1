@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export interface QuickActionItem {
@@ -18,8 +19,9 @@ const TONES = {
 
 /** Four app-style actions: tile icon, short label. Two columns on small phones. */
 export function QuickActionGrid({ items, className }: { items: QuickActionItem[]; className?: string }) {
+  const t = useTranslations("QuickActionGrid");
   return (
-    <nav aria-label="Quick actions" className={cn("grid grid-cols-4 gap-2.5 sm:gap-4", className)}>
+    <nav aria-label={t("quickActions")} className={cn("grid grid-cols-4 gap-2.5 sm:gap-4", className)}>
       {items.map(({ href, label, icon: Icon, tone = "brand" }) => (
         <Link
           key={label}

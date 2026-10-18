@@ -14,6 +14,8 @@ const STATUS: Record<DomainError["code"], number> = {
   EXPIRED: 410,
   PROVIDER_UNAVAILABLE: 422,
   PAYMENT_FAILED: 502,
+  CONSENT_REQUIRED: 400,
+  INVALID_FILE: 422,
 };
 
 /** Maps domain errors to JSON responses without leaking internals. */

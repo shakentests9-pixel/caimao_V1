@@ -1,0 +1,1073 @@
+{
+  "Meta": {
+    "description": "留学在外，理财更聪明。CaiMao 帮助国际学生缴纳学费、比较汇款方案、管理多币种资金，每一笔付款都由你亲自批准。"
+  },
+  "Countries": {
+    "SG": "新加坡",
+    "GB": "英国",
+    "CN": "中国",
+    "VN": "越南",
+    "HK": "中国香港",
+    "US": "美国",
+    "JP": "日本"
+  },
+  "Permissions": {
+    "level0": {
+      "name": "仅解答",
+      "text": "CaiMao 可以讲解和回答问题，但无法查看你的账户。"
+    },
+    "level1": {
+      "name": "查看",
+      "text": "CaiMao 可以分析你的财务状况：余额、支出和账单。"
+    },
+    "level2": {
+      "name": "协助",
+      "text": "CaiMao 可以比较方案，并准备好付款供你核对。"
+    },
+    "level3": {
+      "name": "由你批准",
+      "text": "每笔付款都要经你确认，资金才会转出。"
+    }
+  },
+  "SettingsPage": {
+    "metaTitle": "设置",
+    "title": "设置",
+    "sectionsNav": "设置分区",
+    "nav": {
+      "personalisation": "个性化",
+      "ai": "CaiMao 权限",
+      "security": "安全",
+      "documents": "证明文件",
+      "demo": "演示设置"
+    },
+    "personalisation": {
+      "title": "个性化",
+      "description": "选择总余额以哪种货币显示。"
+    },
+    "ai": {
+      "title": "CaiMao 能为你做什么",
+      "description": "付款始终需要你的批准。"
+    },
+    "demo": {
+      "title": "演示设置",
+      "description": "加载一套新的数据，演练不同的结果。"
+    },
+    "info": {
+      "data": "数据",
+      "dataSupabase": "Supabase PostgreSQL（启用行级安全）",
+      "dataLocal": "本地演示存储",
+      "ai": "AI",
+      "aiLlm": "Claude 工具调用 · {model}",
+      "aiPlanner": "内置规划器（添加 ANTHROPIC_API_KEY 即可使用 Claude）",
+      "rules": "规则",
+      "rulesValue": "模拟的演示法规"
+    },
+    "security": {
+      "title": "安全",
+      "signInEmail": "邮箱和密码",
+      "signInDemo": "演示登录",
+      "signedInAs": "已登录：{email}",
+      "signedInAsDemo": "已登录：{name}（演示）",
+      "approvalTitle": "每笔付款都需要你确认",
+      "approvalText": "CaiMao 负责准备付款，只有你本人可以批准。",
+      "maskedTitle": "账号始终隐藏显示",
+      "maskedText": "仅存储和显示账号后四位。",
+      "logTitle": "防篡改的动态记录",
+      "logText": "每一项检查和每一笔付款都会被记录，且无法修改。",
+      "sandboxTitle": "沙盒模式",
+      "sandboxText": "本演示不会转出任何真实资金。"
+    },
+    "documents": {
+      "title": "证明文件",
+      "description": "CaiMao 会根据每条转账规则核对这些文件。移除其中一份，即可看到转账被标记为需要处理。"
+    }
+  },
+  "SettingsForms": {
+    "showBalancesIn": "余额显示币种",
+    "permissionsLabel": "CaiMao 能为你做什么",
+    "recommended": "推荐",
+    "approvalTitle": "付款始终需要你的批准。",
+    "approvalText": "此项无法设为长期授权，每笔付款都由你亲自确认。",
+    "documents": {
+      "passport": "护照或身份证",
+      "universityInvoice": "大学缴费通知单",
+      "cas": "录取确认函（CAS）",
+      "sourceOfFunds": "资金来源声明",
+      "admissionLetter": "录取通知书"
+    },
+    "ready": "已就绪",
+    "notAdded": "未添加",
+    "loaded": "已加载",
+    "resetDemo": "重置演示",
+    "load": "加载",
+    "signOut": "退出登录"
+  },
+  "ProfilePage": {
+    "metaTitle": "我的",
+    "route": "汇款路线",
+    "currencies": "币种",
+    "settings": "设置",
+    "links": {
+      "currency": "币种与地区",
+      "currencySub": "余额以 {currency} 显示",
+      "security": "安全",
+      "securitySub": "登录、信息隐藏与付款批准",
+      "documents": "证明文件",
+      "documentsSub": "{count} 份已就绪",
+      "obligations": "账单与待付款项",
+      "obligationsDue": "{count, plural, one {# 笔待付款} other {# 笔待付款}}",
+      "obligationsClear": "全部已处理",
+      "banking": "银行与信用",
+      "bankingSub": "信用卡、信用档案与开户准备",
+      "advanced": "高级",
+      "advancedSub": "演示场景与系统信息"
+    },
+    "helpTitle": "CaiMao 能为你做什么",
+    "helpDescription": "付款始终需要你的批准。",
+    "changePermission": "更改 CaiMao 的权限",
+    "activityTitle": "动态与安全",
+    "verifiedTransfer": "已核验的转账",
+    "completed": "已完成",
+    "activityEmpty": "你的付款及其背后的每一项检查都会显示在这里。",
+    "openActivity": "打开动态与安全"
+  },
+  "BankingPage": {
+    "metaTitle": "银行与信用",
+    "title": "银行与信用",
+    "description": "在留学期间逐步建立你在 {study} 的金融档案。仅供参考：CaiMao 不会代你申请任何产品。",
+    "studyShort": {
+      "GB": "英国",
+      "US": "美国"
+    },
+    "nextPayment": "下次还款",
+    "inDays": "{days} 天后",
+    "minimum": "最低还款",
+    "full": "全额：{amount}",
+    "paymentHistory": "还款记录",
+    "history": {
+      "onTime": "按时还款",
+      "late": "逾期",
+      "noStatement": "无账单"
+    },
+    "historyLegend": "勾 = 按时还款 · 圆圈 = 暂无账单",
+    "numberWords": {
+      "zero": "零",
+      "one": "一",
+      "two": "两",
+      "three": "三",
+      "four": "四",
+      "five": "五",
+      "six": "六",
+      "seven": "七",
+      "eight": "八",
+      "nine": "九",
+      "ten": "十"
+    },
+    "dueHeadline": "你的还款将在 {days} 天后到期。",
+    "dueBody": "按时还款有助于保持良好的还款记录。全额还清 {amount}（而不只是最低还款额）还能避免产生利息。",
+    "askCredit": "向 CaiMao 咨询信用问题",
+    "profileTitle": "建立你在 {study} 的金融档案",
+    "profileSubtitle": "根据 CaiMao 能查看到的信息生成。无法查看的步骤保持待办状态。",
+    "checklist": {
+      "account": "本地银行账户",
+      "accountMissing": "尚未关联",
+      "onTime": "按时支付账单",
+      "onTimeDetail": "目前已按时还款 {count} 次",
+      "utilisation": "信用卡余额控制良好",
+      "utilisationDetail": "已使用额度的 {percent}%",
+      "address": "登记你的学期居住地址",
+      "addressDetail": "建议步骤。CaiMao 无法查看这一项。",
+      "done": "已完成",
+      "todo": "待办",
+      "watch": "需留意",
+      "suggested": "建议"
+    },
+    "disclaimer": "这些都是常见的建议做法，但没有人能保证特定的信用评分或审批结果。仅为一般信息，不构成财务建议。",
+    "openAccount": "开立本地银行账户"
+  },
+  "BankSetup": {
+    "title": "做好在 {country} 开户的准备",
+    "countryShort": {
+      "GB": "英国",
+      "US": "美国"
+    },
+    "readyUndo": "{label}：已就绪。撤销",
+    "ready": "已就绪",
+    "markDone": "标记为完成",
+    "country": "国家/地区",
+    "progress": "{done}/{total} 项已就绪",
+    "disclaimer": "仅供参考。各银行要求不同，前往办理前请先向银行确认。"
+  },
+  "CreditCardVisual": {
+    "ariaLabel": "{issuer} 尾号 {last4}：额度 {limit}，已用 {used}，还款日 {due}",
+    "studentCredit": "学生信用卡",
+    "used": "已用 {amount}",
+    "limitDue": "额度 {limit} · {due} 到期"
+  },
+  "EvidencePage": {
+    "metaTitle": "动态与安全",
+    "title": "动态与安全",
+    "description": "按时间顺序记录每一笔付款，以及 CaiMao 执行的每一项检查。此处内容无法编辑或删除。",
+    "export": "导出",
+    "verification": {
+      "ariaLabel": "最新已核验的转账",
+      "badge": "已核验的转账",
+      "completed": "付款已完成",
+      "route": "经由 {provider} 付至 {recipient} · {time} · 沙盒"
+    },
+    "empty": {
+      "title": "暂无付款",
+      "body": "你批准付款后，收据及其背后的每一项检查都会显示在这里。",
+      "action": "用 CaiMao 缴学费"
+    },
+    "stats": {
+      "payments": "付款",
+      "approvals": "你的批准",
+      "ruleChecks": "规则检查",
+      "stopped": "已终止"
+    },
+    "control": {
+      "title": "一切由你掌控",
+      "approvalTitle": "未经你确认，资金不会转出",
+      "approvalText": "CaiMao 可以准备付款，但只有你确认后才会发出。服务器还会再次核验你的批准。",
+      "rulesTitle": "规则双重检查",
+      "rulesText": "CaiMao 推荐路线时会检查转账规则，准备付款时会再检查一次。",
+      "recordTitle": "值得信赖的记录",
+      "recordText": "每一步都写入只可追加的日志，记录所用工具、权限级别和结果。"
+    },
+    "timeline": {
+      "ariaLabel": "时间线",
+      "payment": "这笔付款的经过",
+      "latest": "最新动态"
+    },
+    "technical": {
+      "title": "查看技术审计日志",
+      "summary": "{runs} 次工作流运行中的 {events} 条财务事件，含工具、权限级别和结果",
+      "paymentDetails": "付款详情",
+      "executionsCaption": "沙盒付款执行记录",
+      "standalone": "独立",
+      "auditLog": "技术审计日志",
+      "footnote": "余额、资料查询等读取操作同样会被记录，并包含在导出文件中。审计条目在数据库中只可追加。"
+    },
+    "executionColumns": {
+      "transactionId": "交易 ID",
+      "status": "状态",
+      "timestamp": "时间",
+      "provider": "服务商",
+      "sent": "汇出",
+      "received": "到账",
+      "fee": "手续费",
+      "recipient": "收款方"
+    },
+    "auditColumns": {
+      "timestamp": "时间",
+      "actor": "执行方",
+      "action": "操作",
+      "tool": "工具",
+      "level": "级别",
+      "approval": "批准",
+      "result": "结果",
+      "details": "详情"
+    },
+    "actors": {
+      "aiAgent": "AI 助手",
+      "user": "用户",
+      "system": "系统"
+    },
+    "approvalStatus": {
+      "NOT_REQUIRED": "无需批准",
+      "PENDING": "待批准",
+      "APPROVED": "已批准",
+      "DECLINED": "已拒绝"
+    },
+    "results": {
+      "SUCCESS": "成功",
+      "FAILURE": "失败",
+      "BLOCKED": "已拦截"
+    }
+  },
+  "ActivityTimeline": {
+    "empty": "暂无内容。",
+    "done": "已完成",
+    "stopped": "已终止",
+    "you": "你",
+    "yourApproval": "你的批准",
+    "permissionLevel": "权限级别 {level}"
+  },
+  "AuditActions": {
+    "TRANSFER_RULE_CHECK": "已检查转账要求",
+    "TRANSFER_RULE_CHECK_BLOCKED": "未满足转账要求",
+    "QUOTE_RETRIEVAL": "已获取报价",
+    "COST_CALCULATION": "已比较服务商",
+    "TRANSFER_PREPARED": "转账已就绪，待核对",
+    "TRANSFER_REJECTED": "转账在准备前已终止",
+    "USER_APPROVAL": "{name} 已批准",
+    "USER_DECLINED": "{name} 已取消",
+    "TRANSFER_EXECUTED": "付款已执行",
+    "TRANSFER_FAILED": "付款失败",
+    "BALANCE_UPDATED": "余额已更新",
+    "OBLIGATION_PAID": "学费已标记为已支付",
+    "PERMISSION_DENIED": "已被你的 AI 权限设置拦截",
+    "STATEMENT_UPLOADED": "已上传对账单",
+    "STATEMENT_PARSED": "已读取对账单",
+    "TRANSACTIONS_EXTRACTED": "已提取交易记录",
+    "USER_CONFIRMED_IMPORT": "{name} 已确认导入",
+    "TRANSACTION_RECATEGORISED": "{name} 已更改分类",
+    "SPENDING_ANALYSIS_COMPLETED": "支出分析已完成",
+    "STATEMENT_DELETED": "已删除对账单",
+    "RULE_QUERY": "已检索规则",
+    "RULE_SOURCE_RETRIEVED": "已获取官方来源",
+    "RULE_EVALUATED": "已评估规则",
+    "CLARIFICATION_REQUESTED": "已请求补充信息",
+    "RESULT_PRESENTED": "已展示结果",
+    "COUNTRY_REQUIREMENTS_RETRIEVED": "已获取开户要求",
+    "BANK_OPTIONS_RETRIEVED": "已获取银行选项",
+    "ELIGIBILITY_CHECKED": "已检查资格",
+    "ACTION_PLAN_CREATED": "已创建开户计划",
+    "SETUP_STEP_UPDATED": "已更新开户步骤"
+  },
+  "Status": {
+    "COMPLIANT": "合规",
+    "ACTION_REQUIRED": "需要处理",
+    "BLOCKED": "已拦截",
+    "PAYMENT_DUE": "待付款",
+    "UPCOMING": "即将到期",
+    "PROCESSING": "处理中",
+    "PAID": "已支付",
+    "BEST_VALUE": "最划算",
+    "COMPLETED": "已完成",
+    "FAILED": "失败",
+    "PENDING_APPROVAL": "待批准",
+    "APPROVED": "已批准",
+    "EXECUTING": "发送中",
+    "CANCELLED": "已取消",
+    "REJECTED": "已拒绝",
+    "DEMO_DATA": "演示数据",
+    "ESTIMATE": "估算",
+    "SANDBOX": "沙盒",
+    "UNAVAILABLE": "不可用"
+  },
+  "ComplianceBadge": {
+    "compliant": "可以发送",
+    "actionRequired": "需要处理",
+    "blocked": "已拦截"
+  },
+  "ChecklistCard": {
+    "progress": "{done}/{total} 项已就绪",
+    "state": {
+      "done": "已完成",
+      "todo": "待办",
+      "blocked": "已拦截",
+      "info": "仅供参考"
+    }
+  },
+  "TransferSummaryCard": {
+    "youSend": "你汇出",
+    "theyReceive": "对方收到",
+    "routeAria": "从 {from} 到 {to}"
+  },
+  "SuccessState": {
+    "tuitionPaid": "学费已缴清",
+    "paymentSent": "付款已发出",
+    "srDescription": "沙盒付款已完成",
+    "to": "收款方 <b>{recipient}</b>",
+    "expected": "预计 <b>{arrival}</b> 到账",
+    "rows": {
+      "transaction": "交易",
+      "status": "状态",
+      "paidFrom": "付款账户",
+      "newBalance": "最新余额",
+      "via": "服务商",
+      "when": "时间"
+    },
+    "savedSteps": "CaiMao 已将每一步保存到动态与安全。",
+    "viewReceipt": "查看收据",
+    "done": "完成"
+  },
+  "CompliancePanel": {
+    "source": "来源：",
+    "lastVerified": "最近核实于 {date}",
+    "simulatedRule": "模拟规则",
+    "noRulesCorridor": "这条汇款线路暂无规则记录，因此 CaiMao 无法确认其合规。",
+    "outcome": {
+      "passed": "已通过",
+      "documentsNeeded": "需要文件",
+      "blocked": "已拦截",
+      "forInformation": "仅供参考"
+    },
+    "risk": "{level, select, LOW {低风险} MEDIUM {中风险} HIGH {高风险} other {{level} 风险}}",
+    "onFile": "（已提供）",
+    "missingDoc": "（缺失）",
+    "titleCompliant": "已检查转账要求",
+    "titleBlocked": "这笔转账无法进行",
+    "titleActionRequired": "还需先完成几件事",
+    "rulesPassed": "{from} → {to}：{total} 条规则中已通过 {passed} 条",
+    "missing": "缺少：{names}",
+    "documentsComplete": "文件齐全（{count}）",
+    "hideRules": "收起规则",
+    "showRules": "查看已检查的规则",
+    "noRules": "这条汇款线路暂无规则记录。",
+    "any": "任意",
+    "documents": "文件：{names}"
+  },
+  "AgentCards": {
+    "paid": "已支付",
+    "availableFunds": "可用资金",
+    "enoughToCover": "足以支付",
+    "needsAbout": "还差约 {amount}",
+    "transferRequirements": "转账要求",
+    "checked": "已检查",
+    "documentsReady": "{total} 份文件中已就绪 {ready} 份",
+    "rulesMet": "已满足 {count} 条规则",
+    "ruleBlocks": "一条转账规则拦截了这笔付款",
+    "missing": "缺少：{names}",
+    "cannotClear": "这条路线暂时无法通过审核",
+    "ready": "已就绪",
+    "blocked": "已拦截",
+    "actionNeeded": "需要处理",
+    "hideRules": "收起规则",
+    "seeRules": "查看已检查的 {count} 条规则",
+    "rulesFor": "{corridor} 的规则",
+    "simulatedRules": "模拟规则",
+    "receives": "{recipient} 收到",
+    "instruction": {
+      "readyToReview": "你的转账已就绪，请核对",
+      "tuitionPaid": "学费已缴清",
+      "transferSent": "转账已发出",
+      "transferCancelled": "转账已取消",
+      "transfer": "转账",
+      "from": "付款账户",
+      "provider": "服务商",
+      "fee": "手续费",
+      "arrives": "到账时间",
+      "notePending": "尚未发出任何款项。只有你确认后，资金才会转出。",
+      "noteCompleted": "经你批准后已在沙盒中发出。",
+      "noteCancelled": "没有资金转出。",
+      "noteFailed": "沙盒付款失败，你的余额没有变化。",
+      "reviewTransfer": "核对转账",
+      "viewReceipt": "查看收据"
+    },
+    "blockedCard": {
+      "actionRequired": "还需先完成几件事",
+      "blocked": "这笔转账无法进行"
+    },
+    "spending": {
+      "in": "收入",
+      "spent": "支出",
+      "saved": "结余",
+      "leftAfterBills": "支付即将到期的账单后，约剩 <b>{amount}</b>。"
+    },
+    "bankingIn": "在 {country} 开户",
+    "openChecklist": "打开完整清单"
+  },
+  "ConfirmTransfer": {
+    "execSteps": {
+      "recordingApproval": "正在记录你的批准",
+      "sendingPayment": "正在发送付款",
+      "updatingBalance": "正在更新余额",
+      "savingReceipt": "正在保存收据"
+    },
+    "docs": {
+      "identity": {
+        "ready": "身份已验证",
+        "needed": "需要身份证明文件"
+      },
+      "tuitionInvoice": {
+        "ready": "学费缴费通知单已就绪",
+        "needed": "需要学费缴费通知单"
+      },
+      "sourceOfFunds": {
+        "ready": "资金来源证明已就绪",
+        "needed": "需要资金来源声明"
+      },
+      "universityReference": {
+        "ready": "大学参考编号已就绪",
+        "needed": "需要大学参考编号"
+      },
+      "admissionLetter": {
+        "ready": "录取通知书已就绪",
+        "needed": "需要录取通知书"
+      }
+    },
+    "docReady": "{name}已就绪",
+    "docNeeded": "需要{name}",
+    "stateReady": "已就绪",
+    "stateNeeded": "需要",
+    "stateBlocked": "已拦截",
+    "stateOk": "正常",
+    "overLimit": "超出转账限额",
+    "withinLimit": "在转账限额内",
+    "errorDefault": "转账未能完成。",
+    "errorNetwork": "网络错误。请先查看动态与安全，再重试。",
+    "sandbox": "沙盒",
+    "readyToSend": "准备好发送了吗？",
+    "purpose": "用途：{purpose}",
+    "universityTuition": "大学学费",
+    "requirementsChecked": "已检查转账要求",
+    "cannotGoAhead": "这笔转账无法进行",
+    "thingsNeeded": "还需先完成几件事",
+    "everythingInPlace": "这笔付款所需的一切均已就绪。",
+    "sortTheseOut": "处理好以下事项后，请让 CaiMao 重新准备。",
+    "hideRules": "收起规则",
+    "seeAllRules": "查看已检查的全部 {count} 条规则",
+    "reviewTransfer": "核对转账",
+    "cancelTransfer": "取消转账",
+    "rateExpired": "该汇率已过期。请让 CaiMao 重新准备这笔转账。",
+    "noLongerConfirmable": "这笔转账已无法确认。",
+    "requirements": "转账要求",
+    "reviewYourTransfer": "核对你的转账",
+    "preparedNothingSent": "这笔转账由 CaiMao 准备，目前尚未发出任何款项。",
+    "receives": "{recipient} 收到",
+    "rows": {
+      "recipient": "收款方",
+      "from": "付款账户",
+      "provider": "服务商",
+      "fee": "手续费",
+      "exchangeRate": "汇率",
+      "arrival": "到账时间",
+      "requirements": "转账要求",
+      "documents": "证明文件"
+    },
+    "midMarket": "中间价 {rate}",
+    "checked": "已检查",
+    "notMet": "未满足",
+    "complete": "齐全",
+    "completeCount": "齐全（{count}）",
+    "paymentFailed": "付款失败",
+    "paymentNotSent": "付款未发出",
+    "iReviewed": "我已核对这笔转账",
+    "confirmPay": "确认并支付",
+    "cancel": "取消",
+    "alwaysApproval": "付款始终需要你的批准。",
+    "rateHeld": "汇率锁定 {time}",
+    "close": "关闭"
+  },
+  "Copilot": {
+    "prompts": {
+      "payTuition": "帮我缴学费",
+      "compareRates": "比较费率",
+      "canIAfford": "我负担得起吗？",
+      "checkTransferRules": "查看转账规则",
+      "compareFxRates": "比较汇率",
+      "sendMoneyOverseas": "向海外汇款",
+      "reviewSpending": "查看我的支出",
+      "buildCredit": "帮我建立信用",
+      "openBankAccount": "开立本地银行账户"
+    },
+    "starters": {
+      "payTuition": {
+        "title": "帮我缴学费",
+        "sub": "找到最佳路线，并准备好等你批准"
+      },
+      "compareRates": {
+        "title": "比较费率",
+        "sub": "看看各家服务商实际能到账多少"
+      },
+      "checkTransferRules": {
+        "title": "查看转账规则",
+        "sub": "新加坡与英国之间适用哪些规则"
+      },
+      "reviewSpending": {
+        "title": "查看我的支出",
+        "sub": "本月与平时相比如何"
+      }
+    },
+    "tools": {
+      "getUserProfile": {
+        "running": "正在了解你的情况",
+        "done": "已读取你的资料"
+      },
+      "getObligations": {
+        "running": "正在查看待付款项",
+        "done": "已找到待付款项"
+      },
+      "getAccounts": {
+        "running": "正在检查你的账户",
+        "done": "已检查你的账户"
+      },
+      "getFXRate": {
+        "running": "正在获取今日汇率",
+        "done": "已获取今日汇率"
+      },
+      "getTransferRules": {
+        "running": "正在检查转账要求",
+        "done": "已检查转账要求"
+      },
+      "getRemittanceQuotes": {
+        "running": "正在获取报价",
+        "done": "已获取服务商报价"
+      },
+      "calculateTransferCost": {
+        "running": "正在比较实际成本",
+        "done": "已比较实际成本"
+      },
+      "createTransferInstruction": {
+        "running": "正在准备你的转账",
+        "done": "已准备好你的转账"
+      },
+      "getTransactions": {
+        "running": "正在查看你的支出",
+        "done": "已查看你的支出"
+      },
+      "getCreditSummary": {
+        "running": "正在检查你的信用卡",
+        "done": "已检查你的信用卡"
+      },
+      "getBankSetupChecklist": {
+        "running": "正在加载你的清单",
+        "done": "已加载你的清单"
+      },
+      "USER_APPROVAL": {
+        "running": "正在记录你的批准",
+        "done": "你已批准这笔付款"
+      },
+      "executeSandboxTransfer": {
+        "running": "正在发送付款",
+        "done": "已发送付款（沙盒）"
+      },
+      "updateAccountBalance": {
+        "running": "正在更新余额",
+        "done": "已更新余额"
+      },
+      "markObligationPaid": {
+        "running": "正在将学费标记为已支付",
+        "done": "已将学费标记为已支付"
+      },
+      "createAuditLog": {
+        "running": "正在保存收据",
+        "done": "已保存到动态与安全"
+      }
+    },
+    "errors": {
+      "unreachable": "暂时无法连接 CaiMao。",
+      "generic": "出了点问题。"
+    },
+    "steps": {
+      "approvalRecorded": "已记录批准",
+      "approvalSummary": "你已在核对页面确认",
+      "executing": "正在执行沙盒转账",
+      "executeSummary": "{txId} · COMPLETED · 参考号 {ref}",
+      "updatingBalances": "正在更新余额",
+      "markingPaid": "正在将待付款项标记为已支付",
+      "writingAudit": "正在写入审计日志",
+      "auditSummary": "已记录批准、执行、余额和待付款项事件"
+    },
+    "completed": {
+      "sent": "已完成{tuition, select, yes {，你的学费已缴清 🎓} other {}}。**{amount}** 正经由 {provider} 汇往 {recipient}（交易号 **{txId}**）。",
+      "verified": "我已再次核实：{account} 当前余额为 **{balance}**{paid, select, yes {，{invoiceRef} 已标记为**已支付**} other {}}。完整记录可在动态与安全中查看。"
+    },
+    "declined": "没问题，我已取消这笔转账，**没有资金转出**。准备好了随时再找我。",
+    "header": {
+      "working": "处理中…",
+      "idle": "每笔付款都由你批准。",
+      "builtInPlanner": "内置规划器",
+      "newChat": "新对话"
+    },
+    "empty": {
+      "greeting": "{firstName}，你好！有什么可以帮你？",
+      "intro": "我会检查你的账户和转账规则、比较服务商，并把付款准备好。每笔付款都要经你批准，资金才会转出。"
+    },
+    "composer": {
+      "moreActions": "更多操作",
+      "placeholder": "向 CaiMao 咨询你的资金问题…",
+      "messageLabel": "给 CaiMao 发消息",
+      "send": "发送"
+    },
+    "activity": {
+      "failedStep": "出了点问题",
+      "comparedProviders": "已比较 {count} 家服务商",
+      "thinking": "思考中…",
+      "done": "已完成",
+      "failed": "失败",
+      "hideDetails": "收起详情",
+      "showDetails": "查看 CaiMao 检查了什么（{count}）"
+    }
+  },
+  "WorkflowRail": {
+    "phases": {
+      "Understand": "理解需求",
+      "Analyse": "分析",
+      "Check_compliance": "合规检查",
+      "Compare": "比较",
+      "Recommend": "推荐",
+      "Obtain_approval": "获取批准",
+      "Execute": "执行",
+      "Verify": "核实"
+    },
+    "stoppedAt": "停止于{phase, select, Understand {理解需求} Analyse {分析} Check_compliance {合规检查} Compare {比较} Recommend {推荐} Obtain_approval {获取批准} Execute {执行} Verify {核实} other {{phase}}}环节",
+    "allComplete": "所有步骤已完成",
+    "progressLabel": "CaiMao 的进度",
+    "state": {
+      "done": "（已完成）",
+      "active": "（进行中）",
+      "stopped": "（已终止）",
+      "pending": "（未开始）"
+    }
+  },
+  "PermissionChip": {
+    "title": "权限级别 {level}：{name}",
+    "levels": {
+      "L0": {
+        "name": "仅解答"
+      },
+      "L1": {
+        "name": "查看"
+      },
+      "L2": {
+        "name": "协助"
+      },
+      "L3": {
+        "name": "由你批准"
+      }
+    }
+  },
+  "Categories": {
+    "Income": "收入",
+    "Accommodation": "住宿",
+    "Food": "餐饮",
+    "Transportation": "交通",
+    "Education": "教育",
+    "Entertainment": "娱乐",
+    "Travel": "旅行",
+    "Subscriptions": "订阅",
+    "Shopping": "购物",
+    "Healthcare": "医疗",
+    "Fees": "费用",
+    "Other": "其他",
+    "Transfers": "转账"
+  },
+  "TransfersPage": {
+    "metaTitle": "转账",
+    "title": "汇款",
+    "description": "在你批准之前，每条汇款路线都清清楚楚。CaiMao 以收款方实际到账金额来比较服务商。",
+    "accountFallback": "账户",
+    "tuitionDueHeadline": "要缴学费？交给我吧。",
+    "tuitionDueBody": "需向 {payee} 支付 {amount}，{days} 天后到期。我会检查规则、挑选最佳路线，并准备好等你批准。",
+    "payTuition": "缴学费",
+    "tuitionPaidHeadline": "学费已缴清。",
+    "tuitionPaidBody": "交易号 {transactionId}，经由 {provider}。",
+    "viewReceipt": "查看收据",
+    "requirementsTitle": "转账要求",
+    "requirementsBody": "来自 CaiMao 的规则数据库。CaiMao 只会引用此处列出的规则。",
+    "simulatedRules": "模拟规则",
+    "from": "从",
+    "to": "至",
+    "showRules": "查看规则",
+    "rulesDisclaimer": "这些规则仅为演示而模拟，不构成法律建议。每条规则都附有官方来源链接，可供查证。",
+    "yourTransfers": "你的转账"
+  },
+  "TransferCalculator": {
+    "calculatorLabel": "汇款计算器",
+    "youSend": "你汇出",
+    "sendCurrency": "汇出币种",
+    "swapCurrencies": "互换币种",
+    "feeLine": "手续费 {fee}",
+    "feeNone": "无",
+    "updating": "更新中",
+    "theyReceive": "对方收到",
+    "receiveCurrency": "到账币种",
+    "via": "经由 <strong>{provider}</strong>",
+    "estimatedArrival": "预计到账：{arrival}",
+    "continue": "交给 CaiMao 继续",
+    "estimatesNote": "按演示汇率估算。准备任何付款之前，CaiMao 都会先检查转账规则。",
+    "providersLabel": "服务商",
+    "compareProviders": "比较服务商",
+    "compareProvidersBody": "按实际到账金额排序。零手续费不一定最便宜。"
+  },
+  "TransferProviderCard": {
+    "arrival": {
+      "label": "到账时间",
+      "today": "今天",
+      "nextBusinessDay": "下一个工作日",
+      "businessDays": "{days} 个工作日"
+    },
+    "bestValue": "最划算",
+    "noTransferFee": "免转账手续费",
+    "recipientGets": "收款方到账",
+    "fee": "手续费",
+    "none": "无",
+    "rate": "汇率",
+    "sendForArrive": "汇出 <amt>{send}</amt>，到账 {receive}",
+    "spreadNote": "成本藏在汇率里：比中间价低 {pct}%。",
+    "advantage": "比 {provider} 多 {amount} · 汇率 {rate}",
+    "hideFullComparison": "收起完整比较",
+    "seeFullComparison": "查看完整比较",
+    "bestOption": "最佳选择",
+    "moreArrives": "比 {provider} 多到账约 {amount}。",
+    "mostArrives": "这条路线到账最多。",
+    "estimateNote": "按今日演示汇率估算。",
+    "youSend": "你汇出",
+    "preparePayment": "准备付款",
+    "hideOtherRoutes": "收起其他路线",
+    "compareAllRoutes": "比较全部 {count} 条路线"
+  },
+  "QuotesTable": {
+    "tableLabel": "服务商比较表",
+    "provider": "服务商",
+    "fxRate": "汇率",
+    "fxSpread": "汇率差价",
+    "fee": "手续费",
+    "totalCost": "总成本",
+    "recipientGets": "收款方到账",
+    "settlement": "结算时间",
+    "sendToDeliver": "汇出 <send></send>，到账 <deliver></deliver>",
+    "footnote": "按统一汇出金额 <amount></amount> 汇往 {dst} 进行比较。中间价 <rate></rate>（{source}，{asOf}）。总成本 = 手续费 + 汇率差价 + 其他费用。付款前均为估算。"
+  },
+  "TransferHistory": {
+    "emptyTitle": "暂无转账",
+    "emptyBody": "CaiMao 为你准备的转账会显示在这里。",
+    "expired": "已过期",
+    "review": "核对"
+  },
+  "ObligationsPage": {
+    "metaTitle": "账单与待付款项",
+    "title": "账单与待付款项",
+    "description": "按日期列出你所有应付的款项，以及每一笔的结清方式。",
+    "paid": "已支付",
+    "dueSoon": "即将到期 · {due}",
+    "due": {
+      "label": "到期",
+      "today": "今天到期",
+      "todayLower": "今天到期",
+      "inDays": "{days, plural, one {# 天后到期} other {# 天后到期}}",
+      "inDaysLower": "{days, plural, one {# 天后到期} other {# 天后到期}}",
+      "overdue": "已逾期 {days, plural, one {# 天} other {# 天}}"
+    },
+    "tuitionLine": "学费 · {university}",
+    "invoice": "缴费通知单",
+    "purpose": "用途",
+    "country": "国家/地区",
+    "paidOn": "已于 {date} 支付",
+    "viaProvider": "经由 {provider} · <mono>{transactionId}</mono>",
+    "viewReceipt": "查看收据",
+    "payWithCaiMao": "用 CaiMao 支付",
+    "filterLabel": "筛选待付款项",
+    "tabs": {
+      "upcoming": "即将到期",
+      "paid": "已支付",
+      "all": "全部"
+    },
+    "emptyPaidTitle": "暂无已支付款项",
+    "emptyTitle": "全部已处理",
+    "emptyPaidBody": "你通过 CaiMao 完成的付款会显示在这里。",
+    "emptyBody": "目前没有待付账单。下一笔到来时，CaiMao 会提醒你。"
+  },
+  "BudgetPage": {
+    "metaTitle": "预算",
+    "eyebrow": "预算",
+    "title": "你的{month}",
+    "description": "清楚看见你这个月的收支，不评判。系统会根据每个商户自动归类。",
+    "insights": {
+      "spentVsUsual": "本月你在{category}上的支出比平时{direction, select, more {多} other {少}}约 {currency} {amount}。",
+      "steady": "{category}支出与平时基本持平。",
+      "afterBills": "支付即将到期的 {bills} 账单后，你的各账户合计仍有约 {currency} {amount}。"
+    },
+    "windowLine": "最近 30 天 · {start} – {end}",
+    "spent": "已支出",
+    "leftInPlan": "预算剩余",
+    "ofPlanTotal": "共 {plan}",
+    "moneyIn": "收入",
+    "thisMonth": "本月",
+    "netSaved": "净结余",
+    "afterBillsPaid": "已扣除已付账单 {amount}",
+    "afterSpending": "扣除支出后",
+    "talkItThrough": "和 CaiMao 聊聊",
+    "byCategory": "按类别统计支出",
+    "shareOfSpending": "占支出的 {pct}%",
+    "pctOfPlan": "已用 {plan} 预算的 {pct}%",
+    "over": "超出 {currency} {amount}",
+    "noPlan": "未设置预算",
+    "vsUsual": "比平时{direction, select, more {多} other {少}} {currency} {amount}",
+    "billsComingUp": "即将到期的账单",
+    "nothingDue": "未来 30 天内没有到期款项。",
+    "due": {
+      "today": "今天到期",
+      "inDays": "{days, plural, one {# 天后到期} other {# 天后到期}}",
+      "overdue": "已逾期 {days, plural, one {# 天} other {# 天}}"
+    },
+    "freeAfter": "支付这些款项后，约有 <b>{amount}</b> 可自由支配。",
+    "transactions": "交易记录",
+    "showAll": "显示全部 {count} 条"
+  },
+  "SpendingDonut": {
+    "spent": "已支出"
+  },
+  "Nav": {
+    "labels": {
+      "home": "首页",
+      "caimao": "CaiMao",
+      "send": "汇款",
+      "budget": "预算",
+      "bills": "账单",
+      "credit": "信用",
+      "settings": "设置",
+      "activity": "动态",
+      "transfers": "转账",
+      "profile": "我的"
+    },
+    "names": {
+      "home": "首页",
+      "caimao": "CaiMao 助手",
+      "transfers": "转账",
+      "budget": "预算",
+      "bills": "账单与待付款项",
+      "banking": "银行与信用",
+      "settings": "设置",
+      "activity": "动态与安全",
+      "profile": "我的"
+    },
+    "dueCount": "{count} 笔待付",
+    "mainNavigation": "主导航",
+    "caimaoHome": "CaiMao 首页",
+    "profileOf": "我的：{name}",
+    "sandbox": "沙盒"
+  },
+  "HomePage": {
+    "metaTitle": "首页",
+    "notifications": "通知：{count} 笔待付款",
+    "profile": "我的",
+    "insight": {
+      "dueHeadline": "你的学费将在 {days} 天后到期。",
+      "betterRoute": "我找到一条路线，可让 {payee} 多收到约 {currency} {amount}。你的 {source} 余额充足。",
+      "enoughToCover": "你的 {source} 余额足以支付。",
+      "notCovered": "{source} 的余额暂时不足。充值后，我会为你找到最佳路线。",
+      "yourAccount": "你的账户",
+      "yourHomeAccount": "你的国内账户",
+      "estimateNote": "以今日演示汇率、对比成本最高的路线估算。最终金额在付款时确定。",
+      "seeOptions": "查看我的选择",
+      "paidHeadline": "你的学费已经搞定。",
+      "onItsWay": "{amount} 正在汇往 {recipient}。",
+      "paymentComplete": "你的学费已付款完成。",
+      "viewReceipt": "查看收据",
+      "viewTransfer": "查看转账",
+      "nothingDue": "目前没有到期款项。",
+      "askMe": "汇率、转账规则或支出情况，都可以问我。"
+    },
+    "askCaimao": "问问 CaiMao",
+    "actions": {
+      "sendMoney": "汇款",
+      "payTuition": "缴学费",
+      "exchange": "换汇"
+    },
+    "yourAccounts": "你的账户",
+    "comingUp": "即将到期",
+    "payWithCaimao": "用 CaiMao 支付",
+    "thisMonth": "本月",
+    "budgetLink": "预算",
+    "thirtyDays": "30 天",
+    "recentActivity": "近期动态",
+    "categories": {
+      "Income": "收入",
+      "Accommodation": "住宿",
+      "Food": "餐饮",
+      "Transportation": "交通",
+      "Education": "教育",
+      "Entertainment": "娱乐",
+      "Travel": "旅行",
+      "Subscriptions": "订阅",
+      "Shopping": "购物",
+      "Healthcare": "医疗",
+      "Fees": "费用",
+      "Other": "其他",
+      "Transfers": "转账"
+    }
+  },
+  "HeroBalanceCard": {
+    "totalBalance": "总余额",
+    "across": "共 {count} 个账户 · 按演示中间价折算",
+    "showBalance": "显示余额",
+    "hideBalance": "隐藏余额"
+  },
+  "QuickActionGrid": {
+    "quickActions": "快捷操作"
+  },
+  "ObligationTimeline": {
+    "today": "今天",
+    "tomorrow": "明天",
+    "daysLate": "逾期 {days} 天",
+    "inDays": "{days} 天",
+    "paid": "已支付",
+    "dueSoon": "即将到期"
+  },
+  "MascotInsightCard": {
+    "insight": "CaiMao 洞察"
+  },
+  "Greeting": {
+    "hello": "你好，{name}",
+    "morning": "早上好，{name}",
+    "afternoon": "下午好，{name}",
+    "evening": "晚上好，{name}"
+  },
+  "IntroScreen": {
+    "demoError": "演示启动失败，请重试。",
+    "headline": "留学在外，理财更聪明。",
+    "intro": "CaiMao 帮你缴纳学费、比较汇款方案、持有多种货币，并管理跨境账单，一站搞定。",
+    "featureArrives": "到账多少，一目了然",
+    "featureLegwork": "繁琐的事交给 CaiMao",
+    "featureApprove": "每笔付款都由你批准",
+    "getStarted": "开始使用",
+    "haveAccount": "我已有账户",
+    "disclaimer": "竞赛原型 · 仅限沙盒付款 · 监管数据为模拟数据"
+  },
+  "WelcomePage": {
+    "metaTitle": "欢迎"
+  },
+  "LoginPage": {
+    "metaTitle": "登录",
+    "headline": "留学在外，理财更聪明。",
+    "pitch": "跨境缴学费，到账金额清清楚楚，一切尽在掌控：繁琐的事交给 CaiMao，每笔付款都由你批准。",
+    "disclaimer": "竞赛原型 · 仅限沙盒付款 · 监管数据为模拟数据",
+    "createAccount": "创建账户",
+    "welcomeBack": "欢迎回来",
+    "memoryMode": "本地演示模式。以演示学生身份登录，即可体验全部功能。",
+    "supabaseMode": "登录 CaiMao。新账户将预置演示数据。"
+  },
+  "LoginForm": {
+    "demoRoute": "新加坡 → 英国",
+    "signInFailed": "登录失败。",
+    "continueAs": "以 {name} 身份继续",
+    "configureSupabase": "在 .env.local 中配置 Supabase，即可使用启用行级安全的真实账户。",
+    "email": "邮箱",
+    "password": "密码",
+    "signIn": "登录",
+    "signUpFailed": "注册失败。",
+    "checkInbox": "请查收邮件确认你的邮箱，然后登录。",
+    "createAccount": "创建账户"
+  },
+  "Brand": {
+    "markAlt": "戴眼镜看书的 CaiMao 猫，硬币在不同货币之间流转",
+    "lockupAlt": "CaiMao：一只戴眼镜、捧着打开的书的白色学者猫，硬币在美元、卢布、欧元和人民币之间流转，下方是 CaiMao 字标"
+  },
+  "BaseCurrencySelect": {
+    "showBalancesIn": "余额显示币种"
+  },
+  "ShowMore": {
+    "showLess": "收起"
+  },
+  "AccountCard": {
+    "multiCurrencyWallet": "多币种钱包"
+  },
+  "TransactionRow": {
+    "categories": {
+      "Income": "收入",
+      "Accommodation": "住宿",
+      "Food": "餐饮",
+      "Transportation": "交通",
+      "Education": "教育",
+      "Entertainment": "娱乐",
+      "Travel": "旅行",
+      "Subscriptions": "订阅",
+      "Shopping": "购物",
+      "Healthcare": "医疗",
+      "Fees": "费用",
+      "Other": "其他",
+      "Transfers": "转账"
+    }
+  },
+  "PageHeader": {
+    "seeAll": "查看全部"
+  },
+  "Dialog": {
+    "close": "关闭"
+  }
+}

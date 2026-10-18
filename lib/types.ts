@@ -1,10 +1,11 @@
 // Domain types shared by the server, the agent and the UI.
 // They mirror the PostgreSQL schema in supabase/migrations/0001_schema.sql.
 
-export const CURRENCIES = ["USD", "GBP", "SGD", "CNY", "HKD", "VND"] as const;
+export const CURRENCIES = ["USD", "GBP", "SGD", "CNY", "HKD", "VND", "JPY"] as const;
 export type Currency = (typeof CURRENCIES)[number];
 
-export type CountryCode = "SG" | "GB" | "CN" | "VN" | "HK" | "US";
+export const COUNTRY_CODES = ["SG", "GB", "CN", "VN", "HK", "US", "JP"] as const;
+export type CountryCode = (typeof COUNTRY_CODES)[number];
 
 export const COUNTRY_NAMES: Record<CountryCode, string> = {
   SG: "Singapore",
@@ -13,7 +14,17 @@ export const COUNTRY_NAMES: Record<CountryCode, string> = {
   VN: "Vietnam",
   HK: "Hong Kong",
   US: "United States",
+  JP: "Japan",
 };
+
+/** Countries with researched rules, bank data and setup guidance. */
+export const SUPPORTED_COUNTRIES = ["SG", "CN", "GB", "US", "JP"] as const satisfies readonly CountryCode[];
+export type SupportedCountry = (typeof SUPPORTED_COUNTRIES)[number];
+
+export const COUNTRY_CURRENCY: Record<CountryCode, Currency> = { SG: "SGD", GB: "GBP", CN: "CNY", VN: "VND", HK: "HKD", US: "USD", JP: "JPY" };
+
+export const LOCALES = ["en", "zh-CN", "ja"] as const;
+export type Locale = (typeof LOCALES)[number];
 
 /** AI permission levels. Level 3 always needs a fresh, explicit approval per transaction. */
 export enum PermissionLevel {
@@ -44,7 +55,27 @@ export interface Profile {
   ai_permission_level: PermissionLevel;
   /** Supporting documents the user has on file, matched against rule requirements. */
   documents_on_file: string[];
+  // ── Cross-border profile. Null means "not told yet": CaiMao asks rather than assumes. ──
+  nationality: CountryCode | null;
+  visa_type: VisaType | null;
+  residency_status: ResidencyStatus | null;
+  student_status: StudentStatus | null;
+  age: number | null;
+  tax_residency: CountryCode | null;
+  language: Locale;
 }
+
+export type VisaType = "student" | "work" | "dependant" | "permanent_resident" | "citizen" | "visitor" | "none";
+export type ResidencyStatus = "resident" | "non_resident";
+export type StudentStatus = "full_time" | "part_time" | "admitted" | "not_student";
+export const VISA_TYPES: VisaType[] = ["student", "work", "dependant", "permanent_resident", "citizen", "visitor", "none"];
+export const RESIDENCY_STATUSES: ResidencyStatus[] = ["resident", "non_resident"];
+export const STUDENT_STATUSES: StudentStatus[] = ["full_time", "part_time", "admitted", "not_student"];
+
+/** Fields the user can edit about themselves. */
+export type ProfilePatch = Partial<
+  Pick<Profile, "base_currency" | "ai_permission_level" | "documents_on_file" | "nationality" | "visa_type" | "residency_status" | "student_status" | "age" | "tax_residency" | "language" | "home_country" | "study_country">
+>;
 
 export interface Account {
   id: string;
@@ -68,6 +99,10 @@ export type TransactionCategory =
   | "Entertainment"
   | "Travel"
   | "Subscriptions"
+  | "Shopping"
+  | "Healthcare"
+  | "Fees"
+  | "Other"
   | "Transfers";
 
 export interface Transaction {
@@ -113,6 +148,9 @@ export interface Budget {
 
 export type RiskLevel = "LOW" | "MEDIUM" | "HIGH";
 
+export type RuleStatus = "verified" | "simulated" | "needs_verification";
+export type RuleCategory = "fx_control" | "aml" | "reporting" | "documentation" | "limit" | "student_provision" | "tax" | "consumer_protection";
+
 export interface CountryRule {
   id: string;
   source_country: CountryCode | "*";
@@ -123,15 +161,38 @@ export interface CountryRule {
   currency: Currency | null;
   /** Amount at which the rule triggers. Interpretation depends on enforcement. */
   limit_amount: number | null;
-  /** block_above: amounts over the limit are rejected. documents_above: documents needed over the limit. documents_always: always needs documents. info: disclosure only. */
-  enforcement: "block_above" | "documents_above" | "documents_always" | "info";
+  /** block_above: amounts over the limit are rejected. documents_above: documents needed over the limit. documents_always: always needs documents. report_above: a report is filed over the limit (informational). info: disclosure only. */
+  enforcement: "block_above" | "documents_above" | "documents_always" | "report_above" | "info";
   documentation_required: string[];
   official_source: string;
   official_source_url: string;
-  effective_date: string;
+  /** Null when the official page doesn't state one. */
+  effective_date: string | null;
   last_verified: string;
   risk_level: RiskLevel;
+  /** True for the simulated demo rules. Mirrors status === "simulated". */
   is_demo: boolean;
+  // ── Regulatory-assistant fields (migration 0002). Optional so the original rules stay valid. ──
+  status?: RuleStatus;
+  rule_category?: RuleCategory | null;
+  /** Which way the money moves relative to the rule's jurisdiction. */
+  direction?: "outbound" | "inbound" | "both" | null;
+  /** bank_transfer rules apply to payments; cash rules (border declarations) are shown as guidance only. */
+  channel?: "bank_transfer" | "cash" | "any";
+  /** Machine-matchable conditions. Null = applies to everyone. */
+  nationality_condition?: CountryCode[] | null;
+  residency_condition?: ResidencyStatus | null;
+  visa_condition?: VisaType[] | null;
+  /** Human-readable form of the conditions, shown with the rule. */
+  applies_to?: string | null;
+  minimum_amount?: number | null;
+  maximum_amount?: number | null;
+  restrictions?: string | null;
+  exceptions?: string | null;
+  regulator?: string | null;
+  evidence_quote?: string | null;
+  /** Translated summaries; English lives in rule_description. */
+  i18n?: Partial<Record<Exclude<Locale, "en">, { name: string; summary: string }>> | null;
 }
 
 export interface FxRate {
@@ -264,6 +325,26 @@ export interface PaymentExecution {
 }
 
 export type AuditAction =
+  // Statement analysis
+  | "STATEMENT_UPLOADED"
+  | "STATEMENT_PARSED"
+  | "TRANSACTIONS_EXTRACTED"
+  | "USER_CONFIRMED_IMPORT"
+  | "TRANSACTION_RECATEGORISED"
+  | "SPENDING_ANALYSIS_COMPLETED"
+  | "STATEMENT_DELETED"
+  // Regulatory assistant
+  | "RULE_QUERY"
+  | "RULE_SOURCE_RETRIEVED"
+  | "RULE_EVALUATED"
+  | "CLARIFICATION_REQUESTED"
+  | "RESULT_PRESENTED"
+  // Banking abroad / financial setup
+  | "COUNTRY_REQUIREMENTS_RETRIEVED"
+  | "BANK_OPTIONS_RETRIEVED"
+  | "ELIGIBILITY_CHECKED"
+  | "ACTION_PLAN_CREATED"
+  | "SETUP_STEP_UPDATED"
   | "PROFILE_READ"
   | "ACCOUNTS_READ"
   | "TRANSACTIONS_READ"
@@ -328,4 +409,121 @@ export interface CreditCard {
   minimum_payment: number;
   /** Last 6 statement outcomes, oldest first. */
   payment_history: { month: string; status: "ON_TIME" | "LATE" | "NO_STATEMENT" }[];
+}
+
+// ───────────────────────── Banking abroad ─────────────────────────
+
+export type Tri = boolean | null;
+
+/** One bank's account offer for newcomers, as stated on the bank's own site. Null = not confirmed. */
+export interface BankProduct {
+  id: string;
+  country: SupportedCountry;
+  bank_name: string;
+  account_type: string;
+  student_account_available: Tri;
+  international_student_eligible: Tri;
+  resident_required: Tri;
+  minimum_age: number | null;
+  visa_requirements: string | null;
+  documents: string[];
+  minimum_balance: string | null;
+  monthly_fee: string | null;
+  international_transfer_support: Tri;
+  credit_card_available: string | null;
+  official_url: string;
+  evidence_quote: string | null;
+  notes: string | null;
+  last_verified: string;
+  status: Exclude<RuleStatus, "simulated">;
+}
+
+/** Country-level account-opening guidance. */
+export interface AccountRequirements {
+  country: SupportedCountry;
+  summary: string;
+  typical_documents: string[];
+  eligibility_factors: string[];
+  sources: string[];
+  last_verified: string;
+  i18n?: Partial<Record<Exclude<Locale, "en">, { summary: string }>> | null;
+}
+
+export interface CreditSystemInfo {
+  country: SupportedCountry;
+  has_formal_bureau: Tri;
+  bureaus: string[];
+  what_contributes: string[];
+  why_it_matters: string[];
+  responsible_behaviours: string[];
+  risks: string[];
+  foreigner_notes: string | null;
+  sources: string[];
+  last_verified: string;
+}
+
+/** A user's tick on one step of their Financial Setup journey. */
+export interface FinancialSetupProgress {
+  user_id: string;
+  country: SupportedCountry;
+  step_key: string;
+  completed: boolean;
+  updated_at: string;
+}
+
+// ───────────────────────── Statement analysis ─────────────────────────
+
+export type StatementFileType = "csv" | "pdf";
+
+export interface StatementUpload {
+  id: string;
+  user_id: string;
+  /** Sanitised display name only. The file itself is never stored. */
+  file_name: string;
+  file_type: StatementFileType;
+  size_bytes: number;
+  /** SHA-256 of the file, so a re-upload can be recognised without keeping the file. */
+  sha256: string;
+  status: "PREVIEW" | "CONFIRMED";
+  currency: Currency;
+  period_start: string | null;
+  period_end: string | null;
+  /** Masked, e.g. "••••4821". Full account numbers are never kept. */
+  account_hint: string | null;
+  row_count: number;
+  low_confidence_count: number;
+  warnings: string[];
+  created_at: string;
+  confirmed_at: string | null;
+  /** Unconfirmed previews are deleted after this time. */
+  expires_at: string | null;
+}
+
+export interface StatementTransaction {
+  id: string;
+  upload_id: string;
+  user_id: string;
+  date: string;
+  /** Description with long digit runs masked. */
+  description: string;
+  merchant: string;
+  amount: number; // negative = debit
+  currency: Currency;
+  direction: "credit" | "debit";
+  reference: string | null;
+  category: TransactionCategory;
+  subcategory: string | null;
+  confidence: number;
+  category_source: "rule" | "merchant" | "ai" | "user" | "fallback";
+  needs_review: boolean;
+  included: boolean;
+}
+
+export interface StatementAnalysisRecord {
+  id: string;
+  upload_id: string;
+  user_id: string;
+  created_at: string;
+  /** Output of analyseStatement(); see lib/statements/analyse.ts. */
+  result: Record<string, unknown>;
 }
