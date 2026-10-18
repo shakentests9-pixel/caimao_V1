@@ -80,7 +80,7 @@ export function StatementReview({
               </div>
             </div>
             <div className="flex items-center justify-between gap-3 sm:justify-end">
-              <Money amount={r.amount} currency={r.currency} sign className={cn("text-[15px] font-extrabold", r.amount > 0 ? "text-success-ink" : "text-cocoa")} />
+              <Money amount={r.amount} currency={r.currency} sign className={cn("shrink-0 text-[15px] font-extrabold", r.amount > 0 ? "text-success-ink" : "text-cocoa")} />
               <span className="hidden w-12 text-right text-[12px] font-semibold text-muted sm:block" title={t("review.confidence")}>
                 {Math.round(r.confidence * 100)}%
               </span>
@@ -92,7 +92,7 @@ export function StatementReview({
                 disabled={disabled}
                 value={r.category}
                 onChange={(e) => onChange([{ id: r.id, category: e.target.value as TransactionCategory }])}
-                className="h-10 w-[150px] rounded-[12px] border border-line bg-ivory px-2 text-[13.5px] font-semibold text-cocoa outline-none focus:border-brand"
+                className="h-10 min-w-0 flex-1 rounded-[12px] border sm:w-[150px] sm:flex-none border-line bg-ivory px-2 text-[13.5px] font-semibold text-cocoa outline-none focus:border-brand"
               >
                 {EDITABLE_CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -100,7 +100,7 @@ export function StatementReview({
                   </option>
                 ))}
               </select>
-              <label className="flex min-h-10 items-center gap-1.5 text-[12.5px] font-semibold text-cocoa-2">
+              <label className="flex min-h-10 shrink-0 items-center gap-1.5 text-[12.5px] font-semibold text-cocoa-2">
                 <input
                   type="checkbox"
                   className="size-4 accent-[#A84A1A]"

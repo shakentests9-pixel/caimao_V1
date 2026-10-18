@@ -105,8 +105,12 @@ export function StatementWorkspace({ initial, history }: { initial: State; histo
                 })}
                 {state.upload.account_hint ? ` · ${t("account", { hint: state.upload.account_hint })}` : ""}
               </div>
+              {/* On phones the status sits under the file details so the name keeps its width. */}
+              <span className={cn("mt-1.5 inline-flex rounded-full px-3 py-1 text-[12.5px] font-bold sm:hidden", state.upload.status === "CONFIRMED" ? "bg-success-soft text-success-ink" : "bg-gold-soft text-gold-ink")}>
+                {state.upload.status === "CONFIRMED" ? t("statusConfirmed") : t("statusPreview")}
+              </span>
             </div>
-            <span className={cn("rounded-full px-3 py-1 text-[12.5px] font-bold", state.upload.status === "CONFIRMED" ? "bg-success-soft text-success-ink" : "bg-gold-soft text-gold-ink")}>
+            <span className={cn("hidden rounded-full px-3 py-1 text-[12.5px] font-bold sm:inline-flex", state.upload.status === "CONFIRMED" ? "bg-success-soft text-success-ink" : "bg-gold-soft text-gold-ink")}>
               {state.upload.status === "CONFIRMED" ? t("statusConfirmed") : t("statusPreview")}
             </span>
             <div className="flex w-full gap-2 sm:w-auto">
