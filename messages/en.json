@@ -1317,7 +1317,8 @@
       "showMore": "Show {count} more"
     },
     "disclaimer": "CaiMao's analysis is an estimate based on the statement you uploaded. It isn't financial advice and doesn't guarantee savings.",
-    "backToBudget": "Back to Budget"
+    "backToBudget": "Back to Budget",
+    "unusualWhyAny": "Much larger than your typical payment of about {typical}."
   },
   "StatementInsights": {
     "net_negative": "You spent {amount} more than came in over this period.",
@@ -1329,7 +1330,8 @@
     "regular_income": "Your regular income includes {source}, about {amount} a month.",
     "projection_covered": "At your current spending rate, you're projected to have about {amount} left when {obligation} is due on {date}.",
     "projection_short": "At your current spending rate, you could be about {amount} short when {obligation} is due on {date}.",
-    "opportunity": "Bringing discretionary spending down by about {monthly} a month could add roughly {total} to your buffer over {months, plural, one {# month} other {# months}}. This is an estimated opportunity, not guaranteed savings."
+    "opportunity": "Bringing discretionary spending down by about {monthly} a month could add roughly {total} to your buffer over {months, plural, one {# month} other {# months}}. This is an estimated opportunity, not guaranteed savings.",
+    "unusual_payment_any": "One payment stands out: {merchant}, {amount} on {date}, much larger than your typical payment of about {typical}."
   },
   "Errors": {
     "EMPTY": "The file is empty.",
@@ -1543,12 +1545,12 @@
     "disclaimer": "Guidance based on official sources and banks' own pages. Banks and regulators make the final decisions.",
     "steps": {
       "documents": {
-        "title": "Prepare your documents",
+        "title": "Prepare required documents",
         "body": "Banks and universities usually ask for these:",
         "cta": "Update your documents"
       },
       "open_account": {
-        "title": "Open a local bank account",
+        "title": "Open a {country} bank account",
         "body": "Find accounts you're likely to be eligible for.",
         "have": "You have a local account: {name} ••••{last4}.",
         "chosen": "You chose {bank} ({type}).",
@@ -1556,25 +1558,18 @@
         "missing": "Add your {fields} to see which banks are likely to accept you.",
         "cta": "See bank options"
       },
-      "debit_card": {
-        "title": "Get your debit card",
-        "body": "Once your account is open, activate the debit card and set up the bank's app with two-factor sign-in."
-      },
-      "transfer_rules": {
-        "title": "Understand the transfer rules",
-        "body": "Rules for money from {from} to {to}:",
-        "cta": "Check the rules in detail"
-      },
       "receive_funds": {
-        "title": "Receive money from home",
-        "body": "When family sends money from {from}, the sending bank may ask for these documents:"
+        "title": "Understand receiving money from {from}",
+        "body": "Rules for money from {from} to {to}:",
+        "documents": "When family sends money from home, the sending bank may ask for these documents:",
+        "cta": "Check the rules in detail"
       },
       "pay_tuition": {
         "title": "Pay tuition",
         "none": "No tuition payment on record for this country.",
         "paid": "{title} is paid.",
         "due": "{title}: {amount}, due {date}.",
-        "cta": "Compare routes and pay"
+        "cta": "Pay with approval"
       },
       "recurring": {
         "title": "Set up recurring payments",
@@ -1582,17 +1577,27 @@
         "cta": "See bills"
       },
       "credit": {
-        "title": "Build credit history",
+        "title": "Learn how to build local credit",
         "body": "Learn how credit history works in your study country.",
         "bureau": "Credit bureaus here: {bureaus}. Paying bills on time can contribute to a credit history.",
         "cta": "Learn how credit works"
       },
       "restrictions": {
-        "title": "Review important rules",
+        "title": "Review relevant financial restrictions",
         "body": "Foreign-exchange, limit, reporting and tax rules on record for your countries:",
         "none": "No restrictions on record for these countries."
+      },
+      "compare_routes": {
+        "title": "Compare tuition transfer options",
+        "body": "{title} ({amount}): compare fees, exchange rates and arrival times for paying from {from}.",
+        "prepared": "You compared routes and prepared a transfer for {title}.",
+        "none": "Compare fees and exchange rates for sending money from {from} to {to}.",
+        "cta": "Compare transfer options"
       }
-    }
+    },
+    "homeRoute": "{country} is your home country",
+    "notNeeded": "Not needed",
+    "sameCountry": "Not needed: {country} is your home country, so there's no cross-border transfer here."
   },
   "Explain": {
     "none_available": "No provider can take this transfer at the requested amount.",
@@ -1623,7 +1628,7 @@
     "setup": {
       "whichCountry": "Which country are you moving to? I have researched guidance for Singapore, the UK, the US, Japan and China.",
       "who": "Here's how opening a bank account in {country} usually works, from official and bank sources.",
-      "whoNational": "Here's what a {nationality} student usually needs to open a bank account in {country}, from official and bank sources.",
+      "whoNational": "Here's what a student from {nationality} usually needs to open a bank account in {country}, from official and bank sources.",
       "documents": "**Documents banks typically ask for:**\n{docs}",
       "askDetails": "Bank eligibility depends on more than nationality. Before I say which banks are likely to accept you, could you tell me your **{fields}**? For example, do you already have your student visa or pass, and have you arrived yet?",
       "likely": "**Likely to accept you:** {banks}.",

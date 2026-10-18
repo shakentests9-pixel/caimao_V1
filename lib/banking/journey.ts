@@ -10,11 +10,13 @@ import type {
   Obligation,
   Profile,
   SupportedCountry,
+  TransferRequest,
 } from "../types";
 import { SUPPORTED_COUNTRIES } from "../types";
 import type { FxService } from "../fx/service";
 import { bankingProfileFrom, checkEligibility, type EligibilityResult } from "./eligibility";
 import { evaluateRegulation, isAssistantRule, type RegulatoryResult } from "../regulatory/engine";
+import { localizeRuleText } from "../reference/localize";
 
 /**
  * "My Financial Setup": a personalised journey for moving to a study country.
@@ -26,9 +28,8 @@ import { evaluateRegulation, isAssistantRule, type RegulatoryResult } from "../r
 export const STEP_KEYS = [
   "documents",
   "open_account",
-  "debit_card",
-  "transfer_rules",
   "receive_funds",
+  "compare_routes",
   "pay_tuition",
   "recurring",
   "credit",
@@ -67,6 +68,8 @@ export interface JourneyInput {
   accounts: Account[];
   obligations: Obligation[];
   cards: CreditCard[];
+  /** Optional: prepared transfers, used to tick "compare tuition transfer options". */
+  transfers?: TransferRequest[];
   fx: FxService;
 }
 
@@ -99,19 +102,28 @@ export function buildJourney(input: JourneyInput): Journey {
   const chosenId = input.progress.find((p) => p.country === country && p.step_key.startsWith("bank:") && p.completed)?.step_key.slice(5) ?? null;
   const chosenBank = chosenId ? input.banks.find((b) => b.id === chosenId) ?? null : null;
   const tuition = input.obligations.find((o) => o.kind === "tuition" && o.destination_country === country);
-  const recurring = input.obligations.filter((o) => o.kind === "rent" || o.kind === "other" || o.kind === "card");
+  const sameCountry = home === country;
+  const recurring = input.obligations.filter((o) => (o.kind === "rent" || o.kind === "other" || o.kind === "card") && o.destination_country === country);
+  const tuitionTransfer = tuition ? (input.transfers ?? []).find((t) => t.obligation_id === tuition.id) : undefined;
   const localCard = input.cards.find((c) => c.currency === localAccount?.currency);
-  const restrictions = input.rules.filter(
-    (r) => isAssistantRule(r) && (r.source_country === country || r.destination_country === country || r.source_country === home) &&
-      ["fx_control", "limit", "tax", "reporting"].includes(r.rule_category ?? ""),
-  );
+  // The same rule can be stored once per direction; show it once.
+  const seen = new Set<string>();
+  const restrictions = input.rules.filter((r) => {
+    if (!isAssistantRule(r)) return false;
+    if (!(r.source_country === country || r.destination_country === country || r.source_country === home)) return false;
+    if (!["fx_control", "limit", "tax", "reporting"].includes(r.rule_category ?? "")) return false;
+    const key = `${r.rule_name}|${r.regulator ?? ""}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 
   const auto: Partial<Record<StepKey, boolean>> = {
     documents: profile.documents_on_file.length >= 2,
     open_account: !!localAccount,
-    debit_card: false,
-    transfer_rules: false,
-    receive_funds: !!localAccount && input.accounts.some((a) => a.country === home),
+    // Studying in your home country: there is no cross-border transfer to understand or compare.
+    receive_funds: sameCountry || (!!localAccount && input.accounts.some((a) => a.country === home)),
+    compare_routes: sameCountry || !!tuitionTransfer || tuition?.status === "PAID",
     pay_tuition: tuition?.status === "PAID",
     recurring: false,
     credit: !!localCard,
@@ -127,13 +139,12 @@ export function buildJourney(input: JourneyInput): Journey {
       account: localAccount ? { name: localAccount.name, last4: localAccount.account_last4 } : null,
       chosen: chosenBank ? { id: chosenBank.id, name: chosenBank.bank_name, account_type: chosenBank.account_type, url: chosenBank.official_url } : null,
     },
-    debit_card: { has_account: !!localAccount },
-    transfer_rules: { status: inbound.status, rules: inbound.findings.length, sources: inbound.sources.length },
-    receive_funds: { from: home, to: country, documents: inbound.documents.map((d) => d.name) },
+    receive_funds: { not_needed: sameCountry, from: home, to: country, status: inbound.status, rules: inbound.findings.length, sources: inbound.sources.length, documents: inbound.documents.map((d) => d.name) },
+    compare_routes: sameCountry ? { not_needed: true } : tuition ? { title: tuition.title, amount: tuition.amount, currency: tuition.currency, prepared: !!tuitionTransfer } : {},
     pay_tuition: tuition ? { title: tuition.title, amount: tuition.amount, currency: tuition.currency, status: tuition.status, due_date: tuition.due_date } : {},
     recurring: { items: recurring.filter((o) => o.status !== "PAID").map((o) => ({ title: o.title, amount: o.amount, currency: o.currency })) },
     credit: { has_bureau: credit?.has_formal_bureau ?? null, bureaus: credit?.bureaus ?? [], has_card: !!localCard },
-    restrictions: { rules: restrictions.map((r) => ({ id: r.id, name: r.rule_name, category: r.rule_category, regulator: r.regulator, url: r.official_source_url })) },
+    restrictions: { rules: restrictions.map((r) => ({ id: r.id, name: localizeRuleText(r, profile.language).name, category: r.rule_category, regulator: r.regulator, url: r.official_source_url })) },
   };
 
   const steps: JourneyStep[] = STEP_KEYS.map((key) => {

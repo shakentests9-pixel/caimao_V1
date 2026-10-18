@@ -305,7 +305,7 @@ export function AgentCardView({
             {card.steps.map((s) => (
               <li key={s.key} className="flex items-center gap-2 text-[13.5px] text-cocoa-2">
                 <span className={cn("flex size-5 shrink-0 items-center justify-center rounded-full", s.done ? "bg-success-soft text-success-ink" : "bg-white text-muted")}>{s.done ? "✓" : ""}</span>
-                {ts(`steps.${s.key}.title`)}
+                {ts(`steps.${s.key}.title`, { country: tc(card.country), from: tc(card.home) })}
               </li>
             ))}
           </ol>

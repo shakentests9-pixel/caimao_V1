@@ -149,6 +149,18 @@ export function extractFacts(userMessages: string[]): Facts {
       const b = parseCountries(route[2] ?? route[4] ?? "")[0];
       if (a) f.source = a;
       if (b) f.destination = b;
+    } else if (/从|から/.test(raw) && /到|至|往|へ|に/.test(raw)) {
+      // "从中国汇学费到新加坡…" / "中国から…シンガポールへ": the first country named is the source.
+      const cs = parseCountries(raw);
+      if (cs.length >= 2) {
+        f.source = cs[0];
+        f.destination = cs[1];
+      }
+    }
+    const zai = raw.match(/在\s*([^\s，。？！,.]{2,6}?)(?:开|開|留学|读书|上学|学习|生活|办)|([^\s、。？！]{2,8}?)で(?:銀行|口座|留学|勉強|生活)/);
+    if (zai) {
+      const c = parseCountries(zai[1] ?? zai[2] ?? "")[0];
+      if (c) f.destination = c;
     }
     if (/student (pass|visa|permit)|\bf-?1\b|\btier 4\b|study permit|学生签证|学生准证|留学签证|居留许可|留学ビザ|在留カード|student'?s pass/.test(t)) f.visa_type = "student";
     if (/(no|don'?t have|haven'?t got|without)( a)? (visa|pass)|还没有签证|ビザがまだ/.test(t)) f.visa_type = "none";
@@ -174,20 +186,20 @@ function targetLanguage(t: string): Locale | null {
 export function detectIntent(text: string): Intent {
   const t = text.toLowerCase();
   const countries = parseCountries(t);
-  if (/\b(switch|change|set)\b.*\b(language|english|chinese|japanese)\b|\b(reply|answer|respond|speak|talk)\b.*\b(in )?(english|chinese|japanese|mandarin)\b|用中文|说中文|中文回答|切换.*(中文|英文|日文|语言)|日本語で|日本語に|英語で|中国語で|言語を/.test(t) && targetLanguage(t))
+  if (/\b(switch|change|set)\b.*\b(language|english|chinese|japanese)\b|\b(reply|answer|respond|speak|talk)\b.*\b(in )?(english|chinese|japanese|mandarin)\b|(用|说)(中文|日语|日文|英语|英文)|(中文|日语|英语)回复|中文回答|切换.*(中文|英文|日文|语言)|日本語で|日本語に|英語で|中国語で|言語を/.test(t) && targetLanguage(t))
     return "language";
   if (/\b(prepare|go ahead|proceed|set up the payment|yes,? (please|prepare|pay)|do it)\b|准备付款|准备支付|支払いを準備|進めて/.test(t) && !/\bwhy\b/.test(t)) return "prepare_payment";
   if (/\bwhy (not|didn't|isn't)\b|\bwhy .*(home bank|cheapest|zero fee|no fee)|为什么不|なぜ.*home bank/.test(t)) return "why_not";
   const corridor = countries.length >= 2 || /\bfrom\s+\w+\s+to\s+\w+/.test(t) || /从.+(到|至)|から.+(へ|に)/.test(t);
   const moneyWords = /\b(send|sending|transfer|remit|pay|paying|tuition|fees|money|rules?|limit|regulat|allowed|permitted|documents?)\b|汇款|转账|学费|规定|规则|送金|学費|ルール|規制/.test(t);
   if (corridor && moneyWords && !/\b(bank account|set ?up my financ)/.test(t)) return "fund_flow";
-  if (/\b(pay|settle)\b.*\b(tuition|fees?|rent|invoice|card|bill)\b|\btuition\b|付学费|缴学费|学費を払/.test(t)) return "pay_obligation";
+  if (/\b(pay|settle)\b.*\b(tuition|fees?|rent|invoice|card|bill)\b|\btuition\b|付学费|缴学费|交学费|学費を(支)?払|学費の支払/.test(t)) return "pay_obligation";
   if (/\b(rule|regulat|complian|allowed|limit|legal|permitted)/.test(t) || /规定|规则|ルール|規制/.test(t)) return "check_rules";
-  if (/set ?up my financ|financial setup|\bmoving to\b|\bmove to\b|open (a |an )?(local )?(bank|account)|bank account|\bchecklist\b|开户|银行账户|开银行|口座|銀行|留学准备|お金の準備/.test(t)) return "setup";
+  if (/set ?up my financ|financial setup|\bmoving to\b|\bmove to\b|open (a |an )?(local )?(bank|account)|bank account|\bchecklist\b|开户|银行账户|开银行|口座|銀行|留学准备|理财准备|财务准备|财务规划|お金の準備|お金の手続き/.test(t)) return "setup";
   if (/\bstatement\b|spending analysis|analy[sz]e my spending|对账单|流水|账单分析|明細|明细/.test(t)) return "statement";
   if (/\b(send|remit|transfer)\b.*\b(overseas|abroad|money|home)\b|\bsend money\b|汇款|送金/.test(t)) return "send_money";
-  if (/\b(compare|fx|exchange rate|rates?|quote|cheapest|transfer options|provider)\b|汇率|為替/.test(t)) return "compare_fx";
-  if (/\b(spend|spending|budget|expense|saving|afford)|消费|预算|支出|予算/.test(t)) return "spending";
+  if (/\b(compare|fx|exchange rate|rates?|quote|cheapest|transfer options|provider)\b|汇率|费率|比较|為替|レート|比較/.test(t)) return "compare_fx";
+  if (/\b(spend|spending|budget|expense|saving|afford)|消费|预算|支出|负担得起|买得起|予算|余裕/.test(t)) return "spending";
   if (/\bcredit\b|信用|クレジット/.test(t)) return "credit";
   if (/\b(balance|how much (money|cash)|accounts?|total cash)\b|余额|残高/.test(t)) return "balances";
   return "help";

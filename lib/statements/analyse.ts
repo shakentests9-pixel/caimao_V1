@@ -48,7 +48,8 @@ export interface StatementAnalysis {
   top_merchants: { merchant: string; amount: number; count: number; category: TransactionCategory }[];
   recurring: RecurringPayment[];
   subscriptions: { count: number; monthly_cost: number };
-  unusual: { id: string; date: string; merchant: string; amount: number; category: TransactionCategory; typical: number }[];
+  /** scope "category": compared with that category's median; "all": a one-off in a thin category, compared with the median payment overall. */
+  unusual: { id: string; date: string; merchant: string; amount: number; category: TransactionCategory; typical: number; scope?: "category" | "all" }[];
   income_sources: { source: string; total: number; occurrences: number; regular: boolean }[];
   opportunity: { monthly: number; months: number; total: number; method: "above_average" | "illustrative_10pct"; categories: TransactionCategory[] };
   pressure: {
@@ -179,7 +180,20 @@ export function analyseStatement(rows: StatementTransaction[], ctx: AnalysisCont
     const typical = median(list.map((r) => -r.value));
     for (const r of list) {
       if (-r.value > typical * 3 && -r.value >= expenses * 0.05) {
-        unusual.push({ id: r.id, date: r.date, merchant: r.merchant, amount: r2(-r.value), category, typical: r2(typical) });
+        unusual.push({ id: r.id, date: r.date, merchant: r.merchant, amount: r2(-r.value), category, typical: r2(typical), scope: "category" });
+      }
+    }
+  }
+  // Categories with too little history: flag a single large one-off against the typical payment overall.
+  const FIXED: TransactionCategory[] = ["Accommodation", "Education", "Transfers", "Fees"];
+  const overallTypical = median(spend.filter((r) => !FIXED.includes(r.category)).map((r) => -r.value));
+  for (const [category] of catMap) {
+    if (FIXED.includes(category)) continue;
+    const list = spend.filter((r) => r.category === category);
+    if (list.length >= 3) continue;
+    for (const r of list) {
+      if (overallTypical > 0 && -r.value > overallTypical * 5 && -r.value >= expenses * 0.1) {
+        unusual.push({ id: r.id, date: r.date, merchant: r.merchant, amount: r2(-r.value), category, typical: r2(overallTypical), scope: "all" });
       }
     }
   }
@@ -207,8 +221,11 @@ export function analyseStatement(rows: StatementTransaction[], ctx: AnalysisCont
   if (monthly.length >= 2 && latestMonth) {
     method = "above_average";
     const prior = monthly.slice(0, -1).map((m) => m.month);
+    // One-off outliers (shown under "Unusual expenses") are excluded: a single big purchase
+    // isn't a monthly habit, so it shouldn't inflate the estimated opportunity.
+    const oneOffs = new Set(unusual.map((u) => u.id));
     const byCatMonth = (cat: TransactionCategory, sub: string | null | undefined, m: string) =>
-      spend.filter((r) => r.category === cat && (sub === undefined || r.subcategory === sub) && monthOf(r.date) === m).reduce((s, r) => s - r.value, 0);
+      spend.filter((r) => !oneOffs.has(r.id) && r.category === cat && (sub === undefined || r.subcategory === sub) && monthOf(r.date) === m).reduce((s, r) => s - r.value, 0);
     // `label` is a message key (StatementPage.groups.*), so insights can be shown in any language.
     const groups: { cat: TransactionCategory; sub?: string | null; label: string }[] = [
       { cat: "Food", sub: "Eating out", label: "eating_out" },
@@ -274,7 +291,7 @@ export function analyseStatement(rows: StatementTransaction[], ctx: AnalysisCont
     const core = categories.filter((c) => ["Accommodation", "Food", "Transportation"].includes(c.category)).reduce((s, c) => s + c.amount, 0);
     if (core > 0) insights.push({ code: "essentials_share", params: { pct: Math.round((core / expenses) * 100) }, basis: "category shares" });
   }
-  if (unusual[0]) insights.push({ code: "unusual_payment", params: { merchant: unusual[0].merchant, amount: unusual[0].amount, date: unusual[0].date, category: unusual[0].category, currency: ccy }, basis: "outlier check" });
+  if (unusual[0]) insights.push({ code: "unusual_payment", params: { merchant: unusual[0].merchant, amount: unusual[0].amount, date: unusual[0].date, category: unusual[0].category, scope: unusual[0].scope ?? "category", typical: unusual[0].typical, currency: ccy }, basis: "outlier check" });
   const regular = income_sources.find((s) => s.regular);
   if (regular) insights.push({ code: "regular_income", params: { source: regular.source, amount: r2(regular.total / months), currency: ccy }, basis: "income pattern" });
   if (obligation && projected != null) {

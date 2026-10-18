@@ -19,6 +19,7 @@ export function renderInsight(i: Insight, t: { insights: T; groups: T; categorie
     case "essentials_share":
       return t.insights("essentials_share", { pct: Number(p.pct) });
     case "unusual_payment":
+      if (p.scope === "all") return t.insights("unusual_payment_any", { merchant: String(p.merchant), amount: m("amount"), date: date("date"), typical: m("typical") });
       return t.insights("unusual_payment", { merchant: String(p.merchant), amount: m("amount"), date: date("date"), category: t.categories(String(p.category)) });
     case "regular_income":
       return t.insights("regular_income", { source: String(p.source), amount: m("amount") });

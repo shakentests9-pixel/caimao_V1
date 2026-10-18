@@ -46,6 +46,7 @@ export function SetupJourney({ journey }: { journey: Journey }) {
 
   const body = (s: JourneyStep) => {
     const d = s.data as Record<string, unknown>;
+    if (d.not_needed) return <p>{t("sameCountry", { country: countryName })}</p>;
     switch (s.key) {
       case "documents": {
         const docs = (d.documents as string[]) ?? [];
@@ -71,24 +72,36 @@ export function SetupJourney({ journey }: { journey: Journey }) {
           </>
         );
       }
-      case "transfer_rules":
-        return (
-          <>
-            <p className="flex flex-wrap items-center gap-2">
-              {t("steps.transfer_rules.body", { from: tc(journey.home_country), to: countryName })} <StatusBadge status={journey.inbound.status} size="sm" />
-            </p>
-            <Link href="/transfers#rules" className="mt-2 inline-flex min-h-10 items-center gap-1 font-bold text-brand">{t("steps.transfer_rules.cta")} <ArrowRight className="size-3.5" /></Link>
-          </>
-        );
       case "receive_funds": {
         const docs = (d.documents as string[]) ?? [];
         return (
           <>
-            <p>{t("steps.receive_funds.body", { from: tc(journey.home_country) })}</p>
-            {docs.length ? <ul className="mt-2 list-disc space-y-0.5 pl-5">{docs.map((x) => <li key={x}>{x}</li>)}</ul> : null}
+            <p className="flex flex-wrap items-center gap-2">
+              {t("steps.receive_funds.body", { from: tc(journey.home_country), to: countryName })} <StatusBadge status={journey.inbound.status} size="sm" />
+            </p>
+            {docs.length ? (
+              <>
+                <p className="mt-2">{t("steps.receive_funds.documents")}</p>
+                <ul className="mt-1 list-disc space-y-0.5 pl-5">{docs.map((x) => <li key={x}>{x}</li>)}</ul>
+              </>
+            ) : null}
+            <Link href="/transfers#rules" className="mt-2 inline-flex min-h-10 items-center gap-1 font-bold text-brand">{t("steps.receive_funds.cta")} <ArrowRight className="size-3.5" /></Link>
           </>
         );
       }
+      case "compare_routes":
+        return (
+          <>
+            <p>
+              {d.title
+                ? d.prepared
+                  ? t("steps.compare_routes.prepared", { title: String(d.title) })
+                  : t("steps.compare_routes.body", { title: String(d.title), amount: formatMoney(Number(d.amount), d.currency as Currency), from: tc(journey.home_country) })
+                : t("steps.compare_routes.none", { from: tc(journey.home_country), to: countryName })}
+            </p>
+            <Link href="/transfers" className="mt-2 inline-flex min-h-10 items-center gap-1 font-bold text-brand">{t("steps.compare_routes.cta")} <ArrowRight className="size-3.5" /></Link>
+          </>
+        );
       case "pay_tuition": {
         if (!d.title) return <p>{t("steps.pay_tuition.none")}</p>;
         return (
@@ -151,7 +164,7 @@ export function SetupJourney({ journey }: { journey: Journey }) {
         );
       }
       default:
-        return <p>{t(`steps.${s.key}.body`)}</p>;
+        return null;
     }
   };
 
@@ -171,7 +184,7 @@ export function SetupJourney({ journey }: { journey: Journey }) {
           <div className="min-w-0 flex-1">
             <div className="text-[12px] font-extrabold uppercase tracking-[0.12em] text-gold">{t("eyebrow")}</div>
             <h2 className="font-display text-[26px] font-extrabold leading-tight tracking-[-0.04em] text-white">{t("headline", { country: countryName })}</h2>
-            <p className="mt-1 text-[14.5px] text-cream">{t("route", { from: tc(journey.home_country), to: countryName })}</p>
+            <p className="mt-1 text-[14.5px] text-cream">{journey.home_country === country ? t("homeRoute", { country: countryName }) : t("route", { from: tc(journey.home_country), to: countryName })}</p>
           </div>
           <div className="text-right">
             <div className="num font-display text-[34px] font-extrabold text-gold">{done}/{steps.length}</div>
@@ -195,9 +208,9 @@ export function SetupJourney({ journey }: { journey: Journey }) {
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="text-[16px] font-extrabold text-cocoa">{t(`steps.${s.key}.title`)}</h3>
+                  <h3 className="text-[16px] font-extrabold text-cocoa">{t(`steps.${s.key}.title`, { country: countryName, from: tc(journey.home_country) })}</h3>
                   {s.done_by === "auto" ? (
-                    <span className="rounded-full bg-success-soft px-2.5 py-0.5 text-[12px] font-bold text-success-ink">{t("autoDone")}</span>
+                    <span className="rounded-full bg-success-soft px-2.5 py-0.5 text-[12px] font-bold text-success-ink">{(s.data as { not_needed?: boolean }).not_needed ? t("notNeeded") : t("autoDone")}</span>
                   ) : (
                     <button onClick={() => toggle(s)} disabled={pending} aria-pressed={s.done} className={cn("min-h-9 rounded-[11px] px-3 text-[13px] font-bold", s.done ? "bg-success-soft text-success-ink" : "bg-cream text-cocoa hover:bg-sand")}>
                       {s.done ? t("done") : t("markDone")}

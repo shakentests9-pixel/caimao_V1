@@ -48,7 +48,6 @@ export const MERCHANTS: MerchantRule[] = [
       ["Trader Joe's", /trader joe/i],
       ["Whole Foods", /whole ?foods/i],
       ["Costco", /costco/i],
-      ["Target", /\btarget\b/i],
       ["7-Eleven", /7-?eleven|seven-?eleven|セブン/i],
       ["Lawson", /\blawson\b|ローソン/i],
       ["FamilyMart", /family ?mart|ファミリーマート|全家/i],
@@ -76,6 +75,11 @@ export const MERCHANTS: MerchantRule[] = [
       ["Greggs", /greggs/i],
       ["Subway", /\bsubway\b/i],
       ["Luckin Coffee", /luckin|瑞幸/i],
+      ["Wagamama", /wagamama/i],
+      ["Itsu", /\bitsu\b/i],
+      ["Leon", /\bleon restaurants?\b/i],
+      ["Ya Kun", /ya kun/i],
+      ["Toast Box", /toast box/i],
     ] as const
   ).map(([name, re]) => ({ name, re, category: "Food" as const, sub: "Eating out" })),
   // Subscriptions
@@ -148,6 +152,15 @@ export const MERCHANTS: MerchantRule[] = [
       ["Muji", /\bmuji\b|無印/i],
       ["Daiso", /daiso|ダイソー/i],
       ["Don Quijote", /don quijote|ドン・キホーテ/i],
+      ["Currys", /\bcurrys\b/i],
+      ["John Lewis", /john lewis/i],
+      ["H&M", /\bh&m\b|\bh & m\b/i],
+      ["Zara", /\bzara\b/i],
+      ["Apple Store", /apple store/i],
+      ["Best Buy", /best buy/i],
+      ["Walmart", /walmart/i],
+      ["Bic Camera", /bic ?camera|ビックカメラ/i],
+      ["Yodobashi", /yodobashi|ヨドバシ/i],
     ] as const
   ).map(([name, re]) => ({ name, re, category: "Shopping" as const })),
   // Healthcare
@@ -202,7 +215,7 @@ export const MERCHANTS: MerchantRule[] = [
 
 /** Keyword rules, checked after merchants. */
 const RULES: { category: TransactionCategory; sub?: string; patterns: RegExp[] }[] = [
-  { category: "Transfers", patterns: [/remittance/i, /top-up|top up/i, /\btransfer (to|from) (own|my|savings)/i] },
+  { category: "Transfers", patterns: [/remittance/i, /top-up|top up/i, /\b(transfer|tfr|trf|xfer)\s+(to|from)\s+(own|my|savings)\b/i, /\bsavings (pot|account|transfer)\b/i] },
   { category: "Income", patterns: [/payroll/i, /salary/i, /wages/i, /allowance/i, /family support/i, /stipend/i, /scholarship/i, /bursary/i, /工资|給与|給料/] },
   { category: "Fees", patterns: [/\bfee\b|fees\b/i, /\bcharge\b|charges\b/i, /overdraft/i, /\binterest charged\b/i, /\batm\b.*\bfee\b/i, /手续费|手数料/] },
   { category: "Accommodation", patterns: [/\brent\b/i, /student living/i, /accommodation/i, /\bhalls?\b/i, /letting|lettings/i, /unite students|iq student/i, /房租|家賃/] },

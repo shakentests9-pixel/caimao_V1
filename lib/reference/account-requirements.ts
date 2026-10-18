@@ -29,7 +29,15 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
       "https://www.icbc.com.cn/ICBC/EN/PersonalFinance/Deposit/CurrentDeposit/currentdeposit.htm",
       "https://www.boc.cn/en/custserv/202404/t20240403_24845718.html"
     ],
-    "last_verified": "2026-10-18"
+    "last_verified": "2026-10-18",
+    "i18n": {
+      "zh-CN": {
+        "summary": "外国人（包括国际学生）可以本人前往中国的银行网点柜台，开立个人人民币借记/结算账户。核心证件是有效护照（或外国人永久居留身份证）。银行会核实身份、开户意愿和开户用途；需要或建议提供实名登记的中国大陆手机号码，也可能要求提供本地住址证明。上海的官方指南将长期学习签证列为可用于开立借记卡账户的签证类型之一，并要求签署《个人税收居民身份声明文件》。最低开户存款只是象征性金额（例如 ICBC（中国工商银行）和 Bank of China（中国银行）为 RMB 1）。具体要求因银行和网点而异。"
+      },
+      "ja": {
+        "summary": "留学生を含む外国人は、中国の銀行の支店窓口で本人が手続きをすれば、個人の人民元デビット／決済口座を開設できます。基本となる書類は有効なパスポート（または外国人永久居留身分証）です。銀行は本人確認、口座開設の意思、口座の目的を確認します。実名登録された中国本土の携帯電話番号が必要または推奨され、現地住所の証明を求められることもあります。上海市の公式ガイドでは、デビットカード口座の開設に使えるビザの種類として長期留学ビザが挙げられており、署名済みの「個人税務居住者身分申告書」（个人税收居民身份声明文件）が必要です。最低預入額はごくわずかです（例：ICBC（中国工商銀行）と Bank of China（中国銀行）では RMB 1）。具体的な要件は銀行や支店によって異なります。"
+      }
+    }
   },
   {
     "country": "GB",
@@ -59,7 +67,15 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
       "https://www.hsbc.co.uk/current-accounts/compare/international-student-bank-account/",
       "https://www.santander.co.uk/personal/current-accounts/santander-edge-student-current-account/international-student"
     ],
-    "last_verified": "2026-10-18"
+    "last_verified": "2026-10-18",
+    "i18n": {
+      "zh-CN": {
+        "summary": "英国任何银行在开立活期账户（current account）前，都必须查看身份证明并进行移民身份核查，因此国际学生需要护照和移民许可证明（现为 eVisa，通过 share code 分享）。大多数银行还要求提供地址证明，许多银行接受大学出具的银行信函作为地址证明。几家主要银行只向在英国居住满 3 年或以上的人提供标准学生账户。国际学生通常会被引导开立专门的国际学生账户（HSBC、Lloyds、Santander），或改为开立基本账户或标准账户。"
+      },
+      "ja": {
+        "summary": "英国の銀行はいずれも、当座預金口座（current account）を開設する前に身分証明を確認し、在留資格の確認を行わなければなりません。そのため留学生には、パスポートと在留許可の証明（現在は eVisa で、シェアコード〔share code〕で共有）が必要です。ほとんどの銀行は住所証明も求めており、多くの銀行は大学が発行する銀行用レター（bank letter）を住所証明として受け付けています。いくつかの大手銀行は、標準的な学生口座を英国に3年以上住んでいる人にのみ提供しています。留学生は代わりに、留学生専用口座（HSBC、Lloyds、Santander）、またはベーシック口座や標準口座を案内されます。"
+      }
+    }
   },
   {
     "country": "JP",
@@ -92,7 +108,15 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
       "https://www.smbc.co.jp/kojin/open-account/",
       "https://www.mof.go.jp/about_mof/act/kokuji_tsuutatsu/tsuutatsu/TU-20230601-4672.pdf"
     ],
-    "last_verified": "2026-10-18"
+    "last_verified": "2026-10-18",
+    "i18n": {
+      "zh-CN": {
+        "summary": "持有在留卡（在留カード）的国际学生可以在日本主要银行开立普通账户。银行会核查卡上的在留期间：如果剩余在留期间不足 3 个月，Mizuho 和 Japan Post Bank 会拒绝申请；对于原在留期间为 3 个月或以下且没有在留卡的人，Japan Post Bank 不予开户。根据外汇规定，外国人在入境日本满 6 个月之前被视为非居住者（在日本境内的办事机构工作者除外），MUFG 表示非居住者在银行服务方面会受到一些限制。外国人不能使用 MUFG 的网上“Smart”开户，必须到网点核实身份。搬入新住处后 14 天内请到市区町村政府办理住址登记，因为如果在留卡上没有住址，Japan Post Bank 无法为你开户。住址或在留期间发生变化时请告知银行，离开日本时请注销账户。"
+      },
+      "ja": {
+        "summary": "在留カードを持つ留学生は、日本の主要銀行で普通預金口座を開設できます。銀行はカードに記載された在留期間を確認します。Mizuho（みずほ銀行）と Japan Post Bank（ゆうちょ銀行）は、残りの在留期間が3か月未満の場合は申込みを断ります。また Japan Post Bank は、当初の在留期間が3か月以下で在留カードを持たない人の口座は開設しません。外国為替の規則では、外国人は（日本国内の事務所に勤務している場合を除き）日本に入国してから6か月が経過するまで非居住者とみなされ、MUFG（三菱UFJ銀行）は、非居住者には銀行サービスに一部制限があるとしています。外国人は MUFG のオンライン「Smart」口座開設を利用できず、支店で本人確認を受ける必要があります。Japan Post Bank は在留カードに住所の記載がないと口座を開設できないため、転入から14日以内に市区町村役場で住所を届け出てください。住所や在留期間が変わったときは銀行に知らせ、日本を離れるときは口座を解約してください。"
+      }
+    }
   },
   {
     "country": "SG",
@@ -118,7 +142,15 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
       "https://www.sc.com/sg/save/savings-accounts/jumpstart/",
       "https://www.hsbc.com.sg/international/open-an-account/"
     ],
-    "last_verified": "2026-10-18"
+    "last_verified": "2026-10-18",
+    "i18n": {
+      "zh-CN": {
+        "summary": "持有学生准证（Student's Pass）的外国学生可以在新加坡主要银行开立储蓄账户。银行通常要求提供有效护照、学生准证（或学校信函），以及新加坡居住地址证明。部分银行允许外国人通过应用程序申请（DBS digibank、HSBC app，可通过 Myinfo 或上传文件）。UOB 表示，新的外国客户必须携带原件前往网点办理；OCBC 要求外国学生到网点提交学校信函。最低年龄和准证要求因银行和账户而异。"
+      },
+      "ja": {
+        "summary": "Student's Pass を持つ外国人学生は、シンガポールの主要銀行で普通預金口座を開設できます。銀行は通常、有効なパスポート、Student's Pass（または学校のレター）、シンガポールの居住住所の証明を求めます。一部の銀行では、外国人もアプリで申し込めます（DBS digibank、HSBC アプリ〔Myinfo または書類のアップロード〕）。UOB は、新規の外国人顧客は原本を持って支店に来店する必要があるとしており、OCBC は外国人学生に支店で学校のレターを提出するよう求めています。最低年齢やパスの要件は銀行や口座によって異なります。"
+      }
+    }
   },
   {
     "country": "US",
@@ -147,6 +179,14 @@ export const ACCOUNT_REQUIREMENTS: AccountRequirements[] = [
       "https://www.chase.com/personal/banking/education/basics/bank-accounts-for-international-students",
       "https://www.wellsfargo.com/help/checking-savings/open-close-account-faqs/"
     ],
-    "last_verified": "2026-10-18"
+    "last_verified": "2026-10-18",
+    "i18n": {
+      "zh-CN": {
+        "summary": "国际学生通常可以在没有社会安全号码（SSN）的情况下开立美国银行账户。根据法律，银行必须收集你的姓名、出生日期、地址和一个身份识别号码，非美国人士可以使用 ITIN，或护照号码及签发国。每家银行有各自的规定。如果没有 SSN 或 ITIN，你可能只能开立不付利息的账户。国际学生通常必须本人到网点开户。"
+      },
+      "ja": {
+        "summary": "留学生は通常、社会保障番号（SSN）がなくても米国の銀行口座を開設できます。法律により、銀行はあなたの氏名、生年月日、住所、識別番号を収集しなければならず、米国人でない人（non-U.S. person）は ITIN、またはパスポート番号と発行国を使えます。規則は銀行ごとに異なります。SSN や ITIN がない場合、利息の付かない口座しか開設できないことがあります。留学生は通常、支店で本人が口座を開設する必要があります。"
+      }
+    }
   }
 ] as AccountRequirements[];

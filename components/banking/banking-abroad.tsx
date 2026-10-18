@@ -2,7 +2,7 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ArrowRight, ExternalLink, Loader2, ShieldCheck, UserRound } from "lucide-react";
 import { CountryChip } from "@/components/country-chip";
 import { CrossBorderProfileForm } from "@/components/cross-border-profile-form";
@@ -27,6 +27,9 @@ const STEP_COUNT = 8;
 
 export function BankingAbroad(props: BankingAbroadProps) {
   const t = useTranslations("BankingAbroad");
+  const locale = useLocale() as "en" | "zh-CN" | "ja";
+  // Reviewed translation of the official-source overview when one exists; otherwise the English original.
+  const overview = props.requirements ? (locale !== "en" ? props.requirements.i18n?.[locale]?.summary : null) ?? props.requirements.summary : null;
   const tc = useTranslations("Countries");
   const tp = useTranslations("ProfileForm");
   const tf = useTranslations("ProfileFields");
@@ -122,7 +125,7 @@ export function BankingAbroad(props: BankingAbroadProps) {
       {/* How to open an account */}
       <section aria-labelledby="steps-title" className="rounded-[24px] bg-white p-5 shadow-card sm:p-6">
         <h2 id="steps-title" className="font-display text-[22px] font-extrabold tracking-[-0.03em] text-cocoa">{t("howTitle", { country: countryName })}</h2>
-        {props.requirements ? <p className="mt-1 max-w-[75ch] text-[14.5px] leading-6 text-muted">{props.requirements.summary}</p> : null}
+        {overview ? <p className="mt-1 max-w-[75ch] text-[14.5px] leading-6 text-muted">{overview}</p> : null}
         <ol className="mt-5 grid gap-3 md:grid-cols-2">
           {Array.from({ length: STEP_COUNT }, (_, i) => i + 1).map((n) => (
             <li key={n} className="flex gap-3 rounded-[18px] bg-cream p-4">

@@ -14,6 +14,7 @@ import {
   type SupportedCountry,
 } from "../types";
 import { checkRegulation } from "../regulatory/service";
+import { localizeBank, localizeCredit, localizeRequirements } from "../reference/localize";
 import { bankingGuidance, createActionPlan } from "../banking/service";
 import { latestAnalysis } from "../statements/service";
 import { formatMoney } from "../fx/service";
@@ -98,7 +99,9 @@ export const GLOBAL_TOOLS = [
     llm: true,
     schema: z.object({ country: supported }),
     async run(ctx, input) {
-      const req = (await ctx.repo.listAccountRequirements()).find((r) => r.country === input.country) ?? null;
+      const lang = (await ctx.repo.getProfile()).language;
+      const found = (await ctx.repo.listAccountRequirements()).find((r) => r.country === input.country);
+      const req = found ? localizeRequirements(found, lang) : null;
       await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", { tool: "getCountryBankingRequirements", level: PermissionLevel.Information, details: { country: input.country, sources: req?.sources ?? [] } });
       if (!req) return { data: { found: false, message: "No researched requirements on record for this country." }, summary: `${input.country}: no requirements on record` };
       return { data: req, summary: `${input.country}: ${req.typical_documents.length} typical documents · ${req.sources.length} sources` };
@@ -113,7 +116,8 @@ export const GLOBAL_TOOLS = [
     llm: true,
     schema: z.object({ country: supported }),
     async run(ctx, input) {
-      const banks = (await ctx.repo.listBanks()).filter((b) => b.country === input.country);
+      const lang = (await ctx.repo.getProfile()).language;
+      const banks = (await ctx.repo.listBanks()).filter((b) => b.country === input.country).map((b) => localizeBank(b, lang));
       await audit(ctx, "BANK_OPTIONS_RETRIEVED", { tool: "getAvailableBanks", level: PermissionLevel.Information, details: { country: input.country, banks: banks.map((b) => b.id) } });
       return {
         data: banks.map(({ evidence_quote: _q, ...b }) => b),
@@ -214,7 +218,9 @@ export const GLOBAL_TOOLS = [
     llm: true,
     schema: z.object({ country: supported }),
     async run(ctx, input) {
-      const info = (await ctx.repo.listCreditSystems()).find((c) => c.country === input.country) ?? null;
+      const lang = (await ctx.repo.getProfile()).language;
+      const raw = (await ctx.repo.listCreditSystems()).find((c) => c.country === input.country);
+      const info = raw ? localizeCredit(raw, lang) : null;
       await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", { tool: "getCreditSystemInfo", level: PermissionLevel.Information, details: { country: input.country, topic: "credit", sources: info?.sources ?? [] } });
       if (!info) return { data: { found: false }, summary: `${input.country}: no credit information on record` };
       return { data: info, summary: `${input.country}: ${info.bureaus.length} bureaus on record`, cards: [{ kind: "credit_info", info }] };
@@ -248,7 +254,9 @@ export const GLOBAL_TOOLS = [
     async run(ctx, input) {
       const p = input as typeof input & Persona;
       if (p.purpose === "bank_account") {
-        const req = (await ctx.repo.listAccountRequirements()).find((r) => r.country === p.country) ?? null;
+        const lang = (await ctx.repo.getProfile()).language;
+        const found = (await ctx.repo.listAccountRequirements()).find((r) => r.country === p.country);
+        const req = found ? localizeRequirements(found, lang) : null;
         await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", { tool: "getRequiredDocuments", level: PermissionLevel.Information, details: { country: p.country, purpose: "bank_account" } });
         return { data: { documents: req?.typical_documents ?? [], sources: req?.sources ?? [], last_verified: req?.last_verified ?? null }, summary: `${req?.typical_documents.length ?? 0} documents for a bank account` };
       }

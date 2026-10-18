@@ -35,6 +35,7 @@ export function useInsightText() {
       case "essentials_share":
         return t("essentials_share", { pct: Number(p.pct) });
       case "unusual_payment":
+        if (p.scope === "all") return t("unusual_payment_any", { merchant: String(p.merchant), amount: m("amount"), date: date("date"), typical: m("typical") });
         return t("unusual_payment", { merchant: String(p.merchant), amount: m("amount"), date: date("date"), category: tcat(String(p.category) as never) });
       case "regular_income":
         return t("regular_income", { source: String(p.source), amount: m("amount") });
@@ -221,7 +222,7 @@ export function StatementAnalysisView({ analysis, onAsk }: { analysis: Statement
                   <li key={u.id} className="rounded-[16px] bg-cream px-4 py-3 text-[14px] text-cocoa-2">
                     <span className="font-bold text-cocoa">{u.merchant}</span> · <Money amount={u.amount} currency={ccy} className="font-bold" /> ·{" "}
                     {format.dateTime(new Date(u.date + "T12:00:00Z"), { day: "numeric", month: "short" })}
-                    <span className="block text-[12.5px] text-muted">{t("unusualWhy", { typical: formatMoney(u.typical, ccy), category: tc(u.category) })}</span>
+                    <span className="block text-[12.5px] text-muted">{u.scope === "all" ? t("unusualWhyAny", { typical: formatMoney(u.typical, ccy) }) : t("unusualWhy", { typical: formatMoney(u.typical, ccy), category: tc(u.category) })}</span>
                   </li>
                 ))}
               </ul>

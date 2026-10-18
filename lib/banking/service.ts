@@ -5,6 +5,7 @@ import { getFxService } from "../finance";
 import { PermissionLevel, type SupportedCountry } from "../types";
 import { bankingProfileFrom, checkEligibility, type BankingProfile } from "./eligibility";
 import { buildJourney, STEP_KEYS, type StepKey } from "./journey";
+import { localizeBank, localizeCredit, localizeRequirements } from "../reference/localize";
 
 /**
  * getCountryBankingRequirements / getAvailableBanks / getBankEligibility, audited:
@@ -13,7 +14,11 @@ import { buildJourney, STEP_KEYS, type StepKey } from "./journey";
  */
 export async function bankingGuidance(ctx: ActionContext, input: { country: SupportedCountry; override?: Partial<BankingProfile>; tool?: string }) {
   const tool = input.tool ?? "getBankEligibility";
-  const [profile, banks, reqs, credit] = await Promise.all([ctx.repo.getProfile(), ctx.repo.listBanks(), ctx.repo.listAccountRequirements(), ctx.repo.listCreditSystems()]);
+  const [profile, rawBanks, rawReqs, rawCredit] = await Promise.all([ctx.repo.getProfile(), ctx.repo.listBanks(), ctx.repo.listAccountRequirements(), ctx.repo.listCreditSystems()]);
+  // Display text in the user's language; flags and numbers used for eligibility are unchanged.
+  const banks = rawBanks.map((b) => localizeBank(b, profile.language));
+  const reqs = rawReqs.map((r) => localizeRequirements(r, profile.language));
+  const credit = rawCredit.map((c) => localizeCredit(c, profile.language));
   await audit(ctx, "PROFILE_READ", { tool, level: PermissionLevel.Read, details: { fields: ["nationality", "age", "student_status", "visa_type", "residency_status"] } });
   const requirements = reqs.find((r) => r.country === input.country) ?? null;
   await audit(ctx, "BANK_REQUIREMENTS_RETRIEVED", {
@@ -42,7 +47,7 @@ export async function bankingGuidance(ctx: ActionContext, input: { country: Supp
 }
 
 export async function loadJourney(ctx: ActionContext, country?: SupportedCountry) {
-  const [profile, rules, banks, requirements, credit, progress, accounts, obligations, cards, fx] = await Promise.all([
+  const [profile, rules, banks, requirements, credit, progress, accounts, obligations, cards, transfers, fx] = await Promise.all([
     ctx.repo.getProfile(),
     ctx.repo.listCountryRules(),
     ctx.repo.listBanks(),
@@ -52,9 +57,16 @@ export async function loadJourney(ctx: ActionContext, country?: SupportedCountry
     ctx.repo.listAccounts(),
     ctx.repo.listObligations(),
     ctx.repo.listCreditCards(),
+    ctx.repo.listTransferRequests(),
     getFxService(ctx.repo),
   ]);
-  return buildJourney({ profile, country, rules, banks, requirements, credit, progress, accounts, obligations, cards, fx });
+  const l = profile.language;
+  return buildJourney({
+    profile, country, rules, progress, accounts, obligations, cards, transfers, fx,
+    banks: banks.map((b) => localizeBank(b, l)),
+    requirements: requirements.map((r) => localizeRequirements(r, l)),
+    credit: credit.map((c) => localizeCredit(c, l)),
+  });
 }
 
 /** getAccountSetupSteps + ACTION_PLAN_CREATED: the personalised plan, recorded in the evidence log. */

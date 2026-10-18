@@ -37,7 +37,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Quota is per person per year; unused quota cannot be carried over to the next year (per Bank of China's description of the rule).",
     "exceptions": "Purchases/settlements backed by documents showing a genuine current-account transaction can be made without using the quota.",
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "年度总额分别为每人每年等值5万美元。"
+    "evidence_quote": "年度总额分别为每人每年等值5万美元。",
+    "i18n": {
+      "zh-CN": {
+        "name": "个人年度便利化额度（每人每年等值 USD 50,000）",
+        "summary": "每人每年仅凭有效身份证件，即可办理购汇（适用于境内个人）和将外币兑换为人民币的结汇（适用于所有个人），额度各为等值 USD 50,000。这是便利化额度，不是硬性上限：金额更大的经常项目交易，凭真实交易证明材料也可以办理。"
+      },
+      "ja": {
+        "name": "個人の年間便利化枠（1人あたり年間 USD 50,000）",
+        "summary": "1人あたり年間、外貨の購入（中国の居住者〔境内个人〕）と外貨から人民元への両替（すべての個人）を、それぞれ USD 50,000 相当額まで、有効な身分証明書だけで行えます。これは便利化枠（便利化额度）であり、絶対的な上限ではありません。実際の取引を証明する書類があれば、これを超える経常取引も認められます。"
+      }
+    }
   },
   {
     "id": "cn-fx-quota-not-a-cap",
@@ -71,7 +81,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "等值 5 万美元是年度便利化额度，不是个人每年结汇、购汇的限额。"
+    "evidence_quote": "等值 5 万美元是年度便利化额度，不是个人每年结汇、购汇的限额。",
+    "i18n": {
+      "zh-CN": {
+        "name": "USD 50,000 是便利化额度，不是年度限额",
+        "summary": "国家外汇管理局（SAFE）解释，USD 50,000 是你每年仅凭身份证件即可办理的金额，并不是你可以购汇或结汇的最高金额。超过该金额的真实需求，可凭证明材料办理。"
+      },
+      "ja": {
+        "name": "USD 50,000 は便利化枠であり年間上限ではない",
+        "summary": "SAFE（国家外汇管理局）によると、USD 50,000 という金額は、毎年身分証明書だけで取引できる額であり、購入・両替できる上限額ではありません。これを超える実需は、裏付け書類によって対応されます。"
+      }
+    }
   },
   {
     "id": "cn-edu-study-abroad-quota-choice",
@@ -105,7 +125,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "个人可以自主选择是否占用本人便利化额度。"
+    "evidence_quote": "个人可以自主选择是否占用本人便利化额度。",
+    "i18n": {
+      "zh-CN": {
+        "name": "留学购汇：占用便利化额度，或凭学校材料在额度外购汇",
+        "summary": "学生（或付款人）可以选择留学购汇是否占用其每年 USD 50,000 的便利化额度。占用额度只需身份证件；不占用额度购汇（例如学费超过 USD 50,000）需提供身份证件以及学校材料，如录取通知书或境外学校的学费缴费通知书。"
+      },
+      "ja": {
+        "name": "留学のための外貨購入：便利化枠を使うか、学校書類で枠外購入するか",
+        "summary": "学生（または支払者）は、留学のための外貨購入に年間 USD 50,000 の便利化枠（便利化额度）を使うかどうかを選べます。枠を使う場合は身分証明書だけで足ります。枠を使わずに購入する場合（例：学費が USD 50,000 を超える場合）は、身分証明書に加えて、入学通知書や海外の学校の学費納付通知書などの学校書類が必要です。"
+      }
+    }
   },
   {
     "id": "cn-edu-tuition-above-quota-docs",
@@ -142,7 +172,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "可凭本人有效身份证件、境外学校学费缴费通知等材料办理不占用年度便利化额度的购汇。"
+    "evidence_quote": "可凭本人有效身份证件、境外学校学费缴费通知等材料办理不占用年度便利化额度的购汇。",
+    "i18n": {
+      "zh-CN": {
+        "name": "学费超过 USD 50,000：凭学费通知书在额度外购汇",
+        "summary": "如果学费超过 USD 50,000，你可以凭身份证件和境外学校的学费通知书购汇，不占用年度便利化额度。"
+      },
+      "ja": {
+        "name": "学費が USD 50,000 超：学費通知書で枠外購入",
+        "summary": "学費が USD 50,000 を超える場合、身分証明書と海外の学校の学費通知書を提示すれば、年間の便利化枠を使わずに外貨を購入できます。"
+      }
+    }
   },
   {
     "id": "cn-edu-boc-self-funded-study-docs",
@@ -176,7 +216,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": "Admission letter waived when paying for a second academic year or term.",
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "Personal private passport and valid visa (or endorsement);"
+    "evidence_quote": "Personal private passport and valid visa (or endorsement);",
+    "i18n": {
+      "zh-CN": {
+        "name": "自费留学额度外购汇的银行材料清单",
+        "summary": "办理超出年度便利化额度的留学购汇时，Bank of China（中国银行）要求提供：带有效签证的护照、境外学校录取通知书，以及该学年或学期的学费或生活费证明。第二年及以后缴费时无需提供录取通知书。"
+      },
+      "ja": {
+        "name": "枠を超える私費留学の銀行提出書類リスト",
+        "summary": "年間便利化枠を超えて留学のための外貨を購入する場合、Bank of China（中国銀行）は、有効なビザ付きのパスポート、海外の学校の入学許可書、その学年または学期の学費または生活費の証明書を求めます。2年目以降の支払いでは入学許可書は不要です。"
+      }
+    }
   },
   {
     "id": "cn-fx-prohibited-uses",
@@ -210,7 +260,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "No overseas home purchases, securities investment, life/investment-linked insurance; no lending/borrowing quota; no false information or documents; no illegal activities.",
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "不得用于境外买房、证券投资、购买人寿保险和投资性返还分红类保险等尚未开放的资本项目；"
+    "evidence_quote": "不得用于境外买房、证券投资、购买人寿保险和投资性返还分红类保险等尚未开放的资本项目；",
+    "i18n": {
+      "zh-CN": {
+        "name": "个人购汇额度的禁止用途",
+        "summary": "凭个人额度购买的外汇，不得用于境外买房、证券投资、购买人寿保险或投资分红型保险，以及其他尚未开放的资本项目。你也不得将额度出借给他人、借用他人额度分拆购汇、虚假申报，或将其用于洗钱、赌博、逃税或地下钱庄。"
+      },
+      "ja": {
+        "name": "個人外貨購入枠の禁止用途",
+        "summary": "個人の枠で購入した外貨は、海外不動産の購入、証券投資、生命保険や投資型配当保険の購入、その他まだ開放されていない資本取引項目に使うことはできません。また、自分の枠を他人に貸すこと、他人の枠を借りて分割購入すること、虚偽申告をすること、マネーロンダリング・賭博・脱税・地下銀行（地下钱庄）に使うこともできません。"
+      }
+    }
   },
   {
     "id": "cn-fx-purchase-purpose-categories",
@@ -244,7 +304,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "境外留学"
+    "evidence_quote": "境外留学",
+    "i18n": {
+      "zh-CN": {
+        "name": "购汇须申报用途；境外留学属于列明用途",
+        "summary": "每一笔个人购汇都需要在申请表上申报用途。“境外留学”是列明的经常项目用途之一，其他还包括旅游、就医等。"
+      },
+      "ja": {
+        "name": "購入目的の申告が必要；留学は列挙された目的の一つ",
+        "summary": "個人の外貨購入では、毎回申請書に目的を申告する必要があります。「境外留学」（海外留学）は、旅行や医療などと並ぶ、列挙された経常取引の目的の一つです。"
+      }
+    }
   },
   {
     "id": "cn-aml-structuring-watch-list-out",
@@ -276,7 +346,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Watch-list period: year of listing plus 2 following years; quota convenience lost during that period.",
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "个人不得以分拆等方式规避便利化额度及真实性管理。"
+    "evidence_quote": "个人不得以分拆等方式规避便利化额度及真实性管理。",
+    "i18n": {
+      "zh-CN": {
+        "name": "禁止分拆交易；违规者列入 SAFE“关注名单”",
+        "summary": "你不得为规避额度或真实性审核而分拆购汇（例如借用家人或朋友的额度）。违规者将被国家外汇管理局（SAFE）列入“关注名单”，期限为列入当年及之后两年，期间不再享受额度便利；相关记录还可能纳入个人征信记录。"
+      },
+      "ja": {
+        "name": "取引の分割は禁止：違反者は SAFE のウォッチリストに掲載",
+        "summary": "枠や真実性審査を回避するために購入を分割すること（例：家族や友人の枠を使うこと）は禁止です。違反者は SAFE（国家外汇管理局）の「ウォッチリスト」（关注名单）に、掲載された年とその後2年間掲載され、枠の便利化を受けられなくなります。記録が個人信用情報に登録される可能性もあります。"
+      }
+    }
   },
   {
     "id": "cn-aml-structuring-watch-list-in",
@@ -308,7 +388,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Watch-list period: year of listing plus 2 following years; quota convenience lost during that period.",
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "个人不得以分拆等方式规避便利化额度及真实性管理。"
+    "evidence_quote": "个人不得以分拆等方式规避便利化额度及真实性管理。",
+    "i18n": {
+      "zh-CN": {
+        "name": "禁止分拆交易；违规者列入 SAFE“关注名单”",
+        "summary": "你不得为规避额度或真实性审核而分拆购汇（例如借用家人或朋友的额度）。违规者将被国家外汇管理局（SAFE）列入“关注名单”，期限为列入当年及之后两年，期间不再享受额度便利；相关记录还可能纳入个人征信记录。"
+      },
+      "ja": {
+        "name": "取引の分割は禁止：違反者は SAFE のウォッチリストに掲載",
+        "summary": "枠や真実性審査を回避するために購入を分割すること（例：家族や友人の枠を使うこと）は禁止です。違反者は SAFE（国家外汇管理局）の「ウォッチリスト」（关注名单）に、掲載された年とその後2年間掲載され、枠の便利化を受けられなくなります。記録が個人信用情報に登録される可能性もあります。"
+      }
+    }
   },
   {
     "id": "cn-outward-remittance-domestic-daily",
@@ -344,7 +434,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Cash-on-hand remittance: ID-only up to USD 10,000 equivalent per day.",
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "accumulatively reach an equivalent value of below USD 50,000 (inclusive) on that very day"
+    "evidence_quote": "accumulatively reach an equivalent value of below USD 50,000 (inclusive) on that very day",
+    "i18n": {
+      "zh-CN": {
+        "name": "从个人外汇储蓄账户汇出境外：每日 USD 50,000 以内凭身份证件办理",
+        "summary": "境内个人从本人外汇储蓄账户向境外汇款用于经常项目，当日累计等值 USD 50,000 及以下的，仅凭身份证件即可办理；超过的，需提供交易证明材料。汇出手持外币现钞的，每日 USD 10,000 以内仅凭身份证件即可办理。"
+      },
+      "ja": {
+        "name": "個人外貨預金口座からの海外送金：1日 USD 50,000 までは身分証明書のみ",
+        "summary": "中国の居住者（境内个人）は、経常取引の目的で自分の外貨預金口座から海外へ送金する場合、その日の合計が USD 50,000 相当額以下であれば身分証明書だけで送金できます。これを超える場合は取引の証明書類が必要です。手持ちの外貨現金を送金する場合は、1日 USD 10,000 までは身分証明書のみで可能です。"
+      }
+    }
   },
   {
     "id": "cn-inbound-receipt-and-settlement",
@@ -380,7 +480,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "境内个人接受境外外汇汇款，不存在限额或次数限制的概念。"
+    "evidence_quote": "境内个人接受境外外汇汇款，不存在限额或次数限制的概念。",
+    "i18n": {
+      "zh-CN": {
+        "name": "从境外收汇：收汇不限额；结汇占用额度或凭材料办理",
+        "summary": "境内个人可以接收来自境外的真实经常项目外汇汇款，不受金额或次数限制。将外汇兑换为人民币时，可凭身份证件使用每年 USD 50,000 的结汇便利化额度，也可凭资金来源证明材料在额度外办理。"
+      },
+      "ja": {
+        "name": "海外からの外貨受取：受取は無制限、両替は枠または書類で",
+        "summary": "中国の居住者（境内个人）は、海外からの実需に基づく経常取引の外貨送金を、金額や回数の制限なく受け取れます。外貨を人民元に両替する際は、身分証明書で年間 USD 50,000 の両替便利化枠を使うか、資金の出所を示す書類があれば枠外で行えます。"
+      }
+    }
   },
   {
     "id": "cn-foreigner-no-purchase-quota",
@@ -422,7 +532,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Single FX-to-RMB settlement above USD 50,000 equivalent: RMB must go directly to the counterparty's domestic RMB account.",
     "exceptions": "Holders of the PRC Foreign Permanent Resident ID Card receive the purchase quota.",
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "境外个人不享有每年等值 5 万美元的购汇便利化额度"
+    "evidence_quote": "境外个人不享有每年等值 5 万美元的购汇便利化额度",
+    "i18n": {
+      "zh-CN": {
+        "name": "外国人不享有 USD 50,000 购汇额度（永久居留者除外）",
+        "summary": "在华外国人（包括国际学生）不享有每年 USD 50,000 的购汇额度；购汇时需凭身份证件以及人民币来源证明材料（包括纳税记录），例如工资收入。他们享有每年 USD 50,000 的结汇额度，用于将外汇兑换为人民币。持有外国人永久居留身份证的人士不受此限。"
+      },
+      "ja": {
+        "name": "外国人には USD 50,000 の外貨購入枠なし（永住者を除く）",
+        "summary": "中国にいる外国人（留学生を含む）には、年間 USD 50,000 の外貨購入枠がありません。外貨を購入するときは、身分証明書に加えて、人民元の出所を示す書類（納税記録を含む）が必要です（例：給与の場合）。一方、外貨を人民元に両替するための年間 USD 50,000 の両替枠はあります。中国の外国人永久居留身分証（外国人永久居留身份证）の保有者は対象外です。"
+      }
+    }
   },
   {
     "id": "cn-foreigner-fx-account-remit-out",
@@ -461,7 +581,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "境外个人外汇储蓄账户资金汇出无金额和用途限制，凭本人有效身份证件直接在银行办理。"
+    "evidence_quote": "境外个人外汇储蓄账户资金汇出无金额和用途限制，凭本人有效身份证件直接在银行办理。",
+    "i18n": {
+      "zh-CN": {
+        "name": "外国人凭有效身份证件即可从外汇储蓄账户汇出资金",
+        "summary": "外国人外汇储蓄账户内的资金汇出境外，不受金额和用途限制，只需有效身份证件。汇出手持外币现钞时，每日等值 USD 10,000 以内凭身份证件即可办理；超过该金额，需要提供海关申报单或原银行取款单据。"
+      },
+      "ja": {
+        "name": "外国人は有効な身分証明書だけで外貨預金口座から海外送金できる",
+        "summary": "外国人の外貨預金口座にある資金は、金額や目的の制限なく、有効な身分証明書だけで海外に送金できます。手元の外貨現金を送金する場合は、1日あたり USD 10,000 相当額までは身分証明書のみで可能です。それを超える場合は、税関申告書または元の引き出し伝票が必要です。"
+      }
+    }
   },
   {
     "id": "cn-foreigner-salary-purchase",
@@ -503,7 +633,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "在境内取得的经常项目合法人民币收入，凭本人有效身份证件和有交易额的相关证明材料（含税务凭证）办理购汇。"
+    "evidence_quote": "在境内取得的经常项目合法人民币收入，凭本人有效身份证件和有交易额的相关证明材料（含税务凭证）办理购汇。",
+    "i18n": {
+      "zh-CN": {
+        "name": "外国人用合法人民币收入（如工资）购汇",
+        "summary": "外国人可以将在中国境内取得的合法人民币经常项目收入（如工资）兑换为外汇，需提供身份证件以及证明收入金额的材料，包括完税证明。"
+      },
+      "ja": {
+        "name": "外国人による合法な人民元収入（給与など）での外貨購入",
+        "summary": "外国人は、中国で得た合法な人民元の経常取引収入（給与など）を、身分証明書と金額を示す書類（納税証明書を含む）で外貨に両替できます。"
+      }
+    }
   },
   {
     "id": "cn-foreigner-unused-rmb-reconvert",
@@ -542,7 +682,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Exchange memo valid for 24 months from the exchange date.",
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "原兑换未用完的人民币兑回外汇，凭本人有效身份证件和原兑换水单办理"
+    "evidence_quote": "原兑换未用完的人民币兑回外汇，凭本人有效身份证件和原兑换水单办理",
+    "i18n": {
+      "zh-CN": {
+        "name": "未用完的人民币兑回外币（24 个月内）",
+        "summary": "外国人可以凭身份证件和原兑换水单，将未用完的人民币兑回外币；兑换水单自兑换之日起 24 个月内有效。"
+      },
+      "ja": {
+        "name": "未使用の人民元の外貨への再両替（24か月以内）",
+        "summary": "外国人は、身分証明書と両替時の原本の両替証明書（兑换水单）があれば、使わなかった人民元を外貨に戻せます。両替証明書の有効期間は両替日から24か月です。"
+      }
+    }
   },
   {
     "id": "cn-foreign-student-settle-for-tuition",
@@ -584,7 +734,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "就医、学习等支出：境内医院（学校）收费证明；"
+    "evidence_quote": "就医、学习等支出：境内医院（学校）收费证明；",
+    "i18n": {
+      "zh-CN": {
+        "name": "国际学生为缴纳学费超额度结汇",
+        "summary": "外国人因在华学习费用需要超过每年 USD 50,000 的结汇额度结汇的，必须提供身份证件以及中国学校出具的收费证明。"
+      },
+      "ja": {
+        "name": "留学生による学費のための枠超過両替",
+        "summary": "外国人が中国での学習費用のために、年間 USD 50,000 の両替枠を超えて外貨を人民元に両替する場合は、身分証明書と中国の学校の費用証明書を提示しなければなりません。"
+      }
+    }
   },
   {
     "id": "cn-fx-cash-withdrawal-report",
@@ -616,7 +776,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Depositing foreign cash into an FX savings account is direct up to USD 5,000 equivalent per day.",
     "exceptions": null,
     "regulator": "State Administration of Foreign Exchange",
-    "evidence_quote": "个人提取外币现钞当日累计等值1万美元以下（含）的，可以在银行直接办理"
+    "evidence_quote": "个人提取外币现钞当日累计等值1万美元以下（含）的，可以在银行直接办理",
+    "i18n": {
+      "zh-CN": {
+        "name": "每日提取外币现钞超过 USD 10,000 须事先向 SAFE 报备",
+        "summary": "个人每日可以在银行直接提取等值 USD 10,000 以内的外币现钞；超过的，必须事先向当地国家外汇管理局（SAFE）分支机构报备。"
+      },
+      "ja": {
+        "name": "1日 USD 10,000 超の外貨現金引き出しは SAFE への事前報告が必要",
+        "summary": "個人は銀行で1日 USD 10,000 相当額まで外貨現金を直接引き出せます。これを超える場合は、事前に SAFE（国家外汇管理局）の地元の分局に報告しなければなりません。"
+      }
+    }
   },
   {
     "id": "cn-cash-export-foreign-currency",
@@ -650,7 +820,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "In principle, no more than USD 10,000 equivalent may be carried out except in special circumstances approved by SAFE.",
     "exceptions": "Amounts covered by the most recent entry declaration of foreign cash.",
     "regulator": "State Administration of Foreign Exchange; General Administration of Customs",
-    "evidence_quote": "出境人员携出金额在等值5000美元以内(含5000美元)的，不需申领《携带证》，海关予以放行。"
+    "evidence_quote": "出境人员携出金额在等值5000美元以内(含5000美元)的，不需申领《携带证》，海关予以放行。",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带外币现钞出境",
+        "summary": "携带等值 USD 5,000 以内的外币现钞出境无需许可证。等值 USD 5,000 至 10,000 的，需向银行申领《携带外汇出境许可证》；超过 USD 10,000 的，许可证必须由国家外汇管理局（SAFE）签发，且仅在特殊情况下批准。许可证仅限使用一次，有效期 30 天。"
+      },
+      "ja": {
+        "name": "中国からの外貨現金の持ち出し",
+        "summary": "USD 5,000 相当額までの外貨現金は許可証なしで持ち出せます。USD 5,000～10,000 の場合は銀行で「外貨持出許可証」（携带外汇出境许可证）を取得する必要があります。USD 10,000 を超える場合、許可証は SAFE（国家外汇管理局）が発行しなければならず、特別な場合にのみ認められます。許可証は1回限り有効で、有効期間は30日です。"
+      }
+    }
   },
   {
     "id": "cn-cash-import-declaration",
@@ -682,7 +862,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": "Same-day multiple round trips and frequent short-term round trips.",
     "regulator": "General Administration of Customs; State Administration of Foreign Exchange",
-    "evidence_quote": "入境人员携带外币现钞入境，超过等值5000美元的应当向海关书面申报"
+    "evidence_quote": "入境人员携带外币现钞入境，超过等值5000美元的应当向海关书面申报",
+    "i18n": {
+      "zh-CN": {
+        "name": "入境携带外币现钞超过 USD 5,000 须申报",
+        "summary": "入境旅客携带超过等值 USD 5,000 的外币现钞，必须向海关书面申报。"
+      },
+      "ja": {
+        "name": "中国入国時、USD 5,000 超の外貨現金は申告が必要",
+        "summary": "USD 5,000 相当額を超える外貨現金を中国に持ち込む旅行者は、税関に書面で申告しなければなりません。"
+      }
+    }
   },
   {
     "id": "cn-rmb-cash-limit-out",
@@ -714,7 +904,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "People's Bank of China",
-    "evidence_quote": "each visitor is allowed to take up to RMB20,000 in cash in or out of the country each time"
+    "evidence_quote": "each visitor is allowed to take up to RMB20,000 in cash in or out of the country each time",
+    "i18n": {
+      "zh-CN": {
+        "name": "每次出入境携带人民币现钞限 RMB 20,000",
+        "summary": "每位旅客每次出入境可携带不超过 RMB 20,000 的人民币现钞。"
+      },
+      "ja": {
+        "name": "人民元現金の持ち込み・持ち出しは1回 RMB 20,000 まで",
+        "summary": "旅行者は1回の出入国につき、RMB 20,000 までの人民元現金を中国に持ち込む、または中国から持ち出すことができます。"
+      }
+    }
   },
   {
     "id": "cn-rmb-cash-limit-in",
@@ -746,7 +946,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "People's Bank of China",
-    "evidence_quote": "each visitor is allowed to take up to RMB20,000 in cash in or out of the country each time"
+    "evidence_quote": "each visitor is allowed to take up to RMB20,000 in cash in or out of the country each time",
+    "i18n": {
+      "zh-CN": {
+        "name": "每次出入境携带人民币现钞限 RMB 20,000",
+        "summary": "每位旅客每次出入境可携带不超过 RMB 20,000 的人民币现钞。"
+      },
+      "ja": {
+        "name": "人民元現金の持ち込み・持ち出しは1回 RMB 20,000 まで",
+        "summary": "旅行者は1回の出入国につき、RMB 20,000 までの人民元現金を中国に持ち込む、または中国から持ち出すことができます。"
+      }
+    }
   },
   {
     "id": "cn-aml-large-value-report-out",
@@ -778,7 +988,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Cash threshold: RMB 50,000 or USD 10,000 equivalent per day.",
     "exceptions": null,
     "regulator": "People's Bank of China",
-    "evidence_quote": "人民币20万元以上（含20万元）、外币等值1万美元以上（含1万美元）的跨境款项划转"
+    "evidence_quote": "人民币20万元以上（含20万元）、外币等值1万美元以上（含1万美元）的跨境款项划转",
+    "i18n": {
+      "zh-CN": {
+        "name": "银行报告个人大额跨境转账",
+        "summary": "个人账户单日单笔或累计跨境收付 RMB 200,000 或等值 USD 10,000 及以上的，银行必须提交大额交易报告。RMB 50,000 / USD 10,000 及以上的现金交易也会被报告。这是银行的自动报告，不是禁止交易。"
+      },
+      "ja": {
+        "name": "銀行による個人の高額な国境を越える送金の報告",
+        "summary": "個人の口座で、1日に（1回または累計で）RMB 200,000 または USD 10,000 相当額以上の国境を越える送金の送受信があった場合、銀行は大口取引報告を提出しなければなりません。RMB 50,000 / USD 10,000 以上の現金取引も報告されます。これは銀行による自動的な報告であり、取引の禁止ではありません。"
+      }
+    }
   },
   {
     "id": "cn-aml-large-value-report-in",
@@ -810,7 +1030,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Cash threshold: RMB 50,000 or USD 10,000 equivalent per day.",
     "exceptions": null,
     "regulator": "People's Bank of China",
-    "evidence_quote": "人民币20万元以上（含20万元）、外币等值1万美元以上（含1万美元）的跨境款项划转"
+    "evidence_quote": "人民币20万元以上（含20万元）、外币等值1万美元以上（含1万美元）的跨境款项划转",
+    "i18n": {
+      "zh-CN": {
+        "name": "银行报告个人大额跨境转账",
+        "summary": "个人账户单日单笔或累计跨境收付 RMB 200,000 或等值 USD 10,000 及以上的，银行必须提交大额交易报告。RMB 50,000 / USD 10,000 及以上的现金交易也会被报告。这是银行的自动报告，不是禁止交易。"
+      },
+      "ja": {
+        "name": "銀行による個人の高額な国境を越える送金の報告",
+        "summary": "個人の口座で、1日に（1回または累計で）RMB 200,000 または USD 10,000 相当額以上の国境を越える送金の送受信があった場合、銀行は大口取引報告を提出しなければなりません。RMB 50,000 / USD 10,000 以上の現金取引も報告されます。これは銀行による自動的な報告であり、取引の禁止ではありません。"
+      }
+    }
   },
   {
     "id": "cn-foreigner-mobile-payment-limits",
@@ -842,7 +1072,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Annual cumulative cap USD 50,000.",
     "exceptions": null,
     "regulator": "People's Bank of China",
-    "evidence_quote": "The annual cumulative transaction cap has been increased from 10,000 dollars to 50,000 dollars."
+    "evidence_quote": "The annual cumulative transaction cap has been increased from 10,000 dollars to 50,000 dollars.",
+    "i18n": {
+      "zh-CN": {
+        "name": "境外用户移动支付限额（单笔 USD 5,000，每年 USD 50,000）",
+        "summary": "使用移动支付平台的境外来华人员（例如绑定境外银行卡）单笔最高可支付 USD 5,000，每年累计最高 USD 50,000（2024 年上调）。"
+      },
+      "ja": {
+        "name": "海外ユーザーのモバイル決済上限（1回 USD 5,000、年間 USD 50,000）",
+        "summary": "モバイル決済プラットフォームを利用する海外からの訪問者（例：海外カードを紐付けた場合）は、1回あたり USD 5,000、年間累計 USD 50,000 まで支払えます（2024年に引き上げ）。"
+      }
+    }
   },
   {
     "id": "gb-fx-no-exchange-control-out",
@@ -874,7 +1114,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "HM Revenue & Customs",
-    "evidence_quote": "Exchange control was introduced into the United Kingdom shortly before the outbreak of the 1939-45 war and was abolished on 24 October 1979."
+    "evidence_quote": "Exchange control was introduced into the United Kingdom shortly before the outbreak of the 1939-45 war and was abolished on 24 October 1979.",
+    "i18n": {
+      "zh-CN": {
+        "name": "英国没有外汇管制",
+        "summary": "英国已于 1979 年取消外汇管制，因此资金进出英国无需政府批准。银行的常规审核和现金申报规定仍然适用。"
+      },
+      "ja": {
+        "name": "英国には為替管理なし",
+        "summary": "英国は1979年に為替管理を廃止したため、英国への資金の持ち込みや英国からの持ち出しに政府の承認は必要ありません。ただし、通常の銀行の確認や現金申告のルールは引き続き適用されます。"
+      }
+    }
   },
   {
     "id": "gb-fx-no-exchange-control-in",
@@ -906,7 +1156,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "HM Revenue & Customs",
-    "evidence_quote": "Exchange control was introduced into the United Kingdom shortly before the outbreak of the 1939-45 war and was abolished on 24 October 1979."
+    "evidence_quote": "Exchange control was introduced into the United Kingdom shortly before the outbreak of the 1939-45 war and was abolished on 24 October 1979.",
+    "i18n": {
+      "zh-CN": {
+        "name": "英国没有外汇管制",
+        "summary": "英国已于 1979 年取消外汇管制，因此资金进出英国无需政府批准。银行的常规审核和现金申报规定仍然适用。"
+      },
+      "ja": {
+        "name": "英国には為替管理なし",
+        "summary": "英国は1979年に為替管理を廃止したため、英国への資金の持ち込みや英国からの持ち出しに政府の承認は必要ありません。ただし、通常の銀行の確認や現金申告のルールは引き続き適用されます。"
+      }
+    }
   },
   {
     "id": "gb-cash-declaration-10000",
@@ -938,7 +1198,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Cash includes notes and coins, bearer bonds, travellers' cheques and signed cheques not made out to a named person or organisation. If you fail to declare, all the cash you are carrying can be seized, and you may have to pay a penalty of up to £5,000 to get it back.",
     "exceptions": "Northern Ireland uses a €10,000 threshold for cash moving between Northern Ireland and non-EU countries and for cash arriving from Great Britain; for Northern Ireland movements, money orders, gold coins or bullion and prepaid cards also count as cash. No declaration is needed for cash going from Northern Ireland to Great Britain.",
     "regulator": "HM Revenue & Customs and Border Force (Home Office)",
-    "evidence_quote": "You must declare cash of £10,000 or more to UK customs"
+    "evidence_quote": "You must declare cash of £10,000 or more to UK customs",
+    "i18n": {
+      "zh-CN": {
+        "name": "在边境申报 £10,000 或以上的现金",
+        "summary": "如果你从英国以外的国家携带 £10,000 或以上的现金（或等值外币）进出大不列颠（Great Britain），必须向英国海关申报。一起出行的团体如果合计金额达到 £10,000，也必须申报。"
+      },
+      "ja": {
+        "name": "£10,000 以上の現金は国境で申告",
+        "summary": "英国外の国との間で、£10,000 以上の現金（または同等額）をグレートブリテン（Great Britain）に持ち込む、またはグレートブリテンから持ち出す場合は、英国税関に申告しなければなりません。一緒に旅行するグループは、合計額が £10,000 に達した場合に申告が必要です。"
+      }
+    }
   },
   {
     "id": "gb-cash-seizure-suspicion-out",
@@ -970,7 +1240,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Cash can be held for 48 hours; longer detention requires a court order. Appeals against a penalty must be made within 30 days of the penalty notice.",
     "exceptions": null,
     "regulator": "HM Revenue & Customs and Border Force (Home Office)",
-    "evidence_quote": "Any cash can be seized if customs authorities have reasonable grounds to suspect a crime."
+    "evidence_quote": "Any cash can be seized if customs authorities have reasonable grounds to suspect a crime.",
+    "i18n": {
+      "zh-CN": {
+        "name": "涉嫌犯罪时，任何金额的现金都可能被扣押",
+        "summary": "即使金额低于 £10,000，如果海关有合理理由怀疑涉及犯罪，也可以扣押现金。海关可扣留 48 小时，之后需取得法院命令才能继续扣留。"
+      },
+      "ja": {
+        "name": "犯罪の疑いがあれば金額を問わず現金を押収される可能性",
+        "summary": "£10,000 未満であっても、犯罪を疑う合理的な理由があれば、税関は現金を押収できます。税関は48時間保管でき、その後も保管を続けるには裁判所の命令が必要です。"
+      }
+    }
   },
   {
     "id": "gb-cash-seizure-suspicion-in",
@@ -1002,7 +1282,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Cash can be held for 48 hours; longer detention requires a court order. Appeals against a penalty must be made within 30 days of the penalty notice.",
     "exceptions": null,
     "regulator": "HM Revenue & Customs and Border Force (Home Office)",
-    "evidence_quote": "Any cash can be seized if customs authorities have reasonable grounds to suspect a crime."
+    "evidence_quote": "Any cash can be seized if customs authorities have reasonable grounds to suspect a crime.",
+    "i18n": {
+      "zh-CN": {
+        "name": "涉嫌犯罪时，任何金额的现金都可能被扣押",
+        "summary": "即使金额低于 £10,000，如果海关有合理理由怀疑涉及犯罪，也可以扣押现金。海关可扣留 48 小时，之后需取得法院命令才能继续扣留。"
+      },
+      "ja": {
+        "name": "犯罪の疑いがあれば金額を問わず現金を押収される可能性",
+        "summary": "£10,000 未満であっても、犯罪を疑う合理的な理由があれば、税関は現金を押収できます。税関は48時間保管でき、その後も保管を続けるには裁判所の命令が必要です。"
+      }
+    }
   },
   {
     "id": "gb-cash-advice-students",
@@ -1034,7 +1324,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "UK Council for International Student Affairs (UKCISA) - advisory body",
-    "evidence_quote": "whether the country where you live has any restrictions on cash that may be taken out of the country."
+    "evidence_quote": "whether the country where you live has any restrictions on cash that may be taken out of the country.",
+    "i18n": {
+      "zh-CN": {
+        "name": "避免携带大量现金；查询本国限额",
+        "summary": "UKCISA 强烈建议国际学生不要携带大量现金，而是使用借记卡或信用卡。你还应查询本国是否限制可携带出境的现金金额。"
+      },
+      "ja": {
+        "name": "多額の現金は持参しない；自国の上限を確認",
+        "summary": "UKCISA は、留学生に多額の現金を持ってこず、デビットカードやクレジットカードを使うよう強く勧めています。また、自国で持ち出せる現金の額に制限があるかどうかも確認してください。"
+      }
+    }
   },
   {
     "id": "gb-tuition-pay-by-bank-transfer",
@@ -1066,7 +1366,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "UK Council for International Student Affairs (UKCISA) - advisory body",
-    "evidence_quote": "contact your institution before you leave home and ask if you can pay your fees in advance, by bank transfer."
+    "evidence_quote": "contact your institution before you leave home and ask if you can pay your fees in advance, by bank transfer.",
+    "i18n": {
+      "zh-CN": {
+        "name": "与大学安排，通过银行转账缴纳学费",
+        "summary": "不要携带现金缴费，而应在离开本国前联系你的大学，询问能否通过银行转账提前缴纳学费。如果不行，请向大学询问其他付款方式。"
+      },
+      "ja": {
+        "name": "学費は大学と調整のうえ銀行振込で支払う",
+        "summary": "学費のために現金を持ち歩くのではなく、出国前に大学に連絡し、銀行振込で学費を前払いできるか確認してください。それができない場合は、ほかの支払方法について大学に問い合わせてください。"
+      }
+    }
   },
   {
     "id": "gb-visa-funds-london",
@@ -1100,7 +1410,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Amount is per month for up to 9 months. Extra funds are required for each dependant (£845 per month in London). Overdrafts, cryptocurrency, stocks and shares, pensions and unregulated accounts cannot be used.",
     "exceptions": "Student union sabbatical officers and applicants who have lived in the UK with a visa for at least 12 months are exempt. Some nationalities need not provide evidence upfront unless asked.",
     "regulator": "Home Office (UK Visas and Immigration)",
-    "evidence_quote": "£1,529 per month (for up to 9 months) for courses in London"
+    "evidence_quote": "£1,529 per month (for up to 9 months) for courses in London",
+    "i18n": {
+      "zh-CN": {
+        "name": "学生签证生活费资金（伦敦）：每月 £1,529",
+        "summary": "申请就读伦敦课程的学生签证（Student visa），除 CAS 上所列的第一年课程费用外，你还必须证明有每月 £1,529 的生活费（最多计 9 个月）。"
+      },
+      "ja": {
+        "name": "学生ビザの生活費資金（ロンドン）：月 £1,529",
+        "summary": "ロンドンのコースで学生ビザ（Student visa）を取得するには、CAS に記載された1年目の学費に加えて、生活費として月 £1,529（最大9か月分）を示す必要があります。"
+      }
+    }
   },
   {
     "id": "gb-visa-funds-outside-london",
@@ -1134,7 +1454,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Amount is per month for up to 9 months. Extra funds are required for each dependant (£680 per month outside London). Overdrafts, cryptocurrency, stocks and shares, pensions and unregulated accounts cannot be used.",
     "exceptions": "Student union sabbatical officers and applicants who have lived in the UK with a visa for at least 12 months are exempt. Some nationalities need not provide evidence upfront unless asked.",
     "regulator": "Home Office (UK Visas and Immigration)",
-    "evidence_quote": "£1,171 per month (for up to 9 months) for courses outside London"
+    "evidence_quote": "£1,171 per month (for up to 9 months) for courses outside London",
+    "i18n": {
+      "zh-CN": {
+        "name": "学生签证生活费资金（伦敦以外）：每月 £1,171",
+        "summary": "申请就读伦敦以外课程的学生签证（Student visa），除 CAS 上所列的第一年课程费用外，你还必须证明有每月 £1,171 的生活费（最多计 9 个月）。"
+      },
+      "ja": {
+        "name": "学生ビザの生活費資金（ロンドン以外）：月 £1,171",
+        "summary": "ロンドン以外のコースで学生ビザ（Student visa）を取得するには、CAS に記載された1年目の学費に加えて、生活費として月 £1,171（最大9か月分）を示す必要があります。"
+      }
+    }
   },
   {
     "id": "gb-visa-funds-28-day-rule",
@@ -1168,7 +1498,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "The account must give immediate access to the money; a parent's or partner's account must be one they control.",
     "exceptions": "Same exemptions as the maintenance requirement (12 months' UK residence on a visa, sabbatical officers, listed nationalities unless asked).",
     "regulator": "Home Office (UK Visas and Immigration)",
-    "evidence_quote": "You must have this money for at least 28 days in a row. The end date of the 28-day period must be within 31 days of the date you apply for your visa."
+    "evidence_quote": "You must have this money for at least 28 days in a row. The end date of the 28-day period must be within 31 days of the date you apply for your visa.",
+    "i18n": {
+      "zh-CN": {
+        "name": "签证资金证明的 28 天规则",
+        "summary": "所需资金必须在账户中连续存放至少 28 天，且这 28 天期间的结束日距你申请签证之日不得超过 31 天。如果任何一天余额低于所需金额，该证明将不符合规定。"
+      },
+      "ja": {
+        "name": "ビザ資金証明の28日ルール",
+        "summary": "必要な資金は少なくとも28日間連続して口座に置かれている必要があり、その28日間の最終日はビザを申請する日から31日以内でなければなりません。いずれかの日に残高が必要額を下回った場合、その証拠は要件を満たしません。"
+      }
+    }
   },
   {
     "id": "gb-visa-funds-foreign-currency",
@@ -1202,7 +1542,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Home Office (UK Visas and Immigration)",
-    "evidence_quote": "If the money is in a foreign currency, we will convert it to British pounds using the spot exchange rate on OANDA for the date of the application."
+    "evidence_quote": "If the money is in a foreign currency, we will convert it to British pounds using the spot exchange rate on OANDA for the date of the application.",
+    "i18n": {
+      "zh-CN": {
+        "name": "外币资金按 OANDA 即期汇率换算",
+        "summary": "你可以用外币持有的资金作为签证资金证明。UKVI 会按你申请当日的 OANDA 即期汇率将其换算为英镑，因此请预留缓冲，以防汇率出现不利变动。"
+      },
+      "ja": {
+        "name": "外貨建て資金は OANDA のスポットレートで換算",
+        "summary": "外貨で保有している資金もビザ資金として示せます。UKVI は申請日の OANDA のスポットレートでポンドに換算するため、為替レートが不利に動いた場合に備えて余裕を持たせておきましょう。"
+      }
+    }
   },
   {
     "id": "gb-bank-payment-refusal",
@@ -1234,7 +1584,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "The bank may charge a fee if a refusal is reasonably justified.",
     "exceptions": null,
     "regulator": "Financial Conduct Authority",
-    "evidence_quote": "Your bank can only refuse to make a payment if:"
+    "evidence_quote": "Your bank can only refuse to make a payment if:",
+    "i18n": {
+      "zh-CN": {
+        "name": "银行何时可以拒绝付款",
+        "summary": "只有在你资金不足、付款违反账户条款或付款违法时，你的银行才能拒绝付款；银行一般必须尽快通知你，并在可能的情况下说明原因。"
+      },
+      "ja": {
+        "name": "銀行が支払いを拒否できる場合",
+        "summary": "銀行が支払いを拒否できるのは、残高不足の場合、口座規約に違反する場合、または違法となる場合に限られます。その場合、銀行は原則としてできるだけ早くあなたに通知し、可能であれば理由も伝えなければなりません。"
+      }
+    }
   },
   {
     "id": "gb-money-mule-warning",
@@ -1266,7 +1626,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Do not let anyone you don't know deposit money into your account or ask you to transfer it on.",
     "exceptions": null,
     "regulator": "Financial Conduct Authority",
-    "evidence_quote": "As a money mule you are involved in money laundering, which is a criminal offence."
+    "evidence_quote": "As a money mule you are involved in money laundering, which is a criminal offence.",
+    "i18n": {
+      "zh-CN": {
+        "name": "切勿让他人通过你的账户转移资金（钱骡）",
+        "summary": "如果你让别人把钱转入你的账户再转出去，你就成了“钱骡”（money mule），参与了洗钱，这是犯罪行为。FCA 警告，这可能被判处最高 14 年监禁。"
+      },
+      "ja": {
+        "name": "他人に口座を使って資金を移動させない（マネーミュール）",
+        "summary": "他人にあなたの口座へお金を入金させ、それを転送すると、あなたは「マネーミュール」（money mule）となり、マネーロンダリングに加担することになります。これは犯罪です。FCA は、最長14年の懲役刑が科される可能性があると警告しています。"
+      }
+    }
   },
   {
     "id": "gb-aml-source-of-funds-checks-out",
@@ -1298,7 +1668,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Financial Conduct Authority",
-    "evidence_quote": null
+    "evidence_quote": null,
+    "i18n": {
+      "zh-CN": {
+        "name": "银行资金来源/尽职调查审核",
+        "summary": "英国银行须遵守反洗钱规定，可能会询问大额或异常付款的情况。目前未能确认有面向消费者的官方说明，列明银行何时询问以及询问哪些内容。"
+      },
+      "ja": {
+        "name": "銀行による資金源・デューデリジェンス確認",
+        "summary": "英国の銀行はマネーロンダリング防止規則の対象であり、高額または通常と異なる支払いについて質問することがあります。銀行がいつ、何を質問するかについて、消費者向けの公式な説明は確認できませんでした。"
+      }
+    }
   },
   {
     "id": "gb-aml-source-of-funds-checks-in",
@@ -1330,7 +1710,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Financial Conduct Authority",
-    "evidence_quote": null
+    "evidence_quote": null,
+    "i18n": {
+      "zh-CN": {
+        "name": "银行资金来源/尽职调查审核",
+        "summary": "英国银行须遵守反洗钱规定，可能会询问大额或异常付款的情况。目前未能确认有面向消费者的官方说明，列明银行何时询问以及询问哪些内容。"
+      },
+      "ja": {
+        "name": "銀行による資金源・デューデリジェンス確認",
+        "summary": "英国の銀行はマネーロンダリング防止規則の対象であり、高額または通常と異なる支払いについて質問することがあります。銀行がいつ、何を質問するかについて、消費者向けの公式な説明は確認できませんでした。"
+      }
+    }
   },
   {
     "id": "jp-fefta-payment-report-30m-out",
@@ -1362,7 +1752,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Paper report for a payment made through a bank: file within 10 days of the payment, via the bank or fund-transfer provider that handled it. Online filing: within 20 days, directly to the Bank of Japan.",
     "exceptions": "Payments/receipts of JPY 30 million equivalent or less (3千万円相当額以下) are exempt. The amount is converted to yen at the rate set out on the BOJ page.",
     "regulator": "Ministry of Finance Japan (reports submitted via the Bank of Japan)",
-    "evidence_quote": "日本銀行を経由して財務大臣に提出する"
+    "evidence_quote": "日本銀行を経由して財務大臣に提出する",
+    "i18n": {
+      "zh-CN": {
+        "name": "超过 3,000 万日元（JPY 30 million）的收付款报告",
+        "summary": "日本居住者向境外汇款或从境外收款，金额超过等值 3,000 万日元（JPY 30 million）的，必须通过日本银行（Bank of Japan）向财务大臣（Minister of Finance）提交支付报告。3,000 万日元（JPY 30 million）及以下的支付无需报告。"
+      },
+      "ja": {
+        "name": "3,000万円（JPY 30 million）超の支払・受領の報告",
+        "summary": "日本の居住者が、3,000万円（JPY 30 million）相当額を超える金額を海外へ送金する、または海外から受け取る場合、日本銀行を経由して財務大臣に支払等報告書を提出しなければなりません。3,000万円（JPY 30 million）以下の支払いは報告不要です。"
+      }
+    }
   },
   {
     "id": "jp-fefta-payment-report-30m-in",
@@ -1394,7 +1794,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Paper report for a payment made through a bank: file within 10 days of the payment, via the bank or fund-transfer provider that handled it. Online filing: within 20 days, directly to the Bank of Japan.",
     "exceptions": "Payments/receipts of JPY 30 million equivalent or less (3千万円相当額以下) are exempt. The amount is converted to yen at the rate set out on the BOJ page.",
     "regulator": "Ministry of Finance Japan (reports submitted via the Bank of Japan)",
-    "evidence_quote": "日本銀行を経由して財務大臣に提出する"
+    "evidence_quote": "日本銀行を経由して財務大臣に提出する",
+    "i18n": {
+      "zh-CN": {
+        "name": "超过 3,000 万日元（JPY 30 million）的收付款报告",
+        "summary": "日本居住者向境外汇款或从境外收款，金额超过等值 3,000 万日元（JPY 30 million）的，必须通过日本银行（Bank of Japan）向财务大臣（Minister of Finance）提交支付报告。3,000 万日元（JPY 30 million）及以下的支付无需报告。"
+      },
+      "ja": {
+        "name": "3,000万円（JPY 30 million）超の支払・受領の報告",
+        "summary": "日本の居住者が、3,000万円（JPY 30 million）相当額を超える金額を海外へ送金する、または海外から受け取る場合、日本銀行を経由して財務大臣に支払等報告書を提出しなければなりません。3,000万円（JPY 30 million）以下の支払いは報告不要です。"
+      }
+    }
   },
   {
     "id": "jp-fefta-bank-legality-check-out",
@@ -1426,7 +1836,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "The bank cannot process a payment until it has confirmed that the payment is not subject to FEFTA controls, or that a permit has been obtained.",
     "exceptions": null,
     "regulator": "Ministry of Finance Japan",
-    "evidence_quote": "外為法に基づき確認することが求められています"
+    "evidence_quote": "外為法に基づき確認することが求められています",
+    "i18n": {
+      "zh-CN": {
+        "name": "银行对境外汇款的合法性/制裁审核（適法性の確認）",
+        "summary": "在办理你汇出或接收的境外汇款前，日本的银行必须根据《外汇法》（外国為替及び外国貿易法）确认该汇款不受制裁或其他管制措施限制。银行可能会询问汇款人、收款人、用途以及证明材料。"
+      },
+      "ja": {
+        "name": "海外送金に関する銀行の適法性・制裁確認（適法性の確認）",
+        "summary": "日本の銀行は、あなたが送金または受け取る海外送金を取り扱う前に、外国為替及び外国貿易法（外為法）に基づき、その送金が制裁やその他の規制の対象になっていないことを確認しなければなりません。銀行は、送金人、受取人、目的、裏付け書類について尋ねることがあります。"
+      }
+    }
   },
   {
     "id": "jp-fefta-bank-legality-check-in",
@@ -1458,7 +1878,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "The bank cannot process a payment until it has confirmed that the payment is not subject to FEFTA controls, or that a permit has been obtained.",
     "exceptions": null,
     "regulator": "Ministry of Finance Japan",
-    "evidence_quote": "外為法に基づき確認することが求められています"
+    "evidence_quote": "外為法に基づき確認することが求められています",
+    "i18n": {
+      "zh-CN": {
+        "name": "银行对境外汇款的合法性/制裁审核（適法性の確認）",
+        "summary": "在办理你汇出或接收的境外汇款前，日本的银行必须根据《外汇法》（外国為替及び外国貿易法）确认该汇款不受制裁或其他管制措施限制。银行可能会询问汇款人、收款人、用途以及证明材料。"
+      },
+      "ja": {
+        "name": "海外送金に関する銀行の適法性・制裁確認（適法性の確認）",
+        "summary": "日本の銀行は、あなたが送金または受け取る海外送金を取り扱う前に、外国為替及び外国貿易法（外為法）に基づき、その送金が制裁やその他の規制の対象になっていないことを確認しなければなりません。銀行は、送金人、受取人、目的、裏付け書類について尋ねることがあります。"
+      }
+    }
   },
   {
     "id": "jp-sanctions-asset-freeze-out",
@@ -1490,7 +1920,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Payments to persons designated by Ministry of Foreign Affairs notice are placed under a permission system (example page: measures relating to the situation in Ukraine). Under MOF inspection guidelines, banks must confirm before starting a deposit relationship that the customer and its beneficial owner are not sanctioned persons.",
     "exceptions": "Allowed only with a permit from the Minister of Finance.",
     "regulator": "Ministry of Finance Japan",
-    "evidence_quote": "外務省告示により指定された者に対する支払等を許可制とする。"
+    "evidence_quote": "外務省告示により指定された者に対する支払等を許可制とする。",
+    "i18n": {
+      "zh-CN": {
+        "name": "资产冻结制裁：向被指定对象付款须获许可",
+        "summary": "向日本经济制裁所指定的个人或实体付款，须获得政府许可，因此实际上会被阻止。银行在开户前和办理转账前，都会将客户与制裁名单进行比对筛查。"
+      },
+      "ja": {
+        "name": "資産凍結制裁：被指定者への支払いには許可が必要",
+        "summary": "日本の経済制裁で指定された個人や団体への支払いには政府の許可が必要なため、実際には差し止められます。銀行は口座開設前と送金の取扱い前に、顧客を制裁リストと照合します。"
+      }
+    }
   },
   {
     "id": "jp-sanctions-asset-freeze-in",
@@ -1522,7 +1962,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Payments to persons designated by Ministry of Foreign Affairs notice are placed under a permission system (example page: measures relating to the situation in Ukraine). Under MOF inspection guidelines, banks must confirm before starting a deposit relationship that the customer and its beneficial owner are not sanctioned persons.",
     "exceptions": "Allowed only with a permit from the Minister of Finance.",
     "regulator": "Ministry of Finance Japan",
-    "evidence_quote": "外務省告示により指定された者に対する支払等を許可制とする。"
+    "evidence_quote": "外務省告示により指定された者に対する支払等を許可制とする。",
+    "i18n": {
+      "zh-CN": {
+        "name": "资产冻结制裁：向被指定对象付款须获许可",
+        "summary": "向日本经济制裁所指定的个人或实体付款，须获得政府许可，因此实际上会被阻止。银行在开户前和办理转账前，都会将客户与制裁名单进行比对筛查。"
+      },
+      "ja": {
+        "name": "資産凍結制裁：被指定者への支払いには許可が必要",
+        "summary": "日本の経済制裁で指定された個人や団体への支払いには政府の許可が必要なため、実際には差し止められます。銀行は口座開設前と送金の取扱い前に、顧客を制裁リストと照合します。"
+      }
+    }
   },
   {
     "id": "jp-customs-means-of-payment-1m-out",
@@ -1554,7 +2004,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Gold of over 90% purity weighing more than 1 kg in total must also be declared.",
     "exceptions": "The threshold is JPY 100,000 (10万円) for travellers bound for North Korea.",
     "regulator": "Japan Customs (Ministry of Finance)",
-    "evidence_quote": "with means of payment exceeding ¥1,000,000"
+    "evidence_quote": "with means of payment exceeding ¥1,000,000",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带超过 100 万日元（JPY 1 million）的现金/支付手段须向海关申报",
+        "summary": "如果你出入境日本时携带的现金、支票（包括旅行支票）、本票或有价证券合计价值超过 100 万日元（JPY 1 million），无论何种货币，都必须向海关申报。"
+      },
+      "ja": {
+        "name": "100万円（JPY 1 million）超の現金等の支払手段の税関申告",
+        "summary": "日本に入国または出国する際、現金、小切手（トラベラーズチェックを含む）、約束手形、有価証券を合計で100万円（JPY 1 million）相当額を超えて携帯する場合は、通貨の種類を問わず、税関に申告しなければなりません。"
+      }
+    }
   },
   {
     "id": "jp-customs-means-of-payment-1m-in",
@@ -1586,7 +2046,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Gold of over 90% purity weighing more than 1 kg in total must also be declared.",
     "exceptions": "The threshold is JPY 100,000 (10万円) for travellers bound for North Korea.",
     "regulator": "Japan Customs (Ministry of Finance)",
-    "evidence_quote": "with means of payment exceeding ¥1,000,000"
+    "evidence_quote": "with means of payment exceeding ¥1,000,000",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带超过 100 万日元（JPY 1 million）的现金/支付手段须向海关申报",
+        "summary": "如果你出入境日本时携带的现金、支票（包括旅行支票）、本票或有价证券合计价值超过 100 万日元（JPY 1 million），无论何种货币，都必须向海关申报。"
+      },
+      "ja": {
+        "name": "100万円（JPY 1 million）超の現金等の支払手段の税関申告",
+        "summary": "日本に入国または出国する際、現金、小切手（トラベラーズチェックを含む）、約束手形、有価証券を合計で100万円（JPY 1 million）相当額を超えて携帯する場合は、通貨の種類を問わず、税関に申告しなければなりません。"
+      }
+    }
   },
   {
     "id": "jp-mynumber-overseas-remittance-out",
@@ -1620,7 +2090,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "MUFG, SMBC, Mizuho and Japan Post Bank all state that My Number registration is needed for overseas transfers. Japan Post Bank's service works only from accounts that have completed identity verification (取引時確認) and My Number registration.",
     "exceptions": null,
     "regulator": "National Tax Agency",
-    "evidence_quote": "法令により外国送金のお取引の際は、個人番号（マイナンバー）"
+    "evidence_quote": "法令により外国送金のお取引の際は、個人番号（マイナンバー）",
+    "i18n": {
+      "zh-CN": {
+        "name": "境外汇款须提供个人编号（My Number）",
+        "summary": "日本法律规定，你必须先向银行提供个人编号（My Number），才能向境外汇款或从境外收款。银行还可能询问交易目的。"
+      },
+      "ja": {
+        "name": "海外送金には個人番号（マイナンバー）が必要",
+        "summary": "日本の法律により、海外への送金や海外からの受取を行う前に、銀行に個人番号（マイナンバー）を届け出る必要があります。銀行から取引の目的を尋ねられることもあります。"
+      }
+    }
   },
   {
     "id": "jp-mynumber-overseas-remittance-in",
@@ -1654,7 +2134,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "MUFG, SMBC, Mizuho and Japan Post Bank all state that My Number registration is needed for overseas transfers. Japan Post Bank's service works only from accounts that have completed identity verification (取引時確認) and My Number registration.",
     "exceptions": null,
     "regulator": "National Tax Agency",
-    "evidence_quote": "法令により外国送金のお取引の際は、個人番号（マイナンバー）"
+    "evidence_quote": "法令により外国送金のお取引の際は、個人番号（マイナンバー）",
+    "i18n": {
+      "zh-CN": {
+        "name": "境外汇款须提供个人编号（My Number）",
+        "summary": "日本法律规定，你必须先向银行提供个人编号（My Number），才能向境外汇款或从境外收款。银行还可能询问交易目的。"
+      },
+      "ja": {
+        "name": "海外送金には個人番号（マイナンバー）が必要",
+        "summary": "日本の法律により、海外への送金や海外からの受取を行う前に、銀行に個人番号（マイナンバー）を届け出る必要があります。銀行から取引の目的を尋ねられることもあります。"
+      }
+    }
   },
   {
     "id": "jp-bank-identity-verification-remittance-out",
@@ -1688,7 +2178,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "SMBC states that banks may need to confirm more than the law requires, depending on the nature and circumstances of the transaction.",
     "exceptions": null,
     "regulator": "Financial Services Agency",
-    "evidence_quote": "法令（犯罪収益移転防止法・外為法等）の定めに基づきお客さまご本人の確認"
+    "evidence_quote": "法令（犯罪収益移転防止法・外為法等）の定めに基づきお客さまご本人の確認",
+    "i18n": {
+      "zh-CN": {
+        "name": "境外汇款的身份核实（本人確認）",
+        "summary": "银行根据《犯罪收益转移防止法》（犯罪による収益の移転防止に関する法律）和《外汇法》（外国為替及び外国貿易法），对境外汇款进行身份核实。你的身份证件在出示当天必须有效。"
+      },
+      "ja": {
+        "name": "海外送金の本人確認",
+        "summary": "銀行は、犯罪による収益の移転防止に関する法律（犯罪収益移転防止法）と外国為替及び外国貿易法（外為法）に基づき、海外送金の際に本人確認を行います。本人確認書類は、提示する日に有効でなければなりません。"
+      }
+    }
   },
   {
     "id": "jp-bank-identity-verification-remittance-in",
@@ -1722,7 +2222,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "SMBC states that banks may need to confirm more than the law requires, depending on the nature and circumstances of the transaction.",
     "exceptions": null,
     "regulator": "Financial Services Agency",
-    "evidence_quote": "法令（犯罪収益移転防止法・外為法等）の定めに基づきお客さまご本人の確認"
+    "evidence_quote": "法令（犯罪収益移転防止法・外為法等）の定めに基づきお客さまご本人の確認",
+    "i18n": {
+      "zh-CN": {
+        "name": "境外汇款的身份核实（本人確認）",
+        "summary": "银行根据《犯罪收益转移防止法》（犯罪による収益の移転防止に関する法律）和《外汇法》（外国為替及び外国貿易法），对境外汇款进行身份核实。你的身份证件在出示当天必须有效。"
+      },
+      "ja": {
+        "name": "海外送金の本人確認",
+        "summary": "銀行は、犯罪による収益の移転防止に関する法律（犯罪収益移転防止法）と外国為替及び外国貿易法（外為法）に基づき、海外送金の際に本人確認を行います。本人確認書類は、提示する日に有効でなければなりません。"
+      }
+    }
   },
   {
     "id": "jp-tuition-remittance-purpose-docs",
@@ -1756,7 +2266,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Mizuho Bank, Ltd. (bank-level requirement)",
-    "evidence_quote": "送金目的を確認できる資料：留学費用（授業料）の請求書等"
+    "evidence_quote": "送金目的を確認できる資料：留学費用（授業料）の請求書等",
+    "i18n": {
+      "zh-CN": {
+        "name": "以学费账单证明汇款用途",
+        "summary": "向境外汇学费时，银行可能会要求你提供证明用途的文件，例如学校的学费账单。"
+      },
+      "ja": {
+        "name": "送金目的の証明としての学費請求書",
+        "summary": "海外に学費を送金する際、銀行から学校の学費請求書など、目的を示す書類を求められることがあります。"
+      }
+    }
   },
   {
     "id": "jp-fefta-foreigner-residency-6-months-out",
@@ -1795,7 +2315,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "MUFG states that non-residents are subject to some restrictions on banking services. Mizuho states that non-residents cannot hold a consolidated account (総合口座).",
     "exceptions": "Treated as non-residents in all cases: people on official duty for a foreign government or international organisation, and diplomats or consular officers.",
     "regulator": "Ministry of Finance Japan",
-    "evidence_quote": "本邦に入国後６月以上経過するに至つた者"
+    "evidence_quote": "本邦に入国後６月以上経過するに至つた者",
+    "i18n": {
+      "zh-CN": {
+        "name": "外汇法上的居住者身份：6 个月规则",
+        "summary": "根据外汇规定，外国人在入境日本满 6 个月之前被视为非居住者，除非其在日本境内的办事机构工作。因此，刚到日本的学生起初在银行服务方面可能会受到一些限制。"
+      },
+      "ja": {
+        "name": "外為法上の居住性：6か月ルール",
+        "summary": "外国為替の規則では、外国人は日本国内の事務所に勤務している場合を除き、日本に入国してから6か月が経過するまで非居住者として扱われます。そのため、来日したばかりの学生は、当初、銀行サービスの利用に一部制限を受けることがあります。"
+      }
+    }
   },
   {
     "id": "jp-fefta-foreigner-residency-6-months-in",
@@ -1834,7 +2364,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "MUFG states that non-residents are subject to some restrictions on banking services. Mizuho states that non-residents cannot hold a consolidated account (総合口座).",
     "exceptions": "Treated as non-residents in all cases: people on official duty for a foreign government or international organisation, and diplomats or consular officers.",
     "regulator": "Ministry of Finance Japan",
-    "evidence_quote": "本邦に入国後６月以上経過するに至つた者"
+    "evidence_quote": "本邦に入国後６月以上経過するに至つた者",
+    "i18n": {
+      "zh-CN": {
+        "name": "外汇法上的居住者身份：6 个月规则",
+        "summary": "根据外汇规定，外国人在入境日本满 6 个月之前被视为非居住者，除非其在日本境内的办事机构工作。因此，刚到日本的学生起初在银行服务方面可能会受到一些限制。"
+      },
+      "ja": {
+        "name": "外為法上の居住性：6か月ルール",
+        "summary": "外国為替の規則では、外国人は日本国内の事務所に勤務している場合を除き、日本に入国してから6か月が経過するまで非居住者として扱われます。そのため、来日したばかりの学生は、当初、銀行サービスの利用に一部制限を受けることがあります。"
+      }
+    }
   },
   {
     "id": "jp-yucho-intl-remittance-limits",
@@ -1866,7 +2406,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Each transfer must be under JPY 1,000,000 (100万円未満); daily total JPY 2,000,000 or less; monthly total JPY 5,000,000 or less, converted at the rate applied when you apply. Individuals only. The bank may refuse an application after review.",
     "exceptions": null,
     "regulator": "Japan Post Bank Co., Ltd. (bank product limit)",
-    "evidence_quote": "1回あたり100万円未満、1日あたり200万円以下、1か月あたり500万円以下"
+    "evidence_quote": "1回あたり100万円未満、1日あたり200万円以下、1か月あたり500万円以下",
+    "i18n": {
+      "zh-CN": {
+        "name": "Japan Post Bank 国际汇款限额",
+        "summary": "Japan Post Bank 的网上国际汇款服务只受理每笔低于 100 万日元（JPY 1 million）的汇款，每日最高 200 万日元（JPY 2 million），每月最高 500 万日元（JPY 5 million）。这些是该银行自身的限额，不是国家法律规定。"
+      },
+      "ja": {
+        "name": "Japan Post Bank（ゆうちょ銀行）の国際送金限度額",
+        "summary": "Japan Post Bank（ゆうちょ銀行）のオンライン国際送金サービスは、1件100万円（JPY 1 million）未満の送金のみを受け付け、1日200万円（JPY 2 million）、1か月500万円（JPY 5 million）が上限です。これは同行独自の上限であり、国の法律ではありません。"
+      }
+    }
   },
   {
     "id": "jp-account-sale-prohibited",
@@ -1898,7 +2448,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Japan Post Bank asks customers moving out of Japan, for example when returning home, to close their account.",
     "exceptions": null,
     "regulator": "Japan Post Bank Co., Ltd. (bank guidance; the statute is not named on the page)",
-    "evidence_quote": "口座(通帳・キャッシュカード)の譲渡や売買は犯罪です"
+    "evidence_quote": "口座(通帳・キャッシュカード)の譲渡や売買は犯罪です",
+    "i18n": {
+      "zh-CN": {
+        "name": "出售或转让银行账户属于犯罪",
+        "summary": "在日本，出售或转让你的存折或提款卡供他人使用你的账户，属于犯罪行为。离开日本时也是如此：请改为注销账户。"
+      },
+      "ja": {
+        "name": "銀行口座の売却・譲渡は犯罪",
+        "summary": "他人に口座を使わせるために通帳やキャッシュカードを売ったり譲り渡したりすることは、日本では犯罪です。日本を離れるときも同じです。譲り渡さずに口座を解約してください。"
+      }
+    }
   },
   {
     "id": "jp-residence-period-update-and-closure",
@@ -1937,7 +2497,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "MUFG may restrict transactions under its deposit rules if the customer does not respond by the deadline. Japan Post Bank and Mizuho state similar restrictions.",
     "exceptions": null,
     "regulator": "MUFG Bank, Ltd. (bank-level requirement)",
-    "evidence_quote": "口座をご利用されなくなった場合には、口座のご解約をお願いいたします"
+    "evidence_quote": "口座をご利用されなくなった場合には、口座のご解約をお願いいたします",
+    "i18n": {
+      "zh-CN": {
+        "name": "告知银行在留卡更新；离开时注销账户",
+        "summary": "银行会记录你的在留期间。如果在留期间到期而你没有向银行提交更新后的在留卡（在留カード），银行可能会限制你的账户。永久离开日本时，请注销账户。"
+      },
+      "ja": {
+        "name": "在留カード更新の届出と帰国時の口座解約",
+        "summary": "銀行はあなたの在留期間を記録しています。在留期間が満了し、更新後の在留カードを銀行に提出しない場合、口座が制限されることがあります。日本を完全に離れるときは、口座を解約してください。"
+      }
+    }
   },
   {
     "id": "sg-fx-no-exchange-control-out",
@@ -1969,7 +2539,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "no exchange control formalities or approvals are required for all forms of payments or capital transfers"
+    "evidence_quote": "no exchange control formalities or approvals are required for all forms of payments or capital transfers",
+    "i18n": {
+      "zh-CN": {
+        "name": "外汇管制已全面放开",
+        "summary": "新加坡于 1978 年取消外汇管制。你从新加坡汇出资金或将资金汇入新加坡，都无需任何外汇管制审批，但银行的常规反洗钱审核仍然适用。"
+      },
+      "ja": {
+        "name": "為替管理は完全自由化",
+        "summary": "シンガポールは1978年に為替管理を撤廃しました。シンガポールからの送金やシンガポールへの資金の持ち込みに為替管理上の承認は一切不要ですが、銀行による通常のマネーロンダリング防止チェックは引き続き適用されます。"
+      }
+    }
   },
   {
     "id": "sg-fx-no-exchange-control-in",
@@ -2001,7 +2581,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "no exchange control formalities or approvals are required for all forms of payments or capital transfers"
+    "evidence_quote": "no exchange control formalities or approvals are required for all forms of payments or capital transfers",
+    "i18n": {
+      "zh-CN": {
+        "name": "外汇管制已全面放开",
+        "summary": "新加坡于 1978 年取消外汇管制。你从新加坡汇出资金或将资金汇入新加坡，都无需任何外汇管制审批，但银行的常规反洗钱审核仍然适用。"
+      },
+      "ja": {
+        "name": "為替管理は完全自由化",
+        "summary": "シンガポールは1978年に為替管理を撤廃しました。シンガポールからの送金やシンガポールへの資金の持ち込みに為替管理上の承認は一切不要ですが、銀行による通常のマネーロンダリング防止チェックは引き続き適用されます。"
+      }
+    }
   },
   {
     "id": "sg-aml-bank-wire-outbound-small",
@@ -2033,7 +2623,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "In a cross-border wire transfer where the amount to be transferred is below or equal to S$1,500"
+    "evidence_quote": "In a cross-border wire transfer where the amount to be transferred is below or equal to S$1,500",
+    "i18n": {
+      "zh-CN": {
+        "name": "S$1,500 及以下的银行电汇：须附汇款人和收款人信息",
+        "summary": "对于金额为 S$1,500 或以下的任何跨境电汇，汇款银行必须附上你的姓名和账号，以及收款人的姓名和账号。请提前准备好收款人的准确姓名和账户信息。"
+      },
+      "ja": {
+        "name": "S$1,500 以下の銀行電信送金：送金人と受取人の情報",
+        "summary": "S$1,500 以下の国境を越える電信送金では、送金銀行はあなたの氏名と口座番号、受取人の氏名と口座番号を付記しなければなりません。受取人の正確な氏名と口座情報を用意しておきましょう。"
+      }
+    }
   },
   {
     "id": "sg-aml-bank-wire-outbound-large",
@@ -2065,7 +2665,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "In a cross-border wire transfer where the amount to be transferred exceeds S$1,500"
+    "evidence_quote": "In a cross-border wire transfer where the amount to be transferred exceeds S$1,500",
+    "i18n": {
+      "zh-CN": {
+        "name": "超过 S$1,500 的银行电汇：须额外附一项汇款人识别信息",
+        "summary": "对于超过 S$1,500 的跨境电汇，银行还必须额外发送一项关于你的信息：你的地址、身份证件号码，或出生日期和出生地。"
+      },
+      "ja": {
+        "name": "S$1,500 超の銀行電信送金：送金人の追加識別情報",
+        "summary": "S$1,500 を超える国境を越える電信送金では、銀行はあなたに関する追加情報をもう1つ送らなければなりません。住所、身分証明書番号、または生年月日と出生地のいずれかです。"
+      }
+    }
   },
   {
     "id": "sg-aml-bank-wire-inbound",
@@ -2097,7 +2707,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Transfers lacking required originator or beneficiary information may be executed, rejected or suspended under the bank's risk-based policies.",
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "shall identify and verify the identity of the wire transfer beneficiary"
+    "evidence_quote": "shall identify and verify the identity of the wire transfer beneficiary",
+    "i18n": {
+      "zh-CN": {
+        "name": "收款银行审核汇入的电汇",
+        "summary": "当款项从海外汇入时，如果你的新加坡银行此前尚未核实你的身份，就必须进行核实。对于缺少汇款人或收款人信息的汇款，银行可以暂扣、退回或进一步跟进，因此请让汇款人提供你的准确姓名和账号。"
+      },
+      "ja": {
+        "name": "受取銀行による着金電信送金の確認",
+        "summary": "海外から入金があったとき、シンガポールの銀行は、まだ本人確認をしていない場合はあなたの本人確認を行わなければなりません。送金人や受取人の情報が欠けている送金は、保留、拒否、または追加確認されることがあるため、送金人には正確な氏名と口座番号を記載してもらいましょう。"
+      }
+    }
   },
   {
     "id": "sg-aml-psp-wire-thresholds-out",
@@ -2129,7 +2749,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "the wire transfer originator's unique identification number"
+    "evidence_quote": "the wire transfer originator's unique identification number",
+    "i18n": {
+      "zh-CN": {
+        "name": "汇款公司：同样适用 S$1,500 信息规则",
+        "summary": "持牌支付和汇款公司遵守与银行相同的规则。金额超过 S$1,500 时，它们必须核实你的身份，并随汇款一并发送你的地址、身份证件号码，或出生日期和出生地。"
+      },
+      "ja": {
+        "name": "送金業者：同じ S$1,500 の情報ルール",
+        "summary": "ライセンスを持つ決済・送金業者も銀行と同じルールに従います。S$1,500 を超える場合、本人確認を行い、送金とともにあなたの住所、身分証明書番号、または生年月日と出生地を送らなければなりません。"
+      }
+    }
   },
   {
     "id": "sg-aml-psp-wire-thresholds-in",
@@ -2161,7 +2791,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": null,
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "the wire transfer originator's unique identification number"
+    "evidence_quote": "the wire transfer originator's unique identification number",
+    "i18n": {
+      "zh-CN": {
+        "name": "汇款公司：同样适用 S$1,500 信息规则",
+        "summary": "持牌支付和汇款公司遵守与银行相同的规则。金额超过 S$1,500 时，它们必须核实你的身份，并随汇款一并发送你的地址、身份证件号码，或出生日期和出生地。"
+      },
+      "ja": {
+        "name": "送金業者：同じ S$1,500 の情報ルール",
+        "summary": "ライセンスを持つ決済・送金業者も銀行と同じルールに従います。S$1,500 を超える場合、本人確認を行い、送金とともにあなたの住所、身分証明書番号、または生年月日と出生地を送らなければなりません。"
+      }
+    }
   },
   {
     "id": "sg-aml-psp-cdd-walkin-out",
@@ -2195,7 +2835,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": "Applies to customers without an existing business relationship with the payment service provider.",
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "any funds by cross-border wire transfer"
+    "evidence_quote": "any funds by cross-border wire transfer",
+    "i18n": {
+      "zh-CN": {
+        "name": "一次性跨境汇款的身份核查",
+        "summary": "如果你在没有既有账户关系的情况下使用汇款公司，无论金额多少，该公司都必须对任何跨境汇款核查你的身份（客户尽职调查）。请携带护照或准证。"
+      },
+      "ja": {
+        "name": "1回限りの国境を越える送金の本人確認",
+        "summary": "既存の口座取引関係がない送金業者を利用する場合、金額にかかわらず、国境を越えるすべての送金について、業者はあなたの本人確認（顧客デューデリジェンス）を行わなければなりません。パスポートまたはパスを持参してください。"
+      }
+    }
   },
   {
     "id": "sg-aml-psp-cdd-walkin-in",
@@ -2229,7 +2879,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": null,
     "exceptions": "Applies to customers without an existing business relationship with the payment service provider.",
     "regulator": "Monetary Authority of Singapore",
-    "evidence_quote": "any funds by cross-border wire transfer"
+    "evidence_quote": "any funds by cross-border wire transfer",
+    "i18n": {
+      "zh-CN": {
+        "name": "一次性跨境汇款的身份核查",
+        "summary": "如果你在没有既有账户关系的情况下使用汇款公司，无论金额多少，该公司都必须对任何跨境汇款核查你的身份（客户尽职调查）。请携带护照或准证。"
+      },
+      "ja": {
+        "name": "1回限りの国境を越える送金の本人確認",
+        "summary": "既存の口座取引関係がない送金業者を利用する場合、金額にかかわらず、国境を越えるすべての送金について、業者はあなたの本人確認（顧客デューデリジェンス）を行わなければなりません。パスポートまたはパスを持参してください。"
+      }
+    }
   },
   {
     "id": "sg-reporting-cash-cbni-out",
@@ -2261,7 +2921,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Failure to report: fine not exceeding S$50,000, imprisonment not exceeding 3 years, or both; cash may be seized.",
     "exceptions": null,
     "regulator": "Singapore Police Force (Suspicious Transaction Reporting Office)",
-    "evidence_quote": "exceeding SGD 20,000 (the prescribed amount) or its equivalent in a foreign currency into or out of Singapore"
+    "evidence_quote": "exceeding SGD 20,000 (the prescribed amount) or its equivalent in a foreign currency into or out of Singapore",
+    "i18n": {
+      "zh-CN": {
+        "name": "在边境申报超过 S$20,000 的现金",
+        "summary": "如果你携带、邮寄或托运价值超过 S$20,000（或等值外币）的现金或不记名票据（例如旅行支票）进出新加坡，必须提交报告。旅客可以通过 ICA 网上办理，或使用 MyICA 应用程序。"
+      },
+      "ja": {
+        "name": "S$20,000 超の現金は国境で申告",
+        "summary": "価値が S$20,000（または外貨での同等額）を超える現金や無記名証券（例：トラベラーズチェック）を、携帯、郵送、または輸送でシンガポールに持ち込む・持ち出す場合は、報告書を提出しなければなりません。旅行者は ICA のオンライン手続きまたは MyICA アプリで提出できます。"
+      }
+    }
   },
   {
     "id": "sg-reporting-cash-cbni-in",
@@ -2293,7 +2963,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Failure to report: fine not exceeding S$50,000, imprisonment not exceeding 3 years, or both; cash may be seized.",
     "exceptions": null,
     "regulator": "Singapore Police Force (Suspicious Transaction Reporting Office)",
-    "evidence_quote": "exceeding SGD 20,000 (the prescribed amount) or its equivalent in a foreign currency into or out of Singapore"
+    "evidence_quote": "exceeding SGD 20,000 (the prescribed amount) or its equivalent in a foreign currency into or out of Singapore",
+    "i18n": {
+      "zh-CN": {
+        "name": "在边境申报超过 S$20,000 的现金",
+        "summary": "如果你携带、邮寄或托运价值超过 S$20,000（或等值外币）的现金或不记名票据（例如旅行支票）进出新加坡，必须提交报告。旅客可以通过 ICA 网上办理，或使用 MyICA 应用程序。"
+      },
+      "ja": {
+        "name": "S$20,000 超の現金は国境で申告",
+        "summary": "価値が S$20,000（または外貨での同等額）を超える現金や無記名証券（例：トラベラーズチェック）を、携帯、郵送、または輸送でシンガポールに持ち込む・持ち出す場合は、報告書を提出しなければなりません。旅行者は ICA のオンライン手続きまたは MyICA アプリで提出できます。"
+      }
+    }
   },
   {
     "id": "sg-tax-foreign-sourced-income",
@@ -2325,7 +3005,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Stated for resident individuals; income received through a partnership in Singapore is excluded.",
     "exceptions": "Income received through a partnership in Singapore.",
     "regulator": "Inland Revenue Authority of Singapore",
-    "evidence_quote": "From 1 Jan 2004, all foreign-sourced income received by resident individuals not through a partnership in Singapore"
+    "evidence_quote": "From 1 Jan 2004, all foreign-sourced income received by resident individuals not through a partnership in Singapore",
+    "i18n": {
+      "zh-CN": {
+        "name": "居民个人在新加坡收取的境外来源收入免税",
+        "summary": "自 2004 年 1 月 1 日起，税务居民个人在新加坡收取的境外来源收入免征新加坡所得税，但通过新加坡合伙企业收取的除外。"
+      },
+      "ja": {
+        "name": "居住者個人が受け取る国外源泉所得は非課税",
+        "summary": "2004年1月1日以降、税務上の居住者である個人がシンガポールで受け取る国外源泉所得は、シンガポールの所得税が免除されます。ただし、シンガポールのパートナーシップを通じて受け取る場合は除きます。"
+      }
+    }
   },
   {
     "id": "us-no-limit-currency-transport-out",
@@ -2357,7 +3047,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Amounts over USD 10,000 (or foreign equivalent) at one time must be reported to CBP on FinCEN Form 105.",
     "exceptions": null,
     "regulator": "U.S. Customs and Border Protection",
-    "evidence_quote": "It is legal to transport any amount of currency or other monetary instruments into or out of the United States."
+    "evidence_quote": "It is legal to transport any amount of currency or other monetary instruments into or out of the United States.",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带货币进出境没有法定上限",
+        "summary": "你可以合法地携带任何金额的现金或货币工具进出美国。超过 USD 10,000 的金额必须申报（见 FinCEN Form 105）。"
+      },
+      "ja": {
+        "name": "通貨の持ち込み・持ち出しに法的上限なし",
+        "summary": "米国には、どんな金額の現金や通貨証券（monetary instruments）でも合法的に持ち込み・持ち出しができます。USD 10,000 を超える金額は報告が必要です（FinCEN Form 105 を参照）。"
+      }
+    }
   },
   {
     "id": "us-no-limit-currency-transport-in",
@@ -2389,7 +3089,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Amounts over USD 10,000 (or foreign equivalent) at one time must be reported to CBP on FinCEN Form 105.",
     "exceptions": null,
     "regulator": "U.S. Customs and Border Protection",
-    "evidence_quote": "It is legal to transport any amount of currency or other monetary instruments into or out of the United States."
+    "evidence_quote": "It is legal to transport any amount of currency or other monetary instruments into or out of the United States.",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带货币进出境没有法定上限",
+        "summary": "你可以合法地携带任何金额的现金或货币工具进出美国。超过 USD 10,000 的金额必须申报（见 FinCEN Form 105）。"
+      },
+      "ja": {
+        "name": "通貨の持ち込み・持ち出しに法的上限なし",
+        "summary": "米国には、どんな金額の現金や通貨証券（monetary instruments）でも合法的に持ち込み・持ち出しができます。USD 10,000 を超える金額は報告が必要です（FinCEN Form 105 を参照）。"
+      }
+    }
   },
   {
     "id": "us-fincen-105-cmir-out",
@@ -2421,7 +3131,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Threshold is an aggregate amount exceeding USD 10,000 at one time. The duty also falls on a person in the US who receives such a shipment from abroad when no report was filed.",
     "exceptions": null,
     "regulator": "Financial Crimes Enforcement Network (FinCEN), U.S. Department of the Treasury; collected by U.S. Customs and Border Protection",
-    "evidence_quote": "an aggregate amount exceeding $10,000 at one time"
+    "evidence_quote": "an aggregate amount exceeding $10,000 at one time",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带超过 USD 10,000 现金过境须申报（FinCEN Form 105）",
+        "summary": "如果你一次实际携带、邮寄或托运超过 USD 10,000（或等值外币）的现金或货币工具进出美国，必须填写 FinCEN Form 105 进行申报。此规定针对实物货币，不包括银行电汇。"
+      },
+      "ja": {
+        "name": "USD 10,000 超の現金の国境通過は報告が必要（FinCEN Form 105）",
+        "summary": "一度に USD 10,000（または外貨での同等額）を超える現金や通貨証券を、携帯、郵送、または輸送で米国に持ち込む・持ち出す場合は、FinCEN Form 105 で報告しなければなりません。これは現物のお金が対象で、銀行の電信送金は対象外です。"
+      }
+    }
   },
   {
     "id": "us-fincen-105-cmir-in",
@@ -2453,7 +3173,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Threshold is an aggregate amount exceeding USD 10,000 at one time. The duty also falls on a person in the US who receives such a shipment from abroad when no report was filed.",
     "exceptions": null,
     "regulator": "Financial Crimes Enforcement Network (FinCEN), U.S. Department of the Treasury; collected by U.S. Customs and Border Protection",
-    "evidence_quote": "an aggregate amount exceeding $10,000 at one time"
+    "evidence_quote": "an aggregate amount exceeding $10,000 at one time",
+    "i18n": {
+      "zh-CN": {
+        "name": "携带超过 USD 10,000 现金过境须申报（FinCEN Form 105）",
+        "summary": "如果你一次实际携带、邮寄或托运超过 USD 10,000（或等值外币）的现金或货币工具进出美国，必须填写 FinCEN Form 105 进行申报。此规定针对实物货币，不包括银行电汇。"
+      },
+      "ja": {
+        "name": "USD 10,000 超の現金の国境通過は報告が必要（FinCEN Form 105）",
+        "summary": "一度に USD 10,000（または外貨での同等額）を超える現金や通貨証券を、携帯、郵送、または輸送で米国に持ち込む・持ち出す場合は、FinCEN Form 105 で報告しなければなりません。これは現物のお金が対象で、銀行の電信送金は対象外です。"
+      }
+    }
   },
   {
     "id": "us-fincen-funds-travel-rule-out",
@@ -2485,7 +3215,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Applies to transmittals of funds equal to or greater than USD 3,000. The fetched page did not state a separate recordkeeping threshold.",
     "exceptions": null,
     "regulator": "Financial Crimes Enforcement Network (FinCEN), U.S. Department of the Treasury",
-    "evidence_quote": "Only transmittals of funds equal to or greater than $3,000 (or its foreign equivalent) are subject to this rule"
+    "evidence_quote": "Only transmittals of funds equal to or greater than $3,000 (or its foreign equivalent) are subject to this rule",
+    "i18n": {
+      "zh-CN": {
+        "name": "USD 3,000 及以上转账的资金转移“旅行规则”",
+        "summary": "对于 USD 3,000 或以上（或等值外币）的电汇，汇款银行必须随付款附上你的姓名、地址和账号，以及转账详情和收款人信息。"
+      },
+      "ja": {
+        "name": "USD 3,000 以上の送金に関する資金移動の「トラベルルール」",
+        "summary": "USD 3,000 以上（または外貨での同等額）の電信送金では、送金銀行は支払いとともに、あなたの氏名、住所、口座番号に加え、送金の詳細と受取人の情報を付記しなければなりません。"
+      }
+    }
   },
   {
     "id": "us-fincen-funds-travel-rule-in",
@@ -2517,7 +3257,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Applies to transmittals of funds equal to or greater than USD 3,000. The fetched page did not state a separate recordkeeping threshold.",
     "exceptions": null,
     "regulator": "Financial Crimes Enforcement Network (FinCEN), U.S. Department of the Treasury",
-    "evidence_quote": "Only transmittals of funds equal to or greater than $3,000 (or its foreign equivalent) are subject to this rule"
+    "evidence_quote": "Only transmittals of funds equal to or greater than $3,000 (or its foreign equivalent) are subject to this rule",
+    "i18n": {
+      "zh-CN": {
+        "name": "USD 3,000 及以上转账的资金转移“旅行规则”",
+        "summary": "对于 USD 3,000 或以上（或等值外币）的电汇，汇款银行必须随付款附上你的姓名、地址和账号，以及转账详情和收款人信息。"
+      },
+      "ja": {
+        "name": "USD 3,000 以上の送金に関する資金移動の「トラベルルール」",
+        "summary": "USD 3,000 以上（または外貨での同等額）の電信送金では、送金銀行は支払いとともに、あなたの氏名、住所、口座番号に加え、送金の詳細と受取人の情報を付記しなければなりません。"
+      }
+    }
   },
   {
     "id": "us-ofac-sanctions-out",
@@ -2549,7 +3299,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Transactions involving sanctioned jurisdictions, regimes or persons may be blocked or rejected.",
     "exceptions": "Non-U.S. persons are also subject to certain prohibitions (for example, causing a U.S. person to violate sanctions).",
     "regulator": "Office of Foreign Assets Control (OFAC), U.S. Department of the Treasury",
-    "evidence_quote": "All U.S. persons must comply with OFAC sanctions"
+    "evidence_quote": "All U.S. persons must comply with OFAC sanctions",
+    "i18n": {
+      "zh-CN": {
+        "name": "所有转账均须接受 OFAC 制裁筛查",
+        "summary": "美国制裁规定适用于在美国的所有人，包括国际学生。银行会筛查转账，对于涉及受制裁国家、个人或实体的付款，无论金额多少，都可以冻结或拒绝。"
+      },
+      "ja": {
+        "name": "すべての送金に OFAC の制裁スクリーニングが適用",
+        "summary": "米国の制裁規則は、留学生を含め米国内にいるすべての人に適用されます。銀行は送金をスクリーニングし、制裁対象の国、個人、団体が関わる支払いは、金額にかかわらずブロック（凍結）または拒否できます。"
+      }
+    }
   },
   {
     "id": "us-ofac-sanctions-in",
@@ -2581,7 +3341,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Transactions involving sanctioned jurisdictions, regimes or persons may be blocked or rejected.",
     "exceptions": "Non-U.S. persons are also subject to certain prohibitions (for example, causing a U.S. person to violate sanctions).",
     "regulator": "Office of Foreign Assets Control (OFAC), U.S. Department of the Treasury",
-    "evidence_quote": "All U.S. persons must comply with OFAC sanctions"
+    "evidence_quote": "All U.S. persons must comply with OFAC sanctions",
+    "i18n": {
+      "zh-CN": {
+        "name": "所有转账均须接受 OFAC 制裁筛查",
+        "summary": "美国制裁规定适用于在美国的所有人，包括国际学生。银行会筛查转账，对于涉及受制裁国家、个人或实体的付款，无论金额多少，都可以冻结或拒绝。"
+      },
+      "ja": {
+        "name": "すべての送金に OFAC の制裁スクリーニングが適用",
+        "summary": "米国の制裁規則は、留学生を含め米国内にいるすべての人に適用されます。銀行は送金をスクリーニングし、制裁対象の国、個人、団体が関わる支払いは、金額にかかわらずブロック（凍結）または拒否できます。"
+      }
+    }
   },
   {
     "id": "us-cfpb-remittance-rights",
@@ -2613,7 +3383,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Covers electronic transfers of more than USD 15 sent by consumers in the United States to people or companies in foreign countries. Error notice within 180 days of the date funds were to be available.",
     "exceptions": "The 30-minute cancellation window ends early if the recipient has already picked up the funds or they have been deposited. Does not cover money sent into the US.",
     "regulator": "Consumer Financial Protection Bureau (CFPB)",
-    "evidence_quote": "you have up to 30 minutes to cancel the remittance transfer at no charge"
+    "evidence_quote": "you have up to 30 minutes to cancel the remittance transfer at no charge",
+    "i18n": {
+      "zh-CN": {
+        "name": "汇款保护（信息披露、30 分钟内取消）",
+        "summary": "当你以电子方式从美国向其他国家汇出超过 USD 15 的款项时，服务提供商必须在你付款前和付款后向你显示费用、税费、汇率以及对方将收到的金额。你可以在 30 分钟内免费取消，并有 180 天时间报告错误。"
+      },
+      "ja": {
+        "name": "国際送金の保護（情報開示、30分以内の取消し）",
+        "summary": "米国から他国へ USD 15 を超える金額を電子的に送金する場合、事業者は支払いの前と後に、手数料、税金、為替レート、受取額を示さなければなりません。30分以内なら無料で取り消せ、誤りを報告する期間は180日です。"
+      }
+    }
   },
   {
     "id": "us-fbar-us-persons-out",
@@ -2645,7 +3425,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Threshold is the aggregate value of all foreign financial accounts exceeding USD 10,000 at any time during the calendar year.",
     "exceptions": "Applies only to U.S. persons. Whether a particular F-1 student counts as a 'resident' was not confirmed on the fetched page.",
     "regulator": "Financial Crimes Enforcement Network (FinCEN), U.S. Department of the Treasury; information page by the Internal Revenue Service (IRS)",
-    "evidence_quote": "exceeded $10,000 at any time during the calendar year reported"
+    "evidence_quote": "exceeded $10,000 at any time during the calendar year reported",
+    "i18n": {
+      "zh-CN": {
+        "name": "FBAR：拥有超过 USD 10,000 境外账户的美国人士",
+        "summary": "如果美国人士（U.S. person）的境外银行和金融账户合计金额在一年中任何时候超过 USD 10,000，必须以电子方式提交 FBAR（FinCEN Form 114），截止日期为次年 4 月 15 日。请向税务顾问确认你是否属于美国人士。"
+      },
+      "ja": {
+        "name": "FBAR：USD 10,000 超の海外口座を持つ米国人（U.S. person）",
+        "summary": "海外の銀行口座・金融口座の合計額が、1年のうちいずれかの時点で USD 10,000 を超えた米国人（U.S. person）は、FBAR（FinCEN Form 114）を電子的に提出しなければなりません。期限は翌年4月15日です。自分が米国人（U.S. person）に該当するかどうかは、税務アドバイザーに確認してください。"
+      }
+    }
   },
   {
     "id": "us-fbar-us-persons-in",
@@ -2677,7 +3467,17 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Threshold is the aggregate value of all foreign financial accounts exceeding USD 10,000 at any time during the calendar year.",
     "exceptions": "Applies only to U.S. persons. Whether a particular F-1 student counts as a 'resident' was not confirmed on the fetched page.",
     "regulator": "Financial Crimes Enforcement Network (FinCEN), U.S. Department of the Treasury; information page by the Internal Revenue Service (IRS)",
-    "evidence_quote": "exceeded $10,000 at any time during the calendar year reported"
+    "evidence_quote": "exceeded $10,000 at any time during the calendar year reported",
+    "i18n": {
+      "zh-CN": {
+        "name": "FBAR：拥有超过 USD 10,000 境外账户的美国人士",
+        "summary": "如果美国人士（U.S. person）的境外银行和金融账户合计金额在一年中任何时候超过 USD 10,000，必须以电子方式提交 FBAR（FinCEN Form 114），截止日期为次年 4 月 15 日。请向税务顾问确认你是否属于美国人士。"
+      },
+      "ja": {
+        "name": "FBAR：USD 10,000 超の海外口座を持つ米国人（U.S. person）",
+        "summary": "海外の銀行口座・金融口座の合計額が、1年のうちいずれかの時点で USD 10,000 を超えた米国人（U.S. person）は、FBAR（FinCEN Form 114）を電子的に提出しなければなりません。期限は翌年4月15日です。自分が米国人（U.S. person）に該当するかどうかは、税務アドバイザーに確認してください。"
+      }
+    }
   },
   {
     "id": "us-f1-proof-of-funds",
@@ -2711,6 +3511,16 @@ export const VERIFIED_RULES: CountryRule[] = [
     "restrictions": "Schools may set their own extra requirements; check with the school's international student office.",
     "exceptions": "The list of example documents is not exhaustive.",
     "regulator": "Student and Exchange Visitor Program (SEVP), U.S. Department of Homeland Security",
-    "evidence_quote": "Designated school officials (DSOs) must collect evidence of the student's financial ability before issuing a Form I-20."
+    "evidence_quote": "Designated school officials (DSOs) must collect evidence of the student's financial ability before issuing a Form I-20.",
+    "i18n": {
+      "zh-CN": {
+        "name": "Form I-20 和学生签证的资金证明",
+        "summary": "在学校签发 Form I-20 之前，你必须证明你本人或担保人能够支付学费、书本费、生活费和旅费。面签时请携带同样的证明材料，入境美国时也请随身携带。"
+      },
+      "ja": {
+        "name": "Form I-20 と学生ビザのための資金証明",
+        "summary": "学校が Form I-20 を発行する前に、あなたまたはスポンサーが学費、書籍代、生活費、渡航費を支払えることを示す必要があります。ビザ面接にも同じ証拠書類を持参し、米国入国時にも携帯してください。"
+      }
+    }
   }
 ] as CountryRule[];

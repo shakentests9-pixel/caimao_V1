@@ -38,7 +38,9 @@
       "ai": "CaiMao 权限",
       "security": "安全",
       "documents": "证明文件",
-      "demo": "演示设置"
+      "demo": "演示设置",
+      "language": "语言",
+      "profile": "个人信息"
     },
     "personalisation": {
       "title": "个性化",
@@ -80,6 +82,10 @@
     "documents": {
       "title": "证明文件",
       "description": "CaiMao 会根据每条转账规则核对这些文件。移除其中一份，即可看到转账被标记为需要处理。"
+    },
+    "profile": {
+      "title": "你的跨境信息",
+      "description": "资格判断和转账规则都取决于这些信息。未填写的项目，CaiMao 会先问你，不会自行假设。"
     }
   },
   "SettingsForms": {
@@ -120,7 +126,11 @@
       "banking": "银行与信用",
       "bankingSub": "信用卡、信用档案与开户准备",
       "advanced": "高级",
-      "advancedSub": "演示场景与系统信息"
+      "advancedSub": "演示场景与系统信息",
+      "setup": "我的理财准备",
+      "setupSub": "你的留学理财分步计划",
+      "statement": "对账单分析",
+      "statementSub": "上传对账单，查看你的支出情况"
     },
     "helpTitle": "CaiMao 能为你做什么",
     "helpDescription": "付款始终需要你的批准。",
@@ -134,7 +144,7 @@
   "BankingPage": {
     "metaTitle": "银行与信用",
     "title": "银行与信用",
-    "description": "在留学期间逐步建立你在 {study} 的金融档案。仅供参考：CaiMao 不会代你申请任何产品。",
+    "description": "在留学期间逐步建立你在{study}的金融档案。仅供参考：CaiMao 不会代你申请任何产品。",
     "studyShort": {
       "GB": "英国",
       "US": "美国"
@@ -166,7 +176,7 @@
     "dueHeadline": "你的还款将在 {days} 天后到期。",
     "dueBody": "按时还款有助于保持良好的还款记录。全额还清 {amount}（而不只是最低还款额）还能避免产生利息。",
     "askCredit": "向 CaiMao 咨询信用问题",
-    "profileTitle": "建立你在 {study} 的金融档案",
+    "profileTitle": "建立你在{study}的金融档案",
     "profileSubtitle": "根据 CaiMao 能查看到的信息生成。无法查看的步骤保持待办状态。",
     "checklist": {
       "account": "本地银行账户",
@@ -183,10 +193,15 @@
       "suggested": "建议"
     },
     "disclaimer": "这些都是常见的建议做法，但没有人能保证特定的信用评分或审批结果。仅为一般信息，不构成财务建议。",
-    "openAccount": "开立本地银行账户"
+    "openAccount": "开立本地银行账户",
+    "abroadCard": {
+      "title": "海外银行服务",
+      "body": "新加坡、英国、美国、日本和中国的可开立账户、所需文件及信用记录。",
+      "cta": "打开海外银行服务"
+    }
   },
   "BankSetup": {
-    "title": "做好在 {country} 开户的准备",
+    "title": "做好在{country}开户的准备",
     "countryShort": {
       "GB": "英国",
       "US": "美国"
@@ -284,6 +299,14 @@
       "SUCCESS": "成功",
       "FAILURE": "失败",
       "BLOCKED": "已拦截"
+    },
+    "workflows": {
+      "title": "工作流记录",
+      "description": "逐步记录对账单分析、规则检查和开户准备。每条事件都会记录时间、运行 ID、执行方、权限级别、结果，以及适用的来源。",
+      "statement": "对账单分析",
+      "regulation": "法规检查",
+      "banking": "开户准备",
+      "sources": "{count, plural, one {# 个官方来源} other {# 个官方来源}} · 最早一次最近核实于 {date}"
     }
   },
   "ActivityTimeline": {
@@ -345,7 +368,13 @@
     "DEMO_DATA": "演示数据",
     "ESTIMATE": "估算",
     "SANDBOX": "沙盒",
-    "UNAVAILABLE": "不可用"
+    "UNAVAILABLE": "不可用",
+    "NEEDS_VERIFICATION": "待核实",
+    "VERIFIED": "已核实",
+    "LIKELY_ELIGIBLE": "很可能符合条件",
+    "CHECK_WITH_BANK": "请向银行确认",
+    "NOT_AVAILABLE": "不适用",
+    "NEED_INFO": "需补充信息"
   },
   "ComplianceBadge": {
     "compliant": "可以发送",
@@ -364,7 +393,7 @@
   "TransferSummaryCard": {
     "youSend": "你汇出",
     "theyReceive": "对方收到",
-    "routeAria": "从 {from} 到 {to}"
+    "routeAria": "从{from}到{to}"
   },
   "SuccessState": {
     "tuitionPaid": "学费已缴清",
@@ -457,7 +486,7 @@
       "saved": "结余",
       "leftAfterBills": "支付即将到期的账单后，约剩 <b>{amount}</b>。"
     },
-    "bankingIn": "在 {country} 开户",
+    "bankingIn": "在{country}开户",
     "openChecklist": "打开完整清单"
   },
   "ConfirmTransfer": {
@@ -552,7 +581,10 @@
       "sendMoneyOverseas": "向海外汇款",
       "reviewSpending": "查看我的支出",
       "buildCredit": "帮我建立信用",
-      "openBankAccount": "开立本地银行账户"
+      "openBankAccount": "开立本地银行账户",
+      "setupFinances": "我是要去新加坡留学的中国学生，该如何做好理财准备？",
+      "statementAnalysis": "查看我的对账单分析",
+      "switchLanguage": "用日语回复"
     },
     "starters": {
       "payTuition": {
@@ -570,6 +602,14 @@
       "reviewSpending": {
         "title": "查看我的支出",
         "sub": "本月与平时相比如何"
+      },
+      "setupFinances": {
+        "title": "做好留学理财准备",
+        "sub": "留学国家的银行账户、证明文件和相关规则"
+      },
+      "statementAnalysis": {
+        "title": "看懂我的对账单",
+        "sub": "支出规律、订阅和预计可节省空间"
       }
     },
     "tools": {
@@ -636,6 +676,54 @@
       "createAuditLog": {
         "running": "正在保存收据",
         "done": "已保存到动态与安全"
+      },
+      "getUserFinancialProfile": {
+        "running": "正在读取你的财务资料…",
+        "done": "已读取你的财务资料"
+      },
+      "getCountryBankingRequirements": {
+        "running": "正在获取开户要求…",
+        "done": "已获取开户要求"
+      },
+      "getAvailableBanks": {
+        "running": "正在查找可选银行…",
+        "done": "已找到可选银行"
+      },
+      "getBankEligibility": {
+        "running": "正在检查开户资格…",
+        "done": "已检查开户资格"
+      },
+      "getFundFlowRules": {
+        "running": "正在检查跨境规则…",
+        "done": "已检查跨境规则"
+      },
+      "getCreditSystemInfo": {
+        "running": "正在查询当地信用体系…",
+        "done": "已说明信用体系"
+      },
+      "getAccountSetupSteps": {
+        "running": "正在制定你的准备计划…",
+        "done": "已创建准备计划"
+      },
+      "getRequiredDocuments": {
+        "running": "正在整理你需要的文件…",
+        "done": "已列出所需文件"
+      },
+      "analyseSpending": {
+        "running": "正在查看你的对账单分析…",
+        "done": "已查看对账单分析"
+      },
+      "generateSavingsInsights": {
+        "running": "正在寻找可能的节省空间…",
+        "done": "已找到可能的节省空间"
+      },
+      "getLanguagePreference": {
+        "running": "正在确认你的语言…",
+        "done": "已确认语言"
+      },
+      "updateLanguagePreference": {
+        "running": "正在切换语言…",
+        "done": "已切换语言"
       }
     },
     "errors": {
@@ -887,7 +975,8 @@
     },
     "freeAfter": "支付这些款项后，约有 <b>{amount}</b> 可自由支配。",
     "transactions": "交易记录",
-    "showAll": "显示全部 {count} 条"
+    "showAll": "显示全部 {count} 条",
+    "analyseStatement": "分析对账单"
   },
   "SpendingDonut": {
     "spent": "已支出"
@@ -903,7 +992,8 @@
       "settings": "设置",
       "activity": "动态",
       "transfers": "转账",
-      "profile": "我的"
+      "profile": "我的",
+      "setup": "理财准备"
     },
     "names": {
       "home": "首页",
@@ -914,7 +1004,8 @@
       "banking": "银行与信用",
       "settings": "设置",
       "activity": "动态与安全",
-      "profile": "我的"
+      "profile": "我的",
+      "setup": "我的理财准备"
     },
     "dueCount": "{count} 笔待付",
     "mainNavigation": "主导航",
@@ -928,9 +1019,9 @@
     "profile": "我的",
     "insight": {
       "dueHeadline": "你的学费将在 {days} 天后到期。",
-      "betterRoute": "我找到一条路线，可让 {payee} 多收到约 {currency} {amount}。你的 {source} 余额充足。",
-      "enoughToCover": "你的 {source} 余额足以支付。",
-      "notCovered": "{source} 的余额暂时不足。充值后，我会为你找到最佳路线。",
+      "betterRoute": "我找到一条路线，可让 {payee} 多收到约 {currency} {amount}。你的{source}余额充足。",
+      "enoughToCover": "你的{source}余额足以支付。",
+      "notCovered": "{source}的余额暂时不足。充值后，我会为你找到最佳路线。",
       "yourAccount": "你的账户",
       "yourHomeAccount": "你的国内账户",
       "estimateNote": "以今日演示汇率、对比成本最高的路线估算。最终金额在付款时确定。",
@@ -947,7 +1038,8 @@
     "actions": {
       "sendMoney": "汇款",
       "payTuition": "缴学费",
-      "exchange": "换汇"
+      "exchange": "换汇",
+      "analyseSpending": "分析我的支出"
     },
     "yourAccounts": "你的账户",
     "comingUp": "即将到期",
@@ -970,6 +1062,11 @@
       "Fees": "费用",
       "Other": "其他",
       "Transfers": "转账"
+    },
+    "setupCard": {
+      "title": "你在{country}的理财准备",
+      "progress": "已完成 {done}/{total} 步",
+      "cta": "继续"
     }
   },
   "HeroBalanceCard": {
@@ -1069,5 +1166,573 @@
   },
   "Dialog": {
     "close": "关闭"
+  },
+  "Language": {
+    "label": "语言",
+    "title": "语言",
+    "description": "CaiMao 的界面和回复将使用这种语言。银行名称、交易 ID 和监管机构的官方名称保持原样。",
+    "reviewNote": "中文和日文内容为新增翻译。如有表达不自然之处，欢迎告诉我们。"
+  },
+  "ProfileForm": {
+    "nationality": "国籍",
+    "currentCountry": "当前所在国家/地区（本国）",
+    "studyCountry": "留学国家/地区",
+    "age": "年龄",
+    "studentStatus": "学生身份",
+    "visaType": "签证或居留身份",
+    "residency": "居住状态",
+    "taxResidency": "税务居民身份",
+    "notSet": "未设置",
+    "save": "保存信息",
+    "saved": "已保存",
+    "error": "保存失败，请重试。",
+    "privacy": "用于匹配转账规则和银行要求。助手只会收到回答问题所需的字段，任何信息都不会分享给银行。",
+    "studentStatuses": {
+      "full_time": "全日制学生",
+      "part_time": "非全日制学生",
+      "admitted": "已录取，即将入学",
+      "not_student": "非学生"
+    },
+    "visaTypes": {
+      "student": "学生签证或学生准证",
+      "work": "工作签证",
+      "dependant": "家属签证",
+      "permanent_resident": "永久居民",
+      "citizen": "公民",
+      "visitor": "访客",
+      "none": "尚无签证"
+    },
+    "residencies": {
+      "resident": "已在留学国家居住",
+      "non_resident": "尚未在当地居住"
+    }
+  },
+  "StatementPage": {
+    "metaTitle": "分析对账单",
+    "eyebrow": "预算",
+    "title": "分析对账单",
+    "description": "上传银行对账单，CaiMao 会告诉你钱花在了哪里：支出类别、定期付款、异常支出，以及未来几个月的资金情况。",
+    "uploadTitle": "上传对账单",
+    "uploadHint": "从银行 App 或网站导出的 CSV 文件，或文本格式的 PDF。",
+    "choose": "选择文件或拖放到此处",
+    "formats": "CSV 或 PDF，最大 5 MB",
+    "fileReady": "可以上传 · {kb} KB",
+    "privacy": {
+      "notStored": "在 CaiMao 服务器上读取后即丢弃，文件本身绝不会被存储。",
+      "masked": "保存任何内容之前，卡号和账号都会被隐藏。",
+      "delete": "只保留你确认过的交易记录，你可以随时删除。"
+    },
+    "consent": "我同意 CaiMao 读取这份对账单以分析我的支出。我可以随时删除分析结果。",
+    "consentFirst": "请先勾选上方的方框再继续。",
+    "analyse": "分析对账单",
+    "useSample": "试用示例对账单",
+    "noCredentials": "CaiMao 绝不会索取你的网上银行登录名或密码。",
+    "reading": "正在读取你的对账单…",
+    "readingHint": "正在识别交易记录、隐藏账号，并为每笔交易归类。",
+    "fileMeta": "{type} · {count, plural, one {# 笔交易} other {# 笔交易}} · {from} – {to}",
+    "account": "账户 {hint}",
+    "statusPreview": "等待你核对",
+    "statusConfirmed": "已分析",
+    "newUpload": "再上传一份",
+    "delete": "删除",
+    "deleteConfirm": "要删除这份对账单的交易记录和分析结果吗？此操作无法撤销。",
+    "deleteNamed": "删除 {name}",
+    "open": "打开",
+    "previewTitle": "核对交易记录",
+    "previewHint": "在你确认之前不会进行任何分析。如有分类不对，请直接修改；不想纳入的交易，取消勾选即可。",
+    "warnings": {
+      "skipped_rows": "有 {value} 行无法读取，已跳过。",
+      "assumed_currency": "对账单未显示币种，CaiMao 已默认为 {value}。",
+      "pdf_sign_check": "PDF 对账单较难读取。请检查收入和支出是否正确。"
+    },
+    "confirm": "确认 {count, plural, one {# 笔交易} other {# 笔交易}} 并分析",
+    "confirmNote": "确认后，这些交易记录和分析结果将保存到你的账户。你的余额和现有交易记录不会有任何改动。",
+    "askCaiMao": "和 CaiMao 聊聊",
+    "askPrompt": "查看我的对账单分析",
+    "reviewTitle": "交易核对",
+    "show": "显示",
+    "reviewAfterHint": "修改分类后，分析结果会随之更新。",
+    "historyTitle": "以往的对账单",
+    "insightsNote": "根据你的对账单估算，不构成财务建议。",
+    "categoriesTitle": "你的钱花在了哪里",
+    "essentialSplit": "必要支出 {essential} · 其他支出 {discretionary}",
+    "merchantsTitle": "主要商户",
+    "merchantCount": "{count, plural, one {# 笔付款} other {# 笔付款}}",
+    "recurringTitle": "定期付款",
+    "noRecurring": "此期间未发现定期付款。",
+    "cadence": {
+      "monthly": "每月",
+      "weekly": "每周"
+    },
+    "seenTimes": "出现 {count, plural, one {# 次} other {# 次}}",
+    "subscription": "订阅",
+    "unusualTitle": "异常支出",
+    "noUnusual": "没有异常情况。",
+    "unusualWhy": "远高于你平时约 {typical} 的{category}支出。",
+    "incomeTitle": "收入规律",
+    "regular": "固定",
+    "oneOff": "不定期",
+    "monthlyFlow": "每月收支",
+    "pressure": {
+      "title": "下一笔大额付款之前",
+      "body": "{obligation}（{amount}）将在 {days, plural, one {# 天} other {# 天}}后到期。",
+      "cashNow": "当前现金",
+      "monthlyNet": "每月净额",
+      "projected": "预计剩余",
+      "note": "预测方式：你今天的余额，加上平均每月净现金流，再减去在此之前到期的付款。这只是估算，并非保证。"
+    },
+    "summary": {
+      "title": "对账单摘要",
+      "period": "{period} · {count, plural, one {# 笔交易} other {# 笔交易}}",
+      "income": "收入",
+      "expenses": "支出",
+      "net": "净现金流",
+      "recurring": "定期付款",
+      "payments": "{count, plural, one {# 笔付款} other {# 笔付款}}",
+      "perMonth": "每月约 {amount}",
+      "perMonthShort": "/ 月",
+      "opportunity": "可能的节省空间",
+      "opportunityNote": "预计可节省空间",
+      "methodAverage": "预计可节省空间：本月非必要支出高出你此前几个月平均水平的部分。",
+      "methodIllustrative": "预计可节省空间：由于对账单覆盖不足两个月，按非必要支出的 10% 作示例估算。",
+      "estimateNote": "这并非保证能省下的金额。"
+    },
+    "groups": {
+      "eating_out": "外出就餐",
+      "entertainment": "娱乐",
+      "shopping": "购物",
+      "travel": "旅行",
+      "subscriptions": "订阅"
+    },
+    "review": {
+      "filter": "筛选交易记录",
+      "all": "全部（{count}）",
+      "needsReview": "需核对（{count}）",
+      "hint": "置信度较低的交易已做标记，方便你核对。",
+      "check": "核对",
+      "aiSuggestion": "AI 建议",
+      "confidence": "CaiMao 对这笔交易归类的把握程度",
+      "categoryFor": "{merchant} 的类别",
+      "include": "纳入",
+      "showMore": "再显示 {count} 条"
+    },
+    "disclaimer": "CaiMao 的分析是基于你上传的对账单所做的估算，不构成财务建议，也不保证能节省开支。",
+    "backToBudget": "返回预算",
+    "unusualWhyAny": "远高于你通常约 {typical} 的单笔支出。"
+  },
+  "StatementInsights": {
+    "net_negative": "在此期间，你的支出比收入多 {amount}。",
+    "net_positive": "在此期间，你的收入比支出多 {amount}。",
+    "category_above_average": "{month}你在{category}上花了 {amount}，比你{months, plural, one {上个月} other {近 # 个月的平均水平}}高出约 {diff}。",
+    "subscriptions": "你有 {count, plural, one {# 项定期订阅} other {# 项定期订阅}}，每月约 {amount}。",
+    "essentials_share": "房租、餐饮和交通占你支出的 {pct}%。",
+    "unusual_payment": "有一笔付款格外突出：{date} 在 {merchant} 支付了 {amount}，远高于你平时的{category}支出。",
+    "regular_income": "你的固定收入包括{source}，每月约 {amount}。",
+    "projection_covered": "按你目前的支出速度，{obligation} 于 {date} 到期时，预计你还会剩下约 {amount}。",
+    "projection_short": "按你目前的支出速度，{obligation} 于 {date} 到期时，你可能还差约 {amount}。",
+    "opportunity": "如果每月将非必要支出减少约 {monthly}，{months, plural, one {# 个月} other {# 个月}}下来可能为你的备用资金增加约 {total}。这只是预计可节省空间，并非保证能省下的金额。",
+    "unusual_payment_any": "有一笔支出很突出：{date} 在 {merchant} 花了 {amount}，远高于你通常约 {typical} 的单笔支出。"
+  },
+  "Errors": {
+    "EMPTY": "文件为空。",
+    "TOO_LARGE": "文件超过 5 MB。",
+    "UNSUPPORTED_TYPE": "仅支持 CSV 和 PDF 格式的对账单。",
+    "EXTENSION_MISMATCH": "文件内容与文件名不符。",
+    "NOT_TEXT": "这似乎不是 CSV 文本文件。",
+    "PDF_ENCRYPTED": "这份 PDF 设有密码保护。请从银行下载未加密的版本。",
+    "PDF_ACTIVE_CONTENT": "这份 PDF 包含脚本或嵌入文件，因此 CaiMao 不会打开它。",
+    "PDF_TOO_MANY_PAGES": "这份 PDF 超过 40 页。",
+    "NO_TRANSACTIONS": "CaiMao 未能找到任何交易记录。请尝试使用银行导出的 CSV 文件。",
+    "UNREADABLE": "CaiMao 无法读取这份对账单。",
+    "CONSENT_REQUIRED": "请先同意 CaiMao 读取这份对账单。",
+    "INVALID_STATE": "这份对账单已经确认过了。",
+    "NOT_FOUND": "未找到该项目。",
+    "SAVE_FAILED": "无法保存此更改，请重试。",
+    "NETWORK": "无法连接 CaiMao。请检查网络连接后重试。",
+    "UNAUTHORIZED": "请重新登录。",
+    "PERMISSION_DENIED": "CaiMao 当前的权限级别不允许此操作。",
+    "INTERNAL": "出了点问题，请重试。"
+  },
+  "Regulation": {
+    "checkerTitle": "跨境规则检查",
+    "checkerBody": "告诉 CaiMao 资金的去向、用途，以及你的一些基本情况。答案仅来自 CaiMao 的规则数据库，并附有每条规则的官方来源和核实日期。",
+    "formLabel": "检查转账规则",
+    "from": "资金汇出地",
+    "to": "资金汇入地",
+    "purposeLabel": "用途",
+    "purpose": {
+      "education": "学费 / 教育",
+      "personal": "个人用途"
+    },
+    "amount": "金额",
+    "amountOptional": "选填",
+    "currency": "币种",
+    "aboutYou": "关于你",
+    "aboutYouHint": "部分规则只适用于特定国籍、居民或签证持有人。某一项留空的话，CaiMao 会告诉你哪些规则取决于这项信息。",
+    "check": "检查规则",
+    "sameCountry": "请选择两个不同的国家/地区。",
+    "error": "无法检查规则，请重试。",
+    "resultLabel": "从{from}到{to}的规则",
+    "statusLabel": "状态",
+    "checkedAt": "检查于 {time}",
+    "whatThisMeans": "这意味着什么",
+    "meaning": {
+      "COMPLIANT": "根据已记录的{from}和{to}已核实规则，这笔转账看起来是允许的。你的银行或服务商仍会进行自己的审核。",
+      "ACTION_REQUIRED": "这笔转账看起来是允许的，但需要先准备一些文件或完成一些步骤，详见下方。",
+      "BLOCKED": "根据一条已记录的已核实规则，按所述情况，这笔转账不被允许。请查看下方的要求和官方来源。",
+      "NEEDS_VERIFICATION": "CaiMao 暂时无法给出明确答案。部分规则取决于你尚未提供的信息，或者有规则未能完全核实。"
+    },
+    "unverified": "我无法根据当前的监管数据库核实这一要求。",
+    "needDetails": "再告诉 CaiMao 一些信息，即可获得明确答案：",
+    "provideDetails": "补充这些信息",
+    "coverage": "已记录的已核实规则：{fromCountry} {fromCount} 条 · {toCountry} {toCount} 条",
+    "requirements": "要求",
+    "documents": "文件",
+    "limits": "限额",
+    "considerations": "重要注意事项",
+    "sources": "官方来源",
+    "onFile": "已提供",
+    "prepare": "需准备",
+    "side": {
+      "sending": "{country}的规则（汇出方）",
+      "receiving": "{country}的规则（收款方）",
+      "both": "{country}的规则"
+    },
+    "cashOnly": "仅限现金",
+    "notVerified": "未核实",
+    "appliesTo": "适用对象：{who}",
+    "showAll": "显示全部 {count} 条",
+    "showFewer": "收起",
+    "lastVerified": "最近核实于 {date}",
+    "noSources": "这条汇款线路暂无官方来源记录。",
+    "disclaimer": "以上为来自官方来源的一般信息，于所示日期核实。规则可能变化，银行也可能要求更多材料。这不构成法律建议。",
+    "finding": {
+      "within_limit": "在 {limit} 的限额内（这笔转账约为 {amount}）。",
+      "over_limit": "超出 {limit} 的限额（这笔转账约为 {amount}）。",
+      "below_threshold": "低于 {limit} 的门槛（约 {amount}），因此这条规则无需额外材料。",
+      "documents_needed": "需准备：{docs}。",
+      "documents_ready": "这条规则所需的文件已提供。",
+      "report_over_threshold": "超过 {limit}：会提交一份申报。除回答银行的问题外，通常无需你额外做什么。",
+      "report_below_threshold": "低于 {limit} 的申报门槛。",
+      "cash_guidance": "适用于随身携带现金出入境，不适用于银行转账。门槛：{limit}。",
+      "unverified_rule": "这条规则未能在官方页面上得到确认，因此不用于判定结果。",
+      "depends_on": "取决于你的{fields}。"
+    }
+  },
+  "ProfileFields": {
+    "nationality": "国籍",
+    "residency_status": "居住状态",
+    "visa_type": "签证或居留身份",
+    "amount": "金额",
+    "destination": "留学国家/地区",
+    "age": "年龄",
+    "student_status": "学生身份"
+  },
+  "BankingAbroad": {
+    "metaTitle": "海外银行服务",
+    "eyebrow": "银行与信用",
+    "title": "海外银行服务",
+    "description": "在留学国家开立银行账户：银行通常要求哪些材料、哪些账户面向国际学生开放，以及当地的信用记录如何运作。所有信息均来自官方和银行渠道。",
+    "countryNav": "留学国家/地区",
+    "aboutYou": "关于你",
+    "aboutYouHint": "开户资格不只取决于国籍：签证、居住状态、年龄和学生身份都有影响。",
+    "edit": "编辑",
+    "doneEditing": "关闭",
+    "destination": "目的地",
+    "askFirst": "CaiMao 需要先了解你的{fields}，才能判断哪些银行很可能接受你的开户申请。",
+    "howTitle": "如何在{country}开立银行账户",
+    "steps": {
+      "1": {
+        "title": "确认开户资格",
+        "body": "银行会考察你的移民身份、居住状态、年龄以及是否为学生。以下是已记录的相关因素："
+      },
+      "2": {
+        "title": "准备证明文件",
+        "body": "申请前请备齐原件。常见文件包括："
+      },
+      "3": {
+        "title": "选择账户类型",
+        "body": "学生账户和新移民账户的费用通常较低。请在下方比较月费、最低余额和国际转账支持。"
+      },
+      "4": {
+        "title": "选择银行",
+        "body": "选一个你很可能符合条件的账户，再到银行官网查看最新要求。"
+      },
+      "5": {
+        "title": "在线或到网点申请",
+        "body": "部分银行允许国际学生在线申请；也有银行要求你携带原件前往网点办理。"
+      },
+      "6": {
+        "title": "完成身份核验",
+        "body": "银行会核验你的身份和移民身份。请如实回答银行的问题；银行可能会询问你的资金来源。"
+      },
+      "7": {
+        "title": "领取账户和银行卡",
+        "body": "账户信息和借记卡通常会邮寄给你，或在 App 中发放。请妥善保管 PIN 码和卡片信息。"
+      },
+      "8": {
+        "title": "开通数字银行",
+        "body": "安装银行 App，开启通知和双重验证登录，并把账户添加到 CaiMao 的理财准备中。"
+      }
+    },
+    "sourcesLabel": "来源：",
+    "banksTitle": "{country}的账户",
+    "banksHint": "信息取自各银行官网。银行页面未确认的内容标注为“未确认”。",
+    "checkEligibility": "检查我的开户资格",
+    "recheck": "重新检查",
+    "bankDecides": "只有银行才能决定是否为你开户。要求可能因网点和客户而异，请将此视为参考，并向银行确认。",
+    "yes": "是",
+    "no": "否",
+    "notConfirmed": "未确认",
+    "studentAccount": "学生账户",
+    "intlStudents": "国际学生",
+    "residentRequired": "须在当地居住",
+    "minimumAge": "最低年龄",
+    "monthlyFee": "月费",
+    "minimumBalance": "最低余额",
+    "intlTransfers": "国际转账",
+    "moreDetails": "更多详情",
+    "visa": "签证要求",
+    "documents": "证明文件",
+    "creditCard": "信用卡",
+    "notes": "备注",
+    "officialSite": "官方页面",
+    "lastVerified": "最近核实于 {date}",
+    "choose": "选择这家银行",
+    "chosen": "已纳入你的计划",
+    "planTitle": "你在{country}的理财准备",
+    "planBody": "CaiMao 会把这些整理成分步计划：证明文件、银行账户、从国内汇款、学费、定期付款和信用记录。",
+    "createPlan": "创建我的准备计划",
+    "reasons": {
+      "student_account_for_international": "该银行提供学生账户，并注明国际学生可以申请。",
+      "accepts_international_students": "该银行页面注明国际学生可以开立此账户。",
+      "not_for_international_students": "该银行页面注明此账户不面向国际学生开放。",
+      "under_minimum_age": "该银行此账户的最低年龄要求为 {age} 岁。",
+      "resident_required": "该银行要求你先在当地居住。抵达后你或许可以申请。",
+      "local_citizen": "作为当地国民，你通常可以开立标准账户。",
+      "visa_requirement": "该银行有签证或居留许可要求，详见更多详情。",
+      "unconfirmed": "该银行的部分要求未能在其官网上得到确认。",
+      "varies_by_branch": "要求可能因网点和客户而异。",
+      "missing_details": "CaiMao 需要先多了解一些你的信息。"
+    }
+  },
+  "CreditEducation": {
+    "title": "在{country}建立信用记录",
+    "hasBureau": "当地有正式的信用报告体系。已记录的征信机构：{bureaus}。",
+    "noBureau": "目前没有该国正式个人征信机构的记录。",
+    "bureauUnknown": "CaiMao 无法确认当地的信用报告如何运作。",
+    "contributes": "哪些做法可能有帮助",
+    "whyMatters": "为什么可能很重要",
+    "habits": "良好习惯",
+    "risks": "常见风险",
+    "newcomers": "给新来者：",
+    "noGuarantee": "良好的习惯可能随着时间推移有所帮助，但无法保证更高的评分、审批通过或更优惠的利率。",
+    "lastVerified": "最近核实于 {date}"
+  },
+  "Setup": {
+    "metaTitle": "我的理财准备",
+    "title": "我的理财准备",
+    "description": "出国留学需要处理的每件事，按顺序排好，并根据你的出发地和目的地量身定制。",
+    "countryNav": "留学国家/地区",
+    "eyebrow": "留学理财准备",
+    "headline": "你在{country}的理财准备",
+    "route": "从{from}到{to}",
+    "stepsDone": "步已完成",
+    "refresh": "刷新我的计划",
+    "autoDone": "已完成 · CaiMao 可以看到这一项",
+    "done": "已完成",
+    "markDone": "标记为完成",
+    "disclaimer": "基于官方来源和各银行官网提供的参考信息。最终决定由银行和监管机构作出。",
+    "steps": {
+      "documents": {
+        "title": "准备所需文件",
+        "body": "银行和大学通常会要求以下文件：",
+        "cta": "更新你的证明文件"
+      },
+      "open_account": {
+        "title": "在{country}开立银行账户",
+        "body": "找出你很可能符合条件的账户。",
+        "have": "你已有本地账户：{name} ••••{last4}。",
+        "chosen": "你选择了 {bank}（{type}）。",
+        "likely": "很可能符合条件的选项：{banks}。",
+        "missing": "补充你的{fields}，即可查看哪些银行很可能接受你的申请。",
+        "cta": "查看银行选项"
+      },
+      "receive_funds": {
+        "title": "了解从{from}收款的规则",
+        "body": "从{from}汇款到{to}的规则：",
+        "documents": "家人从国内汇款时，汇款银行可能会要求提供以下文件：",
+        "cta": "详细查看规则"
+      },
+      "pay_tuition": {
+        "title": "缴纳学费",
+        "none": "该国暂无学费付款记录。",
+        "paid": "{title} 已支付。",
+        "due": "{title}：{amount}，{date} 到期。",
+        "cta": "经你批准后支付"
+      },
+      "recurring": {
+        "title": "设置定期付款",
+        "body": "房租、话费等可从本地账户设置定期支付的固定账单：",
+        "cta": "查看账单"
+      },
+      "credit": {
+        "title": "了解如何建立本地信用",
+        "body": "了解留学国家的信用记录如何运作。",
+        "bureau": "当地征信机构：{bureaus}。按时支付账单可能有助于建立信用记录。",
+        "cta": "了解信用如何运作"
+      },
+      "restrictions": {
+        "title": "查看相关金融限制",
+        "body": "与你相关国家已记录的外汇、限额、申报和税务规则：",
+        "none": "这些国家暂无限制记录。"
+      },
+      "compare_routes": {
+        "title": "比较学费汇款方案",
+        "body": "{title}（{amount}）：比较从{from}付款的手续费、汇率和到账时间。",
+        "prepared": "你已比较路线，并为 {title} 准备好了一笔转账。",
+        "none": "比较从{from}汇款到{to}的手续费和汇率。",
+        "cta": "比较汇款方案"
+      }
+    },
+    "homeRoute": "{country}是你的本国",
+    "notNeeded": "无需办理",
+    "sameCountry": "无需办理：{country}是你的本国，这里不涉及跨境汇款。"
+  },
+  "Explain": {
+    "none_available": "没有服务商能按所需金额办理这笔转账。",
+    "best_vs_worst": "计入汇率差价和手续费后，选择 {best} 比 {worst} 能让收款方多收到约 {extra}。",
+    "lowest_fee_zero": "{provider} 不收转账手续费，但其汇率比中间价低 {spread_pct}%，按此金额计算相当于多付 {spread_cost}。",
+    "lowest_fee": "{provider} 的转账手续费最低（{fee}），但其汇率比中间价低 {spread_pct}%，按此金额计算相当于多付 {spread_cost}。",
+    "all_in": "{provider} 的综合成本为 {total}（手续费 {fee} + 汇率差价 {spread}）。以上均为估算，汇率在转账执行时才最终确定。",
+    "all_in_other": "{provider} 的综合成本为 {total}（手续费 {fee} + 汇率差价 {spread} + 其他费用 {other}）。以上均为估算，汇率在转账执行时才最终确定。"
+  },
+  "Agent": {
+    "help": "我可以全程处理一笔付款：找出待付款项、检查你的余额和转账规则、按实际到账金额比较服务商，并准备好转账等你批准。我还可以分析银行对账单、检查我支持的五个国家的跨境规则、协助你在海外开立银行账户、讲解当地的信用记录，以及切换语言。",
+    "balances": "你所有账户合计约 **{total}**，按 CaiMao 的演示中间价折算。",
+    "spending": {
+      "summary": "最近 30 天，你收入 **{income}**，日常支出 **{expenses}**，结余 **{savings}**。自己账户之间的转账不计入。",
+      "summaryWithObligations": "最近 30 天，你收入 **{income}**，日常支出 **{expenses}**，另通过 CaiMao 支付了 **{obligations}** 的待付款项，结余 **{savings}**。自己账户之间的转账不计入。"
+    },
+    "credit": {
+      "noCard": "目前还没有本地信用卡记录。",
+      "summary": "你的信用卡余额为 **{balance}**，额度 **{limit}**，使用率为 **{pct}%**。\n\n你的还款将在 {days, plural, one {# 天} other {# 天}}后到期。按时还款有助于保持良好的还款记录。全额还清账单余额（而不只是 {minimum} 的最低还款额）还能避免产生利息。\n\n以上为一般性建议。CaiMao 无法预测你的信用评分变化或任何申请的结果。",
+      "country": "在{country}，信用记录由征信机构（{bureaus}）保存。按时支付账单和还款可能有助于建立良好的记录，贷款机构和部分房东可能会参考这些记录。我无法保证任何评分、审批结果或利率。详情和来源见卡片（最近核实于 {date}）。",
+      "countryNoBureau": "CaiMao 无法确认{country}有正式的个人征信机构。卡片中显示了已记录的信息（最近核实于 {date}）。",
+      "none": "暂无{country}的信用信息记录。"
+    },
+    "language": {
+      "which": "你想使用哪种语言：English、简体中文还是日本語？",
+      "switched": "好的。从现在起我会用{language}回复，应用界面也会同步切换。"
+    },
+    "setup": {
+      "whichCountry": "你要去哪个国家留学？我整理了新加坡、英国、美国、日本和中国的相关指南。",
+      "who": "以下是在{country}开立银行账户的一般流程，信息来自官方和银行渠道。",
+      "whoNational": "以下是{nationality}学生在{country}开立银行账户通常需要准备的内容，信息来自官方和银行渠道。",
+      "documents": "**银行通常要求的文件：**\n{docs}",
+      "askDetails": "开户资格不只取决于国籍。在我判断哪些银行很可能接受你的申请之前，能告诉我你的**{fields}**吗？例如，你是否已经拿到学生签证或学生准证，是否已经抵达当地？",
+      "likely": "**很可能接受你的银行：**{banks}。",
+      "check": "**建议向银行确认：**{banks}。",
+      "bankDecides": "最终由银行决定，要求可能因网点和客户而异。",
+      "sources": "基于 {count, plural, one {# 个官方来源} other {# 个官方来源}}，最近核实于 {date}。"
+    },
+    "rules": {
+      "unverified": "我无法根据当前的监管数据库核实这一要求。",
+      "status": {
+        "COMPLIANT": "根据已记录的已核实规则，从{from}向{to}汇出这笔款项看起来是允许的。你的银行仍会进行自己的审核。",
+        "ACTION_REQUIRED": "从{from}向{to}汇出这笔款项看起来是允许的，但需要先准备一些文件或完成一些步骤。",
+        "BLOCKED": "根据一条已记录的已核实规则，按所述情况，这笔从{from}到{to}的转账不被允许。卡片中显示了是哪条规则及其官方来源。",
+        "NEEDS_VERIFICATION": "对于从{from}到{to}的转账，我暂时无法给出明确答案。"
+      },
+      "documents": "**需准备的文件：**\n{docs}",
+      "reports": "{count, plural, one {有一条规则要求} other {有 # 条规则要求}}银行在此金额下提交申报。这属于例行程序，通常无需你额外做什么。",
+      "askDetails": "部分规则取决于你的**{fields}**。告诉我之后，我会重新检查。",
+      "sources": "卡片中的每条规则都附有官方来源链接（{count, plural, one {# 个来源} other {# 个来源}}，最近核实于 {date}）。",
+      "disclaimer": "以上为来自官方来源的一般信息，不构成法律建议。"
+    },
+    "statement": {
+      "none": "你还没有确认任何对账单。请前往**预算 → 分析对账单**，上传 CSV 或 PDF 文件，核对交易记录后确认。之后我就可以为你讲解。",
+      "summary": "根据你的对账单：收入 **{income}**，支出 **{expenses}**，净额 **{net}**。",
+      "disclaimer": "以上是根据你的对账单所做的估算，不构成财务建议。任何节省金额都只是预计可节省空间，并无保证。"
+    },
+    "whyNot": "CaiMao 按收款方实际到账金额为路线排序，而不是按宣传的手续费。免手续费的服务商如果把成本藏在汇率里，实际花费仍可能更高。",
+    "compare": {
+      "intro": "按统一汇出金额 **{amount}** 比较 {src} → {dst}。**{provider}** 到账最多。",
+      "introTuition": "按统一汇出金额 **{amount}**（约为你的学费所需）比较 {src} → {dst}。**{provider}** 到账最多。"
+    },
+    "send": {
+      "intro": "从{from}向{to}汇出 **{amount}**：**{provider}** 到账最多。",
+      "note": "在本原型中，CaiMao 只为已记录的待付款项（如学费）执行付款。告诉我其他金额，我会重新比较。"
+    },
+    "pay": {
+      "alreadyPaid": "你的 {title}（{ref}）已支付。可在动态与安全页面查看收据。",
+      "noneUnpaid": "我没有找到这类未支付的款项。",
+      "domestic": "{title} 是一笔以 {currency} 支付的境内付款。在本原型中，CaiMao 只准备跨境付款。",
+      "notTuition": "{title}（{amount}）将在 {days, plural, one {# 天} other {# 天}}后到期，由你的 {currency} 账户支付。在本原型中，CaiMao 只准备跨境学费付款；让我帮你缴学费，即可体验完整流程。",
+      "noAccount": "你没有可用于支付这笔款项的 {currency} 账户。",
+      "fundsNote": "按中间价 {rate} 估算，未计服务商手续费和汇率差价。",
+      "insufficientTitle": "资金不足，无法准备这笔付款",
+      "insufficientReason": "{account} 余额为 {balance}。支付 {amount} 约需 {estimate}（未计手续费）。",
+      "insufficientTopUp": "为你的国内账户充值，或",
+      "insufficientInstalment": "在到期日前向大学咨询分期付款方案。",
+      "insufficientText": "你的 {title}（**{amount}**）将在 {days, plural, one {# 天} other {# 天}}后到期，但 {account} 只有 **{balance}**，低于所需的约 **{estimate}**。我尚未准备转账。账户充值后，再来找我吧。",
+      "blockedTitle": "交易已拦截",
+      "blockedReason": "这笔转账违反了监管数据库中的一条规则，因此我不会准备它。",
+      "blockedText": "我检查了已记录的{from} → {to}规则，这笔付款**已被拦截**：{reasons} 目前没有准备任何转账。我无法协助拆分付款以规避限额；大学的财务部门可以为你介绍经认可的付款安排。",
+      "actionTitle": "需要处理",
+      "actionReason": "这笔转账缺少所需文件。",
+      "noRulesCorridor": "这条汇款线路暂无规则记录，因此无法通过审核。",
+      "actionText": "在我准备这笔付款之前，请先在设置中添加以下文件：{docs}。",
+      "noProvider": "没有服务商能按此金额办理这笔转账。",
+      "whyZeroFee": "{worst} 不收手续费，但它的汇率让你付出的成本比 {best} 的 {fee} 手续费还高。",
+      "whyGeneric": "这已计入手续费和每个汇率中隐含的差价。",
+      "recommendIntro": "你的学费 **{amount}** 将在 **{days, plural, one {# 天} other {# 天}}后**到期，{account} 余额足以支付。这笔转账满足{from} → {to}已记录的全部 {count} 条转账规则。",
+      "recommendBestExtra": "**{provider}** 是你的最佳路线：与 {worst} 相比，{payee} 可**多收到约 {extra}**。",
+      "recommendBest": "**{provider}** 是你的最佳路线。",
+      "recommendSend": "你需要汇出约 **{send}**，才能让全额 {amount} 到账。",
+      "recommendAsk": "要我准备这笔付款吗？在你批准之前，不会发出任何款项。",
+      "notPreparedTitle": "转账未准备",
+      "notPreparedText": "我无法准备这笔转账：{reason}",
+      "chosenOther": "你选择了 {chosen}；{best} 能以更低的成本送达相同金额。",
+      "ready": "转账已就绪，请核对：从 {account} 经由 **{provider}** 汇出 **{send}**，{payee} 将收到 **{gets}**。",
+      "readyCheck": "请核对详情，确认无误后再确认付款。汇率锁定 15 分钟。"
+    },
+    "suggest": {
+      "payTuition": "帮我缴学费",
+      "reviewSpending": "查看我的支出",
+      "analyseStatement": "查看我的对账单分析",
+      "setup": "帮我做好理财准备",
+      "setupExample": "我是要去新加坡留学的中国学生，该如何做好理财准备？",
+      "rulesExample": "从中国向新加坡汇学费的规则",
+      "creditHere": "{country}的信用记录是如何运作的？",
+      "haveStudentPass": "我已拿到学生准证，并且已经抵达",
+      "tuitionRules": "从{from}向{to}汇学费的规则",
+      "createPlan": "创建我的准备计划",
+      "withAmount": "检查从{from}向{to}汇出 {currency} 30,000 学费",
+      "prepareWith": "通过 {provider} 准备付款",
+      "prepare": "准备付款",
+      "whyNotHomeBank": "为什么不用 Home Bank？",
+      "checkRules": "查看转账规则"
+    }
+  },
+  "AgentCardsGlobal": {
+    "creditTitle": "{country}的信用记录",
+    "bureaus": "征信机构：{bureaus}。",
+    "noBureaus": "未确认有正式的征信机构。",
+    "creditMore": "了解当地信用如何运作",
+    "planTitle": "你在{country}的准备计划",
+    "openPlan": "打开我的准备计划",
+    "statementTitle": "你的对账单分析",
+    "income": "收入",
+    "expenses": "支出",
+    "opportunity": "预计可节省空间 / 月",
+    "opportunityNote": "可节省空间为估算值，并非保证能省下的金额。",
+    "openStatement": "打开完整分析",
+    "languageChanged": "语言已更新。",
+    "banksTitle": "{country}的银行账户",
+    "needDetails": "CaiMao 需要了解你的{fields}，才能检查开户资格。",
+    "documents": "银行通常要求的文件",
+    "bankDecides": "最终由银行决定；要求可能因网点和客户而异。",
+    "openBanking": "查看全部详情和来源"
   }
 }

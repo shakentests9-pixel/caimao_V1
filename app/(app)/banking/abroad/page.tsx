@@ -5,6 +5,7 @@ import { BankingAbroad } from "@/components/banking/banking-abroad";
 import { bankingProfileFrom, missingFields } from "@/lib/banking/eligibility";
 import { isSupported } from "@/lib/banking/journey";
 import type { SupportedCountry } from "@/lib/types";
+import { localizeBank, localizeCredit, localizeRequirements } from "@/lib/reference/localize";
 
 export async function generateMetadata() {
   const t = await getTranslations("BankingAbroad");
@@ -15,13 +16,17 @@ export default async function BankingAbroadPage({ searchParams }: { searchParams
   const repo = await getRepository();
   const t = await getTranslations("BankingAbroad");
   const sp = await searchParams;
-  const [profile, banks, requirements, credit, progress] = await Promise.all([
+  const [profile, allBanks, allRequirements, allCredit, progress] = await Promise.all([
     repo.getProfile(),
     repo.listBanks(),
     repo.listAccountRequirements(),
     repo.listCreditSystems(),
     repo.listSetupProgress(),
   ]);
+  const lang = profile.language;
+  const banks = allBanks.map((b) => localizeBank(b, lang));
+  const requirements = allRequirements.map((r) => localizeRequirements(r, lang));
+  const credit = allCredit.map((c) => localizeCredit(c, lang));
   const country: SupportedCountry = sp.country && isSupported(sp.country) ? sp.country : isSupported(profile.study_country) ? profile.study_country : "GB";
   const missing = missingFields(bankingProfileFrom(profile, { destination: country }));
   const chosen = progress.find((p) => p.country === country && p.step_key.startsWith("bank:") && p.completed)?.step_key.slice(5) ?? null;

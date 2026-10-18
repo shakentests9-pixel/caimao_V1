@@ -436,6 +436,8 @@ export interface BankProduct {
   notes: string | null;
   last_verified: string;
   status: Exclude<RuleStatus, "simulated">;
+  /** Translated descriptive text; bank and product names are never translated. */
+  i18n?: Partial<Record<Exclude<Locale, "en">, Partial<Pick<BankProduct, "visa_requirements" | "minimum_balance" | "monthly_fee" | "notes" | "documents">>>> | null;
 }
 
 /** Country-level account-opening guidance. */
@@ -446,7 +448,7 @@ export interface AccountRequirements {
   eligibility_factors: string[];
   sources: string[];
   last_verified: string;
-  i18n?: Partial<Record<Exclude<Locale, "en">, { summary: string }>> | null;
+  i18n?: Partial<Record<Exclude<Locale, "en">, Partial<Pick<AccountRequirements, "summary" | "typical_documents" | "eligibility_factors">>>> | null;
 }
 
 export interface CreditSystemInfo {
@@ -460,6 +462,7 @@ export interface CreditSystemInfo {
   foreigner_notes: string | null;
   sources: string[];
   last_verified: string;
+  i18n?: Partial<Record<Exclude<Locale, "en">, Partial<Pick<CreditSystemInfo, "foreigner_notes" | "what_contributes" | "why_it_matters" | "responsible_behaviours" | "risks">>>> | null;
 }
 
 /** A user's tick on one step of their Financial Setup journey. */

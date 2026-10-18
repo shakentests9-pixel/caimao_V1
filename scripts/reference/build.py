@@ -33,6 +33,8 @@ def expand(country, r):
 
 rules, banks, reqs, credit, skipped = [], [], [], [], []
 for f in sorted(glob.glob(os.path.join(ROOT, "data/reference-research/*.json"))):
+    if os.path.basename(f) == "i18n.json":  # translations, merged below
+        continue
     d = json.load(open(f))
     c, verified_on = d["country"], d["researched_on"]
     for r in d["transfer_rules"]:
@@ -96,7 +98,13 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data/reference-research/*.json")))
     ao = d["account_opening"]
     reqs.append({"country": c, "summary": ao["summary"], "typical_documents": ao.get("typical_documents") or [], "eligibility_factors": ao.get("eligibility_factors") or [], "sources": ao.get("sources") or [], "last_verified": verified_on})
     cs = d["credit_system"]
-    credit.append({"country": c, **{k: cs.get(k) for k in ["has_formal_bureau", "foreigner_notes"]}, **{k: cs.get(k) or [] for k in ["bureaus", "what_contributes", "why_it_matters", "responsible_behaviours", "risks", "sources"]}, "last_verified": verified_on})
+    entry = {"country": c, **{k: cs.get(k) for k in ["has_formal_bureau", "foreigner_notes"]}, **{k: cs.get(k) or [] for k in ["bureaus", "what_contributes", "why_it_matters", "responsible_behaviours", "risks", "sources"]}, "last_verified": verified_on}
+    # Some research files record bureaus as objects; the app shows names, so keep the name (+ licence where given).
+    entry["bureaus"] = [
+        (b["name"] + (f" (licensed under the {b['licensed_under']})" if b.get("licensed_under") else "")) if isinstance(b, dict) else b
+        for b in entry["bureaus"]
+    ]
+    credit.append(entry)
 
 # Optional translations produced separately (data/reference-research/i18n.json): { id: { "zh-CN": {name, summary}, "ja": {...} } }
 i18n_path = os.path.join(ROOT, "data/reference-research/i18n.json")
@@ -107,6 +115,10 @@ if os.path.exists(i18n_path):
         if base in tr.get("rules", {}): r["i18n"] = tr["rules"][base]
     for q in reqs:
         if q["country"] in tr.get("requirements", {}): q["i18n"] = tr["requirements"][q["country"]]
+    for b in banks:
+        if b["id"] in tr.get("banks", {}): b["i18n"] = tr["banks"][b["id"]]
+    for c in credit:
+        if c["country"] in tr.get("credit", {}): c["i18n"] = tr["credit"][c["country"]]
 
 def emit(name, typ, const, rows, note):
     body = json.dumps(rows, ensure_ascii=False, indent=2)

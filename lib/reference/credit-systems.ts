@@ -151,24 +151,8 @@ export const CREDIT_SYSTEMS: CreditSystemInfo[] = [
     "has_formal_bureau": true,
     "foreigner_notes": null,
     "bureaus": [
-      {
-        "name": "Credit Bureau (Singapore) Pte Ltd",
-        "licensed_under": "Credit Bureau Act 2016",
-        "regulator": "Monetary Authority of Singapore",
-        "official_url": "https://www.creditbureau.com.sg/",
-        "evidence_quote": "is licensed and regulated by the Monetary Authority of Singapore under the Credit Bureau Act 2016.",
-        "evidence_source": "https://www.moneysense.gov.sg/credit-reports-and-creditworthiness/",
-        "confidence": "verified"
-      },
-      {
-        "name": "Experian Singapore",
-        "licensed_under": null,
-        "regulator": null,
-        "official_url": "https://www.experian.com.sg/credit-information-services/consumer-information/local-reports/",
-        "evidence_quote": "Experian's credit report services provide an alternative payment history from our Non-Bank Credit Bureau",
-        "evidence_source": "https://www.experian.com.sg/credit-information-services/consumer-information/local-reports/",
-        "confidence": "needs_verification"
-      }
+      "Credit Bureau (Singapore) Pte Ltd (licensed under the Credit Bureau Act 2016)",
+      "Experian Singapore"
     ],
     "what_contributes": [
       "Credit payment history collected across banks and major financial institutions",
