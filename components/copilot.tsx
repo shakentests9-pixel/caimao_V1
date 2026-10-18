@@ -1,7 +1,8 @@
 "use client";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowUp, Check, ChevronDown, CircleX, GraduationCap, Loader2, Plus, RefreshCw, RotateCcw, Scale, ShieldCheck, PieChart } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { ArrowUp, Check, ChevronDown, CircleX, Compass, FileSearch, GraduationCap, Loader2, Plus, RefreshCw, RotateCcw, Scale, ShieldCheck, PieChart } from "lucide-react";
 import type { AgentCard, AgentEvent, Phase } from "@/lib/agent/protocol";
 import { PHASES } from "@/lib/agent/protocol";
 import type { ExecutionOutcome } from "@/lib/finance";
@@ -15,34 +16,53 @@ import { ConfirmTransferDialog, type ConfirmTarget } from "./confirm-transfer";
 import type { Status } from "./status-badge";
 import { MascotTile } from "./brand";
 import { cn } from "@/lib/utils";
+import { LOCALE_COOKIE } from "@/lib/i18n/locale";
 
-const QUICK_PROMPTS = ["Pay my tuition", "Compare rates", "Can I afford this?", "Check transfer rules"];
-const MORE_ACTIONS = ["Pay my tuition", "Compare FX rates", "Send money overseas", "Check transfer rules", "Review my spending", "Help me build credit", "Open a local bank account"];
+/** Prompt keys (Copilot.prompts.*). The translated text is both the label and the message sent to the agent. */
+const QUICK_PROMPTS = ["payTuition", "compareRates", "canIAfford", "checkTransferRules"] as const;
+const MORE_ACTIONS = ["payTuition", "compareFxRates", "sendMoneyOverseas", "checkTransferRules", "reviewSpending", "statementAnalysis", "setupFinances", "buildCredit", "openBankAccount"] as const;
 const STARTERS = [
-  { prompt: "Pay my tuition", title: "Pay my tuition", sub: "Find the best route and get it ready for you to approve", Icon: GraduationCap, tone: "bg-brand-soft text-brand" },
-  { prompt: "Compare FX rates", title: "Compare rates", sub: "See what actually arrives with each provider", Icon: RefreshCw, tone: "bg-peach-soft text-peach-ink" },
-  { prompt: "Check transfer rules", title: "Check transfer rules", sub: "What applies between Singapore and the UK", Icon: Scale, tone: "bg-gold-soft text-gold-ink" },
-  { prompt: "Review my spending", title: "Review my spending", sub: "How this month compares to usual", Icon: PieChart, tone: "bg-cream text-warning-ink" },
-];
+  { id: "payTuition", prompt: "payTuition", Icon: GraduationCap, tone: "bg-brand-soft text-brand" },
+  { id: "compareRates", prompt: "compareFxRates", Icon: RefreshCw, tone: "bg-peach-soft text-peach-ink" },
+  { id: "checkTransferRules", prompt: "checkTransferRules", Icon: Scale, tone: "bg-gold-soft text-gold-ink" },
+  { id: "reviewSpending", prompt: "reviewSpending", Icon: PieChart, tone: "bg-cream text-warning-ink" },
+  { id: "setupFinances", prompt: "setupFinances", Icon: Compass, tone: "bg-success-soft text-success-ink" },
+  { id: "statementAnalysis", prompt: "statementAnalysis", Icon: FileSearch, tone: "bg-[#EFE3D9] text-cocoa" },
+] as const;
 
-/** Human wording for each tool. The technical name stays visible in the expanded view. */
-const FRIENDLY: Record<string, { running: string; done: string; summary?: boolean }> = {
-  getUserProfile: { running: "Getting to know your setup", done: "Read your profile" },
-  getObligations: { running: "Looking at what's due", done: "Found what's due", summary: true },
-  getAccounts: { running: "Checking your accounts", done: "Checked your accounts", summary: true },
-  getFXRate: { running: "Getting today's rate", done: "Got today's rate" },
-  getTransferRules: { running: "Checking transfer requirements", done: "Transfer requirements checked", summary: true },
-  getRemittanceQuotes: { running: "Getting quotes", done: "Got provider quotes", summary: true },
-  calculateTransferCost: { running: "Comparing the true cost", done: "Compared the true cost", summary: true },
-  createTransferInstruction: { running: "Preparing your transfer", done: "Prepared your transfer", summary: true },
-  getTransactions: { running: "Reviewing your spending", done: "Reviewed your spending", summary: true },
-  getCreditSummary: { running: "Checking your credit card", done: "Checked your credit card", summary: true },
-  getBankSetupChecklist: { running: "Loading your checklist", done: "Loaded your checklist", summary: true },
-  USER_APPROVAL: { running: "Recording your approval", done: "You approved the payment", summary: true },
-  executeSandboxTransfer: { running: "Sending the payment", done: "Sent the payment (sandbox)", summary: true },
-  updateAccountBalance: { running: "Updating your balance", done: "Updated your balance", summary: true },
-  markObligationPaid: { running: "Marking tuition paid", done: "Marked tuition paid", summary: true },
-  createAuditLog: { running: "Saving the receipt", done: "Saved to Activity & Security", summary: true },
+/**
+ * Human wording for each tool lives in Copilot.tools.<toolName>.running / .done.
+ * The technical name stays visible in the expanded view.
+ */
+const FRIENDLY: Record<string, { summary?: boolean }> = {
+  getUserProfile: {},
+  getObligations: { summary: true },
+  getAccounts: { summary: true },
+  getFXRate: {},
+  getTransferRules: { summary: true },
+  getRemittanceQuotes: { summary: true },
+  calculateTransferCost: { summary: true },
+  createTransferInstruction: { summary: true },
+  getTransactions: { summary: true },
+  getCreditSummary: { summary: true },
+  getBankSetupChecklist: { summary: true },
+  USER_APPROVAL: { summary: true },
+  executeSandboxTransfer: { summary: true },
+  updateAccountBalance: { summary: true },
+  markObligationPaid: { summary: true },
+  createAuditLog: { summary: true },
+  getUserFinancialProfile: {},
+  getCountryBankingRequirements: { summary: true },
+  getAvailableBanks: { summary: true },
+  getBankEligibility: { summary: true },
+  getFundFlowRules: { summary: true },
+  getCreditSystemInfo: { summary: true },
+  getAccountSetupSteps: { summary: true },
+  getRequiredDocuments: { summary: true },
+  analyseSpending: { summary: true },
+  generateSavingsInsights: { summary: true },
+  getLanguagePreference: {},
+  updateLanguagePreference: { summary: true },
 };
 
 interface Step {
@@ -73,6 +93,8 @@ interface AssistantMsg {
   role: "assistant";
   blocks: Block[];
   suggestions: string[];
+  /** The suggestion that prepares a payment (shown as the primary button). */
+  prepare?: string;
   correlationId: string | null;
   mode: "llm" | "scripted" | null;
   model: string | null;
@@ -137,7 +159,7 @@ function reduce(m: AssistantMsg, e: AgentEvent): AssistantMsg {
       blocks.push({ kind: "notice", tone: "error", text: e.message });
       return { ...m, blocks };
     case "suggestions":
-      return { ...m, suggestions: e.items };
+      return { ...m, suggestions: e.items, prepare: e.prepare };
     case "done":
       for (const p of PHASES) if (phases[p] === "active" && p !== "Obtain approval") phases[p] = "done";
       return { ...m, done: true, phases };
@@ -146,6 +168,7 @@ function reduce(m: AssistantMsg, e: AgentEvent): AssistantMsg {
 
 export function Copilot({ initialPrompt, permissionLevel, firstName }: { initialPrompt: string | null; permissionLevel: PermissionLevel; firstName: string }) {
   const router = useRouter();
+  const t = useTranslations("Copilot");
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -209,7 +232,7 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
         if (!res.ok || !res.body) {
           const body = await res.json().catch(() => ({}));
           if (res.status === 401) router.push("/login");
-          throw new Error(body.error ?? "CaiMao couldn't be reached.");
+          throw new Error(body.error ?? t("errors.unreachable"));
         }
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
@@ -225,6 +248,12 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
             const ev = JSON.parse(line) as AgentEvent;
             updateAssistant(asst.id, (m) => reduce(m, ev));
             if (ev.type === "meta") correlationRef.current[asst.id] = ev.correlation_id;
+            // A language change re-renders the app in the new language once the reply has arrived.
+            if (ev.type === "card" && ev.card.kind === "language") {
+              // The interface follows the language cookie; keep it in step with the profile change.
+              document.cookie = `${LOCALE_COOKIE}=${ev.card.language}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax${location.protocol === "https:" ? "; secure" : ""}`;
+              setTimeout(() => router.refresh(), 600);
+            }
             if (ev.type === "card" && ev.card.kind === "instruction") {
               const card = ev.card;
               // Open the confirmation screen once the instruction lands; the user still has to approve.
@@ -240,13 +269,13 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
         }
         updateAssistant(asst.id, (m) => (m.done ? m : reduce(m, { type: "done" })));
       } catch (err) {
-        updateAssistant(asst.id, (m) => ({ ...reduce(m, { type: "error", message: err instanceof Error ? err.message : "Something went wrong." }), done: true }));
+        updateAssistant(asst.id, (m) => ({ ...reduce(m, { type: "error", message: err instanceof Error ? err.message : t("errors.generic") }), done: true }));
       } finally {
         setBusy(false);
         router.refresh();
       }
     },
-    [busy, messages, router],
+    [busy, messages, router, t],
   );
 
   useEffect(() => {
@@ -285,21 +314,32 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
           kind: "steps",
           inline: true,
           steps: [
-            { id: uid(), tool: "USER_APPROVAL", label: "Approval recorded", level: PermissionLevel.Execute, phase: "Obtain approval", status: "ok", summary: "You confirmed on the review screen" },
-            { id: uid(), tool: "executeSandboxTransfer", label: "Executing sandbox transfer", level: PermissionLevel.Execute, phase: "Execute", status: "ok", summary: `${e.transaction_id} · COMPLETED · ref ${e.provider_reference}` },
-            { id: uid(), tool: "updateAccountBalance", label: "Updating balances", level: PermissionLevel.Execute, phase: "Verify", status: "ok", summary: `${e.account} → ${formatMoney(e.new_balance, e.source_currency)}` },
+            { id: uid(), tool: "USER_APPROVAL", label: t("steps.approvalRecorded"), level: PermissionLevel.Execute, phase: "Obtain approval", status: "ok", summary: t("steps.approvalSummary") },
+            { id: uid(), tool: "executeSandboxTransfer", label: t("steps.executing"), level: PermissionLevel.Execute, phase: "Execute", status: "ok", summary: t("steps.executeSummary", { txId: e.transaction_id, ref: e.provider_reference }) },
+            { id: uid(), tool: "updateAccountBalance", label: t("steps.updatingBalances"), level: PermissionLevel.Execute, phase: "Verify", status: "ok", summary: `${e.account} → ${formatMoney(e.new_balance, e.source_currency)}` },
             ...(e.obligation_status === "PAID"
-              ? [{ id: uid(), tool: "markObligationPaid", label: "Marking the obligation paid", level: PermissionLevel.Execute, phase: "Verify" as Phase, status: "ok" as const, summary: `${target.request.invoice_ref} → PAID` }]
+              ? [{ id: uid(), tool: "markObligationPaid", label: t("steps.markingPaid"), level: PermissionLevel.Execute, phase: "Verify" as Phase, status: "ok" as const, summary: `${target.request.invoice_ref} → PAID` }]
               : []),
-            { id: uid(), tool: "createAuditLog", label: "Writing the audit log", level: PermissionLevel.Execute, phase: "Verify", status: "ok", summary: "Approval, execution, balance and obligation events recorded" },
+            { id: uid(), tool: "createAuditLog", label: t("steps.writingAudit"), level: PermissionLevel.Execute, phase: "Verify", status: "ok", summary: t("steps.auditSummary") },
           ],
         },
         {
           kind: "text",
-          text: `Done${tuition ? ", your tuition is paid 🎓" : ""}. **${formatMoney(e.destination_amount, e.destination_currency)}** is on its way to ${e.recipient.replace(" Treasury", "")} via ${e.provider} (transaction **${e.transaction_id}**).\n\nI double-checked: ${e.account} now holds **${formatMoney(e.new_balance, e.source_currency)}**${e.obligation_status === "PAID" ? ` and ${target.request.invoice_ref} is marked **paid**` : ""}. The full trail is in Activity & Security.`,
+          text: `${t("completed.sent", {
+            tuition: tuition ? "yes" : "no",
+            amount: formatMoney(e.destination_amount, e.destination_currency),
+            recipient: e.recipient.replace(" Treasury", ""),
+            provider: e.provider,
+            txId: e.transaction_id,
+          })}\n\n${t("completed.verified", {
+            account: e.account,
+            balance: formatMoney(e.new_balance, e.source_currency),
+            paid: e.obligation_status === "PAID" ? "yes" : "no",
+            invoiceRef: target.request.invoice_ref ?? "",
+          })}`,
         },
       ],
-      suggestions: ["Review my spending", "Help me build credit"],
+      suggestions: [t("prompts.reviewSpending"), t("prompts.buildCredit")],
     }));
   }
 
@@ -310,7 +350,7 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
     updateAssistant(msgId, (m) => ({
       ...m,
       phases: { ...m.phases, "Obtain approval": "stopped" },
-      blocks: [...m.blocks, { kind: "text", text: "No problem. I've cancelled it and **no money moved**. Ask me again whenever you're ready." }],
+      blocks: [...m.blocks, { kind: "text", text: t("declined") }],
     }));
   }
 
@@ -330,13 +370,13 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
                 <h1 className="font-display text-[20px] font-extrabold leading-tight tracking-[-0.05em] text-cocoa">CaiMao</h1>
                 <p className="flex items-center gap-1.5 truncate text-[13px] font-semibold text-muted">
                   {working ? <span className="size-1.5 animate-pulse-soft rounded-full bg-gold" aria-hidden /> : null}
-                  {working ? "Working on it…" : "You approve every payment."}
+                  {working ? t("header.working") : t("header.idle")}
                 </p>
               </div>
             </div>
             <div className="flex shrink-0 items-center gap-1.5">
               <PermissionChip level={permissionLevel} className="hidden sm:inline-flex" />
-              {lastAssistant?.mode ? <span className="hidden text-[12.5px] text-muted sm:inline">{lastAssistant.mode === "llm" ? `Claude · ${lastAssistant.model}` : "Built-in planner"}</span> : null}
+              {lastAssistant?.mode ? <span className="hidden text-[12.5px] text-muted sm:inline">{lastAssistant.mode === "llm" ? `Claude · ${lastAssistant.model}` : t("header.builtInPlanner")}</span> : null}
               {!empty && (
                 <button
                   onClick={() => {
@@ -344,10 +384,10 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
                     setInstructionStatus({});
                   }}
                   disabled={busy}
-                  aria-label="New chat"
+                  aria-label={t("header.newChat")}
                   className="cm-press inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 rounded-[14px] px-3 text-[14px] font-bold text-cocoa-2 hover:bg-cream disabled:opacity-40"
                 >
-                  <RotateCcw className="size-4" /> <span className="hidden sm:inline">New chat</span>
+                  <RotateCcw className="size-4" /> <span className="hidden sm:inline">{t("header.newChat")}</span>
                 </button>
               )}
             </div>
@@ -362,19 +402,19 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
         {empty && (
           <div className="pt-6 text-center sm:pt-12">
             <MascotTile size={84} className="mx-auto" />
-            <h2 className="mt-6 font-display text-[30px] font-extrabold leading-tight tracking-[-0.05em] text-cocoa sm:text-[36px]">Hi {firstName}, what can I sort out?</h2>
+            <h2 className="mt-6 font-display text-[30px] font-extrabold leading-tight tracking-[-0.05em] text-cocoa sm:text-[36px]">{t("empty.greeting", { firstName })}</h2>
             <p className="mx-auto mt-2 max-w-[46ch] text-[15.5px] leading-6 text-muted">
-              I check your accounts and the transfer rules, compare providers, and get payments ready. You approve every payment before money moves.
+              {t("empty.intro")}
             </p>
             <div className="mx-auto mt-8 grid max-w-[640px] gap-3 text-left sm:grid-cols-2">
               {STARTERS.map((s) => (
-                <button key={s.title} onClick={() => send(s.prompt)} className="cm-lift cm-press flex items-start gap-3 rounded-[22px] bg-white p-4 text-left shadow-card">
+                <button key={s.id} onClick={() => send(t(`prompts.${s.prompt}`))} className="cm-lift cm-press flex items-start gap-3 rounded-[22px] bg-white p-4 text-left shadow-card">
                   <span className={cn("flex size-11 shrink-0 items-center justify-center rounded-[14px]", s.tone)}>
                     <s.Icon className="size-5" />
                   </span>
                   <span>
-                    <span className="block text-[15.5px] font-extrabold text-cocoa">{s.title}</span>
-                    <span className="block text-[13.5px] leading-5 text-muted">{s.sub}</span>
+                    <span className="block text-[15.5px] font-extrabold text-cocoa">{t(`starters.${s.id}.title`)}</span>
+                    <span className="block text-[13.5px] leading-5 text-muted">{t(`starters.${s.id}.sub`)}</span>
                   </span>
                 </button>
               ))}
@@ -409,11 +449,11 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
           {QUICK_PROMPTS.map((q) => (
             <button
               key={q}
-              onClick={() => send(q)}
+              onClick={() => send(t(`prompts.${q}`))}
               disabled={busy}
               className="cm-press min-h-10 shrink-0 rounded-full bg-gold-soft px-4 text-[14px] font-extrabold text-gold-ink hover:bg-peach disabled:opacity-50"
             >
-              {q}
+              {t(`prompts.${q}`)}
             </button>
           ))}
         </div>
@@ -421,8 +461,8 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
           {menu && (
             <div className="absolute bottom-full left-0 mb-2 w-64 animate-rise rounded-[20px] bg-white p-2 shadow-float" role="menu">
               {MORE_ACTIONS.map((a) => (
-                <button key={a} role="menuitem" onClick={() => send(a)} disabled={busy} className="flex min-h-11 w-full items-center rounded-[14px] px-3 text-left text-[14.5px] font-semibold text-cocoa hover:bg-cream">
-                  {a}
+                <button key={a} role="menuitem" onClick={() => send(t(`prompts.${a}`))} disabled={busy} className="flex min-h-11 w-full items-center rounded-[14px] px-3 text-left text-[14.5px] font-semibold text-cocoa hover:bg-cream">
+                  {t(`prompts.${a}`)}
                 </button>
               ))}
             </div>
@@ -438,7 +478,7 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
               type="button"
               onClick={() => setMenu((v) => !v)}
               aria-expanded={menu}
-              aria-label="More actions"
+              aria-label={t("composer.moreActions")}
               className="cm-press flex size-11 shrink-0 items-center justify-center rounded-[15px] bg-cream text-cocoa-2 hover:bg-sand"
             >
               <Plus className={cn("size-5 transition-transform duration-200", menu && "rotate-45")} />
@@ -453,14 +493,14 @@ export function Copilot({ initialPrompt, permissionLevel, firstName }: { initial
                 }
               }}
               rows={1}
-              placeholder="Ask CaiMao about your money…"
+              placeholder={t("composer.placeholder")}
               className="max-h-32 min-h-11 min-w-0 flex-1 resize-none bg-transparent px-1 py-2.5 text-[16px] text-cocoa outline-none placeholder:text-muted [&::placeholder]:overflow-hidden [&::placeholder]:text-ellipsis [&::placeholder]:whitespace-nowrap"
-              aria-label="Message CaiMao"
+              aria-label={t("composer.messageLabel")}
             />
             <button
               type="submit"
               disabled={busy || !input.trim()}
-              aria-label="Send"
+              aria-label={t("composer.send")}
               className="cm-press cm-cta flex size-11 shrink-0 items-center justify-center rounded-[15px] transition-opacity disabled:opacity-40"
             >
               {busy ? <Loader2 className="size-5 animate-spin" /> : <ArrowUp className="size-5" strokeWidth={2.4} />}
@@ -517,7 +557,7 @@ function AssistantMessage({
     }
     return [b];
   });
-  const prepare = isLast && m.done ? m.suggestions.find((s) => s.startsWith("Prepare the payment")) : undefined;
+  const prepare = isLast && m.done ? m.prepare ?? m.suggestions.find((s) => s.startsWith("Prepare the payment")) : undefined;
   return (
     <div className="flex gap-3">
       <MascotTile size={34} className="mt-0.5" />
@@ -575,6 +615,7 @@ function AssistantMessage({
  * levels and results are one tap away for anyone who wants to inspect them.
  */
 function Activity({ steps, running }: { steps: Step[]; running: boolean }) {
+  const t = useTranslations("Copilot");
   const [open, setOpen] = useState(false);
   const current = steps.find((s) => s.status === "running");
   const quotes = steps.find((s) => s.tool === "getRemittanceQuotes" && s.status === "ok");
@@ -584,7 +625,14 @@ function Activity({ steps, running }: { steps: Step[]; running: boolean }) {
     .map((s) => ({
       id: s.id,
       ok: s.status === "ok",
-      text: s.status === "error" ? s.summary ?? "Something went wrong" : s.tool === "getRemittanceQuotes" && providerCount ? `Compared ${providerCount} providers` : FRIENDLY[s.tool]?.done ?? s.label,
+      text:
+        s.status === "error"
+          ? s.summary ?? t("activity.failedStep")
+          : s.tool === "getRemittanceQuotes" && providerCount
+            ? t("activity.comparedProviders", { count: providerCount })
+            : FRIENDLY[s.tool]
+              ? t(`tools.${s.tool}.done`)
+              : s.label,
     }));
 
   return (
@@ -592,14 +640,14 @@ function Activity({ steps, running }: { steps: Step[]; running: boolean }) {
       {running && (
         <div className="flex items-center gap-2 text-[14.5px] font-bold text-cocoa" aria-live="polite">
           <span className="size-2 animate-pulse-soft rounded-full bg-gold" aria-hidden />
-          {current ? `${FRIENDLY[current.tool]?.running ?? current.label.replace(/…$/, "")}…` : "Thinking…"}
+          {current ? `${FRIENDLY[current.tool] ? t(`tools.${current.tool}.running`) : current.label.replace(/…$/, "")}…` : t("activity.thinking")}
         </div>
       )}
       {summary.length > 0 && (
         <ul className={cn("flex flex-wrap gap-x-4 gap-y-1.5", running && "mt-2")}>
           {summary.map((s) => (
             <li key={s.id} className={cn("flex items-center gap-1.5 text-[14px] font-semibold", s.ok ? "text-cocoa-2" : "text-error-ink")}>
-              {s.ok ? <Check className="size-4 text-success-ink" strokeWidth={3} aria-label="done" /> : <CircleX className="size-4" aria-label="failed" />}
+              {s.ok ? <Check className="size-4 text-success-ink" strokeWidth={3} aria-label={t("activity.done")} /> : <CircleX className="size-4" aria-label={t("activity.failed")} />}
               {s.text}
             </li>
           ))}
@@ -609,7 +657,7 @@ function Activity({ steps, running }: { steps: Step[]; running: boolean }) {
         <>
           <button onClick={() => setOpen((v) => !v)} aria-expanded={open} className="mt-1.5 inline-flex min-h-10 items-center gap-1 text-[13.5px] font-bold text-brand hover:underline">
             <ShieldCheck className="size-4" />
-            {open ? "Hide details" : `See what CaiMao checked (${steps.length})`}
+            {open ? t("activity.hideDetails") : t("activity.showDetails", { count: steps.length })}
             <ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} />
           </button>
           {open && (

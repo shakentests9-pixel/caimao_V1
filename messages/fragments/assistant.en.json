@@ -1,0 +1,113 @@
+{
+  "Copilot": {
+    "prompts": {
+      "payTuition": "Pay my tuition",
+      "compareRates": "Compare rates",
+      "canIAfford": "Can I afford this?",
+      "checkTransferRules": "Check transfer rules",
+      "compareFxRates": "Compare FX rates",
+      "sendMoneyOverseas": "Send money overseas",
+      "reviewSpending": "Review my spending",
+      "buildCredit": "Help me build credit",
+      "openBankAccount": "Open a local bank account"
+    },
+    "starters": {
+      "payTuition": { "title": "Pay my tuition", "sub": "Find the best route and get it ready for you to approve" },
+      "compareRates": { "title": "Compare rates", "sub": "See what actually arrives with each provider" },
+      "checkTransferRules": { "title": "Check transfer rules", "sub": "What applies between Singapore and the UK" },
+      "reviewSpending": { "title": "Review my spending", "sub": "How this month compares to usual" }
+    },
+    "tools": {
+      "getUserProfile": { "running": "Getting to know your setup", "done": "Read your profile" },
+      "getObligations": { "running": "Looking at what's due", "done": "Found what's due" },
+      "getAccounts": { "running": "Checking your accounts", "done": "Checked your accounts" },
+      "getFXRate": { "running": "Getting today's rate", "done": "Got today's rate" },
+      "getTransferRules": { "running": "Checking transfer requirements", "done": "Transfer requirements checked" },
+      "getRemittanceQuotes": { "running": "Getting quotes", "done": "Got provider quotes" },
+      "calculateTransferCost": { "running": "Comparing the true cost", "done": "Compared the true cost" },
+      "createTransferInstruction": { "running": "Preparing your transfer", "done": "Prepared your transfer" },
+      "getTransactions": { "running": "Reviewing your spending", "done": "Reviewed your spending" },
+      "getCreditSummary": { "running": "Checking your credit card", "done": "Checked your credit card" },
+      "getBankSetupChecklist": { "running": "Loading your checklist", "done": "Loaded your checklist" },
+      "USER_APPROVAL": { "running": "Recording your approval", "done": "You approved the payment" },
+      "executeSandboxTransfer": { "running": "Sending the payment", "done": "Sent the payment (sandbox)" },
+      "updateAccountBalance": { "running": "Updating your balance", "done": "Updated your balance" },
+      "markObligationPaid": { "running": "Marking tuition paid", "done": "Marked tuition paid" },
+      "createAuditLog": { "running": "Saving the receipt", "done": "Saved to Activity & Security" }
+    },
+    "errors": {
+      "unreachable": "CaiMao couldn't be reached.",
+      "generic": "Something went wrong."
+    },
+    "steps": {
+      "approvalRecorded": "Approval recorded",
+      "approvalSummary": "You confirmed on the review screen",
+      "executing": "Executing sandbox transfer",
+      "executeSummary": "{txId} · COMPLETED · ref {ref}",
+      "updatingBalances": "Updating balances",
+      "markingPaid": "Marking the obligation paid",
+      "writingAudit": "Writing the audit log",
+      "auditSummary": "Approval, execution, balance and obligation events recorded"
+    },
+    "completed": {
+      "sent": "Done{tuition, select, yes {, your tuition is paid 🎓} other {}}. **{amount}** is on its way to {recipient} via {provider} (transaction **{txId}**).",
+      "verified": "I double-checked: {account} now holds **{balance}**{paid, select, yes { and {invoiceRef} is marked **paid**} other {}}. The full trail is in Activity & Security."
+    },
+    "declined": "No problem. I've cancelled it and **no money moved**. Ask me again whenever you're ready.",
+    "header": {
+      "working": "Working on it…",
+      "idle": "You approve every payment.",
+      "builtInPlanner": "Built-in planner",
+      "newChat": "New chat"
+    },
+    "empty": {
+      "greeting": "Hi {firstName}, what can I sort out?",
+      "intro": "I check your accounts and the transfer rules, compare providers, and get payments ready. You approve every payment before money moves."
+    },
+    "composer": {
+      "moreActions": "More actions",
+      "placeholder": "Ask CaiMao about your money…",
+      "messageLabel": "Message CaiMao",
+      "send": "Send"
+    },
+    "activity": {
+      "failedStep": "Something went wrong",
+      "comparedProviders": "Compared {count} providers",
+      "thinking": "Thinking…",
+      "done": "done",
+      "failed": "failed",
+      "hideDetails": "Hide details",
+      "showDetails": "See what CaiMao checked ({count})"
+    }
+  },
+  "WorkflowRail": {
+    "phases": {
+      "Understand": "Understand",
+      "Analyse": "Analyse",
+      "Check_compliance": "Check compliance",
+      "Compare": "Compare",
+      "Recommend": "Recommend",
+      "Obtain_approval": "Obtain approval",
+      "Execute": "Execute",
+      "Verify": "Verify"
+    },
+    "stoppedAt": "Stopped at {phase, select, Understand {understand} Analyse {analyse} Check_compliance {check compliance} Compare {compare} Recommend {recommend} Obtain_approval {obtain approval} Execute {execute} Verify {verify} other {{phase}}}",
+    "allComplete": "All steps complete",
+    "progressLabel": "CaiMao's progress",
+    "state": {
+      "done": "(done)",
+      "active": "(in progress)",
+      "stopped": "(stopped)",
+      "pending": "(not started)"
+    }
+  },
+  "PermissionChip": {
+    "title": "Permission level {level}: {name}",
+    "levels": {
+      "L0": { "name": "Explain only" },
+      "L1": { "name": "View" },
+      "L2": { "name": "Assist" },
+      "L3": { "name": "Your approval" }
+    }
+  }
+}

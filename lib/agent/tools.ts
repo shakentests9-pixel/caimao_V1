@@ -14,6 +14,7 @@ import {
 } from "../finance";
 import { summarizeBudget } from "../budget/insights";
 import type { AgentCard, Phase } from "./protocol";
+import { GLOBAL_TOOLS } from "./tools-global";
 
 /**
  * Tool registry. Every financial fact the agent states comes from one of these.
@@ -49,9 +50,9 @@ export const daysUntil = (isoDate: string, now = new Date()) => {
   return Math.round((new Date(isoDate + "T00:00:00Z").getTime() - today) / 86_400_000);
 };
 
-const def = <S extends z.ZodType>(d: ToolDef<S>) => d;
+export const def = <S extends z.ZodType>(d: ToolDef<S>) => d;
 
-export const TOOLS = [
+const CORE_TOOLS = [
   def({
     name: "getUserProfile",
     description: "Get the user's profile: name, home and study countries, currencies, university, AI permission level and documents on file.",
@@ -304,6 +305,7 @@ export const TOOLS = [
             compare_amount: c.compare_amount,
             destination_amount: c.destination_amount,
             explanation: cmp.explanation,
+            explanation_parts: cmp.explanation_parts,
             advantage_vs: cmp.advantage_vs,
             fx_as_of: c.fx_as_of,
             fx_source: c.fx_source,
@@ -384,12 +386,17 @@ export const TOOLS = [
   }),
 ];
 
+export const TOOLS = [...CORE_TOOLS, ...GLOBAL_TOOLS];
+
 /** Steps that run only inside the approved execution pipeline. Listed for the trace and the README. */
 export const SYSTEM_TOOLS = [
   { name: "executeSandboxTransfer", level: PermissionLevel.Execute, phase: "Execute" as Phase, loading: "Executing sandbox transfer…" },
   { name: "updateAccountBalance", level: PermissionLevel.Execute, phase: "Verify" as Phase, loading: "Updating balances…" },
   { name: "markObligationPaid", level: PermissionLevel.Execute, phase: "Verify" as Phase, loading: "Marking the obligation paid…" },
   { name: "createAuditLog", level: PermissionLevel.Execute, phase: "Verify" as Phase, loading: "Writing the audit log…" },
+  // Statement pipeline: runs only on a user's upload with explicit consent (POST /api/statements), never on the agent's initiative.
+  { name: "parseBankStatement", level: PermissionLevel.Read, phase: "Analyse" as Phase, loading: "Reading your statement…" },
+  { name: "classifyTransactions", level: PermissionLevel.Read, phase: "Analyse" as Phase, loading: "Sorting transactions into categories…" },
 ];
 
 export const toolByName = (name: string) => TOOLS.find((t) => t.name === name);

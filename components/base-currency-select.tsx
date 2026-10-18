@@ -2,16 +2,18 @@
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { CURRENCIES, type Currency } from "@/lib/types";
 import { CurrencyChip } from "./country-chip";
 
 export function BaseCurrencySelect({ value }: { value: Currency }) {
+  const t = useTranslations("BaseCurrencySelect");
   const router = useRouter();
   const [pending, start] = useTransition();
   return (
     <label className="relative inline-flex h-11 items-center gap-2 rounded-[15px] bg-white pl-1.5 pr-3 shadow-card">
       <CurrencyChip currency={value} size={32} />
-      <span className="sr-only">Show balances in</span>
+      <span className="sr-only">{t("showBalancesIn")}</span>
       <select
         value={value}
         disabled={pending}

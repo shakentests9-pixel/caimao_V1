@@ -85,6 +85,7 @@ export interface QuoteComparison {
   /** Extra amount reaching the recipient with the best route vs. each other route. */
   advantage_vs: { provider_name: string; extra_recipient_amount: number; lower_total_cost: number }[];
   explanation: string;
+  explanation_parts: ExplanationPart[];
 }
 
 /**
@@ -109,29 +110,59 @@ export function compareQuotes(quotes: RemittanceQuote[]): QuoteComparison {
       }))
     : [];
 
-  return { quotes: ranked, best, lowest_advertised_fee: lowestFee, worst, advantage_vs, explanation: explain(best, worst, lowestFee) };
+  const explanation_parts = explainParts(best, worst, lowestFee);
+  return { quotes: ranked, best, lowest_advertised_fee: lowestFee, worst, advantage_vs, explanation: renderExplanationEn(explanation_parts), explanation_parts };
 }
 
-function explain(best: RemittanceQuote | null, worst: RemittanceQuote | null, lowestFee: RemittanceQuote | null): string {
-  if (!best) return "No provider can take this transfer at the requested amount.";
-  const dst = best.destination_currency;
-  const parts: string[] = [];
+/** Structured explanation, so the same reasoning can be shown in any language. Amounts are pre-formatted. */
+export type ExplanationPart =
+  | { code: "none_available"; params: Record<string, never> }
+  | { code: "best_vs_worst"; params: { best: string; worst: string; extra: string } }
+  | { code: "lowest_fee_zero"; params: { provider: string; spread_pct: string; spread_cost: string } }
+  | { code: "lowest_fee"; params: { provider: string; fee: string; spread_pct: string; spread_cost: string } }
+  | { code: "all_in"; params: { provider: string; total: string; fee: string; spread: string; other: string } };
+
+function explainParts(best: RemittanceQuote | null, worst: RemittanceQuote | null, lowestFee: RemittanceQuote | null): ExplanationPart[] {
+  if (!best) return [{ code: "none_available", params: {} }];
+  const parts: ExplanationPart[] = [];
   if (worst && worst.provider_id !== best.provider_id) {
-    const extra = best.estimated_recipient_amount - worst.estimated_recipient_amount;
-    parts.push(
-      `${best.provider_name} results in approximately ${formatMoney(extra, dst)} more reaching the recipient than ${worst.provider_name} after accounting for FX spread and fees.`,
-    );
+    parts.push({ code: "best_vs_worst", params: { best: best.provider_name, worst: worst.provider_name, extra: formatMoney(best.estimated_recipient_amount - worst.estimated_recipient_amount, best.destination_currency) } });
   }
   if (lowestFee && lowestFee.provider_id !== best.provider_id) {
-    const feeText = lowestFee.transfer_fee === 0 ? "charges no transfer fee" : `charges the lowest transfer fee (${formatMoney(lowestFee.transfer_fee, lowestFee.source_currency)})`;
-    parts.push(
-      `${lowestFee.provider_name} ${feeText}, but its exchange rate is ${(lowestFee.fx_spread_pct * 100).toFixed(2)}% below mid-market, which costs ${formatMoney(lowestFee.fx_spread_cost, lowestFee.source_currency)} on this amount.`,
-    );
+    const common = { provider: lowestFee.provider_name, spread_pct: (lowestFee.fx_spread_pct * 100).toFixed(2), spread_cost: formatMoney(lowestFee.fx_spread_cost, lowestFee.source_currency) };
+    parts.push(lowestFee.transfer_fee === 0 ? { code: "lowest_fee_zero", params: common } : { code: "lowest_fee", params: { ...common, fee: formatMoney(lowestFee.transfer_fee, lowestFee.source_currency) } });
   }
-  parts.push(
-    `${best.provider_name}'s all-in cost is ${formatMoney(best.total_cost, best.source_currency)} (fee ${formatMoney(best.transfer_fee, best.source_currency)} + FX spread ${formatMoney(best.fx_spread_cost, best.source_currency)}${best.other_charges ? ` + other charges ${formatMoney(best.other_charges, best.source_currency)}` : ""}). These are estimates; the rate is fixed only when the transfer is executed.`,
-  );
-  return parts.join(" ");
+  parts.push({
+    code: "all_in",
+    params: {
+      provider: best.provider_name,
+      total: formatMoney(best.total_cost, best.source_currency),
+      fee: formatMoney(best.transfer_fee, best.source_currency),
+      spread: formatMoney(best.fx_spread_cost, best.source_currency),
+      other: best.other_charges ? formatMoney(best.other_charges, best.source_currency) : "",
+    },
+  });
+  return parts;
+}
+
+/** English rendering (also stored in audit details and used by the tests). */
+export function renderExplanationEn(parts: ExplanationPart[]): string {
+  return parts
+    .map((p) => {
+      switch (p.code) {
+        case "none_available":
+          return "No provider can take this transfer at the requested amount.";
+        case "best_vs_worst":
+          return `${p.params.best} results in approximately ${p.params.extra} more reaching the recipient than ${p.params.worst} after accounting for FX spread and fees.`;
+        case "lowest_fee_zero":
+          return `${p.params.provider} charges no transfer fee, but its exchange rate is ${p.params.spread_pct}% below mid-market, which costs ${p.params.spread_cost} on this amount.`;
+        case "lowest_fee":
+          return `${p.params.provider} charges the lowest transfer fee (${p.params.fee}), but its exchange rate is ${p.params.spread_pct}% below mid-market, which costs ${p.params.spread_cost} on this amount.`;
+        case "all_in":
+          return `${p.params.provider}'s all-in cost is ${p.params.total} (fee ${p.params.fee} + FX spread ${p.params.spread}${p.params.other ? ` + other charges ${p.params.other}` : ""}). These are estimates; the rate is fixed only when the transfer is executed.`;
+      }
+    })
+    .join(" ");
 }
 
 /** Add business days (Mon–Fri). Zero days on a weekend rolls to Monday. */

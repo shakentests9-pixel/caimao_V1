@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { MascotTile } from "../brand";
 import { cn } from "@/lib/utils";
 
@@ -22,8 +23,9 @@ export function MascotInsightCard({
   className?: string;
   layout?: "stack" | "inline";
 }) {
+  const t = useTranslations("MascotInsightCard");
   return (
-    <section className={cn("cm-insight relative flex flex-col rounded-[24px] p-5 sm:p-6", className)} aria-label="CaiMao insight">
+    <section className={cn("cm-insight relative flex flex-col rounded-[24px] p-5 sm:p-6", className)} aria-label={t("insight")}>
       <div className="flex gap-3.5">
         <MascotTile size={52} />
         <div className="min-w-0 flex-1">

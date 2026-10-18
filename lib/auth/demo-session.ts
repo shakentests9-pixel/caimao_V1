@@ -6,13 +6,20 @@
 export const DEMO_COOKIE = "uf_demo_session";
 const TTL_SECONDS = 60 * 60 * 12;
 
-const g = globalThis as unknown as { __ufDemoSecret?: string };
+/**
+ * The HMAC key. Set DEMO_SESSION_SECRET in production.
+ *
+ * Without it we fall back to a fixed key rather than a random one: on serverless hosts
+ * (Vercel) the proxy and the route handlers run in different processes, and a per-process
+ * random key made every sign-in fail verification ("Get started" looped back). A fixed
+ * fallback doesn't weaken anything that matters here: demo mode already lets anyone sign in
+ * as the demo student with one tap, so a forged demo cookie grants nothing extra. Supabase
+ * mode never uses this cookie.
+ */
+const FALLBACK_SECRET = "caimao-demo-session-fallback-v1::set-DEMO_SESSION_SECRET-in-production";
 
 function secret(): string {
-  if (process.env.DEMO_SESSION_SECRET) return process.env.DEMO_SESSION_SECRET;
-  // Development fallback. Sessions reset when the server restarts.
-  if (!g.__ufDemoSecret) g.__ufDemoSecret = crypto.randomUUID() + crypto.randomUUID();
-  return g.__ufDemoSecret;
+  return process.env.DEMO_SESSION_SECRET || FALLBACK_SECRET;
 }
 
 const enc = new TextEncoder();

@@ -1,0 +1,227 @@
+{
+  "Status": {
+    "COMPLIANT": "Compliant",
+    "ACTION_REQUIRED": "Action required",
+    "BLOCKED": "Blocked",
+    "PAYMENT_DUE": "Payment due",
+    "UPCOMING": "Upcoming",
+    "PROCESSING": "Processing",
+    "PAID": "Paid",
+    "BEST_VALUE": "Best value",
+    "COMPLETED": "Completed",
+    "FAILED": "Failed",
+    "PENDING_APPROVAL": "Pending approval",
+    "APPROVED": "Approved",
+    "EXECUTING": "Sending",
+    "CANCELLED": "Cancelled",
+    "REJECTED": "Rejected",
+    "DEMO_DATA": "Demo data",
+    "ESTIMATE": "Estimate",
+    "SANDBOX": "Sandbox",
+    "UNAVAILABLE": "Unavailable"
+  },
+  "ComplianceBadge": {
+    "compliant": "Ready to send",
+    "actionRequired": "Action needed",
+    "blocked": "Blocked"
+  },
+  "Countries": {
+    "SG": "Singapore",
+    "GB": "United Kingdom",
+    "CN": "China",
+    "VN": "Vietnam",
+    "HK": "Hong Kong",
+    "US": "United States",
+    "JP": "Japan"
+  },
+  "ChecklistCard": {
+    "progress": "{done} of {total} ready",
+    "state": {
+      "done": "done",
+      "todo": "to do",
+      "blocked": "blocked",
+      "info": "for information"
+    }
+  },
+  "TransferSummaryCard": {
+    "youSend": "You send",
+    "theyReceive": "They receive",
+    "routeAria": "From {from} to {to}"
+  },
+  "SuccessState": {
+    "tuitionPaid": "Tuition paid",
+    "paymentSent": "Payment sent",
+    "srDescription": "Sandbox payment completed",
+    "to": "to <b>{recipient}</b>",
+    "expected": "expected <b>{arrival}</b>",
+    "rows": {
+      "transaction": "Transaction",
+      "status": "Status",
+      "paidFrom": "Paid from",
+      "newBalance": "New balance",
+      "via": "Via",
+      "when": "When"
+    },
+    "savedSteps": "CaiMao saved every step to Activity & Security.",
+    "viewReceipt": "View receipt",
+    "done": "Done"
+  },
+  "CompliancePanel": {
+    "source": "Source:",
+    "lastVerified": "Last verified {date}",
+    "simulatedRule": "Simulated rule",
+    "noRulesCorridor": "No rules are on record for this corridor, so CaiMao can't clear it.",
+    "outcome": {
+      "passed": "Passed",
+      "documentsNeeded": "Documents needed",
+      "blocked": "Blocked",
+      "forInformation": "For information"
+    },
+    "risk": "{level, select, LOW {low risk} MEDIUM {medium risk} HIGH {high risk} other {{level} risk}}",
+    "onFile": "(on file)",
+    "missingDoc": "(missing)",
+    "titleCompliant": "Transfer requirements checked",
+    "titleBlocked": "This transfer can't go ahead",
+    "titleActionRequired": "A few things are needed first",
+    "rulesPassed": "{passed} of {total} rules passed for {from} → {to}",
+    "missing": "Missing: {names}",
+    "documentsComplete": "Documents complete ({count})",
+    "hideRules": "Hide the rules",
+    "showRules": "Show the rules checked",
+    "noRules": "No rules on record for this corridor.",
+    "any": "Any",
+    "documents": "Documents: {names}"
+  },
+  "AgentCards": {
+    "paid": "Paid",
+    "availableFunds": "Available funds",
+    "enoughToCover": "Enough to cover it",
+    "needsAbout": "Needs about {amount}",
+    "transferRequirements": "Transfer requirements",
+    "checked": "Checked",
+    "documentsReady": "{ready} of {total} documents ready",
+    "rulesMet": "{count} rules met",
+    "ruleBlocks": "A transfer rule blocks this payment",
+    "missing": "Missing: {names}",
+    "cannotClear": "This route can't be cleared yet",
+    "ready": "Ready",
+    "blocked": "Blocked",
+    "actionNeeded": "Action needed",
+    "hideRules": "Hide the rules",
+    "seeRules": "See the {count} rules checked",
+    "rulesFor": "Rules for {corridor}",
+    "simulatedRules": "Simulated rules",
+    "receives": "{recipient} receives",
+    "instruction": {
+      "readyToReview": "Your transfer is ready to review",
+      "tuitionPaid": "Tuition paid",
+      "transferSent": "Transfer sent",
+      "transferCancelled": "Transfer cancelled",
+      "transfer": "Transfer",
+      "from": "From",
+      "provider": "Provider",
+      "fee": "Fee",
+      "arrives": "Arrives",
+      "notePending": "Nothing has been sent. Money only moves after you confirm.",
+      "noteCompleted": "Sent in sandbox after your approval.",
+      "noteCancelled": "No money moved.",
+      "noteFailed": "The sandbox payment failed. Your balance didn't change.",
+      "reviewTransfer": "Review transfer",
+      "viewReceipt": "View receipt"
+    },
+    "blockedCard": {
+      "actionRequired": "A few things are needed first",
+      "blocked": "This transfer can't go ahead"
+    },
+    "spending": {
+      "in": "In",
+      "spent": "Spent",
+      "saved": "Saved",
+      "leftAfterBills": "About <b>{amount}</b> left after upcoming bills."
+    },
+    "bankingIn": "Banking in {country}",
+    "openChecklist": "Open the full checklist"
+  },
+  "ConfirmTransfer": {
+    "execSteps": {
+      "recordingApproval": "Recording your approval",
+      "sendingPayment": "Sending the payment",
+      "updatingBalance": "Updating your balance",
+      "savingReceipt": "Saving the receipt"
+    },
+    "docs": {
+      "identity": {
+        "ready": "Identity verified",
+        "needed": "Identity document needed"
+      },
+      "tuitionInvoice": {
+        "ready": "Tuition invoice ready",
+        "needed": "Tuition invoice needed"
+      },
+      "sourceOfFunds": {
+        "ready": "Source of funds ready",
+        "needed": "Source-of-funds declaration needed"
+      },
+      "universityReference": {
+        "ready": "University reference ready",
+        "needed": "University reference needed"
+      },
+      "admissionLetter": {
+        "ready": "Admission letter ready",
+        "needed": "Admission letter needed"
+      }
+    },
+    "docReady": "{name} ready",
+    "docNeeded": "{name} needed",
+    "stateReady": "Ready",
+    "stateNeeded": "Needed",
+    "stateBlocked": "Blocked",
+    "stateOk": "OK",
+    "overLimit": "Over the transfer limit",
+    "withinLimit": "Within the transfer limit",
+    "errorDefault": "The transfer could not be completed.",
+    "errorNetwork": "Network error. Check Activity & Security before trying again.",
+    "sandbox": "Sandbox",
+    "readyToSend": "Ready to send?",
+    "purpose": "Purpose: {purpose}",
+    "universityTuition": "University tuition",
+    "requirementsChecked": "Transfer requirements checked",
+    "cannotGoAhead": "This transfer can't go ahead",
+    "thingsNeeded": "A few things are needed first",
+    "everythingInPlace": "Everything needed for this payment is in place.",
+    "sortTheseOut": "Sort these out, then ask CaiMao to prepare it again.",
+    "hideRules": "Hide the rules",
+    "seeAllRules": "See all {count} rules checked",
+    "reviewTransfer": "Review transfer",
+    "cancelTransfer": "Cancel transfer",
+    "rateExpired": "This rate has expired. Ask CaiMao to prepare the transfer again.",
+    "noLongerConfirmable": "This transfer can no longer be confirmed.",
+    "requirements": "Requirements",
+    "reviewYourTransfer": "Review your transfer",
+    "preparedNothingSent": "CaiMao prepared this. Nothing has been sent yet.",
+    "receives": "{recipient} receives",
+    "rows": {
+      "recipient": "Recipient",
+      "from": "From",
+      "provider": "Provider",
+      "fee": "Fee",
+      "exchangeRate": "Exchange rate",
+      "arrival": "Arrival",
+      "requirements": "Requirements",
+      "documents": "Documents"
+    },
+    "midMarket": "Mid-market {rate}",
+    "checked": "Checked",
+    "notMet": "Not met",
+    "complete": "Complete",
+    "completeCount": "Complete ({count})",
+    "paymentFailed": "Payment failed",
+    "paymentNotSent": "Payment not sent",
+    "iReviewed": "I reviewed this transfer",
+    "confirmPay": "Confirm & Pay",
+    "cancel": "Cancel",
+    "alwaysApproval": "Payments always need your approval.",
+    "rateHeld": "Rate held for {time}",
+    "close": "Close"
+  }
+}

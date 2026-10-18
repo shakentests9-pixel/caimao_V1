@@ -1,0 +1,189 @@
+{
+  "Nav": {
+    "labels": {
+      "home": "Home",
+      "caimao": "CaiMao",
+      "send": "Send",
+      "budget": "Budget",
+      "bills": "Bills",
+      "credit": "Credit",
+      "settings": "Settings",
+      "activity": "Activity",
+      "transfers": "Transfers",
+      "profile": "Profile"
+    },
+    "names": {
+      "home": "Home",
+      "caimao": "CaiMao assistant",
+      "transfers": "Transfers",
+      "budget": "Budget",
+      "bills": "Bills and obligations",
+      "banking": "Banking and credit",
+      "settings": "Settings",
+      "activity": "Activity and security",
+      "profile": "Profile"
+    },
+    "dueCount": "{count} due",
+    "mainNavigation": "Main navigation",
+    "caimaoHome": "CaiMao home",
+    "profileOf": "Profile: {name}",
+    "sandbox": "Sandbox"
+  },
+  "HomePage": {
+    "metaTitle": "Home",
+    "notifications": "Notifications: {count} payments due",
+    "profile": "Profile",
+    "insight": {
+      "dueHeadline": "Your tuition is due in {days} days.",
+      "betterRoute": "I found a route that could leave about {currency} {amount} more with {payee}. You have enough in {source}.",
+      "enoughToCover": "You have enough in {source} to cover it.",
+      "notCovered": "{source} doesn't cover it yet. Top up and I'll find the best route.",
+      "yourAccount": "your account",
+      "yourHomeAccount": "Your home account",
+      "estimateNote": "Estimate against the costliest route at today's demo rates. Final amounts are fixed when you pay.",
+      "seeOptions": "See my options",
+      "paidHeadline": "Your tuition is sorted.",
+      "onItsWay": "{amount} is on its way to {recipient}.",
+      "paymentComplete": "Your tuition payment is complete.",
+      "viewReceipt": "View receipt",
+      "viewTransfer": "View transfer",
+      "nothingDue": "Nothing due right now.",
+      "askMe": "Ask me about rates, transfer rules or your spending."
+    },
+    "askCaimao": "Ask CaiMao",
+    "actions": {
+      "sendMoney": "Send money",
+      "payTuition": "Pay tuition",
+      "exchange": "Exchange"
+    },
+    "yourAccounts": "Your accounts",
+    "comingUp": "Coming up",
+    "payWithCaimao": "Pay with CaiMao",
+    "thisMonth": "This month",
+    "budgetLink": "Budget",
+    "thirtyDays": "30 days",
+    "recentActivity": "Recent activity",
+    "categories": {
+      "Income": "Income",
+      "Accommodation": "Accommodation",
+      "Food": "Food",
+      "Transportation": "Transport",
+      "Education": "Education",
+      "Entertainment": "Entertainment",
+      "Travel": "Travel",
+      "Subscriptions": "Subscriptions",
+      "Shopping": "Shopping",
+      "Healthcare": "Healthcare",
+      "Fees": "Fees",
+      "Other": "Other",
+      "Transfers": "Transfers"
+    }
+  },
+  "HeroBalanceCard": {
+    "totalBalance": "Total balance",
+    "across": "Across {count} accounts · mid-market demo rates",
+    "showBalance": "Show balance",
+    "hideBalance": "Hide balance"
+  },
+  "QuickActionGrid": {
+    "quickActions": "Quick actions"
+  },
+  "ObligationTimeline": {
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "daysLate": "{days}d late",
+    "inDays": "{days} days",
+    "paid": "Paid",
+    "dueSoon": "Due soon"
+  },
+  "MascotInsightCard": {
+    "insight": "CaiMao insight"
+  },
+  "Greeting": {
+    "hello": "Hello, {name}",
+    "morning": "Good morning, {name}",
+    "afternoon": "Good afternoon, {name}",
+    "evening": "Good evening, {name}"
+  },
+  "IntroScreen": {
+    "demoError": "Couldn't start the demo. Try again.",
+    "headline": "Study abroad. Manage money smarter.",
+    "intro": "CaiMao helps you pay tuition, compare transfers, hold several currencies and keep on top of bills across borders, all in one place.",
+    "featureArrives": "See what arrives",
+    "featureLegwork": "CaiMao does the legwork",
+    "featureApprove": "You approve every payment",
+    "getStarted": "Get started",
+    "haveAccount": "I already have an account",
+    "disclaimer": "Competition prototype · sandbox payments only · regulatory data is simulated"
+  },
+  "WelcomePage": {
+    "metaTitle": "Welcome"
+  },
+  "LoginPage": {
+    "metaTitle": "Sign in",
+    "headline": "Study abroad. Manage money smarter.",
+    "pitch": "Pay tuition across borders, see exactly what arrives, and stay in control: CaiMao does the legwork, you approve every payment.",
+    "disclaimer": "Competition prototype · sandbox payments only · regulatory data is simulated",
+    "createAccount": "Create your account",
+    "welcomeBack": "Welcome back",
+    "memoryMode": "Local demo mode. Sign in as our demo student to try everything.",
+    "supabaseMode": "Sign in to CaiMao. New accounts start with demo data."
+  },
+  "LoginForm": {
+    "demoRoute": "Singapore → UK",
+    "signInFailed": "Sign-in failed.",
+    "continueAs": "Continue as {name}",
+    "configureSupabase": "Configure Supabase in .env.local to use real accounts with row-level security.",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign in",
+    "signUpFailed": "Sign-up failed.",
+    "checkInbox": "Check your inbox to confirm your email, then sign in.",
+    "createAccount": "Create account"
+  },
+  "Brand": {
+    "markAlt": "CaiMao cat with glasses reading a book, with coins flowing between currencies",
+    "lockupAlt": "CaiMao: a white scholarly cat with glasses and an open book, coins flowing between dollar, rouble, euro and yuan, above the CaiMao wordmark"
+  },
+  "BaseCurrencySelect": {
+    "showBalancesIn": "Show balances in"
+  },
+  "ShowMore": {
+    "showLess": "Show less"
+  },
+  "AccountCard": {
+    "multiCurrencyWallet": "Multi-currency wallet"
+  },
+  "TransactionRow": {
+    "categories": {
+      "Income": "Income",
+      "Accommodation": "Accommodation",
+      "Food": "Food",
+      "Transportation": "Transport",
+      "Education": "Education",
+      "Entertainment": "Entertainment",
+      "Travel": "Travel",
+      "Subscriptions": "Subscriptions",
+      "Shopping": "Shopping",
+      "Healthcare": "Healthcare",
+      "Fees": "Fees",
+      "Other": "Other",
+      "Transfers": "Transfers"
+    }
+  },
+  "PageHeader": {
+    "seeAll": "See all"
+  },
+  "Dialog": {
+    "close": "Close"
+  },
+  "Countries": {
+    "SG": "Singapore",
+    "GB": "United Kingdom",
+    "CN": "China",
+    "VN": "Vietnam",
+    "HK": "Hong Kong",
+    "US": "United States",
+    "JP": "Japan"
+  }
+}

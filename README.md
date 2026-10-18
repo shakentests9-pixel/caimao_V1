@@ -10,7 +10,17 @@ Understand → Analyse → Check compliance → Compare → Recommend → Obtain
 
 That sequence is visible on screen throughout the assistant workflow (route `/copilot`) and again, per run, on the Activity & Security page (route `/evidence`).
 
-> **Sandbox only.** No real money moves. Regulatory rules are **simulated demo data** labelled as such, with the official regulator linked for verification. FX rates are seeded demo rates.
+Beyond tuition, CaiMao is a **study-abroad financial setup assistant** for Singapore, China, the United Kingdom, the United States and Japan:
+
+- **Statement analysis**: upload a PDF or CSV bank statement, check and confirm the extracted transactions, and get income, expenses, net cash flow, recurring payments, top merchants, categories, unusual costs and an *estimated* savings opportunity.
+- **Cross-border rules**: what applies to money moving between two of the five countries, from a database of 79 rules verified against official sources, each with its regulator, source link and last-verified date. Anything not verified comes back as **NEEDS VERIFICATION**, never as a guess.
+- **Banking abroad**: what banks ask for, which of 24 banks' accounts are open to international students, and how credit history works locally, based on nationality, residency, visa, age and student status.
+- **My Financial Setup**: one personalised 8-step plan that ticks itself off as CaiMao sees each step done.
+- **English, 简体中文 and 日本語** across the UI and the assistant.
+
+> **Sandbox only.** No real money moves. The researched rules and banks were checked against official sources on 18 October 2026 and are guidance, not legal advice; the payment-gating rules in the tuition demo are **simulated** and labelled as such. FX rates are seeded demo rates.
+
+**Submission documents:** [Technical documentation](docs/technical-documentation.md) · [Security self-assessment](docs/security-self-assessment.md) · [Execution evidence](docs/execution-evidence/README.md)
 
 ---
 
@@ -32,7 +42,9 @@ That sequence is visible on screen throughout the assistant workflow (route `/co
 14. [Test cases](#test-cases)
 15. [Deployment](#deployment)
 16. [Project layout](#project-layout)
-17. [Known limitations](#known-limitations)
+17. [Languages](#languages)
+18. [Reference data](#reference-data)
+19. [Known limitations](#known-limitations)
 
 ---
 
@@ -48,7 +60,11 @@ That sequence is visible on screen throughout the assistant workflow (route `/co
 | **Budget** | `/budget` | "Your October" hero, CaiMao's spending insights, category cards, upcoming bills, transactions. |
 | **Bills & obligations** | `/obligations` | Tuition hero, **Upcoming / Paid / All** tabs, month grouping and urgency labels. |
 | **Banking & Credit** | `/banking` | Card visual, next payment and minimum, payment history, *Build your UK financial profile* checklist and the local bank setup checklist per country. |
-| **Activity & Security** | `/evidence` | Verified-transfer card, *How this payment happened* timeline, technical audit log, JSON export. |
+| **Analyse a statement** | `/budget/statement` | Upload (consent box, 4 MB, PDF/CSV), *Reading your statement…*, a review of every extracted row with editable categories and include toggles, **Confirm**, then the summary (income, expenses, net, recurring, potential savings), CaiMao insights, category breakdown, top merchants, recurring payments, unusual expenses, income pattern and a projection to the next big payment. Delete at any time. |
+| **Banking abroad** | `/banking/abroad` | Per country: *About you* (nationality, residency, visa, age, student status), the 8 account-opening steps, bank comparison cards with **Check my eligibility**, and *Building credit history*, every fact with its source and last-verified date. |
+| **My Financial Setup** | `/setup` | The 8-step plan for a study country (documents → bank account → receiving money from home → compare tuition routes → pay tuition → recurring payments → local credit → restrictions), with progress. |
+| **Cross-border rules check** | `/transfers#rules` | Source, destination, purpose, amount and personal details → **COMPLIANT / ACTION REQUIRED / BLOCKED / NEEDS VERIFICATION** with requirements, documents, limits, regulator, official source and last verified. |
+| **Activity & Security** | `/evidence` | Verified-transfer card, *How this payment happened* timeline, **Workflow evidence** (statement analysis, rule checks, banking setup, step by step), technical audit log, JSON export. |
 | **Profile / Settings** | `/profile`, `/settings` | Identity, route, settings list, what CaiMao can do (permission level), activity summary; full settings incl. demo scenarios. |
 
 Every status (Ready, Action needed, Blocked, Payment due, Best value, Completed, Pending approval, Paid) is shown as icon + word + colour, never colour alone.
@@ -65,6 +81,13 @@ Every status (Ready, Action needed, Blocked, Payment due, Best value, Completed,
 6. **Tuition paid**: transaction **UF-2026-000184**, new balance SGD 5,894.43. The tracker reaches *Verify*.
 7. **Done → Home**: the balance has updated, CaiMao says *Your tuition is sorted*, and tuition shows **Paid** in the timeline.
 8. **Activity & Security**: the verified-transfer card and the timeline (requirements checked → providers compared → approved by Alex → payment executed → balance updated → tuition marked paid). Open **View technical audit log** for every event.
+
+New in this release, about a minute each:
+
+9. **Budget → Analyse a statement**: tick the consent box, **Try the sample statement**, check a category, **Confirm**. Point out *Estimated opportunity*, not guaranteed savings, and that balances didn't change.
+10. Ask the assistant *I'm a Chinese student moving to Singapore. How do I set up my finances?* It retrieves Singapore's requirements, banks and credit system, and **asks** for visa and residency before judging eligibility. Answer *I have my student pass and I've arrived*, then **Create my setup plan** and open **Setup**.
+11. **Transfers → Cross-border rules check**: China → Singapore, education, USD 30,000 shows the regulator, documents, source and last verified. Then pick Vietnam → Japan to show **NEEDS VERIFICATION** and *I couldn't verify this requirement from the current regulatory database.*
+12. **Settings → Language → 简体中文** (or 日本語): the UI and the assistant switch; bank names, regulator names and transaction IDs stay as they are.
 
 Optional, 30 seconds each, from **Settings → Demo settings**:
 
@@ -184,7 +207,7 @@ That's enough to run in **local demo mode**. Supabase and an Anthropic key are o
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | For Supabase mode | Public anon key; all reads go through RLS. |
 | `SUPABASE_SERVICE_ROLE_KEY` | For Supabase mode | **Server only.** Used for writes and for calling `commit_sandbox_execution`. |
 | `UNIFLOW_DATA_MODE` | No | Force `memory` or `supabase`. Defaults to `supabase` when all three Supabase values are set. | (The `UNIFLOW_` prefix is kept from the original MVP so existing deployments keep working.)
-| `DEMO_SESSION_SECRET` | Recommended | HMAC key for the demo-mode session cookie. Without it a random per-process secret is used. |
+| `DEMO_SESSION_SECRET` | Recommended | HMAC key for the demo-mode session cookie. Without it a fixed fallback key is used so sign-in works across serverless processes (demo mode already lets anyone sign in as the demo user, so this grants nothing extra); set your own in production. |
 | `DEMO_USER_PASSWORD` | For seeding | Password for the seeded Supabase demo user. |
 | `ANTHROPIC_API_KEY` | No | **Server only.** Enables the Claude tool-calling agent. Without it, the built-in planner runs the same tools. |
 | `ANTHROPIC_MODEL` | No | Defaults to `claude-sonnet-5-5`. |
@@ -198,7 +221,7 @@ Nothing secret is prefixed `NEXT_PUBLIC_`, and no client component imports a mod
 
 ## Database setup
 
-The schema lives in `supabase/migrations/0001_schema.sql`. It creates:
+The schema lives in `supabase/migrations/0001_schema.sql` plus `0002_global_financial_setup.sql` (run both, in order). 0001 creates:
 
 `users`, `profiles`, `accounts`, `transactions`, `obligations`, `budgets`, `country_rules`, `fx_rates`, `remittance_providers`, `remittance_quotes`, `transfer_requests`, `payment_executions`, `audit_logs`, `ai_conversations`, plus `credit_cards` and `bank_setup_checklist` for the Banking & Credit page.
 
@@ -210,7 +233,14 @@ It also defines:
 - **Append-only audit log**: a trigger rejects any `UPDATE` or `DELETE` on `audit_logs`.
 - A trigger mirroring `auth.users` into `public.users`, and the `payment_txn_seq` sequence that produces IDs like `UF-2026-000184`.
 
-Apply it with the Supabase CLI:
+`0002_global_financial_setup.sql` adds:
+
+- Japan / JPY; profile fields `nationality`, `visa_type`, `residency_status`, `student_status`, `age`, `tax_residency`, `language` (user-updatable through column grants).
+- Regulatory fields on `country_rules` (status `verified` / `simulated` / `needs_verification`, channel, direction, nationality/residency/visa conditions, regulator, evidence quote, translations) and a check that a **verified rule must have an official https source and a last-verified date**.
+- Reference tables `banks`, `bank_account_requirements`, `credit_system_rules` (readable by signed-in users).
+- `user_financial_setup` (journey progress), `statement_uploads` (metadata only; **the file is never stored**; masked account hint enforced by a check), `statement_transactions`, `statement_analyses`, all with select-own RLS and no client write policies, and `purge_expired_statement_previews()`.
+
+Apply them with the Supabase CLI:
 
 ```bash
 supabase link --project-ref <your-project-ref>
@@ -231,7 +261,9 @@ or paste the file into the Supabase SQL editor and run it.
 - **Transactions:** ~35 over four months, categorised by `lib/budget/classifier.ts`.
 - **Providers:** Home Bank (no fee, 2.2% FX margin), Panda Remit Demo (SGD 15 fee, 0.45% margin), Multi-Currency Wallet Demo (0.35% fee + SGD 4, 0.40% margin).
 - **FX:** seeded mid-market rates for USD, GBP, SGD, CNY, HKD, VND.
-- **Rules:** 14 simulated rules across China, Vietnam, Hong Kong, the United States, the United Kingdom and Singapore, each with an official source, effective date, last-verified date and risk level.
+- **Rules:** 14 **simulated** payment-gating rules for the tuition demo (China, Vietnam, Hong Kong, the United States, the United Kingdom, Singapore), plus 81 **researched** cross-border rules for SG, CN, GB, US and JP (79 verified against official sources), 24 banks, 5 account-opening overviews and 5 credit systems from `lib/reference/` (see [Reference data](#reference-data)).
+- **Profile:** Alex is Singaporean, a full-time student on a student visa, age 21, interface language English.
+- **Sample statement:** `public/samples/caimao-sample-statement.csv` and `.pdf`, fictional, 92 rows July–September 2026.
 - **Scenarios:** `standard`, `insufficient_funds` (SGD 8,000), `over_limit` (GBP 120,000 tuition breaks the SGD 200,000 demo limit).
 
 **Local demo mode** seeds itself on first use (stored in `.data/demo-db.json`; reset from Settings).
@@ -287,6 +319,20 @@ In local demo mode, sign in with **Continue as Alex Tan**. With Supabase configu
 | `updateAccountBalance` | 3 | Debit, inside the atomic commit | ✗ |
 | `markObligationPaid` | 3 | Mark the invoice paid, inside the atomic commit | ✗ |
 | `createAuditLog` | — | Every tool writes its own audit events | ✗ |
+| `getUserFinancialProfile` | 1 | Nationality, residency, visa, age, student status, study and home countries | ✓ |
+| `getFundFlowRules` | 1 | Cross-border rules for a corridor and purpose; returns a status, findings, documents, limits and sources from the rule database only | ✓ |
+| `getCountryBankingRequirements` | 0 | Researched account-opening guidance for a country | ✓ |
+| `getAvailableBanks` | 0 | Banks and what each bank's own site states | ✓ |
+| `getBankEligibility` | 1 | Per-bank verdict from stated facts only; asks for missing details instead of assuming | ✓ |
+| `getCreditSystemInfo` | 0 | How credit history works locally (hedged, never a promise) | ✓ |
+| `getRequiredDocuments` | 1 | Documents for a bank account or a tuition transfer | ✓ |
+| `getAccountSetupSteps` | 2 | Creates the personalised setup plan (`ACTION_PLAN_CREATED`) | ✓ |
+| `analyseSpending` | 1 | The confirmed statement's analysis (aggregates only) | ✓ |
+| `generateSavingsInsights` | 1 | Pre-computed insights and the estimated opportunity | ✓ |
+| `getLanguagePreference` | 1 | Interface and reply language | ✓ |
+| `updateLanguagePreference` | 2 | Changes the language when the user asks | ✓ |
+| `parseBankStatement` | 1 | Server-side parsing of an upload the user consented to | ✗ upload flow only |
+| `classifyTransactions` | 1 | Deterministic classifier (merchant dictionary → keyword rules → review flag) | ✗ upload flow only |
 
 `runTool` validates input with zod and enforces the permission level before running anything.
 
@@ -310,7 +356,9 @@ Routes are compared at a common send amount and **ranked by `recipient_gets`**; 
 | Rule | Enforcement |
 | --- | --- |
 | Never execute without approval | No execute tool for the model; `executeSandboxTransfer` requires status `APPROVED` with acknowledgement; DB function and constraints re-check |
-| Never invent regulations | Rules come only from `country_rules`; a corridor with no rules returns `ACTION_REQUIRED`, never `COMPLIANT` |
+| Never invent regulations | Rules come only from `country_rules`; the model can only cite rules a tool returned. In the payment flow a corridor with no rules returns `ACTION_REQUIRED`, never `COMPLIANT`; in the rules assistant anything unverified returns `NEEDS_VERIFICATION` with *I couldn't verify this requirement from the current regulatory database.* |
+| Never invent eligibility | Bank facts come only from the bank's own page; an unconfirmed fact gives *check with the bank*; missing personal details trigger a question (`CLARIFICATION_REQUESTED`) |
+| Statement consent and privacy | Upload refused without consent; parsing server-side; file never stored; identifiers masked; nothing saved until the user confirms; balances never changed; delete any time |
 | Never invent balances | Balances come only from `getAccounts`; cards render tool output |
 | No guaranteed FX savings | Quotes flagged `is_estimate`; copy says "estimated" |
 | Estimates vs. confirmed | Comparison and instruction show estimates; the receipt shows executed values |
@@ -332,6 +380,9 @@ Routes are compared at a common send amount and **ranked by `recipient_gets`**; 
 - **Approval and audit**: Level 3 per transaction; audit log append-only at the database level.
 - **Replay protection**: compare-and-set status transitions; a request can be approved once and executed once; quotes expire after 15 minutes.
 - **Headers**: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, strict referrer policy.
+- **Statements**: 4 MB limit (checked before reading the body), file type by magic bytes as well as extension (PDF or CSV only; archives, executables, encrypted or script-bearing PDFs rejected), parsed in memory on the server and never written to storage or given a URL, card and account numbers masked before anything is saved, previews expire after an hour, confirmed data deletable by the user. The optional AI category suggestion sees only masked merchant names of ambiguous card-style debits (never amounts, dates, balances or person-to-person transfers).
+
+The full threat model, known risks and mitigations are in the [security self-assessment](docs/security-self-assessment.md).
 
 ---
 
@@ -367,7 +418,7 @@ Audit events for the run: `TRANSFER_RULE_CHECK → QUOTE_RETRIEVAL → COST_CALC
 npm test
 ```
 
-32 tests across four files.
+127 tests across nine files. The new features are covered by `tests/statements.test.ts`, `tests/global-setup.test.ts`, `tests/agent-i18n.test.ts` and `tests/privacy.test.ts` (statement parsing and confirmation, NEEDS_VERIFICATION, sources and last-verified dates, eligibility clarification, statement RLS, approval still required, the tuition flow unchanged, translations complete, the assistant understanding every chip in all three languages, and what the AI model may see).
 
 | # | Scenario | Expected | Test |
 | --- | --- | --- | --- |
@@ -381,6 +432,12 @@ npm test
 | — | SQL schema | Migration applies; atomic commit; insufficient funds; append-only audit; RLS isolation; users can't edit balances, call the commit function or grant themselves Level 3 | `tests/sql.test.ts` |
 | — | Model fallback | Unreachable model falls back to the planner with the same tools | `tests/agent-fallback.test.ts` |
 | — | Budgeting | Classifier categories; neutral insights including the 21% food comparison | `tests/budget.test.ts` |
+| 1–4 | Statement upload | Valid CSV/PDF parse; invalid, oversized or unconsented files fail safely with nothing stored; nothing analysed before confirmation; recurring subscriptions and the rise in eating out found; balances unchanged | `tests/statements.test.ts` |
+| 5–6 | Banking abroad | Chinese student → Singapore gets Singapore's requirements and banks; missing visa/residency → CaiMao asks | `tests/global-setup.test.ts` |
+| 7–8 | Regulation | Unknown corridor → `NEEDS_VERIFICATION` and the exact sentence; answers carry official sources and last-verified dates | 〃 |
+| 9–11 | Language | Preference persists on the profile; Chinese and Japanese UI complete, ICU-valid and actually translated; assistant replies in the chosen language | 〃, `tests/agent-i18n.test.ts` |
+| 12–14 | Security and regression | Statement data scoped to its owner (also RLS in SQL); payment can't execute without approval; tuition workflow unchanged | `tests/global-setup.test.ts`, `tests/sql.test.ts` |
+| — | Data minimisation | The AI suggestion payload has only index, masked merchant and direction; no amounts, dates, account numbers or names | `tests/privacy.test.ts` |
 
 ---
 
@@ -388,12 +445,14 @@ npm test
 
 **Vercel + Supabase**
 
-1. Create a Supabase project. Run `supabase/migrations/0001_schema.sql`. In *Authentication → Providers* keep Email enabled.
+1. Create a Supabase project. Run `supabase/migrations/0001_schema.sql`, then `0002_global_financial_setup.sql`. In *Authentication → Providers* keep Email enabled. (Existing deployments: run only 0002; it is idempotent.)
 2. Seed: `npm run db:seed -- --email <email> --password <password>` with the Supabase variables in `.env.local`.
 3. Import the repository into Vercel. Add the environment variables from `.env.example` (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `ANTHROPIC_API_KEY`, optionally `ANTHROPIC_MODEL`). Don't expose the service role key to the browser.
-4. Deploy. Sign in with the seeded user.
+4. Deploy. Sign in with the seeded user. Re-run the seed after applying 0002 so the reference tables (banks, requirements, credit systems, researched rules) are filled.
 
-**Demo-only deployment** (no Supabase): set `UNIFLOW_DATA_MODE=memory` and `DEMO_SESSION_SECRET`. The demo store lives in server memory (mirrored to the OS temp directory on read-only filesystems), so on serverless hosts it can reset between cold starts. Use Supabase for anything beyond a single-presenter demo.
+**From GitHub:** Vercel builds every push. Work on a branch, open a pull request to get a preview URL, and merge to `main` to update production. `unpdf` is listed in `serverExternalPackages` (`next.config.ts`) so PDF parsing works in Vercel functions; no extra configuration is needed.
+
+**Demo-only deployment** (no Supabase): works on Vercel with no configuration; optionally set `DEMO_SESSION_SECRET`. The demo store lives in server memory. Vercel runs pages and `/api` routes as separate functions, so in demo mode the `/api` function holds the state and each page render pulls a snapshot of it (`GET /api/demo/state`, tagged by `proxy.ts`; see `lib/session.ts`) before drawing — settings, language, statements and payments therefore show up straight away. State still resets when Vercel recycles the functions (cold start). Use Supabase for anything beyond a demo.
 
 ---
 
@@ -413,7 +472,12 @@ components/              app shell + nav, brand (mascot tile, wordmark, lockup),
 components/caimao/       design-system pieces: hero balance card, mascot insight, provider cards, transfer summary, checklists, timelines, credit card, success, splash, intro
 public/brand/            CaiMao lockup, mark and head artwork
 lib/
-  agent/                 protocol, tool registry, orchestrator (Claude), deterministic planner
+  agent/                 protocol, tool registry (core + tools-global), orchestrator (Claude), deterministic planner
+  statements/            validate, parse (CSV, PDF), normalise/mask, classify, analyse, service, optional AI assist
+  regulatory/            rule retrieval and evaluation (COMPLIANT / ACTION_REQUIRED / BLOCKED / NEEDS_VERIFICATION), audited service
+  banking/               eligibility, Financial Setup journey, audited service
+  reference/             GENERATED researched rules, banks, requirements, credit systems; localize.ts
+  i18n/                  locale resolution, server translator, date helpers
   budget/                classifier, budget insights
   compliance/engine.ts   rule evaluation
   remittance/engine.ts   quotes, total cost, ranking, explanation
@@ -423,16 +487,38 @@ lib/
   finance.ts             prepare / approve / decline / execute
   audit.ts, seed.ts, session.ts, views.ts
 proxy.ts                 route protection (signed-out `/` → `/welcome`)
-supabase/migrations/     schema, RLS, execution function
+supabase/migrations/     0001 schema, RLS, execution function; 0002 global financial setup
+messages/                en, zh-CN, ja (en built from messages/fragments by scripts/i18n-merge.py)
+data/reference-research/ researched source data per country + reviewed translations (i18n.json)
+scripts/reference/       build.py + overrides.py: research JSON → lib/reference/*.ts
+scripts/evidence/        run-workflows.py: reproduces docs/execution-evidence against a running app
+docs/                    technical documentation, security self-assessment, execution evidence
 scripts/seed-supabase.ts
 tests/
 ```
 
 ---
 
+## Languages
+
+CaiMao uses **next-intl** without locale routes: the language is a profile setting (`profiles.language`), mirrored in a `CAIMAO_LOCALE` cookie so the welcome and sign-in screens follow it before sign-in. Change it in **Settings → Language**, on the intro and login screens, or by asking the assistant (*Reply in Japanese*).
+
+- `messages/en.json` is the source; `zh-CN.json` and `ja.json` are complete (checked by tests for missing keys, ICU syntax and placeholders). Missing keys would fall back to English at runtime rather than break a page.
+- Server-side text (the built-in planner, regulatory results, insights) is rendered from message keys with the same translator, and the Claude agent is told to reply in the user's language.
+- Researched rule summaries, account-opening overviews, bank details and credit guidance carry reviewed translations in `data/reference-research/i18n.json`; only descriptive text is translated. Bank names, product names, regulator names, form names, amounts and transaction IDs stay as they are.
+- Translations were produced with AI assistance and checked mechanically; a native-speaker review is recommended before real use.
+
+## Reference data
+
+`data/reference-research/{SG,CN,GB,US,JP}.json` hold what was found on official regulator, government and bank pages (each item with its URL, an evidence quote and a confidence level). `python3 scripts/reference/build.py` turns them into typed tables in `lib/reference/`, applying the modelling decisions in `scripts/reference/overrides.py` (for example, domestic-only items are skipped). Rules are never written in React components.
+
+To update: edit the research JSON (or re-research a country), run the build script, then `npm test`; the integrity test fails if any verified rule or bank lacks an official https source or last-verified date.
+
 ## Known limitations
 
-- **Regulatory data is simulated.** The rules illustrate how a rule engine gates payments; they are not a statement of any country's actual law.
+- **Two kinds of rules.** The researched rules (verified 18 Oct 2026) inform guidance and the rules assistant; the payment-gating rules in the tuition demo are **simulated** for the demo and labelled as such. Neither is legal advice; regulations change, so each answer shows its last-verified date and source.
+- **Bank eligibility** reflects what each bank's public page stated; banks decide case by case. Facts a page didn't confirm are shown as *Not confirmed*.
+- **Statements**: text-based PDFs and CSVs only (no scanned images/OCR, no XLSX); unusual layouts may need category fixes in the review step.
 - **FX rates and provider pricing are seeded.** `FxRateSource` is the integration point for a live rate API.
 - **Cross-border tuition is the fully executable flow.** Other obligations (rent, card) are displayed and tracked; the agent explains rather than pays them. *Send Money Overseas* compares routes and checks rules but doesn't execute ad-hoc transfers.
 - **Supabase and Claude paths.** The Supabase SQL is tested against PostgreSQL via PGlite with a stand-in for Supabase's `auth` schema and roles, and the Supabase repository is type-checked; run it against a real project before relying on it. The Claude loop is type-checked and its fallback is tested; it needs an API key to exercise live.

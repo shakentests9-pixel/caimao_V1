@@ -1,0 +1,287 @@
+{
+  "Countries": {
+    "SG": "Singapore",
+    "GB": "United Kingdom",
+    "CN": "China",
+    "VN": "Vietnam",
+    "HK": "Hong Kong",
+    "US": "United States",
+    "JP": "Japan"
+  },
+  "Permissions": {
+    "level0": { "name": "Explain only", "text": "CaiMao can explain and answer questions, but can't see your accounts." },
+    "level1": { "name": "View", "text": "CaiMao can analyse your finances: balances, spending and bills." },
+    "level2": { "name": "Assist", "text": "CaiMao can compare options and prepare payments for you to review." },
+    "level3": { "name": "Your approval", "text": "Money only moves after you confirm each payment." }
+  },
+  "SettingsPage": {
+    "metaTitle": "Settings",
+    "title": "Settings",
+    "sectionsNav": "Settings sections",
+    "nav": {
+      "personalisation": "Personalisation",
+      "ai": "CaiMao permissions",
+      "security": "Security",
+      "documents": "Documents",
+      "demo": "Demo settings"
+    },
+    "personalisation": { "title": "Personalisation", "description": "Which currency your total balance is shown in." },
+    "ai": { "title": "How CaiMao can help", "description": "Payments always require your approval." },
+    "demo": { "title": "Demo settings", "description": "Load a fresh dataset to rehearse a different outcome." },
+    "info": {
+      "data": "Data",
+      "dataSupabase": "Supabase PostgreSQL with row-level security",
+      "dataLocal": "Local demo store",
+      "ai": "AI",
+      "aiLlm": "Claude tool calling · {model}",
+      "aiPlanner": "Built-in planner (add ANTHROPIC_API_KEY to use Claude)",
+      "rules": "Rules",
+      "rulesValue": "Simulated demo regulations"
+    },
+    "security": {
+      "title": "Security",
+      "signInEmail": "Email and password",
+      "signInDemo": "Demo sign-in",
+      "signedInAs": "Signed in as {email}",
+      "signedInAsDemo": "Signed in as {name} (demo)",
+      "approvalTitle": "Every payment needs you",
+      "approvalText": "CaiMao prepares payments; only you can approve them.",
+      "maskedTitle": "Account numbers stay masked",
+      "maskedText": "Only the last four digits are stored or shown.",
+      "logTitle": "Tamper-proof activity log",
+      "logText": "Every check and payment is recorded and can't be edited.",
+      "sandboxTitle": "Sandbox mode",
+      "sandboxText": "No real money moves in this demo."
+    },
+    "documents": {
+      "title": "Documents",
+      "description": "CaiMao checks these against each transfer rule. Remove one to see a transfer flagged as action required."
+    }
+  },
+  "SettingsForms": {
+    "showBalancesIn": "Show balances in",
+    "permissionsLabel": "How CaiMao can help",
+    "recommended": "Recommended",
+    "approvalTitle": "Payments always require your approval.",
+    "approvalText": "This can't be switched on as a standing permission. You confirm each payment yourself.",
+    "documents": {
+      "passport": "Passport or national ID",
+      "universityInvoice": "University invoice",
+      "cas": "Confirmation of enrolment (CAS)",
+      "sourceOfFunds": "Source-of-funds declaration",
+      "admissionLetter": "Admission letter"
+    },
+    "ready": "Ready",
+    "notAdded": "Not added",
+    "loaded": "Loaded",
+    "resetDemo": "Reset demo",
+    "load": "Load",
+    "signOut": "Sign out"
+  },
+  "ProfilePage": {
+    "metaTitle": "Profile",
+    "route": "Route",
+    "currencies": "Currencies",
+    "settings": "Settings",
+    "links": {
+      "currency": "Currency & region",
+      "currencySub": "Balances in {currency}",
+      "security": "Security",
+      "securitySub": "Sign-in, masking and approvals",
+      "documents": "Documents",
+      "documentsSub": "{count} ready",
+      "obligations": "Bills & obligations",
+      "obligationsDue": "{count, plural, one {# payment due} other {# payments due}}",
+      "obligationsClear": "All caught up",
+      "banking": "Banking & Credit",
+      "bankingSub": "Card, credit profile and bank setup",
+      "advanced": "Advanced",
+      "advancedSub": "Demo scenarios and system info"
+    },
+    "helpTitle": "How CaiMao can help",
+    "helpDescription": "Payments always require your approval.",
+    "changePermission": "Change what CaiMao can do",
+    "activityTitle": "Activity & Security",
+    "verifiedTransfer": "Verified transfer",
+    "completed": "Completed",
+    "activityEmpty": "Your payments and every check behind them will appear here.",
+    "openActivity": "Open Activity & Security"
+  },
+  "BankingPage": {
+    "metaTitle": "Banking & Credit",
+    "title": "Banking & Credit",
+    "description": "Build your {study} financial profile while you study. Information only: CaiMao doesn't apply for anything on your behalf.",
+    "studyShort": { "GB": "UK", "US": "US" },
+    "nextPayment": "Next payment",
+    "inDays": "in {days} days",
+    "minimum": "Minimum",
+    "full": "full: {amount}",
+    "paymentHistory": "Payment history",
+    "history": { "onTime": "Paid on time", "late": "Late", "noStatement": "No statement" },
+    "historyLegend": "Tick = paid on time · circle = no statement yet",
+    "numberWords": {
+      "zero": "zero",
+      "one": "one",
+      "two": "two",
+      "three": "three",
+      "four": "four",
+      "five": "five",
+      "six": "six",
+      "seven": "seven",
+      "eight": "eight",
+      "nine": "nine",
+      "ten": "ten"
+    },
+    "dueHeadline": "Your payment is due in {days} days.",
+    "dueBody": "Paying on time helps maintain a positive payment history. Paying the full {amount} rather than the minimum also avoids interest.",
+    "askCredit": "Ask CaiMao about credit",
+    "profileTitle": "Build your {study} financial profile",
+    "profileSubtitle": "Built from what CaiMao can see. Steps it can't see stay open.",
+    "checklist": {
+      "account": "Local bank account",
+      "accountMissing": "Not linked yet",
+      "onTime": "Bills paid on time",
+      "onTimeDetail": "{count} on-time card payments so far",
+      "utilisation": "Card balance managed",
+      "utilisationDetail": "{percent}% of your limit used",
+      "address": "Register at your term-time address",
+      "addressDetail": "Suggested step. CaiMao can't see this one.",
+      "done": "Done",
+      "todo": "To do",
+      "watch": "Keep an eye on it",
+      "suggested": "Suggested"
+    },
+    "disclaimer": "These habits are commonly recommended, but no one can promise a particular credit score or approval. General information, not financial advice.",
+    "openAccount": "Open a local bank account"
+  },
+  "BankSetup": {
+    "title": "Get banking-ready in {country}",
+    "countryShort": { "GB": "the UK", "US": "the US" },
+    "readyUndo": "{label}: ready. Undo",
+    "ready": "Ready",
+    "markDone": "Mark done",
+    "country": "Country",
+    "progress": "{done} of {total} ready",
+    "disclaimer": "For information only. Each bank sets its own requirements, so check with them before you go."
+  },
+  "CreditCardVisual": {
+    "ariaLabel": "{issuer} ending {last4}: {used} used of {limit}, payment due {due}",
+    "studentCredit": "Student Credit",
+    "used": "{amount} used",
+    "limitDue": "of {limit} · due {due}"
+  },
+  "EvidencePage": {
+    "metaTitle": "Activity & Security",
+    "title": "Activity & Security",
+    "description": "Every payment and every check CaiMao ran, in order. Nothing here can be edited or deleted.",
+    "export": "Export",
+    "verification": {
+      "ariaLabel": "Latest verified transfer",
+      "badge": "Verified transfer",
+      "completed": "Payment completed",
+      "route": "To {recipient} via {provider} · {time} · sandbox"
+    },
+    "empty": {
+      "title": "No payments yet",
+      "body": "When you approve a payment, its receipt and every check behind it appear here.",
+      "action": "Pay tuition with CaiMao"
+    },
+    "stats": {
+      "payments": "Payments",
+      "approvals": "Your approvals",
+      "ruleChecks": "Rule checks",
+      "stopped": "Stopped"
+    },
+    "control": {
+      "title": "How you stay in control",
+      "approvalTitle": "Nothing moves without you",
+      "approvalText": "CaiMao can prepare a payment, but only your confirmation sends it. The server checks that approval again.",
+      "rulesTitle": "Rules checked twice",
+      "rulesText": "Transfer rules are checked when CaiMao recommends a route and again when it prepares the payment.",
+      "recordTitle": "A record you can trust",
+      "recordText": "Each step is written to an append-only log with the tool used, its permission level and the result."
+    },
+    "timeline": {
+      "ariaLabel": "Timeline",
+      "payment": "How this payment happened",
+      "latest": "Latest activity"
+    },
+    "technical": {
+      "title": "View technical audit log",
+      "summary": "{events} financial events across {runs} workflow runs, with tools, permission levels and results",
+      "paymentDetails": "Payment details",
+      "executionsCaption": "Sandbox payment executions",
+      "standalone": "standalone",
+      "auditLog": "Technical audit log",
+      "footnote": "Reads such as balance and profile lookups are logged too and included in the export. Audit entries are append-only in the database."
+    },
+    "executionColumns": {
+      "transactionId": "Transaction ID",
+      "status": "Status",
+      "timestamp": "Timestamp",
+      "provider": "Provider",
+      "sent": "Sent",
+      "received": "Received",
+      "fee": "Fee",
+      "recipient": "Recipient"
+    },
+    "auditColumns": {
+      "timestamp": "Timestamp",
+      "actor": "Actor",
+      "action": "Action",
+      "tool": "Tool",
+      "level": "Level",
+      "approval": "Approval",
+      "result": "Result",
+      "details": "Details"
+    },
+    "actors": { "aiAgent": "AI agent", "user": "User", "system": "System" },
+    "approvalStatus": {
+      "NOT_REQUIRED": "not required",
+      "PENDING": "pending",
+      "APPROVED": "approved",
+      "DECLINED": "declined"
+    },
+    "results": { "SUCCESS": "SUCCESS", "FAILURE": "FAILURE", "BLOCKED": "BLOCKED" }
+  },
+  "ActivityTimeline": {
+    "empty": "Nothing to show yet.",
+    "done": "done",
+    "stopped": "stopped",
+    "you": "You",
+    "yourApproval": "your approval",
+    "permissionLevel": "permission level {level}"
+  },
+  "AuditActions": {
+    "TRANSFER_RULE_CHECK": "Transfer requirements checked",
+    "TRANSFER_RULE_CHECK_BLOCKED": "Transfer requirements not met",
+    "QUOTE_RETRIEVAL": "Quotes collected",
+    "COST_CALCULATION": "Providers compared",
+    "TRANSFER_PREPARED": "Transfer ready to review",
+    "TRANSFER_REJECTED": "Transfer stopped before it was prepared",
+    "USER_APPROVAL": "Approved by {name}",
+    "USER_DECLINED": "Cancelled by {name}",
+    "TRANSFER_EXECUTED": "Payment executed",
+    "TRANSFER_FAILED": "Payment failed",
+    "BALANCE_UPDATED": "Balance updated",
+    "OBLIGATION_PAID": "Tuition marked paid",
+    "PERMISSION_DENIED": "Blocked by your AI permission setting",
+    "STATEMENT_UPLOADED": "Statement uploaded",
+    "STATEMENT_PARSED": "Statement read",
+    "TRANSACTIONS_EXTRACTED": "Transactions extracted",
+    "TRANSACTIONS_CONFIRMED": "Import confirmed by {name}",
+    "TRANSACTION_RECATEGORISED": "Category changed by {name}",
+    "SPENDING_ANALYSED": "Spending analysed",
+    "STATEMENT_DELETED": "Statement deleted",
+    "RULE_QUERY": "Rules searched",
+    "RULE_RETRIEVED": "Official sources retrieved",
+    "RULE_EVALUATED": "Rules evaluated",
+    "CLARIFICATION_REQUESTED": "More details requested",
+    "RESULT_PRESENTED": "Result shown",
+    "BANK_REQUIREMENTS_RETRIEVED": "Account requirements retrieved",
+    "BANK_OPTIONS_RETRIEVED": "Bank options retrieved",
+    "ELIGIBILITY_CHECKED": "Eligibility checked",
+    "ACTION_PLAN_CREATED": "Setup plan created",
+    "SETUP_STEP_UPDATED": "Setup step updated"
+  }
+}

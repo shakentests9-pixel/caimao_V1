@@ -9,6 +9,7 @@ import path from "node:path";
  * atomic execution function and row-level security.
  */
 const MIGRATION = fs.readFileSync(path.join(__dirname, "../supabase/migrations/0001_schema.sql"), "utf8");
+const MIGRATION_2 = fs.readFileSync(path.join(__dirname, "../supabase/migrations/0002_global_financial_setup.sql"), "utf8");
 const A = "11111111-1111-4111-8111-111111111111";
 const B = "22222222-2222-4222-8222-222222222222";
 
@@ -65,10 +66,14 @@ beforeAll(async () => {
   db = new PGlite();
   await db.exec(SUPABASE_STUB);
   await db.exec(MIGRATION);
+  await db.exec(MIGRATION_2);
+  await db.exec(MIGRATION_2); // idempotent
   await db.exec(`grant select, insert, update on all tables in schema public to authenticated; grant all on all tables in schema public to service_role;`);
   // Re-apply the column-level restrictions the migration sets, since the blanket grant above widened them.
   await db.exec(`revoke update on public.profiles, public.bank_setup_checklist from authenticated;
     grant update (base_currency, ai_permission_level, documents_on_file) on public.profiles to authenticated;
+    grant update (nationality, visa_type, residency_status, student_status, age, tax_residency, language, home_country, study_country) on public.profiles to authenticated;
+    revoke insert, update on public.statement_uploads, public.statement_transactions, public.statement_analyses, public.banks from authenticated;
     grant update (completed) on public.bank_setup_checklist to authenticated;`);
   await db.query(`insert into public.remittance_providers (id, name, kind, fx_margin, fixed_fee, fee_currency, settlement_business_days, settlement_label, max_single_transfer, max_currency) values ('prov-panda-remit-demo', 'Panda Remit Demo', 'remittance', 0.0045, 15, 'SGD', 1, 'Within 1 business day', 200000, 'SGD')`);
   await seedUser(A, 32000);
@@ -82,6 +87,21 @@ describe("schema migration", () => {
     for (const t of ["users", "profiles", "accounts", "transactions", "obligations", "budgets", "country_rules", "fx_rates", "remittance_providers", "remittance_quotes", "transfer_requests", "payment_executions", "audit_logs", "ai_conversations"]) {
       expect(names).toContain(t);
     }
+  });
+
+  it("0002 adds the global setup and statement tables", async () => {
+    const { rows } = await db.query<{ table_name: string }>(`select table_name from information_schema.tables where table_schema = 'public'`);
+    const names = rows.map((r) => r.table_name);
+    for (const t of ["banks", "bank_account_requirements", "credit_system_rules", "user_financial_setup", "statement_uploads", "statement_transactions", "statement_analyses"]) {
+      expect(names).toContain(t);
+    }
+  });
+
+  it("a verified rule must carry an official https source and a regulator", async () => {
+    await expect(
+      db.query(`insert into public.country_rules (id, source_country, destination_country, transaction_type, rule_name, rule_description, enforcement, official_source, official_source_url, effective_date, last_verified, risk_level, is_demo, status)
+        values ('t-bad', 'SG', '*', 'any', 'x', 'x', 'info', 'x', 'http://example.com', current_date, current_date, 'LOW', false, 'verified')`),
+    ).rejects.toThrow(/country_rules_verified_has_source/);
   });
 
   it("mirrors auth users into public.users", async () => {
@@ -155,6 +175,28 @@ describe("row-level security", () => {
 
   it("users cannot call the execution function", async () => {
     await expect(asUser(A, () => commit(A, "aaaaaaaa-0000-4000-8000-000000000001"))).rejects.toThrow(/permission denied/);
+  });
+
+  it("statement uploads are private to their owner (TEST 12)", async () => {
+    const up = "cccccccc-0000-4000-8000-000000000001";
+    await db.query(
+      `insert into public.statement_uploads (id, user_id, file_name, file_type, size_bytes, sha256, status, currency, row_count) values ($1, $2, 'a.csv', 'csv', 100, repeat('a', 64), 'PREVIEW', 'GBP', 1)`,
+      [up, A],
+    );
+    await db.query(
+      `insert into public.statement_transactions (id, upload_id, user_id, date, description, merchant, amount, currency, direction, category, confidence, category_source) values ('st-1', $1, $2, current_date, 'TESCO', 'Tesco', -10, 'GBP', 'debit', 'Food', 0.95, 'merchant')`,
+      [up, A],
+    );
+    const seenByB = await asUser(B, async () => (await db.query(`select id from public.statement_transactions`)).rows);
+    expect(seenByB).toHaveLength(0);
+    const uploadsByB = await asUser(B, async () => (await db.query(`select id from public.statement_uploads`)).rows);
+    expect(uploadsByB).toHaveLength(0);
+    const seenByA = await asUser(A, async () => (await db.query(`select id from public.statement_transactions`)).rows);
+    expect(seenByA).toHaveLength(1);
+    // No client-side writes: users can't insert rows, even for themselves.
+    await expect(
+      asUser(B, () => db.query(`insert into public.statement_uploads (id, user_id, file_name, file_type, size_bytes, sha256, status, currency, row_count) values (gen_random_uuid(), '${B}', 'b.csv', 'csv', 1, repeat('b', 64), 'PREVIEW', 'GBP', 0)`)),
+    ).rejects.toThrow(/permission denied|row-level security/);
   });
 
   it("users cannot raise their own AI permission to execute", async () => {

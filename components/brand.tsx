@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 /**
@@ -32,10 +33,11 @@ export function Wordmark({ className, size = 40, light }: { className?: string; 
 }
 
 export function CaiMaoMark({ className, priority }: { className?: string; priority?: boolean }) {
+  const t = useTranslations("Brand");
   return (
     <Image
       src="/brand/caimao-mark.png"
-      alt="CaiMao cat with glasses reading a book, with coins flowing between currencies"
+      alt={t("markAlt")}
       width={1100}
       height={655}
       sizes="(max-width: 640px) 90vw, 560px"
@@ -46,10 +48,11 @@ export function CaiMaoMark({ className, priority }: { className?: string; priori
 }
 
 export function CaiMaoLockup({ className }: { className?: string }) {
+  const t = useTranslations("Brand");
   return (
     <Image
       src="/brand/caimao-lockup.png"
-      alt="CaiMao: a white scholarly cat with glasses and an open book, coins flowing between dollar, rouble, euro and yuan, above the CaiMao wordmark"
+      alt={t("lockupAlt")}
       width={1000}
       height={1000}
       sizes="(max-width: 640px) 86vw, 560px"

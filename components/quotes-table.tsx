@@ -1,8 +1,12 @@
+import { useTranslations } from "next-intl";
+import { useDateLocale } from "@/lib/i18n/date";
 import type { RemittanceQuote } from "@/lib/types";
 import { formatRate } from "@/lib/fx/service";
 import { Money } from "./money";
 import { StatusBadge } from "./status-badge";
 import { cn, formatDateTime } from "@/lib/utils";
+import type { ExplanationPart } from "@/lib/remittance/engine";
+import { renderExplanation } from "@/lib/remittance/explain-i18n";
 
 export interface QuotesView {
   quotes: RemittanceQuote[];
@@ -12,6 +16,7 @@ export interface QuotesView {
   compare_amount: number;
   destination_amount: number | null;
   explanation: string;
+  explanation_parts?: ExplanationPart[];
   advantage_vs: { provider_name: string; extra_recipient_amount: number; lower_total_cost: number }[];
   fx_as_of: string;
   fx_source: string;
@@ -19,21 +24,24 @@ export interface QuotesView {
 
 /** The full technical comparison, shown when someone expands "See full comparison". */
 export function QuotesTable({ view }: { view: QuotesView }) {
+  const t = useTranslations("QuotesTable");
+  const dl = useDateLocale();
+  const te = useTranslations("Explain");
   const src = view.quotes[0]?.source_currency;
   const dst = view.quotes[0]?.destination_currency;
   return (
     <div>
-      <div role="region" aria-label="Provider comparison table" tabIndex={0} className="cm-scroll-x overflow-x-auto rounded-[18px] bg-cream">
+      <div role="region" aria-label={t("tableLabel")} tabIndex={0} className="cm-scroll-x overflow-x-auto rounded-[18px] bg-cream">
         <table className="w-full min-w-[720px] text-left text-[13.5px]">
           <thead>
             <tr className="text-[12.5px] text-muted">
-              <th className="px-4 py-3 font-medium">Provider</th>
-              <th className="px-3 py-3 text-right font-medium">FX rate</th>
-              <th className="px-3 py-3 text-right font-medium">FX spread</th>
-              <th className="px-3 py-3 text-right font-medium">Fee</th>
-              <th className="px-3 py-3 text-right font-medium">Total cost</th>
-              <th className="px-3 py-3 text-right font-medium">Recipient gets</th>
-              <th className="px-4 py-3 font-medium">Settlement</th>
+              <th className="px-4 py-3 font-medium">{t("provider")}</th>
+              <th className="px-3 py-3 text-right font-medium">{t("fxRate")}</th>
+              <th className="px-3 py-3 text-right font-medium">{t("fxSpread")}</th>
+              <th className="px-3 py-3 text-right font-medium">{t("fee")}</th>
+              <th className="px-3 py-3 text-right font-medium">{t("totalCost")}</th>
+              <th className="px-3 py-3 text-right font-medium">{t("recipientGets")}</th>
+              <th className="px-4 py-3 font-medium">{t("settlement")}</th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +57,10 @@ export function QuotesTable({ view }: { view: QuotesView }) {
                     </div>
                     {deliver && view.destination_amount ? (
                       <div className="mt-0.5 text-[12.5px] text-muted">
-                        Send <Money amount={deliver.source_amount} currency={deliver.source_currency} /> to deliver <Money amount={view.destination_amount} currency={deliver.destination_currency} />
+                        {t.rich("sendToDeliver", {
+                          send: () => <Money amount={deliver.source_amount} currency={deliver.source_currency} />,
+                          deliver: () => <Money amount={view.destination_amount!} currency={deliver.destination_currency} />,
+                        })}
                       </div>
                     ) : null}
                     {q.unavailable_reason ? <div className="mt-0.5 text-[12.5px]">{q.unavailable_reason}</div> : null}
@@ -67,11 +78,15 @@ export function QuotesTable({ view }: { view: QuotesView }) {
         </table>
       </div>
       <p className="mt-3 text-[13px] leading-5 text-muted">
-        Compared at a common send amount of <Money amount={view.compare_amount} currency={src} /> to {dst}. Mid-market{" "}
-        <span className="font-mono">{view.quotes[0] ? formatRate(view.quotes[0].market_fx_rate) : ""}</span> ({view.fx_source}, {formatDateTime(view.fx_as_of)}). Total cost = fee + FX spread + other charges.
-        Estimates until you pay.
+        {t.rich("footnote", {
+          dst: dst ?? "",
+          source: view.fx_source,
+          asOf: formatDateTime(view.fx_as_of, dl),
+          amount: () => <Money amount={view.compare_amount} currency={src} />,
+          rate: () => <span className="font-mono">{view.quotes[0] ? formatRate(view.quotes[0].market_fx_rate) : ""}</span>,
+        })}
       </p>
-      <p className="mt-2 text-[13.5px] leading-6 text-cocoa-2">{view.explanation}</p>
+      <p className="mt-2 text-[13.5px] leading-6 text-cocoa-2">{renderExplanation(view.explanation_parts, te, view.explanation)}</p>
     </div>
   );
 }

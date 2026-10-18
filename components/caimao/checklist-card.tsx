@@ -1,4 +1,5 @@
 import { Ban, Check, Info } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 
 export type ChecklistState = "done" | "todo" | "blocked" | "info";
@@ -13,7 +14,6 @@ export interface ChecklistItem {
   action?: React.ReactNode;
 }
 
-const STATE_TEXT: Record<ChecklistState, string> = { done: "done", todo: "to do", blocked: "blocked", info: "for information" };
 
 /**
  * Checklist rows with friendly states. Used for transfer requirements, local bank
@@ -38,6 +38,7 @@ export function ChecklistCard({
   children?: React.ReactNode;
   bare?: boolean;
 }) {
+  const t = useTranslations("ChecklistCard");
   const done = items.filter((i) => i.state === "done").length;
   const countable = items.filter((i) => i.state !== "info").length;
   const pct = countable ? done / countable : 0;
@@ -46,14 +47,14 @@ export function ChecklistCard({
       {title || progress ? (
         <div className="mb-4 flex items-center gap-4">
           {progress ? (
-            <svg viewBox="0 0 48 48" className="size-14 shrink-0 -rotate-90" role="img" aria-label={`${done} of ${countable} ready`}>
+            <svg viewBox="0 0 48 48" className="size-14 shrink-0 -rotate-90" role="img" aria-label={t("progress", { done, total: countable })}>
               <circle cx="24" cy="24" r="20" fill="none" stroke="#F1E6DE" strokeWidth="5" />
               <circle cx="24" cy="24" r="20" fill="none" stroke="#A84A1A" strokeWidth="5" strokeLinecap="round" strokeDasharray={`${pct * 125.66} 125.66`} className="transition-[stroke-dasharray] duration-500" />
             </svg>
           ) : null}
           <div className="min-w-0">
             {title ? <h3 className="font-display text-[20px] font-extrabold tracking-[-0.03em] text-cocoa">{title}</h3> : null}
-            {subtitle ?? (progress ? <p className="num text-[14.5px] text-muted">{done} of {countable} ready</p> : null)}
+            {subtitle ?? (progress ? <p className="num text-[14.5px] text-muted">{t("progress", { done, total: countable })}</p> : null)}
           </div>
         </div>
       ) : null}
@@ -76,7 +77,7 @@ export function ChecklistCard({
             <div className="min-w-0 self-stretch sm:flex-1 sm:self-auto">
               <div className={cn("text-[15px] font-bold", i.state === "blocked" ? "text-error-ink" : "text-cocoa")}>
                 {i.label}
-                <span className="sr-only"> ({STATE_TEXT[i.state]})</span>
+                <span className="sr-only"> ({t(`state.${i.state}`)})</span>
               </div>
               {i.detail ? <div className="text-[13.5px] leading-5 text-muted">{i.detail}</div> : null}
             </div>

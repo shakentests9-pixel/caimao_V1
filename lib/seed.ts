@@ -1,3 +1,4 @@
+import { REFERENCE } from "./reference";
 import type {
   Account,
   Budget,
@@ -78,6 +79,7 @@ export const SEED_FX_RATES: Omit<FxRate, "as_of">[] = [
   { base: "USD", quote: "CNY", rate: 7.12, source: "CaiMao seeded demo rates" },
   { base: "USD", quote: "HKD", rate: 7.79, source: "CaiMao seeded demo rates" },
   { base: "USD", quote: "VND", rate: 26200, source: "CaiMao seeded demo rates" },
+  { base: "USD", quote: "JPY", rate: 151.4, source: "CaiMao seeded demo rates" },
 ];
 
 export function buildProviders(): RemittanceProvider[] {
@@ -142,6 +144,9 @@ export function buildCountryRules(): CountryRule[] {
     rule_description: `${rule.rule_description} ${DEMO_NOTE}`,
     last_verified: verified,
     is_demo: true,
+    status: "simulated",
+    channel: "bank_transfer",
+    regulator: rule.official_source,
   });
   return [
     // Singapore outbound
@@ -239,6 +244,13 @@ export function buildSeed(now: Date = new Date(), scenario: SeedScenario["id"] =
     base_currency: "SGD",
     university: "Example University",
     ai_permission_level: PermissionLevel.Prepare,
+    nationality: "SG",
+    visa_type: "student",
+    residency_status: "resident",
+    student_status: "full_time",
+    age: 21,
+    tax_residency: null,
+    language: "en",
     documents_on_file: [
       "Passport or national ID",
       "University invoice",
@@ -321,7 +333,8 @@ export function buildSeed(now: Date = new Date(), scenario: SeedScenario["id"] =
     transactions,
     obligations,
     budgets,
-    country_rules: buildCountryRules(),
+    // Simulated demo rules drive the sandbox tuition demo; researched rules power the regulation assistant.
+    country_rules: [...buildCountryRules(), ...REFERENCE.rules],
     fx_rates: SEED_FX_RATES.map((r) => ({ ...r, as_of: seededAt })),
     remittance_providers: buildProviders(),
     credit_cards,

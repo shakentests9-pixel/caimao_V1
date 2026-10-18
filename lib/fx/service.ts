@@ -44,8 +44,8 @@ export class FxService {
   }
 }
 
-export const CURRENCY_DECIMALS: Record<Currency, number> = { USD: 2, GBP: 2, SGD: 2, CNY: 2, HKD: 2, VND: 0 };
-export const CURRENCY_SYMBOL: Record<Currency, string> = { USD: "US$", GBP: "£", SGD: "S$", CNY: "¥", HKD: "HK$", VND: "₫" };
+export const CURRENCY_DECIMALS: Record<Currency, number> = { USD: 2, GBP: 2, SGD: 2, CNY: 2, HKD: 2, VND: 0, JPY: 0 };
+export const CURRENCY_SYMBOL: Record<Currency, string> = { USD: "US$", GBP: "£", SGD: "S$", CNY: "¥", HKD: "HK$", VND: "₫", JPY: "JP¥" };
 
 export function roundMoney(amount: number, currency: Currency): number {
   const f = 10 ** CURRENCY_DECIMALS[currency];

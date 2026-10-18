@@ -8,6 +8,7 @@ import { Checkbox } from "./ui/checkbox";
 import { PERMISSION_COPY } from "./permission-chip";
 import { CurrencyChip } from "./country-chip";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 async function save(patch: Record<string, unknown>) {
   const res = await fetch("/api/settings", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(patch) });
@@ -17,8 +18,9 @@ async function save(patch: Record<string, unknown>) {
 export function CurrencyPreference({ base }: { base: Currency }) {
   const router = useRouter();
   const [pending, start] = useTransition();
+  const t = useTranslations("SettingsForms");
   return (
-    <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Show balances in">
+    <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={t("showBalancesIn")}>
       {CURRENCIES.map((c) => (
         <button
           key={c}
@@ -40,8 +42,10 @@ export function PermissionForm({ level }: { level: PermissionLevel }) {
   const router = useRouter();
   const [pending, start] = useTransition();
   const levels = [PermissionLevel.Information, PermissionLevel.Read, PermissionLevel.Prepare];
+  const t = useTranslations("SettingsForms");
+  const tp = useTranslations("Permissions");
   return (
-    <div className="space-y-3" role="radiogroup" aria-label="How CaiMao can help">
+    <div className="space-y-3" role="radiogroup" aria-label={t("permissionsLabel")}>
       {levels.map((lvl) => {
         const c = PERMISSION_COPY[lvl];
         const on = lvl === level;
@@ -59,10 +63,10 @@ export function PermissionForm({ level }: { level: PermissionLevel }) {
             </span>
             <span className="flex-1">
               <span className="flex items-center gap-2 text-[16px] font-extrabold text-cocoa">
-                {c.name}
-                {lvl === PermissionLevel.Prepare && <span className="rounded-full bg-gold-soft px-2 py-0.5 text-[12px] font-extrabold text-gold-ink">Recommended</span>}
+                {tp(`level${lvl}.name`)}
+                {lvl === PermissionLevel.Prepare && <span className="rounded-full bg-gold-soft px-2 py-0.5 text-[12px] font-extrabold text-gold-ink">{t("recommended")}</span>}
               </span>
-              <span className="block text-[14px] leading-5 text-muted">{c.text}</span>
+              <span className="block text-[14px] leading-5 text-muted">{tp(`level${lvl}.text`)}</span>
             </span>
             <span className={cn("flex size-6 shrink-0 items-center justify-center rounded-full border-2", on ? "border-brand bg-brand text-white" : "border-sand")} aria-hidden>
               {on && <Check className="size-3.5" strokeWidth={3} />}
@@ -75,8 +79,8 @@ export function PermissionForm({ level }: { level: PermissionLevel }) {
           <Lock className="size-5" />
         </span>
         <span>
-          <span className="block text-[16px] font-extrabold">Payments always require your approval.</span>
-          <span className="block text-[14px] text-cream">This can&apos;t be switched on as a standing permission. You confirm each payment yourself.</span>
+          <span className="block text-[16px] font-extrabold">{t("approvalTitle")}</span>
+          <span className="block text-[14px] text-cream">{t("approvalText")}</span>
         </span>
       </div>
     </div>
@@ -84,11 +88,20 @@ export function PermissionForm({ level }: { level: PermissionLevel }) {
 }
 
 const ALL_DOCS = ["Passport or national ID", "University invoice", "Confirmation of enrolment (CAS)", "Source-of-funds declaration", "Admission letter"];
+/** Message keys for the document names; the stored values above stay in English. */
+const DOC_KEYS: Record<string, string> = {
+  "Passport or national ID": "passport",
+  "University invoice": "universityInvoice",
+  "Confirmation of enrolment (CAS)": "cas",
+  "Source-of-funds declaration": "sourceOfFunds",
+  "Admission letter": "admissionLetter",
+};
 
 export function DocumentsForm({ onFile }: { onFile: string[] }) {
   const router = useRouter();
   const [docs, setDocs] = useState(onFile);
   const [pending, start] = useTransition();
+  const t = useTranslations("SettingsForms");
   return (
     <ul className="space-y-2">
       {ALL_DOCS.map((d) => {
@@ -105,8 +118,8 @@ export function DocumentsForm({ onFile }: { onFile: string[] }) {
                   start(async () => { await save({ documents_on_file: next }); router.refresh(); });
                 }}
               />
-              <span className="flex-1 text-[15px] font-semibold text-cocoa">{d}</span>
-              <span className={cn("text-[13px] font-extrabold", on ? "text-success-ink" : "text-muted")}>{on ? "Ready" : "Not added"}</span>
+              <span className="flex-1 text-[15px] font-semibold text-cocoa">{t(`documents.${DOC_KEYS[d]}`)}</span>
+              <span className={cn("text-[13px] font-extrabold", on ? "text-success-ink" : "text-muted")}>{on ? t("ready") : t("notAdded")}</span>
             </label>
           </li>
         );
@@ -118,6 +131,7 @@ export function DocumentsForm({ onFile }: { onFile: string[] }) {
 export function ScenarioForm({ scenarios, current }: { scenarios: SeedScenario[]; current: SeedScenario["id"] }) {
   const router = useRouter();
   const [busy, setBusy] = useState<string | null>(null);
+  const t = useTranslations("SettingsForms");
   return (
     <ul className="space-y-2">
       {scenarios.map((s) => (
@@ -125,7 +139,7 @@ export function ScenarioForm({ scenarios, current }: { scenarios: SeedScenario[]
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 text-[15px] font-extrabold text-cocoa">
               {s.label}
-              {s.id === current && <span className="rounded-full bg-success-soft px-2 py-0.5 text-[12px] font-extrabold text-success-ink">Loaded</span>}
+              {s.id === current && <span className="rounded-full bg-success-soft px-2 py-0.5 text-[12px] font-extrabold text-success-ink">{t("loaded")}</span>}
             </div>
             <div className="text-[13.5px] text-muted">{s.description}</div>
           </div>
@@ -142,7 +156,7 @@ export function ScenarioForm({ scenarios, current }: { scenarios: SeedScenario[]
             className={cn("cm-press inline-flex min-h-11 items-center gap-1.5 rounded-[14px] px-4 text-[14px] font-extrabold", s.id === "standard" ? "cm-cta" : "bg-white text-cocoa shadow-card")}
           >
             {busy === s.id ? <Loader2 className="size-4 animate-spin" /> : null}
-            {s.id === "standard" ? "Reset demo" : "Load"}
+            {s.id === "standard" ? t("resetDemo") : t("load")}
           </button>
         </li>
       ))}
@@ -152,6 +166,7 @@ export function ScenarioForm({ scenarios, current }: { scenarios: SeedScenario[]
 
 export function SignOutButton({ className }: { className?: string }) {
   const router = useRouter();
+  const t = useTranslations("SettingsForms");
   return (
     <button
       onClick={async () => {
@@ -161,7 +176,7 @@ export function SignOutButton({ className }: { className?: string }) {
       }}
       className={cn("cm-press inline-flex min-h-11 items-center gap-2 rounded-[14px] bg-white px-5 text-[15px] font-extrabold text-error-ink shadow-card hover:bg-error-soft", className)}
     >
-      <LogOut className="size-[18px]" /> Sign out
+      <LogOut className="size-[18px]" /> {t("signOut")}
     </button>
   );
 }

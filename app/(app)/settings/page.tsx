@@ -6,25 +6,35 @@ import { DEFAULT_MODEL } from "@/lib/agent/orchestrator";
 import { PageHeader } from "@/components/page-header";
 import { CurrencyPreference, DocumentsForm, PermissionForm, ScenarioForm, SignOutButton } from "@/components/settings-forms";
 import { SettingsSection } from "@/components/caimao/settings-section";
+import { LanguagePicker } from "@/components/language-picker";
+import { CrossBorderProfileForm } from "@/components/cross-border-profile-form";
+import { getTranslations } from "next-intl/server";
 
-export const metadata = { title: "Settings" };
+export async function generateMetadata() {
+  const t = await getTranslations("SettingsPage");
+  return { title: t("metaTitle") };
+}
 
 export default async function SettingsPage() {
   const repo = await getRepository();
   const [profile, scenario] = await Promise.all([repo.getProfile(), repo.getScenario()]);
   const agent = agentMode();
   const supa = dataMode() === "supabase";
+  const t = await getTranslations("SettingsPage");
+  const tl = await getTranslations("Language");
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Settings" />
-      <nav className="cm-scroll-x -mx-1 flex gap-2 overflow-x-auto px-1" aria-label="Settings sections">
+      <PageHeader title={t("title")} />
+      <nav className="cm-scroll-x -mx-1 flex gap-2 overflow-x-auto px-1" aria-label={t("sectionsNav")}>
         {[
-          ["personalisation", "Personalisation"],
-          ["ai", "CaiMao permissions"],
-          ["security", "Security"],
-          ["documents", "Documents"],
-          ["demo", "Demo settings"],
+          ["language", t("nav.language")],
+          ["profile", t("nav.profile")],
+          ["personalisation", t("nav.personalisation")],
+          ["ai", t("nav.ai")],
+          ["security", t("nav.security")],
+          ["documents", t("nav.documents")],
+          ["demo", t("nav.demo")],
         ].map(([id, label]) => (
           <a key={id} href={`#${id}`} className="flex min-h-11 shrink-0 items-center rounded-[14px] bg-white px-4 text-[14px] font-bold text-cocoa-2 shadow-card hover:text-brand">
             {label}
@@ -34,19 +44,36 @@ export default async function SettingsPage() {
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         <div className="space-y-6 lg:col-span-7">
-          <SettingsSection id="personalisation" title="Personalisation" description="Which currency your total balance is shown in.">
+          <SettingsSection id="language" title={tl("title")} description={tl("description")}>
+            <LanguagePicker />
+          </SettingsSection>
+          <SettingsSection id="profile" title={t("profile.title")} description={t("profile.description")}>
+            <CrossBorderProfileForm
+              initial={{
+                nationality: profile.nationality,
+                home_country: profile.home_country,
+                study_country: profile.study_country,
+                age: profile.age,
+                student_status: profile.student_status,
+                visa_type: profile.visa_type,
+                residency_status: profile.residency_status,
+                tax_residency: profile.tax_residency,
+              }}
+            />
+          </SettingsSection>
+          <SettingsSection id="personalisation" title={t("personalisation.title")} description={t("personalisation.description")}>
             <CurrencyPreference base={profile.base_currency} />
           </SettingsSection>
-          <SettingsSection id="ai" title="How CaiMao can help" description="Payments always require your approval.">
+          <SettingsSection id="ai" title={t("ai.title")} description={t("ai.description")}>
             <PermissionForm level={profile.ai_permission_level} />
           </SettingsSection>
-          <SettingsSection id="demo" title="Demo settings" description="Load a fresh dataset to rehearse a different outcome.">
+          <SettingsSection id="demo" title={t("demo.title")} description={t("demo.description")}>
             <ScenarioForm scenarios={SCENARIOS} current={scenario} />
             <dl className="mt-5 space-y-2 rounded-[18px] bg-cream p-4 text-[14px]">
               {[
-                ["Data", supa ? "Supabase PostgreSQL with row-level security" : "Local demo store"],
-                ["AI", agent === "llm" ? `Claude tool calling · ${process.env.ANTHROPIC_MODEL || DEFAULT_MODEL}` : "Built-in planner (add ANTHROPIC_API_KEY to use Claude)"],
-                ["Rules", "Simulated demo regulations"],
+                [t("info.data"), supa ? t("info.dataSupabase") : t("info.dataLocal")],
+                [t("info.ai"), agent === "llm" ? t("info.aiLlm", { model: process.env.ANTHROPIC_MODEL || DEFAULT_MODEL }) : t("info.aiPlanner")],
+                [t("info.rules"), t("info.rulesValue")],
               ].map(([k, v]) => (
                 <div key={k} className="grid grid-cols-[4.5rem_1fr] gap-3">
                   <dt className="text-muted">{k}</dt>
@@ -58,16 +85,16 @@ export default async function SettingsPage() {
         </div>
 
         <div className="space-y-6 lg:col-span-5">
-          <SettingsSection id="security" title="Security">
+          <SettingsSection id="security" title={t("security.title")}>
             <ul className="space-y-3">
               {[
-                { Icon: KeyRound, title: supa ? "Email and password" : "Demo sign-in", text: supa ? `Signed in as ${profile.email}` : `Signed in as ${profile.full_name} (demo)` },
-                { Icon: Lock, title: "Every payment needs you", text: "CaiMao prepares payments; only you can approve them." },
-                { Icon: EyeOff, title: "Account numbers stay masked", text: "Only the last four digits are stored or shown." },
-                { Icon: ShieldCheck, title: "Tamper-proof activity log", text: "Every check and payment is recorded and can't be edited." },
-                { Icon: FlaskConical, title: "Sandbox mode", text: "No real money moves in this demo." },
-              ].map(({ Icon, title, text }) => (
-                <li key={title} className="flex items-start gap-3">
+                { id: "signin", Icon: KeyRound, title: supa ? t("security.signInEmail") : t("security.signInDemo"), text: supa ? t("security.signedInAs", { email: profile.email }) : t("security.signedInAsDemo", { name: profile.full_name }) },
+                { id: "approval", Icon: Lock, title: t("security.approvalTitle"), text: t("security.approvalText") },
+                { id: "masked", Icon: EyeOff, title: t("security.maskedTitle"), text: t("security.maskedText") },
+                { id: "log", Icon: ShieldCheck, title: t("security.logTitle"), text: t("security.logText") },
+                { id: "sandbox", Icon: FlaskConical, title: t("security.sandboxTitle"), text: t("security.sandboxText") },
+              ].map(({ id, Icon, title, text }) => (
+                <li key={id} className="flex items-start gap-3">
                   <span className="flex size-10 shrink-0 items-center justify-center rounded-[12px] bg-cream text-cocoa-2">
                     <Icon className="size-5" />
                   </span>
@@ -80,7 +107,7 @@ export default async function SettingsPage() {
             </ul>
             <SignOutButton className="mt-6" />
           </SettingsSection>
-          <SettingsSection id="documents" title="Documents" description="CaiMao checks these against each transfer rule. Remove one to see a transfer flagged as action required.">
+          <SettingsSection id="documents" title={t("documents.title")} description={t("documents.description")}>
             <DocumentsForm onFile={profile.documents_on_file} />
           </SettingsSection>
         </div>

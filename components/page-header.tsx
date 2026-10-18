@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function PageHeader({ title, description, action, eyebrow }: { title: string; description?: React.ReactNode; action?: React.ReactNode; eyebrow?: React.ReactNode }) {
   return (
@@ -14,13 +15,14 @@ export function PageHeader({ title, description, action, eyebrow }: { title: str
   );
 }
 
-export function SectionTitle({ title, href, linkLabel = "See all" }: { title: string; href?: string; linkLabel?: string }) {
+export function SectionTitle({ title, href, linkLabel }: { title: string; href?: string; linkLabel?: string }) {
+  const t = useTranslations("PageHeader");
   return (
     <div className="mb-3 flex items-center justify-between px-1">
       <h2 className="font-display text-[20px] font-extrabold tracking-[-0.03em] text-cocoa">{title}</h2>
       {href ? (
         <Link href={href} className="inline-flex min-h-11 items-center gap-1 rounded-full px-2 text-[14px] font-bold text-brand hover:underline">
-          {linkLabel} <ChevronRight className="size-4" />
+          {linkLabel ?? t("seeAll")} <ChevronRight className="size-4" />
         </Link>
       ) : null}
     </div>

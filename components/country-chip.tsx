@@ -12,9 +12,10 @@ const COUNTRY_STYLE: Record<CountryCode, string> = {
   CN: "bg-[#ffe9dc] text-[#a33a00]",
   HK: "bg-[#ffe4ec] text-[#a3164a]",
   VN: "bg-[#fff2cc] text-[#8a5a00]",
+  JP: "bg-[#fde8e8] text-[#9b1c1c]",
 };
 
-export const CURRENCY_COUNTRY: Record<Currency, CountryCode> = { SGD: "SG", GBP: "GB", USD: "US", CNY: "CN", HKD: "HK", VND: "VN" };
+export const CURRENCY_COUNTRY: Record<Currency, CountryCode> = { SGD: "SG", GBP: "GB", USD: "US", CNY: "CN", HKD: "HK", VND: "VN", JPY: "JP" };
 
 export function CountryChip({ code, size = 40, className, ring }: { code: CountryCode; size?: number; className?: string; ring?: boolean }) {
   return (
