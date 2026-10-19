@@ -20,41 +20,25 @@ Supported countries for the new features: Singapore, China, the United Kingdom, 
 ## 2. Architecture
 
 ```mermaid
-flowchart LR
-  subgraph Browser
-    UI[Pages: Home · Assistant · Transfers · Budget/Statement · Banking abroad · Setup · Activity]
-    RV[Review & approve sheet - Level 3 gate]
+flowchart TB
+  U["Student · browser or phone"] --> PX["proxy.ts · sign-in check"]
+  PX --> PG["Pages · server-rendered screens"]
+  PX --> API["/api route handlers · zod-validated"]
+  U -- "Confirm & Pay · Level 3, per payment" --> API
+  API --> AG["CaiMao agent · Claude or built-in planner"]
+  AG --> TR["Tool registry · permission levels 0–2"]
+  TR --> DOM
+  API --> DOM
+  PG --> DOM
+  subgraph DOM["Domain services"]
+    direction LR
+    E1["Payments · compliance · remittance · FX · sandbox rail"]
+    E2["Regulatory engine · banking eligibility · setup journey"]
+    E3["Statements · classifier · analysis"]
   end
-  subgraph Server[Next.js 16 server]
-    PX[proxy.ts - auth gate]
-    API[Route handlers /api/*]
-    AG[Agent: orchestrator + built-in planner]
-    TR[Tool registry - zod + permission level]
-    subgraph Domain
-      FIN[finance.ts: prepare/approve/execute]
-      CMP[compliance engine - payment gating]
-      REG[regulatory engine - rules assistant]
-      BNK[banking: eligibility + journey]
-      STM[statements: validate/parse/classify/analyse]
-      RMT[remittance engine]
-      FX[FX service]
-      SBX[sandbox rail]
-      AUD[audit writer]
-    end
-    REF[(lib/reference - generated, sourced)]
-    I18N[next-intl + server translator]
-    REPO[(Repository)]
-  end
-  LLM[(Claude API - optional)]
-  DB[(Supabase Postgres + RLS / memory demo store)]
-  UI --> PX --> API
-  API --> AG --> TR --> Domain
-  AG <--> LLM
-  RV -->|POST /api/transfers/:id/confirm| FIN
-  Domain --> REPO --> DB
-  REF --> REPO
-  Domain --> AUD --> REPO
-  I18N -.-> UI & AG
+  DOM --> AUD["Audit log · append-only"]
+  DOM --> REPO[("Repository · Supabase + RLS, or demo store")]
+  REF[("Reference data · researched rules, banks, credit")] --> DOM
 ```
 
 **Layers**
